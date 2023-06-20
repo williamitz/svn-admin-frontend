@@ -8,6 +8,7 @@ import { FooterComponent } from './footer/footer.component';
 import { SimplebarAngularModule } from 'simplebar-angular';
 import { NgbDropdownModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
+import { WidgetsModule } from 'src/app/widgets/widgets.module';
 
 @NgModule({
   declarations: [
@@ -20,8 +21,10 @@ import { TranslateModule } from '@ngx-translate/core';
     NgbDropdownModule,
     NgbNavModule,
     SimplebarAngularModule,
+
     TranslateModule,
     RouterModule,
+    WidgetsModule
   ],
   exports: [
     TopbarComponent,

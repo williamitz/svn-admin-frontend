@@ -5,6 +5,7 @@ import { cartData } from 'src/app/utils';
 import { CartModel } from '../../../interfaces/topbar.interfaces';
 import { LanguageService } from '../../../services/language.service';
 import { EventService } from '../../../services/event.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-topbar',
@@ -17,9 +18,6 @@ export class TopbarComponent implements OnInit {
   mode: string | undefined;
   @Output() mobileMenuButtonClicked = new EventEmitter();
 
-  cartData: CartModel[] = cartData;
-  total = 0;
-  cart_length: any = 0;
 
   flagvalue = 'assets/images/flags/spain.svg';
   valueset: any;
@@ -48,10 +46,14 @@ export class TopbarComponent implements OnInit {
   constructor(
     @Inject(DOCUMENT) private document: any,
     public languageService: LanguageService,
-    private  eventService: EventService
+    private  eventService: EventService,
+    private _cookiesService: CookieService
   ) { }
 
   ngOnInit(): void {
+    this.element = document.documentElement;
+
+    this.cookieValue = this._cookiesService.get('lang');
   }
 
   /***
@@ -69,8 +71,10 @@ export class TopbarComponent implements OnInit {
    */
   fullscreen() {
     document.body.classList.toggle('fullscreen-enable');
+
+    // !this.element?.mozFullScreenElement &&
     if (
-      !document.fullscreenElement && !this.element.mozFullScreenElement &&
+      !document.fullscreenElement &&
       !this.element.webkitFullscreenElement) {
       if (this.element.requestFullscreen) {
         this.element.requestFullscreen();
@@ -100,8 +104,7 @@ export class TopbarComponent implements OnInit {
     }
   }
 
-  oncheckboxchange(evnt: any) {
-  }
+
 
   /**
    * Toggle the menu bar when having mobile screen
@@ -109,6 +112,7 @@ export class TopbarComponent implements OnInit {
   toggleMobileMenu(event: any) {
     event.preventDefault();
     this.mobileMenuButtonClicked.emit();
+
   }
 
   // Search Topbar
@@ -149,15 +153,7 @@ export class TopbarComponent implements OnInit {
     }
   }
 
-  // Delete Item
-  deleteItem(event: any, id: any) {
-    var price = event.target.closest('.dropdown-item').querySelector('.item_price').innerHTML;
-    var Total_price = this.total - price;
-    this.total = Total_price;
-    this.cart_length = this.cart_length - 1;
-    this.total > 1 ? (document.getElementById("empty-cart") as HTMLElement).style.display = "none" : (document.getElementById("empty-cart") as HTMLElement).style.display = "block";
-    document.getElementById('item_' + id)?.remove();
-  }
+
 
   /**
    * Search Close Btn

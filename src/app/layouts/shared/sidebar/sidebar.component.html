@@ -31,8 +31,10 @@
             <div id="two-column-menu">
             </div>
             <ngx-simplebar class="sidebar-menu-scroll" style="max-height: calc(100vh - 70px)">
+
                 <ul class="metismenu list-unstyled navbar-nav" id="navbar-nav">
                     <ng-container *ngFor="let item of menuItems">
+
                         <li class="menu-title" *ngIf="item.isTitle">
                             <span data-key="t-menu">
                             {{ item.label | translate }}
@@ -110,6 +112,7 @@
                                 </ul>
                             </div>
                         </li>
+
                     </ng-container>
                 </ul>
             </ngx-simplebar>

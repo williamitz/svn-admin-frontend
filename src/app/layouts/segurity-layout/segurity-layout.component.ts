@@ -12,7 +12,7 @@ export class SegurityLayoutComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-
+    document.documentElement.setAttribute('data-layout', 'vertical');
     document.documentElement.setAttribute('data-topbar', 'light');
     document.documentElement.setAttribute('data-sidebar', 'dark');
     document.documentElement.setAttribute('data-layout-style', 'default');
@@ -41,21 +41,61 @@ export class SegurityLayoutComponent implements OnInit {
    */
   onToggleMobileMenu() {
     console.log('click toggle menú');
-    const currentSIdebarSize = document.documentElement.getAttribute("data-sidebar-size");
-    if (document.documentElement.clientWidth >= 767) {
-      if (currentSIdebarSize == null) {
-        (document.documentElement.getAttribute('data-sidebar-size') == null || document.documentElement.getAttribute('data-sidebar-size') == "lg") ? document.documentElement.setAttribute('data-sidebar-size', 'sm') : document.documentElement.setAttribute('data-sidebar-size', 'lg')
-       } else if (currentSIdebarSize == "md") {
-         (document.documentElement.getAttribute('data-sidebar-size') == "md") ? document.documentElement.setAttribute('data-sidebar-size', 'sm') : document.documentElement.setAttribute('data-sidebar-size', 'md')
-       } else {
-         (document.documentElement.getAttribute('data-sidebar-size') == "sm") ? document.documentElement.setAttribute('data-sidebar-size', 'lg') : document.documentElement.setAttribute('data-sidebar-size', 'sm')
-       }
-     }
 
-   if (document.documentElement.clientWidth <= 767) {
-     document.body.classList.toggle('vertical-sidebar-enable');
-   }
+    const currentSIdebarSize = document.documentElement.getAttribute("data-sidebar-size");
+    var windowSize = document.documentElement.clientWidth;
+
+    // if (windowSize >= 767) {
+    //   if (currentSIdebarSize == null) {
+    //     (document.documentElement.getAttribute('data-sidebar-size') == null || document.documentElement.getAttribute('data-sidebar-size') == "lg") ? document.documentElement.setAttribute('data-sidebar-size', 'sm') : document.documentElement.setAttribute('data-sidebar-size', 'lg')
+    //    } else if (currentSIdebarSize == "md") {
+    //      (document.documentElement.getAttribute('data-sidebar-size') == "md") ? document.documentElement.setAttribute('data-sidebar-size', 'sm') : document.documentElement.setAttribute('data-sidebar-size', 'md')
+    //    } else {
+    //      (document.documentElement.getAttribute('data-sidebar-size') == "sm") ? document.documentElement.setAttribute('data-sidebar-size', 'lg') : document.documentElement.setAttribute('data-sidebar-size', 'sm')
+    //    }
+    // }
+
+    // if (windowSize <= 767) {
+    //   document.body.classList.toggle('vertical-sidebar-enable');
+    // }
+
+
+    if (windowSize > 767)
+      document.querySelector(".hamburger-icon")!.classList.toggle("open");
+
+    //For collapse vertical menu
+    if (document.documentElement.getAttribute("data-layout") === "vertical") {
+      if (windowSize < 1025 && windowSize >= 767) {
+
+        console.log('windowSize < 1025 && windowSize > 767');
+        document.body.classList.remove("vertical-sidebar-enable");
+
+        currentSIdebarSize == "sm" ?
+          document.documentElement.setAttribute("data-sidebar-size", "") :
+          document.documentElement.setAttribute("data-sidebar-size", "sm");
+      } else if (windowSize > 1025) {
+
+        console.log('else if (windowSize > 1025)');
+        document.body.classList.remove("vertical-sidebar-enable");
+
+        (currentSIdebarSize == null || currentSIdebarSize == "lg") ?
+          document.documentElement.setAttribute("data-sidebar-size", "sm") :
+          document.documentElement.setAttribute("data-sidebar-size", "lg");
+
+      } else if (windowSize < 767) {
+        console.log('else if (windowSize <= 767)');
+        document.body.classList.add("vertical-sidebar-enable");
+        document.documentElement.setAttribute("data-sidebar-size", "lg");
+      }
+    }
+
+
+
    this.isCondensed = !this.isCondensed;
+
+
+
+
  }
 
   /**

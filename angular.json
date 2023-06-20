@@ -37,7 +37,8 @@
               "src/assets/scss/config/default/app.scss",
               "src/assets/scss/icons.scss"
             ],
-            "scripts": []
+            "scripts": [
+            ]
           },
           "configurations": {
             "production": {
