@@ -41,6 +41,8 @@ export class AppComponent {
     document.documentElement.setAttribute('data-layout-position', 'fixed');
     document.documentElement.setAttribute('data-sidebar-image', 'none');
     document.documentElement.setAttribute('data-preloader', 'disable');
+    document.documentElement.setAttribute('data-sidebar-size', 'sm');
+
 
     this.onListenResizeScreen();
     this.onListenUiRx();
@@ -72,7 +74,7 @@ export class AppComponent {
       var windowSize = document.documentElement.clientWidth;
 
       if (windowSize > 767)
-        document.querySelector(".hamburger-icon")!.classList.toggle("open");
+        document.querySelector(".hamburger-icon")?.classList.toggle("open");
 
       //For collapse vertical menu
       if (document.documentElement.getAttribute("data-layout") === "vertical") {
@@ -84,6 +86,8 @@ export class AppComponent {
             document.documentElement.setAttribute("data-sidebar-size", "") :
             document.documentElement.setAttribute("data-sidebar-size", "sm");
         } else if (windowSize > 1025) {
+
+          console.log('if (windowSize > 1025)');
 
           document.body.classList.remove("vertical-sidebar-enable");
 

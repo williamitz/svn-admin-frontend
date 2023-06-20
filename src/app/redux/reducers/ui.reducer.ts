@@ -12,7 +12,7 @@ export interface IUIState {
 
 const initialState: IUIState = {
   screenWidth: 0,
-  isCondensed: false,
+  isCondensed: true,
 };
 
 export const UiReducer = createReducer(

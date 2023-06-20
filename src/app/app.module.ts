@@ -1,7 +1,7 @@
 import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule, HttpClient } from '@angular/common/http'
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http'
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
@@ -19,6 +19,8 @@ import { AdminLayoutModule } from './layouts/admin-layout/admin-layout.module';
 import { StoreModule } from '@ngrx/store';
 import { AppState } from './app.state';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { TokenInterceptor } from './services/token.interceptor.service';
+import { HandleErrorInterceptor } from './services/handleError.interceptor.service';
 
 export function createTranslateLoader(http: HttpClient): any {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -61,7 +63,18 @@ export function createTranslateLoader(http: HttpClient): any {
     })
 
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HandleErrorInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
