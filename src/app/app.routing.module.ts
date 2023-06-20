@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 import { AuthLayoutRoutingModule } from './layouts/auth-layout/auth-layout.routing.module';
 import { SegurityLayoutRoutingModule } from './layouts/segurity-layout/segurity-layout.routing.module';
+import { AdminLayoutRoutingModule } from './layouts/admin-layout/admin-layout.routing.module';
 
 const routes: Routes = [
   {
@@ -31,7 +32,8 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes),
     AuthLayoutRoutingModule,
-    SegurityLayoutRoutingModule
+    SegurityLayoutRoutingModule,
+    AdminLayoutRoutingModule
   ],
   exports: [RouterModule]
 })

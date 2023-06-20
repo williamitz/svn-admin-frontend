@@ -16,4 +16,12 @@ export class StorageService {
     return {};
   }
 
+  setItem( key: string, val: string ) {
+    localStorage.setItem( key, val);
+  }
+
+  getItem( key: string ) {
+    return localStorage.getItem( key);
+  }
+
 }

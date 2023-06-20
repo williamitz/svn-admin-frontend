@@ -23,7 +23,8 @@
                         <p class="text-muted">Sign in to continue to Velzon.</p>
                     </div>
                     <div class="p-2 mt-4">
-                        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+                        <form [formGroup]="frmLogin" (ngSubmit)="onSubmit()">
 
                             <div class="mb-3">
                                 <label class="form-label" for="username">Email</label>
@@ -41,12 +42,27 @@
                                 </div>
                                 <label class="form-label" for="password-input">Password</label>
                                 <div class="position-relative auth-pass-inputgroup mb-3">
-                                    <input [type]="fieldTextType ? 'text' : 'password'" class="form-control pe-5" placeholder="Enter password" id="password-input" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }">
-                                    <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted" type="button" id="password-addon"><i class="mdi align-middle" [ngClass]="{'mdi-eye-off-outline': !fieldTextType, 'mdi-eye-outline': fieldTextType
-                                          }" (click)="toggleFieldTextType()"></i></button>
+
+                                    <input [type]="fieldTextType ? 'text' : 'password'"
+                                      class="form-control pe-5"
+                                      placeholder="Enter password"
+                                      id="password-input"
+                                      formControlName="password"
+                                      [ngClass]="{ 'is-invalid': submitted && f['password'].errors }">
+
+                                    <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted"
+                                      type="button" id="password-addon">
+                                      <i class="mdi align-middle"
+                                        [class.mdi-eye-off-outline]="!fieldTextType"
+                                        [class.mdi-eye-outline]="fieldTextType"
+                                       (click)="toggleFieldTextType()">
+                                      </i>
+                                    </button>
+
                                     <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
                                         <span *ngIf="f['password'].errors['required']">Password is required</span>
                                     </div>
+
                                 </div>
                             </div>
 

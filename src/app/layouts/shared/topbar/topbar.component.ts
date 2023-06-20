@@ -1,11 +1,16 @@
-import { Component, OnInit, Output, EventEmitter, Inject } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Inject, inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
-import { cartData } from 'src/app/utils';
-import { CartModel } from '../../../interfaces/topbar.interfaces';
+
 import { LanguageService } from '../../../services/language.service';
 import { EventService } from '../../../services/event.service';
 import { CookieService } from 'ngx-cookie-service';
+
+//redux
+import { Store } from '@ngrx/store';
+import * as uiActions from '../../../redux/actions/ui.actions';
+import { IAppState } from 'src/app/app.state';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-topbar',
@@ -16,7 +21,7 @@ export class TopbarComponent implements OnInit {
 
   element: any;
   mode: string | undefined;
-  @Output() mobileMenuButtonClicked = new EventEmitter();
+  // @Output() mobileMenuButtonClicked = new EventEmitter();
 
 
   flagvalue = 'assets/images/flags/spain.svg';
@@ -43,12 +48,14 @@ export class TopbarComponent implements OnInit {
     { text: 'Arabic', flag: 'assets/images/flags/ar.svg', lang: 'ar' },
   ];
 
-  constructor(
-    @Inject(DOCUMENT) private document: any,
-    public languageService: LanguageService,
-    private  eventService: EventService,
-    private _cookiesService: CookieService
-  ) { }
+
+  public languageService = inject( LanguageService );
+  private  eventService = inject(EventService );
+  private _cookiesService = inject( CookieService );
+  private _st = inject( StorageService );
+  private _store = inject( Store<IAppState> );
+
+  constructor(@Inject(DOCUMENT) private document: any){}
 
   ngOnInit(): void {
     this.element = document.documentElement;
@@ -105,13 +112,12 @@ export class TopbarComponent implements OnInit {
   }
 
 
-
   /**
    * Toggle the menu bar when having mobile screen
    */
   toggleMobileMenu(event: any) {
     event.preventDefault();
-    this.mobileMenuButtonClicked.emit();
+    this._store.dispatch( uiActions.onToggle() );
 
   }
 
@@ -154,7 +160,6 @@ export class TopbarComponent implements OnInit {
   }
 
 
-
   /**
    * Search Close Btn
    */
@@ -172,6 +177,8 @@ export class TopbarComponent implements OnInit {
   */
   changeMode(mode: string) {
     this.mode = mode;
+
+    this._st.setItem( 'themeMode', mode );
     this.eventService.broadcast('changeMode', mode);
 
     switch (mode) {
