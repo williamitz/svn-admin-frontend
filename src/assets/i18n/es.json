@@ -12,6 +12,7 @@
       "TEXT": "Tablero",
       "BADGE": "Nuevo",
       "LIST": {
+        "CLIENTS": "Clientes",
         "ANALYTICS": "Analítica",
         "CRM": "CRM",
         "ECOMMERCE": "Comercio electrónico",

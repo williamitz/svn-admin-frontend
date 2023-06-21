@@ -12,6 +12,7 @@
       "TEXT": "Dashboard",
       "BADGE": "New",
       "LIST": {
+        "CLIENTS": "Clientes",
         "ANALYTICS": "Analytics",
         "CRM": "CRM",
         "ECOMMERCE": "Ecommerce",

@@ -12,6 +12,7 @@
       "TEXT": "Tableau de bord",
       "BADGE": "Nouvelle",
       "LIST": {
+        "CLIENTS": "Clientes",
         "ANALYTICS": "Analytique",
         "CRM": "GRC",
         "ECOMMERCE": "Commerce électronique",

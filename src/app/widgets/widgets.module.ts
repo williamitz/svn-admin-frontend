@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { ListNotifyWidgetComponent } from './list-notify-widget/list-notify-widget.component';
 import { NgbDropdownModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { SimplebarAngularModule } from 'simplebar-angular';
+import { ChartBarWidgetComponent } from './chart-bar-widget/chart-bar-widget.component';
 
 
 @NgModule({
   declarations: [
-    ListNotifyWidgetComponent
+    ListNotifyWidgetComponent,
+    ChartBarWidgetComponent
   ],
   imports: [
     CommonModule,
@@ -16,7 +18,8 @@ import { SimplebarAngularModule } from 'simplebar-angular';
     SimplebarAngularModule,
   ],
   exports: [
-    ListNotifyWidgetComponent
+    ListNotifyWidgetComponent,
+    ChartBarWidgetComponent
   ]
 })
 export class WidgetsModule { }

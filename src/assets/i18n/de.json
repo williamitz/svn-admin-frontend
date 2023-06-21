@@ -12,6 +12,7 @@
       "TEXT": "Armaturenbrett",
       "BADGE": "Neu",
       "LIST": {
+        "CLIENTS": "Clientes",
         "ANALYTICS": "Analytik",
         "CRM": "CRM",
         "ECOMMERCE": "E-Commerce",

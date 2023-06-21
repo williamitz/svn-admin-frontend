@@ -8,11 +8,15 @@ import { FeatherModule } from 'angular-feather';
 import { allIcons } from 'angular-feather/icons';
 import { AdminLayoutRoutingModule } from './admin-layout.routing.module';
 import { RouterModule } from '@angular/router';
+import { ClientPageComponent } from './client-page/client-page.component';
+import { WidgetsModule } from 'src/app/widgets/widgets.module';
 
 @NgModule({
+  // TODO: importar vistas
   declarations: [
     AdminLayoutComponent,
-    HomePageComponent
+    HomePageComponent,
+    ClientPageComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +24,7 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     FeatherModule.pick(allIcons),
     AdminLayoutRoutingModule,
-
+    WidgetsModule,
     RouterModule
   ]
 })

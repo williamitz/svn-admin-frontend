@@ -12,6 +12,7 @@
       "TEXT": "Pannello",
       "BADGE": "Nuovo",
       "LIST": {
+        "CLIENTS": "Clientes",
         "ANALYTICS": "Analitica",
         "CRM": "CRM",
         "ECOMMERCE": "E-commerce",

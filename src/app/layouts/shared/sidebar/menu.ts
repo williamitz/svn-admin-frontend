@@ -13,8 +13,8 @@ export const MENU: MenuItem[] = [
     subItems: [
       {
         id: 3,
-        label: 'MENUITEMS.DASHBOARD.LIST.ANALYTICS',
-        link: '/analytics',
+        label: 'MENUITEMS.DASHBOARD.LIST.CLIENTS',
+        link: '/dashboard/clients',
         parentId: 2
       },
       {

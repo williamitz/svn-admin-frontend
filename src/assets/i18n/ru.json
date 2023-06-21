@@ -12,6 +12,7 @@
       "TEXT": "Панель приборов",
       "BADGE": "Новый",
       "LIST": {
+        "CLIENTS": "Clientes",
         "ANALYTICS": "Аналитика",
         "CRM": "CRM",
         "ECOMMERCE": "Электронная торговля",

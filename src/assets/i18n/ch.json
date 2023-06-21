@@ -12,6 +12,7 @@
       "TEXT": "仪表板",
       "BADGE": "新的",
       "LIST": {
+        "CLIENTS": "Clientes",
         "ANALYTICS": "分析",
         "CRM": "客户关系管理",
         "ECOMMERCE": "电子商务",
