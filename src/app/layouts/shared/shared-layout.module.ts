@@ -9,12 +9,14 @@ import { SimplebarAngularModule } from 'simplebar-angular';
 import { NgbDropdownModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 import { WidgetsModule } from 'src/app/widgets/widgets.module';
+import { PaginationComponent } from './pagination/pagination.component';
 
 @NgModule({
   declarations: [
     TopbarComponent,
     SidebarComponent,
-    FooterComponent
+    FooterComponent,
+    PaginationComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +31,8 @@ import { WidgetsModule } from 'src/app/widgets/widgets.module';
   exports: [
     TopbarComponent,
     SidebarComponent,
-    FooterComponent
+    FooterComponent,
+    PaginationComponent
   ]
 })
 export class SharedLayoutModule { }

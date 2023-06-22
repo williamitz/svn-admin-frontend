@@ -1,1 +1,74 @@
 <p>role works!</p>
+
+<div class="row">
+  <div class="col">
+
+    <div class="card">
+          <div class="card-header align-items-center d-flex">
+              <h4 class="card-title mb-0 flex-grow-1">Default Table</h4>
+              <div class="flex-shrink-0">
+                  <div class="form-check form-switch form-switch-right form-switch-md">
+                      <label for="default-showcode" class="form-label text-muted">Show Code</label>
+                      <input class="form-check-input code-switcher" type="checkbox" id="default-showcode" >
+                  </div>
+              </div>
+          </div>
+
+
+          <div class="card-body">
+              <p class="text-muted">
+                Use <code>table</code> class to show bootstrap-based default table.
+              </p>
+              <div class="table-responsive table-card">
+                <table class="table table-nowrap table-hover mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th scope="col">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="cardtableCheck">
+                                    <label class="form-check-label" for="cardtableCheck"></label>
+                                </div>
+                            </th>
+                            <th scope="col">Id</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="cardtableCheck01">
+                                    <label class="form-check-label" for="cardtableCheck01"></label>
+                                </div>
+                            </td>
+                            <td><a href="#" class="fw-semibold">#VL2110</a></td>
+                            <td>William Elmore</td>
+                            <td>07 Oct, 2021</td>
+                            <td>$24.05</td>
+                            <td><span class="badge bg-success">Paid</span></td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-light">Details</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+          </div>
+          <div class="row mt-2">
+            <div class="col-6">
+              Hola mundo
+            </div>
+            <div class="col-6">
+              <app-pagination></app-pagination>
+            </div>
+          </div>
+      </div>
+
+  </div>
+</div>
