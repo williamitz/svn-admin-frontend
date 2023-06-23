@@ -30,7 +30,6 @@ import { NgSelectModule } from '@ng-select/ng-select';
 
 const maskConfig: Partial<IConfig> = {
   validation: true,
-
 };
 
 @NgModule({
