@@ -1,24 +1,45 @@
-<p>role works!</p>
+<div class="row">
+  <div class="col-12">
+      <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+          <h4 class="mb-sm-0">Roles de usuario</h4>
+
+          <div class="page-title-right">
+              <ol class="breadcrumb m-0">
+                  <li class="breadcrumb-item"><a href="javascript: void(0);">Segurity</a></li>
+                  <li class="breadcrumb-item active">Role</li>
+              </ol>
+          </div>
+
+      </div>
+  </div>
+</div>
 
 <div class="row">
   <div class="col">
 
     <div class="card">
-          <div class="card-header align-items-center d-flex">
-              <h4 class="card-title mb-0 flex-grow-1">Default Table</h4>
-              <div class="flex-shrink-0">
-                  <div class="form-check form-switch form-switch-right form-switch-md">
-                      <label for="default-showcode" class="form-label text-muted">Show Code</label>
-                      <input class="form-check-input code-switcher" type="checkbox" id="default-showcode" >
-                  </div>
-              </div>
-          </div>
-
 
           <div class="card-body">
-              <p class="text-muted">
-                Use <code>table</code> class to show bootstrap-based default table.
-              </p>
+
+              <div class="row pb-4 ">
+                <div class="col-6 ">
+
+                  <div class="d-flex justify-content-star align-items-center gap-2">
+                    <div class="">
+                      <input type="text" class="form-control" id="placeholderInput" placeholder="Buscar...">
+                    </div>
+                  </div>
+
+                </div>
+                <div class="col-6 ">
+                  <div class="d-flex justify-content-end align-items-center gap-2">
+                    <a class="btn btn-primary custom-toggle active" routerLink="/segurity/create-role">
+                      <i class="ri-add-fill align-bottom me-1"></i> Nuevo rol
+                    </a>
+                  </div>
+                </div>
+              </div>
+
               <div class="table-responsive table-card">
                 <table class="table table-nowrap table-hover mb-0">
                     <thead class="table-light">
@@ -62,7 +83,18 @@
           </div>
           <div class="row mt-2">
             <div class="col-6">
-              Hola mundo
+
+              <div class="d-flex justify-content-start align-items-center gap-2 ms-3">
+                Ver
+                <select class="form-select   " style="width: 70px;">
+                  <option selected></option>
+                  <option [value]="5">5</option>
+                  <option [value]="10">10</option>
+                  <option [value]="20">20</option>
+                </select>
+                registros
+              </div>
+
             </div>
             <div class="col-6">
               <app-pagination></app-pagination>
@@ -70,5 +102,38 @@
           </div>
       </div>
 
+  </div>
+</div>
+
+
+
+<!-- staticBackdrop Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalPopoversLabel">
+                Crear Rol
+              </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body text-center p-5">
+              icono
+
+              <div class="mt-4">
+                  <h4 class="mb-3">You've made it!</h4>
+                  <p class="text-muted mb-4"> The transfer was not successfully received by us. the email of the recipient wasn't correct.</p>
+                  <div class="hstack gap-2 justify-content-center">
+                      <a href="javascript:void(0);" class="btn btn-link link-success fw-medium" data-bs-dismiss="modal"><i class="ri-close-line me-1 align-middle"></i> Close</a>
+                      <a href="javascript:void(0);" class="btn btn-success">Completed</a>
+                  </div>
+              </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Send message</button>
+          </div>
+      </div>
   </div>
 </div>

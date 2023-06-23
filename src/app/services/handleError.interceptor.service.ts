@@ -41,6 +41,8 @@ export class HandleErrorInterceptor implements HttpInterceptor {
         if( httpErr.status == 422 )
           message = httpErr.error.message ?? 'Revise la info del formulario';
 
+        this._uisvc.onClose();
+
         this._uisvc.onShowAlert( message, icon );
 
         throw new Error(httpErr.error.message);

@@ -4,6 +4,7 @@ import { UserComponent } from './user/user.component';
 import { RoleComponent } from './role/role.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { NotFoundPageComponent } from '../../pages/not-found-page/not-found-page.component';
+import { RoleFrmComponent } from './role-frm/role-frm.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,14 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfilePageComponent
+  },
+  {
+    path: 'create-role',
+    component: RoleFrmComponent
+  },
+  {
+    path: 'edit-role/:id',
+    component: RoleFrmComponent
   },
   {
     path: '**',

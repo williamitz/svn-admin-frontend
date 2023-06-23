@@ -19,5 +19,24 @@ export class UiService {
     });
   }
 
+  onShowLoading() {
+    Swal.fire({
+      title: '',
+      html: 'Espere...',
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      // customClass: {
+      //   icon: 'animated bounce',
+      //   popup: 'sw-alert-container',
+      // },
+      didOpen: () => {
+        Swal.showLoading()
+      }
+    });
+  }
+
+  onClose() {
+    Swal.close();
+  }
 
 }

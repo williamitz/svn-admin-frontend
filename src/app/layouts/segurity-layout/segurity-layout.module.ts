@@ -20,13 +20,15 @@ import { allIcons } from 'angular-feather/icons';
 import { defineElement } from 'lord-icon-element';
 // import lottie from 'lottie-web';
 import { RouterModule } from '@angular/router';
+import { RoleFrmComponent } from './role-frm/role-frm.component';
 
 @NgModule({
   declarations: [
     SegurityLayoutComponent,
     UserComponent,
     RoleComponent,
-    ProfilePageComponent
+    RoleFrmComponent,
+    ProfilePageComponent,
   ],
   imports: [
     CommonModule,
