@@ -3,6 +3,13 @@ import { MenuItem } from '../../../interfaces/sidebar.interfaces';
 export const MENU: MenuItem[] = [
 
   {
+    id: 10,
+    label: 'MENUITEMS.DASHBOARD.TEXT',
+    icon: 'ri-dashboard-2-line',
+    link: '/dashboard'
+  },
+
+  {
     id: 1,
     label: 'MENUITEMS.PAGES.TEXT',
     isTitle: true

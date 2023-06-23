@@ -6,6 +6,11 @@
   },
   "MENUITEMS": {
 
+    "DASHBOARD": {
+      "TEXT": "Dashboard",
+      "BADGE": "New"
+    },
+
     "PAGES": {
       "TEXT": "Pages"
     },

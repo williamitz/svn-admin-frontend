@@ -6,6 +6,11 @@
   },
   "MENUITEMS": {
 
+    "DASHBOARD": {
+      "TEXT": "Tablero",
+      "BADGE": "Nuevo"
+    },
+
     "PAGES": {
       "TEXT": "Paginas"
     },
