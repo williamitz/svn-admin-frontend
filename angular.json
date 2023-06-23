@@ -38,6 +38,7 @@
               "src/assets/scss/icons.scss"
             ],
             "scripts": [
+              "src/assets/js/app.js"
             ]
           },
           "configurations": {

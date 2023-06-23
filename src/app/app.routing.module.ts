@@ -5,6 +5,7 @@ import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.com
 import { AuthLayoutRoutingModule } from './layouts/auth-layout/auth-layout.routing.module';
 import { SegurityLayoutRoutingModule } from './layouts/segurity-layout/segurity-layout.routing.module';
 import { AdminLayoutRoutingModule } from './layouts/admin-layout/admin-layout.routing.module';
+import { CallLayoutRoutingModule } from './layouts/call-layout/call-layout.routing.module';
 
 const routes: Routes = [
   {
@@ -33,7 +34,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     AuthLayoutRoutingModule,
     SegurityLayoutRoutingModule,
-    AdminLayoutRoutingModule
+    AdminLayoutRoutingModule,
+    CallLayoutRoutingModule
   ],
   exports: [RouterModule]
 })

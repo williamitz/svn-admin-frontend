@@ -1,0 +1,61 @@
+<div class="card">
+  <div class="card-header">
+      <h4 class="card-title mb-0">Navigation Nested List</h4>
+  </div><!-- end card header -->
+
+  <div class="card-body">
+      <p class="text-muted">Use <code>nested-list nested-sortable</code> class to list-group class to set a nested list with sortable items where the list is shown with navigation.</p>
+
+      <div class="list-group nested-list nested-sortable">
+
+          <div class="list-group-item nested-1" *ngFor="let menu of menus" >
+
+              <i class="{{ menu.icon }} fs-16 align-middle text-primary me-2"></i> {{ menu.name }}
+
+              <div class="list-group nested-list nested-sortable" *ngIf="menu.haveChildren" >
+                  <div class="list-group-item nested-2 d-flex justify-content-between" draggable="false" *ngFor="let children of menu.children" >
+                    <div>
+
+                      <div class="form-check  form-switch form-switch-primary" >
+                        <input class="form-check-input" type="checkbox" role="switch" id="{{children.id}}-action-chk" >
+                        <label class="form-check-label" for="{{children.id}}-action-chk">
+                          {{ children.name }}
+                        </label>
+                      </div>
+
+
+                    </div>
+                    <div class="d-flex gap-4">
+
+                      <div class="form-check form-switch form-switch-success" *ngFor="let action of children.actions" >
+                          <input class="form-check-input" type="checkbox" role="switch" id="{{children.id}}-action-chk-{{ action }}" >
+                          <label class="form-check-label" for="{{children.id}}-action-chk-{{ action }}">
+                            {{ action }}
+                          </label>
+                      </div>
+
+
+                    </div>
+                  </div>
+              </div>
+
+          </div>
+
+          <div class="list-group-item nested-1" >
+
+            <i class="ri-apps-2-line fs-16 align-middle text-primary me-2"></i> Apps
+
+            <div class="list-group nested-list nested-sortable">
+                <div class="list-group-item nested-2"  draggable="false">Chat</div>
+                <div class="list-group-item nested-2" draggable="false" >Calendar</div>
+                <div class="list-group-item nested-2" >Email</div>
+            </div>
+
+          </div>
+
+      </div>
+  </div><!-- end card-body -->
+</div>
+
+
+

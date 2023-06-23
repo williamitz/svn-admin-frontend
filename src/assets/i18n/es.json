@@ -32,7 +32,8 @@
     "SEGURITY": {
       "TEXT": "Seguridad",
       "LIST": {
-        "ROLE": "Roles de usuario"
+        "ROLE": "Roles de usuario",
+        "USER": "Usuarios"
       }
     }
   }
