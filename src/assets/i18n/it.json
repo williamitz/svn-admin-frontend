@@ -26,7 +26,8 @@
     "SEGURITY": {
       "TEXT": "Segurity",
       "LIST": {
-        "ROLE": "Roles"
+        "ROLE": "Roles",
+        "USER": "Users"
       }
     }
   }

@@ -10,27 +10,33 @@ const routes: Routes = [
   {
     path: '',
     // redirectTo: '/user',
-    component: UserComponent
+    component: UserComponent,
+    title: 'Usuarios',
   },
   {
     path: 'user',
-    component: UserComponent
+    component: UserComponent,
+    title: 'Usuarios',
   },
   {
     path: 'role',
-    component: RoleComponent
+    component: RoleComponent,
+    title: 'Roles',
   },
   {
     path: 'profile',
-    component: ProfilePageComponent
+    component: ProfilePageComponent,
+    title: 'Perfil',
   },
   {
     path: 'create-role',
-    component: RoleFrmComponent
+    component: RoleFrmComponent,
+    title: 'Crear Rol',
   },
   {
     path: 'edit-role/:id',
-    component: RoleFrmComponent
+    component: RoleFrmComponent,
+    title: 'Editar Rol',
   },
   {
     path: '**',

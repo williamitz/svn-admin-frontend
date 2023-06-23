@@ -21,6 +21,8 @@ import { AppState } from './app.state';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TokenInterceptor } from './services/token.interceptor.service';
 import { HandleErrorInterceptor } from './services/handleError.interceptor.service';
+import { CallLayoutModule } from './layouts/call-layout/call-layout.module';
+// import * as mask from 'ngx-mask';
 
 export function createTranslateLoader(http: HttpClient): any {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -52,6 +54,8 @@ export function createTranslateLoader(http: HttpClient): any {
     AuthLayoutModule,
     SegurityLayoutModule,
     AdminLayoutModule,
+    CallLayoutModule,
+    // NgxMaskModule,
 
     StoreModule.forRoot( AppState ),
     StoreDevtoolsModule.instrument({
