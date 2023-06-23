@@ -55,7 +55,6 @@ export function createTranslateLoader(http: HttpClient): any {
     SegurityLayoutModule,
     AdminLayoutModule,
     CallLayoutModule,
-    // NgxMaskModule,
 
     StoreModule.forRoot( AppState ),
     StoreDevtoolsModule.instrument({
