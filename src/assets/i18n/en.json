@@ -6,6 +6,21 @@
   },
   "MENUITEMS": {
 
+    "DASHBOARD": {
+      "TEXT": "Dashboard",
+      "BADGE": "New"
+    },
+
+    "CALLS": {
+      "TEXT": "Calls"
+    },
+    "CONNECTNOW": {
+      "TEXT": "Connect Now"
+    },
+    "CALLREPORT": {
+      "TEXT": "Call Reports"
+    },
+
     "PAGES": {
       "TEXT": "Pages"
     },
