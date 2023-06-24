@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class OrganizationPageComponent {
 
+  countries = [
+    { id: "1", name: "Perú" },
+    { id: "2", name: "EEUU" },
+  ];
+
 }

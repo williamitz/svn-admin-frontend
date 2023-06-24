@@ -118,17 +118,42 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
 
-          <div class="modal-body text-center p-5">
-              icono
+          <div class="modal-body ">
 
-              <div class="mt-4">
-                  <h4 class="mb-3">You've made it!</h4>
-                  <p class="text-muted mb-4"> The transfer was not successfully received by us. the email of the recipient wasn't correct.</p>
-                  <div class="hstack gap-2 justify-content-center">
-                      <a href="javascript:void(0);" class="btn btn-link link-success fw-medium" data-bs-dismiss="modal"><i class="ri-close-line me-1 align-middle"></i> Close</a>
-                      <a href="javascript:void(0);" class="btn btn-success">Completed</a>
-                  </div>
-              </div>
+            <div class="pt-2">
+              <label for="iconInput" class="form-label">Razón social</label>
+              <input type="text" class="form-control " id="iconInput" placeholder="Organization name">
+            </div>
+
+            <div class="pt-2">
+              <label for="iconInput" class="form-label">Documento</label>
+              <input type="text" class="form-control " id="iconInput" placeholder="00000000000">
+            </div>
+
+            <div class="pt-2">
+              <label for="iconInput" class="form-label">Email</label>
+              <input type="text" class="form-control " id="iconInput" placeholder="example@domain.com">
+            </div>
+
+            <div class="pt-2">
+              <label for="iconInput" class="form-label">Phone</label>
+              <input type="text" class="form-control " id="iconInput" placeholder="000 000 000">
+            </div>
+
+            <div class="pt-2">
+              <label for="cleave-phone" class="form-label">País</label>
+                  <ng-select
+                      [items]="countries"
+                      [multiple]="true"
+                      [closeOnSelect]="false"
+                      [searchable]="false"
+                      bindLabel="name"
+                      bindValue="id"
+                      placeholder="Seleccione roles"
+                    >
+                  </ng-select>
+            </div>
+
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>

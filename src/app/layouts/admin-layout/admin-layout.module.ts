@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
 import { ClientPageComponent } from './client-page/client-page.component';
 import { WidgetsModule } from 'src/app/widgets/widgets.module';
 import { OrganizationPageComponent } from './organization-page/organization-page.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   // TODO: importar vistas
@@ -27,7 +28,9 @@ import { OrganizationPageComponent } from './organization-page/organization-page
     FeatherModule.pick(allIcons),
     AdminLayoutRoutingModule,
     WidgetsModule,
-    RouterModule
+    RouterModule,
+
+     NgSelectModule
   ]
 })
 export class AdminLayoutModule { }
