@@ -10,6 +10,15 @@
       "TEXT": "Tablero",
       "BADGE": "Nuevo"
     },
+    "CALLS": {
+      "TEXT": "LLamadas"
+    },
+    "CONNECTNOW": {
+      "TEXT": "Conecte ahora"
+    },
+    "CALLREPORT": {
+      "TEXT": "Reportes llamada"
+    },
 
     "PAGES": {
       "TEXT": "Paginas"

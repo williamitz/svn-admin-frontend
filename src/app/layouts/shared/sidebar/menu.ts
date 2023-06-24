@@ -10,6 +10,26 @@ export const MENU: MenuItem[] = [
   },
 
   {
+    id: 11,
+    label: 'MENUITEMS.CALLS.TEXT',
+    icon: 'ri-dashboard-2-line',
+    link: '/calls'
+  },
+
+  {
+    id: 12,
+    label: 'MENUITEMS.CONNECTNOW.TEXT',
+    icon: 'ri-dashboard-2-line',
+    link: '/calls/connectNow'
+  },
+  {
+    id: 13,
+    label: 'MENUITEMS.CALLREPORT.TEXT',
+    icon: 'ri-dashboard-2-line',
+    link: '/calls/callReport'
+  },
+
+  {
     id: 1,
     label: 'MENUITEMS.PAGES.TEXT',
     isTitle: true

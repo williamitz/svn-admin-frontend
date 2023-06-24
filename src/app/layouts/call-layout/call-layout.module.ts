@@ -10,13 +10,19 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { FeatherModule } from 'angular-feather';
 import { allIcons } from 'angular-feather/icons';
 import { NgxMaskDirective } from 'ngx-mask';
+import { ConnectNowComponent } from './connect-now/connect-now.component';
+import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
+import { RouterModule } from '@angular/router';
+import { CallReportComponent } from './call-report/call-report.component';
 
 
 
 @NgModule({
   declarations: [
     CallLayoutComponent,
-    HomePageComponent
+    HomePageComponent,
+    ConnectNowComponent,
+    CallReportComponent
   ],
   imports: [
     CommonModule,
@@ -26,10 +32,13 @@ import { NgxMaskDirective } from 'ngx-mask';
     TranslateModule,
 
     NgSelectModule,
+    NgbNavModule,
     FeatherModule.pick(allIcons),
     NgxMaskDirective,
 
-    CallLayoutRoutingModule
+    CallLayoutRoutingModule,
+
+    RouterModule
   ]
 })
 export class CallLayoutModule { }
