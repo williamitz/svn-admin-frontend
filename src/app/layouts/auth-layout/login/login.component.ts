@@ -54,7 +54,7 @@ export class LoginComponent {
 
       this._cookiesvc.set('token', token);
 
-      this._router.navigateByUrl('/dashboard');
+      this._router.navigateByUrl('/admin');
 
       console.log('response ::: ', response);
 

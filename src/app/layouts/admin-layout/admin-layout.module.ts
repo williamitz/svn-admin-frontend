@@ -10,13 +10,15 @@ import { AdminLayoutRoutingModule } from './admin-layout.routing.module';
 import { RouterModule } from '@angular/router';
 import { ClientPageComponent } from './client-page/client-page.component';
 import { WidgetsModule } from 'src/app/widgets/widgets.module';
+import { OrganizationPageComponent } from './organization-page/organization-page.component';
 
 @NgModule({
   // TODO: importar vistas
   declarations: [
     AdminLayoutComponent,
     HomePageComponent,
-    ClientPageComponent
+    ClientPageComponent,
+    OrganizationPageComponent
   ],
   imports: [
     CommonModule,

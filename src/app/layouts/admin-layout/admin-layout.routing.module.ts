@@ -6,7 +6,7 @@ import { AdminLayoutComponent } from './admin-layout.component';
 
 const routes: Routes = [
   {
-    path: 'dashboard',
+    path: 'admin',
     component: AdminLayoutComponent,
     loadChildren: () => import('./admin-layout.routes.module').then( (m) => m.AdminLayoutRoutesModule )
   },

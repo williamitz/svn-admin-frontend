@@ -68,5 +68,18 @@ export const MENU: MenuItem[] = [
       },
     ]
   },
+  {
+    id: 5,
+    label: 'MENUITEMS.ADMIN.TEXT',
+    icon: 'ri-rocket-line',
+    subItems: [
+      {
+        id: 85,
+        label: 'MENUITEMS.ADMIN.LIST.ORGANIZATION',
+        link: '/admin/organizations',
+        parentId: 84
+      },
+    ]
+  },
 
 ];
