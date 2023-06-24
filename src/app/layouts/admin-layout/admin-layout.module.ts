@@ -10,13 +10,16 @@ import { AdminLayoutRoutingModule } from './admin-layout.routing.module';
 import { RouterModule } from '@angular/router';
 import { ClientPageComponent } from './client-page/client-page.component';
 import { WidgetsModule } from 'src/app/widgets/widgets.module';
+import { OrganizationPageComponent } from './organization-page/organization-page.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   // TODO: importar vistas
   declarations: [
     AdminLayoutComponent,
     HomePageComponent,
-    ClientPageComponent
+    ClientPageComponent,
+    OrganizationPageComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +28,9 @@ import { WidgetsModule } from 'src/app/widgets/widgets.module';
     FeatherModule.pick(allIcons),
     AdminLayoutRoutingModule,
     WidgetsModule,
-    RouterModule
+    RouterModule,
+
+     NgSelectModule
   ]
 })
 export class AdminLayoutModule { }

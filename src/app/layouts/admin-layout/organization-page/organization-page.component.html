@@ -1,0 +1,164 @@
+<div class="row">
+  <div class="col-12">
+      <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+          <h4 class="mb-sm-0">Organizaciones</h4>
+
+          <div class="page-title-right">
+              <ol class="breadcrumb m-0">
+                  <li class="breadcrumb-item"><a href="javascript: void(0);">Admin</a></li>
+                  <li class="breadcrumb-item active">Organizations</li>
+              </ol>
+          </div>
+
+      </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+
+    <div class="card">
+
+          <div class="card-body">
+
+              <div class="row pb-4 ">
+                <div class="col-6 ">
+
+                  <div class="d-flex justify-content-star align-items-center gap-2">
+                    <div class="">
+                      <input type="text" class="form-control" id="placeholderInput" placeholder="Buscar...">
+                    </div>
+                  </div>
+
+                </div>
+                <div class="col-6 ">
+                  <div class="d-flex justify-content-end align-items-center gap-2">
+                    <button type="button" class="btn btn-primary custom-toggle active" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >
+                      <i class="ri-add-fill align-bottom me-1"></i> Nueva organización
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="table-responsive table-card">
+                <table class="table table-nowrap table-hover mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th scope="col">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="cardtableCheck">
+                                    <label class="form-check-label" for="cardtableCheck"></label>
+                                </div>
+                            </th>
+                            <th scope="col">Id</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="cardtableCheck01">
+                                    <label class="form-check-label" for="cardtableCheck01"></label>
+                                </div>
+                            </td>
+                            <td><a href="#" class="fw-semibold">#VL2110</a></td>
+                            <td>William Elmore</td>
+                            <td>07 Oct, 2021</td>
+                            <td>$24.05</td>
+                            <td><span class="badge bg-success">Paid</span></td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-light">Details</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+          </div>
+          <div class="row mt-2">
+            <div class="col-6">
+
+              <div class="d-flex justify-content-start align-items-center gap-2 ms-3">
+                Ver
+                <select class="form-select   " style="width: 70px;">
+                  <option selected></option>
+                  <option [value]="5">5</option>
+                  <option [value]="10">10</option>
+                  <option [value]="20">20</option>
+                </select>
+                registros
+              </div>
+
+            </div>
+            <div class="col-6">
+              <app-pagination></app-pagination>
+            </div>
+          </div>
+      </div>
+
+  </div>
+</div>
+
+
+
+<!-- staticBackdrop Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalPopoversLabel">
+                Crear Rol
+              </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body ">
+
+            <div class="pt-2">
+              <label for="iconInput" class="form-label">Razón social</label>
+              <input type="text" class="form-control " id="iconInput" placeholder="Organization name">
+            </div>
+
+            <div class="pt-2">
+              <label for="iconInput" class="form-label">Documento</label>
+              <input type="text" class="form-control " id="iconInput" placeholder="00000000000">
+            </div>
+
+            <div class="pt-2">
+              <label for="iconInput" class="form-label">Email</label>
+              <input type="text" class="form-control " id="iconInput" placeholder="example@domain.com">
+            </div>
+
+            <div class="pt-2">
+              <label for="iconInput" class="form-label">Phone</label>
+              <input type="text" class="form-control " id="iconInput" placeholder="000 000 000">
+            </div>
+
+            <div class="pt-2">
+              <label for="cleave-phone" class="form-label">País</label>
+                  <ng-select
+                      [items]="countries"
+                      [multiple]="true"
+                      [closeOnSelect]="false"
+                      [searchable]="false"
+                      bindLabel="name"
+                      bindValue="id"
+                      placeholder="Seleccione roles"
+                    >
+                  </ng-select>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Send message</button>
+          </div>
+      </div>
+  </div>
+</div>

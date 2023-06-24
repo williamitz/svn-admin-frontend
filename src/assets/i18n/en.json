@@ -46,6 +46,12 @@
         "ROLE": "Roles",
         "USER": "Users"
       }
+    },
+    "ADMIN": {
+      "TEXT": "Admin",
+      "LIST": {
+        "ORGANIZATION": "Organization"
+      }
     }
   }
 }
