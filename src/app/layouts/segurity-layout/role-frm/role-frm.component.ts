@@ -16,6 +16,7 @@ export class RoleFrmComponent {
 
   private _role$?: Subscription;
   private _create$?: Subscription;
+  private _update$?: Subscription;
   private _load$?: Subscription;
 
   private _activateRoute = inject( ActivatedRoute );
@@ -157,12 +158,56 @@ export class RoleFrmComponent {
     .subscribe({
       next: (response) => {
 
-        const { code, name, description } = response.data;
+        const { code, name, description, roleMenuAllow } = response.data;
 
         this.frmRole.get('code')?.setValue(code);
         this.frmRole.get('name')?.setValue(name);
         this.frmRole.get('description')?.setValue(description);
         console.log('response ::: ', response);
+
+        roleMenuAllow.forEach( (e) => {
+
+          console.log('roleMenuAllow.forEach');
+
+          if( !e.menu.patherMenuId ) {
+            const pather = this._menus.find( (m) => m.id == e.menu.id );
+
+            if( pather ) {
+              pather.selected = true;
+              pather.actions = pather?.actions.map( (a) => {
+
+                if( e.actions.includes( a.action ) ) a.selected = true;
+
+                return a;
+              } );
+
+            }
+
+          } else {
+
+            // const children = this._menus.find( (m) => m.id == e.menu.id );
+
+            this._menus.find( (m) => m.id == e.menu.patherMenuId )
+            ?.children?.forEach( (c) => {
+
+              console.log('children.forEach');
+
+              if( c.id == e.menu.id ) {
+
+                c.selected = true;
+                c.actions = c?.actions.map( (a) => {
+
+                  if( e.actions.includes( a.action ) ) a.selected = true;
+
+                  return a;
+                } );
+              }
+
+            } );
+
+          }
+
+        });
 
         this._load$?.unsubscribe();
       },
@@ -223,29 +268,53 @@ export class RoleFrmComponent {
     //   "actions": ["INSERT", "UPDATE", "LIST"]
     // },
 
-    const allowBody = this._onGetAllowsBody
+    const allowBody = this._onGetAllowsBody;
 
     this.frmRole.get('allows')?.setValue( allowBody );
 
-    // debugger;
-
     this._saving = true;
-    this._create$ = this._rolesvc.onCreate( this._values )
-    .subscribe({
-      next: (response) => {
 
-        console.log('response ::: ', response);
+    if( !this.toUpdate ) {
+
+      this._create$ = this._rolesvc.onCreate( this._values )
+      .subscribe({
+        next: (response) => {
+
+          console.log('response ::: ', response);
 
 
-        this._saving = false;
-        this._create$?.unsubscribe();
-      },
-      error: (e) => {
+          this._saving = false;
+          this._create$?.unsubscribe();
+        },
+        error: (e) => {
 
-        this._saving = false;
-        this._create$?.unsubscribe();
-      }
-    });
+          this._saving = false;
+          this._create$?.unsubscribe();
+        }
+      });
+
+    } else {
+
+      console.log('toupdate ::: ');
+
+      this._update$ = this._rolesvc.onUpdate( this._roleId!, this._values )
+      .subscribe({
+        next: (response) => {
+
+          console.log('response ::: ', response);
+
+
+          this._saving = false;
+          this._update$?.unsubscribe();
+        },
+        error: (e) => {
+
+          this._saving = false;
+          this._update$?.unsubscribe();
+        }
+      });
+
+    }
 
   }
 

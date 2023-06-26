@@ -76,11 +76,26 @@ export interface IRoleAllow {
   name:          string;
   code:          string;
   description:   string;
-  roleMenuAllow: RoleMenuAllow[];
+  roleMenuAllow: IRoleMenuAllow[];
 }
 
-export interface RoleMenuAllow {
+export interface IRoleMenuAllow {
   id:       string;
   actions:  string[];
   createAt: string;
+  menu:     IMenu;
 }
+
+export interface IMenu {
+  status:       boolean;
+  userCreate:   string;
+  createAt:     string;
+  id:           string;
+  name:         string;
+  icon:         string;
+  webUrl:       string;
+  apiUrl:       string;
+  patherMenuId: string;
+  actions:      string[];
+}
+

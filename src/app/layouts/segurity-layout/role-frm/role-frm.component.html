@@ -133,9 +133,14 @@
 
     <button type="button" class="btn btn-light" >Cerrar</button>
     <button class="btn btn-primary ms-3" [disabled]="invalid || !invalidAllow$() || saving" (click)="onSubmit()">
-      <span>
+      <span *ngIf="!toUpdate" >
         <i class="ri-save-2-line align-bottom me-1"></i>
         Guardar
+      </span>
+
+      <span *ngIf="toUpdate" >
+        <i class="ri-save-2-line align-bottom me-1"></i>
+        Guardar Cambios
       </span>
     </button>
 

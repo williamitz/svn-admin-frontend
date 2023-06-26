@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpInterceptor, HttpEvent, HttpHandler, HttpRequest } from '@angular/common/http';
+import { HttpInterceptor, HttpEvent, HttpHandler, HttpRequest, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -10,7 +10,11 @@ export class TokenInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    const headers = req.headers.set( 'Authorization', 'Bearer ' + this._cookieSvc.get('token') );
+    let headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this._cookieSvc.get('token'),
+      'Cache-Control': 'no-cache',
+      'Access-Control-Allow-Origin': '*',
+    });
 
     const newRequest = req.clone({ headers });
 
