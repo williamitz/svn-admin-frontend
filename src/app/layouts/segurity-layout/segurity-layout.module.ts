@@ -27,6 +27,7 @@ import { RouterModule } from '@angular/router';
 import { RoleFrmComponent } from './role-frm/role-frm.component';
 import { provideEnvironmentNgxMask } from 'ngx-mask';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { PipesModule } from 'src/app/pipes/pipes.module';
 
 const maskConfig: Partial<IConfig> = {
   validation: true,
@@ -59,7 +60,9 @@ const maskConfig: Partial<IConfig> = {
     FeatherModule.pick(allIcons),
     NgxMaskDirective,
 
-    RouterModule
+    RouterModule,
+
+    PipesModule
   ],
   providers: [
     provideEnvironmentNgxMask( maskConfig ),

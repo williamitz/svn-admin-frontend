@@ -18,89 +18,127 @@
   <div class="col">
 
     <div class="card">
+      <form [formGroup]="frmFilter">
 
-          <div class="card-body">
+        <div class="card-body">
 
-              <div class="row pb-4 ">
-                <div class="col-6 ">
+            <div class="row pb-4 ">
+              <div class="col-6 ">
 
-                  <div class="d-flex justify-content-star align-items-center gap-2">
-                    <div class="">
-                      <input type="text" class="form-control" id="placeholderInput" placeholder="Buscar...">
-                    </div>
+                <div class="d-flex justify-content-star align-items-center gap-2">
+                  <div class="">
+                    <input type="text" class="form-control" id="placeholderInput" placeholder="Buscar..." formControlName="filter" >
                   </div>
+
+                  <button class="btn btn-primary custom-toggle" (click)="onGetRole()">
+                    <i class="ri-search-line align-bottom"></i>
+                  </button>
 
                 </div>
-                <div class="col-6 ">
-                  <div class="d-flex justify-content-end align-items-center gap-2">
-                    <a class="btn btn-primary custom-toggle active" routerLink="/segurity/create-role">
-                      <i class="ri-add-fill align-bottom me-1"></i> Nuevo rol
-                    </a>
-                  </div>
+
+              </div>
+              <div class="col-6 ">
+                <div class="d-flex justify-content-end align-items-center gap-2">
+                  <a class="btn btn-primary custom-toggle active" routerLink="/segurity/create-role">
+                    <i class="ri-add-fill align-bottom me-1"></i> Nuevo rol
+                  </a>
                 </div>
               </div>
-
-              <div class="table-responsive table-card">
-                <table class="table table-nowrap table-hover mb-0">
-                    <thead class="table-light">
-                        <tr>
-                            <th scope="col">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="cardtableCheck">
-                                    <label class="form-check-label" for="cardtableCheck"></label>
-                                </div>
-                            </th>
-                            <th scope="col">Id</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Total</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="cardtableCheck01">
-                                    <label class="form-check-label" for="cardtableCheck01"></label>
-                                </div>
-                            </td>
-                            <td><a href="#" class="fw-semibold">#VL2110</a></td>
-                            <td>William Elmore</td>
-                            <td>07 Oct, 2021</td>
-                            <td>$24.05</td>
-                            <td><span class="badge bg-success">Paid</span></td>
-                            <td>
-                                <button type="button" class="btn btn-sm btn-light">Details</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-
             </div>
 
-          </div>
-          <div class="row mt-2">
-            <div class="col-6">
+            <div class="table-responsive table-card">
+              <table class="table table-nowrap table-hover mb-0">
+                  <thead class="table-light">
+                      <tr>
+                          <!-- <th scope="col">
+                              <div class="form-check">
+                                  <input class="form-check-input" type="checkbox" value="" id="cardtableCheck">
+                                  <label class="form-check-label" for="cardtableCheck"></label>
+                              </div>
+                          </th> -->
+                          <th scope="col">Código</th>
+                          <th scope="col">Nombre</th>
+                          <th scope="col">F. Creación</th>
+                          <th scope="col">Estado</th>
+                          <th scope="col" [width]="120">Acciones</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let item of roles" >
+                          <td>
+                            <span class="fw-semibold">
+                              #{{ item.code }}
+                            </span>
+                          </td>
+                          <td>
+                            {{ item.name }}
+                          </td>
+                          <td>
+                            <!-- 07 Oct, 2021 -->
+                            {{ item.createAt }}
+                          </td>
+                          <td>
+                            <span class="badge bg-success"
+                            [class.bg-success]="item.status"
+                            [class.bg-danger]="!item.status"
+                            >
+                              {{ item.status | status }}
+                            </span>
+                          </td>
+                          <td class="text-center">
 
-              <div class="d-flex justify-content-start align-items-center gap-2 ms-3">
+                              <a class="btn btn-sm btn-primary" routerLink="/segurity/edit-role/{{ item.id }}">
+                                <i class="ri-edit-box-line align-bottom"></i>
+                              </a>
+
+                              <button type="button" class="btn btn-sm btn-danger ms-2">
+                                <i class="ri-delete-bin-7-line align-bottom"></i>
+                              </button>
+                          </td>
+                      </tr>
+                      <tr *ngIf="counter == 0 && !loading" >
+                        <td colspan="5" class="text-center">
+                          Sin registros
+                        </td>
+                      </tr>
+                  </tbody>
+              </table>
+
+          </div>
+
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-6 ">
+
+            <div class="d-flex justify-content-start align-items-center gap-4 ms-3">
+
+              <div class="d-flex justify-content-start align-items-center gap-2 ">
                 Ver
-                <select class="form-select   " style="width: 70px;">
-                  <option selected></option>
+                <select class="form-select " style="width: 70px;" formControlName="limit">
+                  <!-- <option selected></option> -->
                   <option [value]="5">5</option>
                   <option [value]="10">10</option>
                   <option [value]="20">20</option>
                 </select>
                 registros
               </div>
+              |
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="chxActive" formControlName="active" (change)="onGetRole()" >
+                <label class="form-check-label" for="chxActive">Ver inactivos</label>
+              </div>
 
             </div>
-            <div class="col-6">
-              <app-pagination></app-pagination>
-            </div>
+
           </div>
-      </div>
+          <div class="col-6">
+            <app-pagination></app-pagination>
+          </div>
+        </div>
+
+      </form>
+    </div>
 
   </div>
 </div>

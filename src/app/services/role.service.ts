@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { admin_service } from 'src/globals';
-import { IRoleMenuResponse } from '../interfaces/role.interface';
+import { IRoleByIDResponse, IRoleMenuResponse, IRoleResponse } from '../interfaces/role.interface';
 import { map } from 'rxjs';
+import { IPagerFilter } from '../interfaces/pager.interface';
 
 @Injectable({providedIn: 'root'})
 export class RoleService {
@@ -18,9 +19,18 @@ export class RoleService {
         const { pathers, children } = response;
 
         const menusFinal = pathers.map( (e) => {
-          const childrens = children.filter( (c) => c.patherMenuId == e.id );
-          e.children = childrens;
+          const childrens = children.filter( (c) => c.patherMenuId == e.id )
+                                    .map( (a) => {
+                                      let { actions, ...rest } = a;
+                                      a.selected = false;
+
+                                      return { ...rest, actions: actions.map( (rec) => { return { selected: false, action: rec } } ) }
+                                     } );
+
+
+          e.children = childrens as any;
           e.haveChildren = childrens.length > 0 ? true : false;
+          e.selected = false;
 
           return e;
 
@@ -29,6 +39,32 @@ export class RoleService {
         return { data: menusFinal };
       } )
     );
+  }
+
+  onFindAll( filter: IPagerFilter, page: number ) {
+
+    let params = `page=${ page }`;
+    params += `&filter=${ filter.filter }`;
+    params += `&active=${ !filter.active }`;
+    params += `&order=${ filter.order }`;
+
+    return this._http.get<IRoleResponse>( admin_service + '/role?' + params );
+  }
+
+  onFindById( id: string ) {
+    return this._http.get<IRoleByIDResponse>( admin_service + `/role/${ id }` );
+  }
+
+  onCreate( body: any ) {
+    return this._http.post( admin_service + '/role', body );
+  }
+
+  onUpdate( id: string, body: any ) {
+    return this._http.patch( admin_service + `/role/${ id }`, body );
+  }
+
+  onDelete( id: string ) {
+    return this._http.delete( admin_service + `/role/${ id }` );
   }
 
 }
