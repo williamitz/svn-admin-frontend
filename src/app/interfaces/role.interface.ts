@@ -19,6 +19,7 @@ export interface IMenuRole {
   haveChildren: boolean;
 
   selected:     boolean;
+  idRoleMenuAllow?: string;
 }
 
 

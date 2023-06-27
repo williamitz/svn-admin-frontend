@@ -174,8 +174,9 @@ export class RoleFrmComponent {
 
             if( pather ) {
               pather.selected = true;
+              pather.idRoleMenuAllow = e.id;
               pather.actions = pather?.actions.map( (a) => {
-
+                // a.id = e.id;
                 if( e.actions.includes( a.action ) ) a.selected = true;
 
                 return a;
@@ -195,6 +196,8 @@ export class RoleFrmComponent {
               if( c.id == e.menu.id ) {
 
                 c.selected = true;
+                c.idRoleMenuAllow = e.id;
+                // c.id = e.id;
                 c.actions = c?.actions.map( (a) => {
 
                   if( e.actions.includes( a.action ) ) a.selected = true;
@@ -209,6 +212,8 @@ export class RoleFrmComponent {
 
         });
 
+        console.log('this._menus ::: ', this._menus);
+
         this._load$?.unsubscribe();
       },
       error: (e) => {
@@ -220,7 +225,7 @@ export class RoleFrmComponent {
   }
 
   private get _onGetAllowsBody() {
-    let allowBody: {menu: string; actions: string[]}[] = [];
+    let allowBody: { id?: string; menu: string; actions: string[]}[] = [];
 
     this._menus.forEach( (m) => {
 
@@ -231,6 +236,7 @@ export class RoleFrmComponent {
           const finalActions = m.actions.filter( (e) => e.selected );
 
           allowBody.push({
+            id: m.idRoleMenuAllow,
             menu: m.id,
             actions: finalActions.map( (a) => a.action )
           });
@@ -244,6 +250,7 @@ export class RoleFrmComponent {
             const finalActions = e.actions.filter( (e) => e.selected );
 
             allowBody.push({
+              id: e.idRoleMenuAllow,
               menu: e.id,
               actions: finalActions.map( (a) => a.action )
             });

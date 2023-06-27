@@ -60,7 +60,7 @@ export class RoleService {
   }
 
   onUpdate( id: string, body: any ) {
-    return this._http.patch( admin_service + `/role/${ id }`, body );
+    return this._http.put( admin_service + `/role/${ id }`, body );
   }
 
   onDelete( id: string ) {
