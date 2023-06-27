@@ -35,6 +35,19 @@ export class UiService {
     });
   }
 
+  onShowConfirm(text: string, title?: string) {
+    return Swal.fire({
+      title,
+      text,
+      icon: 'question',
+      showCancelButton: true,
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'No',
+      confirmButtonColor: '#364574',
+      confirmButtonText: 'Sí, eliminar!'
+    })
+  }
+
   onClose() {
     Swal.close();
   }

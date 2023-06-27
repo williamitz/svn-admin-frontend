@@ -1,10 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { EIconAlert } from 'src/app/interfaces/alertIcon.enum';
 import { IPager, IPagerFilter } from 'src/app/interfaces/pager.interface';
 import { IRole } from 'src/app/interfaces/role.interface';
 import { PagerService } from 'src/app/services/pager.service';
 import { RoleService } from 'src/app/services/role.service';
+import { UiService } from 'src/app/services/ui.service';
 
 @Component({
   selector: 'app-role',
@@ -14,7 +16,9 @@ import { RoleService } from 'src/app/services/role.service';
 export class RoleComponent {
 
   private _list$?: Subscription;
+  private _delete$?: Subscription;
 
+  private _uisvc = inject( UiService );
   private _rolesvc = inject( RoleService );
   private _pagersvc = inject( PagerService );
   private _frmBuilder = inject( UntypedFormBuilder );
@@ -75,10 +79,53 @@ export class RoleComponent {
         console.log('response ::: ', response);
 
         this._loading = false;
+        this._list$?.unsubscribe();
       },
       error: (e) => {
 
         this._loading = false;
+        this._list$?.unsubscribe();
+      }
+    })
+
+  }
+
+  onConfirm( role: IRole ) {
+    const { id, name, status } = role;
+
+    this._uisvc.onShowConfirm(`¿Está seguro de ${ status ? 'eliminar' : 'restaurar' } el rol "${ name }" ?`)
+    .then( (result) => {
+
+      if( result.isConfirmed ) {
+        this.onDeleteRole( id, status );
+      }
+
+    } );
+  }
+
+  onDeleteRole( id: string, status: boolean ) {
+
+    this._uisvc.onShowLoading();
+
+    this._delete$ = this._rolesvc.onDelete( id )
+    .subscribe({
+      next: (response) => {
+
+        // const rolefinded = this.roles.find( (r) => r.id == id );
+
+        // if( rolefinded ) {
+        //   rolefinded.status = !rolefinded.status;
+        // }
+
+        this.onGetRole( this.paginate.currentPage );
+
+        this._uisvc.onClose();
+        this._uisvc.onShowAlert(`Rol ${ status ? 'eliminado' : 'restaurado' }`, EIconAlert.success)
+
+        this._delete$?.unsubscribe();
+      },
+      error: (e) => {
+        this._delete$?.unsubscribe();
       }
     })
 
@@ -87,6 +134,9 @@ export class RoleComponent {
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
+
+    this._list$?.unsubscribe();
+    this._delete$?.unsubscribe();
 
   }
 

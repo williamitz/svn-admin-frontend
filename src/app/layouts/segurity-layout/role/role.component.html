@@ -87,12 +87,17 @@
                           </td>
                           <td class="text-center">
 
-                              <a class="btn btn-sm btn-primary" routerLink="/segurity/edit-role/{{ item.id }}">
+                              <a class="btn btn-sm btn-primary" routerLink="/segurity/edit-role/{{ item.id }}" *ngIf="item.status" >
                                 <i class="ri-edit-box-line align-bottom"></i>
                               </a>
 
-                              <button type="button" class="btn btn-sm btn-danger ms-2">
-                                <i class="ri-delete-bin-7-line align-bottom"></i>
+                              <button type="button" class="btn btn-sm btn-danger ms-2"
+                                [class.btn-success]="!item.status"
+                                [class.btn-danger]="item.status"
+                                (click)="onConfirm(item)"
+                              >
+                                <i class="ri-delete-bin-7-line align-bottom" *ngIf="item.status" ></i>
+                                <i class="ri-restart-line align-bottom" *ngIf="!item.status"></i>
                               </button>
                           </td>
                       </tr>
