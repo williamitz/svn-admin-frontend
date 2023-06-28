@@ -28,6 +28,7 @@ import { RoleFrmComponent } from './role-frm/role-frm.component';
 import { provideEnvironmentNgxMask } from 'ngx-mask';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { PipesModule } from 'src/app/pipes/pipes.module';
+import { MenuComponent } from './menu/menu.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: true,
@@ -40,6 +41,7 @@ const maskConfig: Partial<IConfig> = {
     RoleComponent,
     RoleFrmComponent,
     ProfilePageComponent,
+    MenuComponent
   ],
   imports: [
     CommonModule,

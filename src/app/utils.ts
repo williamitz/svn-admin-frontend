@@ -20,6 +20,7 @@ export const fullTextNumberPatt = new RegExp(/^[a-zA-Záéíóúüñ\#\-\d\.\,\s
 // export const fullTextNumberPatt = new RegExp(/^[a-zA-ZáéíóúüÁÉÍÓÚÜñÑ\#\-\d\.\,\s]{0,200}$/);
 export const numberPatt = new RegExp(/^[\d]{0,200}$/);
 export const materialIconPatt = new RegExp(/^[a-zA-Z\_]{0,200}$/);
+export const riIconPatt = new RegExp(/^[a-z\d\-]{0,100}$/i);
 
 export const timeZonePatt = new RegExp(/^[a-zA-Z\/\_]{0,50}$/);
 

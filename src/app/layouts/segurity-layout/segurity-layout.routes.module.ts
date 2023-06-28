@@ -5,6 +5,7 @@ import { RoleComponent } from './role/role.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { NotFoundPageComponent } from '../../pages/not-found-page/not-found-page.component';
 import { RoleFrmComponent } from './role-frm/role-frm.component';
+import { MenuComponent } from './menu/menu.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,11 @@ const routes: Routes = [
     path: 'edit-role/:id',
     component: RoleFrmComponent,
     title: 'Editar Rol',
+  },
+  {
+    path: 'menu',
+    component: MenuComponent,
+    title: 'Menús del sistema',
   },
   {
     path: '**',

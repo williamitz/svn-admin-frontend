@@ -24,7 +24,7 @@ export class RoleComponent {
   private _frmBuilder = inject( UntypedFormBuilder );
 
   private _loading = false;
-
+  private _total = 0
   roles: IRole[] = [];
 
   paginate: IPager = {
@@ -40,7 +40,7 @@ export class RoleComponent {
 
   get loading() { return this._loading; }
   get counter() { return this.roles.length; }
-
+  get total() { return this._total; }
   get value(): IPagerFilter { return this.frmFilter.value; }
 
   ngOnInit(): void {
@@ -73,7 +73,7 @@ export class RoleComponent {
         const { data, total } = response;
 
         this.roles = data;
-
+        this._total = total;
         this.paginate = this._pagersvc.getPager( total, page, 5 );
 
         console.log('response ::: ', response);

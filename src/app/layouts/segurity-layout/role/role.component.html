@@ -138,7 +138,7 @@
 
           </div>
           <div class="col-6">
-            <app-pagination></app-pagination>
+            <app-pagination [paginate]="paginate" [total]="total" (navigate)="onGetRole()" ></app-pagination>
           </div>
         </div>
 

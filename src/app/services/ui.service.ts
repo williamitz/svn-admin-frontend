@@ -44,7 +44,7 @@ export class UiService {
       cancelButtonColor: '#d33',
       cancelButtonText: 'No',
       confirmButtonColor: '#364574',
-      confirmButtonText: 'Sí, eliminar!'
+      confirmButtonText: 'Sí!'
     })
   }
 

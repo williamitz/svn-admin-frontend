@@ -1,0 +1,283 @@
+<div class="row">
+  <div class="col-12">
+      <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+          <h4 class="mb-sm-0">Menú del sistema</h4>
+
+          <div class="page-title-right">
+              <ol class="breadcrumb m-0">
+                  <li class="breadcrumb-item"><a href="javascript: void(0);">Segurity</a></li>
+                  <li class="breadcrumb-item active">Menu</li>
+              </ol>
+          </div>
+
+      </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+
+    <div class="card">
+      <form [formGroup]="frmFilter">
+
+        <div class="card-body">
+
+            <div class="row pb-4 ">
+              <div class="col-6 ">
+
+                <div class="d-flex justify-content-star align-items-center gap-2">
+                  <div class="">
+                    <input type="text" class="form-control" id="placeholderInput" placeholder="Buscar...">
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-6 ">
+                <div class="d-flex justify-content-end align-items-center gap-2">
+                  <button type="button" class="btn btn-primary custom-toggle active" data-bs-toggle="modal" data-bs-target="#menuModal" >
+                        <i class="ri-add-fill align-bottom me-1"></i> Nuevo menú
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="table-responsive table-card">
+              <table class="table table-nowrap table-hover mb-0">
+                  <thead class="table-light">
+                      <tr>
+                          <th scope="col">Nombre</th>
+                          <th scope="col">Url</th>
+                          <th scope="col">Padre</th>
+                          <th scope="col">Acciones</th>
+                          <th scope="col">Status</th>
+                          <th scope="col">Action</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let menu of menus" >
+
+                          <td>
+                            {{ menu.name }}
+                          </td>
+                          <td>
+                            {{ menu.webUrl }}
+                          </td>
+                          <td>
+                            {{ menu.patherMenuId }}
+                          </td>
+                          <td>
+                            {{ menu.actions }}
+                          </td>
+                          <td>
+                            <span class="badge bg-success"
+                            [class.bg-success]="menu.status"
+                            [class.bg-danger]="!menu.status"
+                            >
+                              {{ menu.status | status }}
+                            </span>
+                          </td>
+                          <td>
+                              <button
+                                type="button"
+                                class="btn btn-sm btn-primary"
+                                *ngIf="menu.status"
+                                data-bs-toggle="modal"
+                                data-bs-target="#menuModal"
+                                (click)="onLoadData( menu )"
+                              >
+                                <i class="ri-edit-box-line align-bottom" ></i>
+                              </button>
+
+                              <button type="button" class="btn btn-sm btn-danger ms-2"
+                                [class.btn-success]="!menu.status"
+                                [class.btn-danger]="menu.status"
+                                (click)="onConfirm(menu)"
+                              >
+                                <i class="ri-delete-bin-7-line align-bottom" *ngIf="menu.status" ></i>
+                                <i class="ri-restart-line align-bottom" *ngIf="!menu.status"></i>
+                              </button>
+                          </td>
+                      </tr>
+
+                      <tr *ngIf="counter == 0 && !loading" >
+                        <td colspan="6" class="text-center">
+                          Sin registros
+                        </td>
+                      </tr>
+                  </tbody>
+              </table>
+
+          </div>
+
+        </div>
+        <div class="row mt-2">
+          <div class="col-6">
+
+            <div class="d-flex justify-content-start align-items-center gap-4 ms-3">
+
+              <div class="d-flex justify-content-start align-items-center gap-2 ">
+                Ver
+                <select class="form-select " style="width: 70px;" formControlName="limit">
+                  <!-- <option selected></option> -->
+                  <option [value]="5">5</option>
+                  <option [value]="10">10</option>
+                  <option [value]="20">20</option>
+                </select>
+                registros
+              </div>
+              |
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="chxActive" formControlName="active" (change)="onGetMenu()" >
+                <label class="form-check-label" for="chxActive">Ver inactivos</label>
+              </div>
+
+            </div>
+
+          </div>
+          <div class="col-6">
+            <app-pagination [paginate]="paginate" [total]="total" (navigate)="onGetMenu($event)" ></app-pagination>
+          </div>
+        </div>
+      </form>
+      </div>
+
+  </div>
+</div>
+
+
+
+<!-- menuModal Modal -->
+<div class="modal fade" id="menuModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="menuModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalPopoversLabel">
+                Crear Menú
+              </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="onReset()">
+
+              </button>
+          </div>
+
+          <form [formGroup]="frmMenu">
+
+            <div class="modal-body ">
+
+              <div>
+                <label for="txtnamemenu" class="form-label">Nombre</label>
+                <div class="row">
+                  <div class="col-7">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="txtnamemenu"
+                      placeholder="Nombre"
+                      formControlName="name"
+                      [class.is-invalid]="controls['name'].errors && touched('name')"
+                    >
+
+                    <div *ngIf="touched('name') && controls['name'].errors" class="invalid-feedback">
+                      <div *ngIf="controls['name'].errors['required']">* Requerido</div>
+                      <div *ngIf="controls['name'].errors['pattern']">* Solo letras</div>
+                      <div *ngIf="controls['name'].errors['minlength']">* Mínimo 05 carácteres</div>
+                    </div>
+
+                  </div>
+                  <div class="col-5">
+                    <input type="text" class="form-control" placeholder="ícono" formControlName="icon">
+                  </div>
+                </div>
+              </div>
+
+              <div class="pt-2">
+                <label for="iconInput" class="form-label">web Url</label>
+                <input type="text" class="form-control " id="iconInput" placeholder="/module/entity" formControlName="webUrl">
+
+              </div>
+
+              <div class="pt-2">
+                <label for="iconInput" class="form-label">api Url</label>
+                <input type="text" class="form-control " id="iconInput" placeholder="/v1/entity" formControlName="apiUrl">
+
+              </div>
+
+              <div class="pt-2">
+                <div class="row">
+                  <div class="col-7">
+                    <label for="cbxPather" class="form-label">Menú padre</label>
+
+                    <ng-select
+                      [items]="pathers"
+                      bindLabel="name"
+                      bindValue="id"
+                      placeholder="Opcional"
+                      id="cbxPather"
+                      formControlName="patherMenuId">
+
+                      <!-- <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
+                          <div class="ng-value" *ngFor="let item of items | slice:0:3">
+                              <span class="ng-value-label">
+                                <i class=" align-middle me-2" ngClass="{{$any(item).icon}}" ></i>
+                                {{$any(item).name}}
+                              </span>
+                          </div>
+                      </ng-template> -->
+
+                    </ng-select>
+                  </div>
+                  <div class="col-5">
+                    <br>
+                    <div class="form-check  form-switch form-switch-primary" >
+                      <input class="form-check-input" type="checkbox" role="switch" id="chx-hidden"
+                      >
+                      <label class="form-check-label" for="chx-hidden">
+                        ocultar
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+
+
+              <div class="pt-2">
+                <label for="txtpsw" class="form-label">Acciones</label>
+
+                <ng-select
+                  [items]="actions"
+                  [multiple]="true"
+                  bindLabel="label"
+                  bindValue="value"
+                  placeholder="Seleccione acciones"
+                  formControlName="actions">
+
+                  <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
+                      <div class="ng-value" *ngFor="let item of items | slice:0:3">
+                          <span class="ng-value-label me-1">
+                            {{$any(item).label}}
+                          </span>
+                          <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>
+                      </div>
+                      <div class="ng-value" *ngIf="items.length > 3">
+                          <span class="ng-value-label"> + {{items.length - 3}} more...</span>
+                      </div>
+                  </ng-template>
+
+              </ng-select>
+
+              </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal" (click)="onReset()" id="btnCloseModal" >
+                  Cerrar
+                </button>
+                <button type="button" class="btn btn-primary" [disabled]="saving || invalid" (click)="onSubmit()" >
+                  Guardar
+                </button>
+            </div>
+          </form>
+      </div>
+  </div>
+</div>

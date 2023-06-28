@@ -4,18 +4,24 @@
 <nav class="d-flex justify-content-end gap-4">
 
   <div class="d-flex justify-content-center align-items-center gap-2 text-muted mb-0">
-    registros del 1 al 5 de 100
+    registros del {{ startRecord }} al {{ endRecord }} de {{ total }}
   </div>
 
   <ul class="pagination  justify-content-end me-2">
       <li class="page-item disabled">
-          <a class="page-link" href="#" tabindex="-1">Previous</a>
+          <button class="page-link" tabindex="-1" (click)="onNextPage()" [disabled]="currentPage == startPage"  >
+            Previous
+          </button>
       </li>
-      <li class="page-item"><a class="page-link" href="#">1</a></li>
-      <li class="page-item"><a class="page-link" href="#">2</a></li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item" *ngFor="let page of pages" >
+        <button class="page-link" (click)="onPaginate( page )" [disabled]="currentPage == page" >{{ page }}</button>
+      </li>
+      <!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li> -->
       <li class="page-item">
-          <a class="page-link" href="#">Next</a>
+          <button class="page-link" (click)="onPrevPage()"  [disabled]="currentPage == endPage">
+            Next
+          </button>
       </li>
   </ul>
 </nav>
