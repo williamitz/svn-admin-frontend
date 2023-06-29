@@ -250,7 +250,9 @@
                   bindLabel="label"
                   bindValue="value"
                   placeholder="Seleccione acciones"
-                  formControlName="actions">
+                  formControlName="actions"
+                  [class.is-invalid]="controls['actions'].errors && touched('actions')"
+                  >
 
                   <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
                       <div class="ng-value" *ngFor="let item of items | slice:0:3">

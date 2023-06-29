@@ -91,7 +91,7 @@
             left: auto;
         }
     }
-    
+
 }
 
 .select2-container {
@@ -149,4 +149,11 @@
             cursor: default;
         }
     }
+}
+
+
+.ng-select.is-invalid {
+  .ng-select-container {
+    border-color: #f06548;
+  }
 }

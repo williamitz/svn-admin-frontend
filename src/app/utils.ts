@@ -19,6 +19,7 @@ export const urlMenuPatt = new RegExp(/^[a-zA-Z0-9\/\-]{0,200}$/);
 export const fullTextNumberPatt = new RegExp(/^[a-zA-Záéíóúüñ\#\-\d\.\,\s]{0,200}$/i);
 // export const fullTextNumberPatt = new RegExp(/^[a-zA-ZáéíóúüÁÉÍÓÚÜñÑ\#\-\d\.\,\s]{0,200}$/);
 export const numberPatt = new RegExp(/^[\d]{0,200}$/);
+export const decimalPatt = new RegExp(/^\d+(?:\.\d{1,2})?$/);
 export const materialIconPatt = new RegExp(/^[a-zA-Z\_]{0,200}$/);
 export const riIconPatt = new RegExp(/^[a-z\d\-]{0,100}$/i);
 
@@ -32,6 +33,6 @@ export const symbolPatt = new RegExp(/^[a-zA-Z\.\$\/]{2,5}$/);
 
 export const prefixPhonePatt = new RegExp(/^[\+\d]{2,6}$/);
 
-export const phonePatt = new RegExp(/^[\+\d\s]{9,12}$/);
+export const phonePatt = new RegExp(/^[\+\d\s]{6,16}$/);
 
 export const emailPatt = new RegExp(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
