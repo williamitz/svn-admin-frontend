@@ -42,7 +42,8 @@
       "TEXT": "Seguridad",
       "LIST": {
         "ROLE": "Roles de usuario",
-        "USER": "Usuarios"
+        "USER": "Usuarios",
+        "MENU": "Menú del sistema"
       }
     },
     "ADMIN": {

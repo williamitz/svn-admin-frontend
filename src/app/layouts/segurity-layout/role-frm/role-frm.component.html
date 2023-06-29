@@ -1,10 +1,82 @@
 <div class="card">
   <div class="card-header">
-      <h4 class="card-title mb-0">Navigation Nested List</h4>
+      <h4 class="card-title mb-0" *ngIf="!toUpdate" >Crear Rol</h4>
+      <h4 class="card-title mb-0" *ngIf="toUpdate" >Actualizar Rol</h4>
   </div><!-- end card header -->
 
   <div class="card-body">
-      <p class="text-muted">Use <code>nested-list nested-sortable</code> class to list-group class to set a nested list with sortable items where the list is shown with navigation.</p>
+
+    <form [formGroup]="frmRole">
+
+      <div class="row">
+
+        <div class="col-6">
+
+          <div class="row">
+            <div class="col-6">
+              <label for="txtCodeRole" class="form-label">Código</label>
+              <input type="text"
+                class="form-control"
+                id="txtCodeRole"
+                formControlName="code"
+                placeholder="CODE"
+                [class.is-invalid]="controls['code'].errors && touched('code')"
+                [class.is-valid]="!controls['code'].errors && touched('code')"
+              >
+
+              <div *ngIf="touched('code') && controls['code'].errors" class="invalid-feedback">
+                  <div *ngIf="controls['code'].errors['required']">Código es requerido</div>
+                  <div *ngIf="controls['code'].errors['pattern']">Código inválido solo letras sin espacios</div>
+                  <div *ngIf="controls['code'].errors['minlength']">Mínimo 04 carácteres</div>
+              </div>
+            </div>
+            <div class="col-6">
+              <label for="txtNameRole" class="form-label">Nombre</label>
+              <input type="text"
+                class="form-control"
+                id="txtNameRole"
+                formControlName="name"
+                placeholder="name to role"
+                [class.is-invalid]="controls['name'].errors && touched('name')"
+                [class.is-valid]="!controls['name'].errors && touched('name')"
+              >
+
+              <div *ngIf="touched('code') && controls['code'].errors" class="invalid-feedback">
+                  <div *ngIf="controls['code'].errors['required']">Código es requerido</div>
+                  <div *ngIf="controls['code'].errors['pattern']">Nombre inválido solo letras </div>
+                  <div *ngIf="controls['code'].errors['minlength']">Mínimo 05 carácteres</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-6">
+          <label for="txtDscRole" class="form-label">Descripción</label>
+          <textarea class="form-control"
+            id="txtDscRole"
+            formControlName="description"
+            cols="30"
+            rows="2"
+            placeholder="Description role"
+            [class.is-invalid]="controls['description'].errors && touched('description')"
+            [class.is-valid]="!controls['description'].errors && touched('description')"
+            >
+          </textarea>
+        </div>
+
+      </div>
+
+    </form>
+
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+      <h4 class="card-title mb-0">Permisos</h4>
+  </div><!-- end card header -->
+
+  <div class="card-body">
 
       <div class="list-group nested-list nested-sortable">
 
@@ -17,7 +89,8 @@
                     <div>
 
                       <div class="form-check  form-switch form-switch-primary" >
-                        <input class="form-check-input" type="checkbox" role="switch" id="{{children.id}}-action-chk" >
+                        <input class="form-check-input" type="checkbox" role="switch" id="{{children.id}}-action-chk"
+                        [(ngModel)]="children.selected" (change)="onInvalidAllows( children )" >
                         <label class="form-check-label" for="{{children.id}}-action-chk">
                           {{ children.name }}
                         </label>
@@ -27,10 +100,10 @@
                     </div>
                     <div class="d-flex gap-4">
 
-                      <div class="form-check form-switch form-switch-success" *ngFor="let action of children.actions" >
-                          <input class="form-check-input" type="checkbox" role="switch" id="{{children.id}}-action-chk-{{ action }}" >
-                          <label class="form-check-label" for="{{children.id}}-action-chk-{{ action }}">
-                            {{ action }}
+                      <div class="form-check form-switch form-switch-success" *ngFor="let allow of children.actions" >
+                          <input class="form-check-input" type="checkbox" role="switch" id="{{children.id}}-action-chk-{{ allow.action }}" [(ngModel)]="allow.selected" (change)="onInvalidAllows()" >
+                          <label class="form-check-label" for="{{children.id}}-action-chk-{{ allow.action }}">
+                            {{ allow.action }}
                           </label>
                       </div>
 
@@ -55,6 +128,23 @@
 
       </div>
   </div><!-- end card-body -->
+
+  <div class="card-footer text-end">
+
+    <button type="button" class="btn btn-light" >Cerrar</button>
+    <button class="btn btn-primary ms-3" [disabled]="invalid || !invalidAllow$() || saving" (click)="onSubmit()">
+      <span *ngIf="!toUpdate" >
+        <i class="ri-save-2-line align-bottom me-1"></i>
+        Guardar
+      </span>
+
+      <span *ngIf="toUpdate" >
+        <i class="ri-save-2-line align-bottom me-1"></i>
+        Guardar Cambios
+      </span>
+    </button>
+
+  </div>
 </div>
 
 

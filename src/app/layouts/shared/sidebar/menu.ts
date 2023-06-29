@@ -93,6 +93,12 @@ export const MENU: MenuItem[] = [
         link: '/segurity/user',
         parentId: 84
       },
+      {
+        id: 87,
+        label: 'MENUITEMS.SEGURITY.LIST.MENU',
+        link: '/segurity/menu',
+        parentId: 84
+      },
     ]
   },
   {

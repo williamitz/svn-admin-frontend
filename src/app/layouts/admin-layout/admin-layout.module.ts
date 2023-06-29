@@ -12,6 +12,7 @@ import { ClientPageComponent } from './client-page/client-page.component';
 import { WidgetsModule } from 'src/app/widgets/widgets.module';
 import { OrganizationPageComponent } from './organization-page/organization-page.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { PipesModule } from 'src/app/pipes/pipes.module';
 
 @NgModule({
   // TODO: importar vistas
@@ -29,6 +30,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     AdminLayoutRoutingModule,
     WidgetsModule,
     RouterModule,
+    PipesModule,
 
      NgSelectModule
   ]
