@@ -56,6 +56,26 @@ export const MENU: MenuItem[] = [
   },
 
   {
+    id: 21,
+    label: 'MENUITEMS.POOLINTERPRETER.TEXT',
+    icon: 'ri-rocket-line',
+    subItems: [
+      {
+        id: 85,
+        label: 'MENUITEMS.POOLINTERPRETER.LIST.POOLADDINTERPRETER',
+        link: '/admin/pool-interpreter',
+        parentId: 84
+      },
+      {
+        id: 86,
+        label: 'MENUITEMS.POOLINTERPRETER.LIST.POOLACTIVITYINTERPRETER',
+        link: '/admin/pool-interpreter',
+        parentId: 84,
+      },
+    ]
+  },
+
+  {
     id: 1,
     label: 'MENUITEMS.PAGES.TEXT',
     isTitle: true

@@ -1,257 +1,223 @@
-<p>newassignment-interpreter works!</p>
-
-
 <div class="row">
 
   <div class="col-xl-3">
     <div class="card card-h-100">
-        <div class="card-body">
-            <button class="btn btn-primary w-100" id="btn-new-event"><i class="mdi mdi-plus"></i> Create New Event</button>
-
-            <div id="external-events">
-                <br>
-                <p class="text-muted">Drag and drop your event or click in the calendar</p>
-                <div class="external-event fc-event bg-soft-success text-success" data-class="bg-soft-success">
-                    <i class="mdi mdi-checkbox-blank-circle font-size-11 me-2"></i>New Event Planning
-                </div>
-                <div class="external-event fc-event bg-soft-info text-info" data-class="bg-soft-info">
-                    <i class="mdi mdi-checkbox-blank-circle font-size-11 me-2"></i>Meeting
-                </div>
-                <div class="external-event fc-event bg-soft-warning text-warning" data-class="bg-soft-warning">
-                    <i class="mdi mdi-checkbox-blank-circle font-size-11 me-2"></i>Generating Reports
-                </div>
-                <div class="external-event fc-event bg-soft-danger text-danger" data-class="bg-soft-danger">
-                    <i class="mdi mdi-checkbox-blank-circle font-size-11 me-2"></i>Create New theme
-                </div>
-            </div>
-
-        </div>
+      <div class="card-body">
+        <button class="btn btn-danger rounded-pill w-100" id="btn-new-event"><i class="mdi mdi-plus"></i> Create New
+          Assignment</button>
+      </div>
     </div>
     <div>
-        <h5 class="mb-1">Upcoming Events</h5>
-        <p class="text-muted">Don't miss scheduled events</p>
-        <div class="pe-2 me-n1 mb-3" data-simplebar="init" style="height: 400px">
+      <h5 class="mb-1">Upcoming Events</h5>
+      <p class="text-muted">Don't miss scheduled events</p>
+      <div class="pe-2 me-n1 mb-3" data-simplebar="init" style="height: 400px">
 
-          <div class="simplebar-wrapper" style="margin: 0px -8px 0px 0px;">
-            <div class="simplebar-height-auto-observer-wrapper">
-              <div class="simplebar-height-auto-observer"></div>
-            </div>
+        <div class="simplebar-wrapper" style="margin: 0px -8px 0px 0px;">
+          <div class="simplebar-height-auto-observer-wrapper">
+            <div class="simplebar-height-auto-observer"></div>
+          </div>
 
-            <div class="simplebar-mask">
-              <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
-                <div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" style="height: 100%; overflow: hidden scroll;">
-                  <div class="simplebar-content" style="padding: 0px 8px 0px 0px;">
+          <div class="simplebar-mask">
+            <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
+              <div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content"
+                style="height: 100%; overflow: hidden scroll;">
+                <div class="simplebar-content" style="padding: 0px 8px 0px 0px;">
 
-                    <div id="upcoming-event-list">
-                      <div class="card mb-3">
-                        <div class="card-body">
-                          <div class="d-flex mb-3">
-                            <div class="flex-grow-1">
-                              <i class="mdi mdi-checkbox-blank-circle me-2 text-info"></i>
-                              <span class="fw-medium">3 Jan 2022 </span>
-                            </div>
-                            <div class="flex-shrink-0">
-                              <small class="badge badge-soft-primary ms-auto">7:00 PM to 12:00 AM</small>
-                            </div>
+                  <div id="upcoming-event-list">
+                    <div class="card mb-3">
+                      <div class="card-body">
+                        <div class="d-flex mb-3">
+                          <div class="flex-grow-1">
+                            <i class="mdi mdi-checkbox-blank-circle me-2 text-info"></i>
+                            <span class="fw-medium">3 Jan 2022 </span>
                           </div>
-                          <h6 class="card-title fs-16"> World Braille Day</h6>
-                          <p class="text-muted text-truncate-two-lines mb-0"> </p>
-                        </div>
-                      </div>
-
-                      <div class="card mb-3">
-                        <div class="card-body">
-                          <div class="d-flex mb-3">
-                            <div class="flex-grow-1">
-                              <i class="mdi mdi-checkbox-blank-circle me-2 text-info"></i>
-                              <span class="fw-medium">29 Jan 2022 </span>
-                            </div>
-                            <div class="flex-shrink-0">
-                              <small class="badge badge-soft-primary ms-auto">7:00 PM to 12:00 AM</small>
-                            </div>
+                          <div class="flex-shrink-0">
+                            <small class="badge badge-soft-primary ms-auto">7:00 PM to 12:00 AM</small>
                           </div>
-                          <h6 class="card-title fs-16"> World Leprosy Day</h6>
-                          <p class="text-muted text-truncate-two-lines mb-0"> </p>
                         </div>
-                      </div>
-
-                      <div class="card mb-3">
-                        <div class="card-body">
-                          <div class="d-flex mb-3">
-                            <div class="flex-grow-1">
-                              <i class="mdi mdi-checkbox-blank-circle me-2 text-info"></i>
-                              <span class="fw-medium">20 Feb 2022 </span>
-                            </div>
-                            <div class="flex-shrink-0">
-                              <small class="badge badge-soft-primary ms-auto">7:00 PM to 12:00 AM</small>
-                            </div>
-                          </div>
-                          <h6 class="card-title fs-16"> International Mother Language Day</h6>
-                          <p class="text-muted text-truncate-two-lines mb-0"> </p>
-                        </div>
-                      </div>
-
-                      <div class="card mb-3">
-                        <div class="card-body">
-                          <div class="d-flex mb-3">
-                            <div class="flex-grow-1">
-                              <i class="mdi mdi-checkbox-blank-circle me-2 text-info"></i>
-                              <span class="fw-medium">21 Feb 2022 </span>
-                            </div>
-                            <div class="flex-shrink-0">
-                              <small class="badge badge-soft-primary ms-auto">7:00 PM to 12:00 AM</small>
-                            </div>
-                          </div>
-                          <h6 class="card-title fs-16"> World Thinking Day</h6>
-                          <p class="text-muted text-truncate-two-lines mb-0"> </p>
-                        </div>
-                      </div>
-
-                      <div class="card mb-3">
-                        <div class="card-body">
-                          <div class="d-flex mb-3">
-                            <div class="flex-grow-1">
-                              <i class="mdi mdi-checkbox-blank-circle me-2 text-info"></i>
-                              <span class="fw-medium">7 Mar 2022 </span>
-                            </div>
-                            <div class="flex-shrink-0">
-                              <small class="badge badge-soft-primary ms-auto">7:00 PM to 12:00 AM</small>
-                            </div>
-                          </div>
-                          <h6 class="card-title fs-16"> International Women's Day</h6>
-                          <p class="text-muted text-truncate-two-lines mb-0"> </p>
-                        </div>
-                      </div>
-
-                      <div class="card mb-3">
-                        <div class="card-body">
-                          <div class="d-flex mb-3">
-                            <div class="flex-grow-1">
-                              <i class="mdi mdi-checkbox-blank-circle me-2 text-info"></i>
-                              <span class="fw-medium">20 Mar 2022 </span>
-                            </div>
-                            <div class="flex-shrink-0">
-                              <small class="badge badge-soft-primary ms-auto">7:00 PM to 12:00 AM</small>
-                            </div>
-                          </div>
-                          <h6 class="card-title fs-16"> International Mother Language Day</h6>
-                          <p class="text-muted text-truncate-two-lines mb-0"> </p>
-                        </div>
-                      </div>
-
-                      <div class="card mb-3">
-                        <div class="card-body">
-                          <div class="d-flex mb-3">
-                            <div class="flex-grow-1">
-                              <i class="mdi mdi-checkbox-blank-circle me-2 text-info"></i>
-                              <span class="fw-medium">21 Mar 2022 </span>
-                            </div>
-                            <div class="flex-shrink-0">
-                              <small class="badge badge-soft-primary ms-auto">7:00 PM to 12:00 AM</small>
-                            </div>
-                          </div>
-                          <h6 class="card-title fs-16"> World Water Day</h6>
-                          <p class="text-muted text-truncate-two-lines mb-0"> </p>
-                        </div>
-                      </div>
-
-                      <div class="card mb-3">
-                        <div class="card-body">
-                          <div class="d-flex mb-3">
-                            <div class="flex-grow-1">
-                              <i class="mdi mdi-checkbox-blank-circle me-2 text-info"></i>
-                              <span class="fw-medium">6 Apr 2022 </span>
-                            </div>
-                            <div class="flex-shrink-0">
-                              <small class="badge badge-soft-primary ms-auto">7:00 PM to 12:00 AM</small>
-                            </div>
-                          </div>
-                          <h6 class="card-title fs-16"> World Health Day</h6>
-                          <p class="text-muted text-truncate-two-lines mb-0"> </p>
-                        </div>
-                      </div>
-
-                      <div class="card mb-3">
-                        <div class="card-body">
-                          <div class="d-flex mb-3">
-                            <div class="flex-grow-1">
-                              <i class="mdi mdi-checkbox-blank-circle me-2 text-info"></i>
-                              <span class="fw-medium">15 Apr 2022 </span>
-                            </div>
-                            <div class="flex-shrink-0">
-                              <small class="badge badge-soft-primary ms-auto">7:00 PM to 12:00 AM</small>
-                            </div>
-                          </div>
-                          <h6 class="card-title fs-16"> International Special Librarians Day</h6>
-                          <p class="text-muted text-truncate-two-lines mb-0"> </p>
-                        </div>
-                      </div>
-
-                      <div class="card mb-3">
-                        <div class="card-body">
-                          <div class="d-flex mb-3">
-                            <div class="flex-grow-1">
-                              <i class="mdi mdi-checkbox-blank-circle me-2 text-info"></i>
-                              <span class="fw-medium">23 Jul 2023 </span>
-                            </div>
-                            <div class="flex-shrink-0">
-                              <small class="badge badge-soft-primary ms-auto">8:00 PM to 4:00 PM</small>
-                            </div>
-                          </div>
-                          <h6 class="card-title fs-16"> Velzon Project Discussion with Team</h6>
-                          <p class="text-muted text-truncate-two-lines mb-0"> Tell how to boost website traffic</p>
-                        </div>
+                        <h6 class="card-title fs-16"> World Braille Day</h6>
+                        <p class="text-muted text-truncate-two-lines mb-0"> </p>
                       </div>
                     </div>
 
+                    <div class="card mb-3">
+                      <div class="card-body">
+                        <div class="d-flex mb-3">
+                          <div class="flex-grow-1">
+                            <i class="mdi mdi-checkbox-blank-circle me-2 text-info"></i>
+                            <span class="fw-medium">29 Jan 2022 </span>
+                          </div>
+                          <div class="flex-shrink-0">
+                            <small class="badge badge-soft-primary ms-auto">7:00 PM to 12:00 AM</small>
+                          </div>
+                        </div>
+                        <h6 class="card-title fs-16"> World Leprosy Day</h6>
+                        <p class="text-muted text-truncate-two-lines mb-0"> </p>
+                      </div>
+                    </div>
+
+                    <div class="card mb-3">
+                      <div class="card-body">
+                        <div class="d-flex mb-3">
+                          <div class="flex-grow-1">
+                            <i class="mdi mdi-checkbox-blank-circle me-2 text-info"></i>
+                            <span class="fw-medium">20 Feb 2022 </span>
+                          </div>
+                          <div class="flex-shrink-0">
+                            <small class="badge badge-soft-primary ms-auto">7:00 PM to 12:00 AM</small>
+                          </div>
+                        </div>
+                        <h6 class="card-title fs-16"> International Mother Language Day</h6>
+                        <p class="text-muted text-truncate-two-lines mb-0"> </p>
+                      </div>
+                    </div>
+
+                    <div class="card mb-3">
+                      <div class="card-body">
+                        <div class="d-flex mb-3">
+                          <div class="flex-grow-1">
+                            <i class="mdi mdi-checkbox-blank-circle me-2 text-info"></i>
+                            <span class="fw-medium">21 Feb 2022 </span>
+                          </div>
+                          <div class="flex-shrink-0">
+                            <small class="badge badge-soft-primary ms-auto">7:00 PM to 12:00 AM</small>
+                          </div>
+                        </div>
+                        <h6 class="card-title fs-16"> World Thinking Day</h6>
+                        <p class="text-muted text-truncate-two-lines mb-0"> </p>
+                      </div>
+                    </div>
+
+                    <div class="card mb-3">
+                      <div class="card-body">
+                        <div class="d-flex mb-3">
+                          <div class="flex-grow-1">
+                            <i class="mdi mdi-checkbox-blank-circle me-2 text-info"></i>
+                            <span class="fw-medium">7 Mar 2022 </span>
+                          </div>
+                          <div class="flex-shrink-0">
+                            <small class="badge badge-soft-primary ms-auto">7:00 PM to 12:00 AM</small>
+                          </div>
+                        </div>
+                        <h6 class="card-title fs-16"> International Women's Day</h6>
+                        <p class="text-muted text-truncate-two-lines mb-0"> </p>
+                      </div>
+                    </div>
+
+                    <div class="card mb-3">
+                      <div class="card-body">
+                        <div class="d-flex mb-3">
+                          <div class="flex-grow-1">
+                            <i class="mdi mdi-checkbox-blank-circle me-2 text-info"></i>
+                            <span class="fw-medium">20 Mar 2022 </span>
+                          </div>
+                          <div class="flex-shrink-0">
+                            <small class="badge badge-soft-primary ms-auto">7:00 PM to 12:00 AM</small>
+                          </div>
+                        </div>
+                        <h6 class="card-title fs-16"> International Mother Language Day</h6>
+                        <p class="text-muted text-truncate-two-lines mb-0"> </p>
+                      </div>
+                    </div>
+
+                    <div class="card mb-3">
+                      <div class="card-body">
+                        <div class="d-flex mb-3">
+                          <div class="flex-grow-1">
+                            <i class="mdi mdi-checkbox-blank-circle me-2 text-info"></i>
+                            <span class="fw-medium">21 Mar 2022 </span>
+                          </div>
+                          <div class="flex-shrink-0">
+                            <small class="badge badge-soft-primary ms-auto">7:00 PM to 12:00 AM</small>
+                          </div>
+                        </div>
+                        <h6 class="card-title fs-16"> World Water Day</h6>
+                        <p class="text-muted text-truncate-two-lines mb-0"> </p>
+                      </div>
+                    </div>
+
+                    <div class="card mb-3">
+                      <div class="card-body">
+                        <div class="d-flex mb-3">
+                          <div class="flex-grow-1">
+                            <i class="mdi mdi-checkbox-blank-circle me-2 text-info"></i>
+                            <span class="fw-medium">6 Apr 2022 </span>
+                          </div>
+                          <div class="flex-shrink-0">
+                            <small class="badge badge-soft-primary ms-auto">7:00 PM to 12:00 AM</small>
+                          </div>
+                        </div>
+                        <h6 class="card-title fs-16"> World Health Day</h6>
+                        <p class="text-muted text-truncate-two-lines mb-0"> </p>
+                      </div>
+                    </div>
+
+                    <div class="card mb-3">
+                      <div class="card-body">
+                        <div class="d-flex mb-3">
+                          <div class="flex-grow-1">
+                            <i class="mdi mdi-checkbox-blank-circle me-2 text-info"></i>
+                            <span class="fw-medium">15 Apr 2022 </span>
+                          </div>
+                          <div class="flex-shrink-0">
+                            <small class="badge badge-soft-primary ms-auto">7:00 PM to 12:00 AM</small>
+                          </div>
+                        </div>
+                        <h6 class="card-title fs-16"> International Special Librarians Day</h6>
+                        <p class="text-muted text-truncate-two-lines mb-0"> </p>
+                      </div>
+                    </div>
+
+                    <div class="card mb-3">
+                      <div class="card-body">
+                        <div class="d-flex mb-3">
+                          <div class="flex-grow-1">
+                            <i class="mdi mdi-checkbox-blank-circle me-2 text-info"></i>
+                            <span class="fw-medium">23 Jul 2023 </span>
+                          </div>
+                          <div class="flex-shrink-0">
+                            <small class="badge badge-soft-primary ms-auto">8:00 PM to 4:00 PM</small>
+                          </div>
+                        </div>
+                        <h6 class="card-title fs-16"> Velzon Project Discussion with Team</h6>
+                        <p class="text-muted text-truncate-two-lines mb-0"> Tell how to boost website traffic</p>
+                      </div>
+                    </div>
                   </div>
+
                 </div>
               </div>
             </div>
-            <div class="simplebar-placeholder" style="width: auto; height: 2437px;"></div>
           </div>
-
-          <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;">
-            <div class="simplebar-scrollbar" style="width: 0px; display: none;">
-            </div>
-          </div>
-
-          <div class="simplebar-track simplebar-vertical" style="visibility: visible;">
-            <div class="simplebar-scrollbar" style="height: 65px; display: block; transform: translate3d(0px, 302px, 0px);">
-            </div>
-          </div>
-
+          <div class="simplebar-placeholder" style="width: auto; height: 2437px;"></div>
         </div>
-    </div>
 
-    <div class="card">
-        <div class="card-body bg-soft-info">
-            <div class="d-flex">
-                <div class="flex-shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar text-info icon-dual-info"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                </div>
-                <div class="flex-grow-1 ms-3">
-                    <h6 class="fs-15">Welcome to your Calendar!</h6>
-                    <p class="text-muted mb-0">Event that applications book will appear here. Click on an event to see the details and manage applicants event.</p>
-                </div>
-            </div>
+        <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;">
+          <div class="simplebar-scrollbar" style="width: 0px; display: none;">
+          </div>
         </div>
+
+        <div class="simplebar-track simplebar-vertical" style="visibility: visible;">
+          <div class="simplebar-scrollbar"
+            style="height: 65px; display: block; transform: translate3d(0px, 302px, 0px);">
+          </div>
+        </div>
+      </div>
     </div>
-    <!--end card-->
   </div>
 
   <div class="col-xl-9">
     <div class="card card-h-100">
-        <div class="card-body">
-            <div id="calendar"></div>
-            <full-calendar [options]="calendarOptions">
+      <div class="card-body">
+        <div id="calendar"></div>
+        <full-calendar [options]="calendarOptions">
 
-              <ng-template #eventContent let-arg>
-                <b>{{ arg.event.title }}</b>
-              </ng-template>
+          <ng-template #eventContent let-arg>
+            <b>{{ arg.event.title }}</b>
+          </ng-template>
 
-            </full-calendar>
-        </div>
+        </full-calendar>
+      </div>
     </div>
   </div>
 
@@ -260,223 +226,212 @@
 
 <div class="row">
   <div class="col-12">
-      <div class="row">
-          <div class="col-xl-12">
 
-          </div><!-- end col -->
+    <!-- Add New Event MODAL -->
+    <ng-template #modalShow let-modal>
+      <div class="modal-header p-3 bg-soft-info">
+        <h5 class="modal-title" id="modal-title">Add Event</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"
+          (click)="closeEventModal()"></button>
       </div>
-      <!--end row-->
+      <div class="modal-body p-4">
+        <form class="needs-validation" name="event-form" id="form-event" novalidate (ngSubmit)="saveEvent()"
+          [formGroup]="formData">
+          <div class="row event-form">
+            <div class="col-12">
+              <div class="mb-3">
+                <label class="form-label">Type</label>
+                <select class="form-select" name="category" formControlName="category"
+                  [ngClass]="{'is-invalid': submitted && form['category'].errors}" id="event-category" required>
+                  <option value="bg-soft-danger">Danger</option>
+                  <option value="bg-soft-success">Success</option>
+                  <option value="bg-soft-primary">Primary</option>
+                  <option value="bg-soft-info">Info</option>
+                  <option value="bg-soft-dark">Dark</option>
+                  <option value="bg-soft-warning">Warning</option>
+                </select>
+                <div *ngIf="submitted && form['category'].errors" class="invalid-feedback">
+                  <div *ngIf="form['category'].errors['required']">
+                    This value is required
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--end col-->
+            <div class="col-12">
+              <div class="mb-3">
+                <label class="form-label">Event Name</label>
+                <input class="form-control" placeholder="Enter event name" type="text" name="title" id="event-title"
+                  required value="" formControlName="title"
+                  [ngClass]="{ 'is-invalid': submitted && form['title'].errors }" />
+                <div *ngIf="submitted && form['title'].errors" class="invalid-feedback">
+                  <span *ngIf="form['title'].errors['required']">This value is required.</span>
+                </div>
+              </div>
+            </div>
+            <!--end col-->
+            <div class="col-12">
+              <div class="mb-3">
+                <label>Event Date</label>
+                <div class="input-group">
+                  <!-- <input class="form-control flatpickr-input" type="text" mwlFlatpickr [altInput]="true" [convertModelValue]="true" placeholder="Select date"> -->
+                  <input class="form-control flatpickr-input" type="text" mwlFlatpickr [altInput]="true"
+                    altFormat="d/m/Y" [convertModelValue]="true" placeholder="Select date" id="event-date"
+                    formControlName="date">
+                </div>
+              </div>
+            </div>
+            <!--end col-->
+            <div class="col-12" id="event-time">
+              <div class="row">
+                <div class="col-6">
+                  <div class="mb-3">
+                    <label class="form-label">Start Time</label>
+                    <div class="input-group">
+                      <input class="form-control flatpickr-input" type="text" placeholder="Select start time"
+                        mwlFlatpickr [noCalendar]="true" [enableTime]="true" [dateFormat]="'H:i'"
+                        formControlName="start">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="mb-3">
+                    <label class="form-label">End Time</label>
+                    <div class="input-group">
+                      <input class="form-control flatpickr-input" type="text" placeholder="Select end time" mwlFlatpickr
+                        [noCalendar]="true" [enableTime]="true" [dateFormat]="'H:i'" formControlName="end">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--end col-->
+            <div class="col-12">
+              <div class="mb-3">
+                <label for="event-location">Location</label>
+                <div>
+                  <input class="form-control" placeholder="Event location" type="text" name="event-location"
+                    id="event-location" required value="" formControlName="location"
+                    [ngClass]="{ 'is-invalid': submitted && form['location'].errors }" />
+                  <div *ngIf="submitted && form['location'].errors" class="invalid-feedback">
+                    <span *ngIf="form['location'].errors['required']">This value is required.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--end col-->
+            <div class="col-12">
+              <div class="mb-3">
+                <label class="form-label">Description</label>
+                <textarea class="form-control" id="event-description" placeholder="Enter a description" rows="3"
+                  spellcheck="false" formControlName="desription"
+                  [ngClass]="{ 'is-invalid': submitted && form['desription'].errors }"></textarea>
+                <div *ngIf="submitted && form['desription'].errors" class="invalid-feedback">
+                  <span *ngIf="form['desription'].errors['required']">This value is required.</span>
+                </div>
+              </div>
+            </div>
+            <!--end col-->
+          </div>
+          <div class="hstack gap-2 justify-content-end">
+            <button type="submit" class="btn btn-success" id="btn-save-event">Add Event</button>
+          </div>
+        </form>
+      </div>
+    </ng-template>
+    <!-- end modal-->
 
-      <div style='clear:both'></div>
-
-      <!-- Add New Event MODAL -->
-      <ng-template #modalShow let-modal>
-          <div class="modal-header p-3 bg-soft-info">
-              <h5 class="modal-title" id="modal-title">Add Event</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"
-                  (click)="closeEventModal()"></button>
-          </div>
-          <div class="modal-body p-4">
-              <form class="needs-validation" name="event-form" id="form-event" novalidate (ngSubmit)="saveEvent()"
-                  [formGroup]="formData">
-                  <div class="row event-form">
-                      <div class="col-12">
-                          <div class="mb-3">
-                              <label class="form-label">Type</label>
-                              <select class="form-select" name="category" formControlName="category"
-                                  [ngClass]="{'is-invalid': submitted && form['category'].errors}" id="event-category"
-                                  required>
-                                  <option value="bg-soft-danger">Danger</option>
-                                  <option value="bg-soft-success">Success</option>
-                                  <option value="bg-soft-primary">Primary</option>
-                                  <option value="bg-soft-info">Info</option>
-                                  <option value="bg-soft-dark">Dark</option>
-                                  <option value="bg-soft-warning">Warning</option>
-                              </select>
-                              <div *ngIf="submitted && form['category'].errors" class="invalid-feedback">
-                                  <div *ngIf="form['category'].errors['required']">
-                                      This value is required
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <!--end col-->
-                      <div class="col-12">
-                          <div class="mb-3">
-                              <label class="form-label">Event Name</label>
-                              <input class="form-control" placeholder="Enter event name" type="text" name="title"
-                                  id="event-title" required value="" formControlName="title"
-                                  [ngClass]="{ 'is-invalid': submitted && form['title'].errors }" />
-                              <div *ngIf="submitted && form['title'].errors" class="invalid-feedback">
-                                  <span *ngIf="form['title'].errors['required']">This value is required.</span>
-                              </div>
-                          </div>
-                      </div>
-                      <!--end col-->
-                      <div class="col-12">
-                          <div class="mb-3">
-                              <label>Event Date</label>
-                              <div class="input-group">
-                                  <!-- <input class="form-control flatpickr-input" type="text" mwlFlatpickr [altInput]="true" [convertModelValue]="true" placeholder="Select date"> -->
-                                  <input class="form-control flatpickr-input" type="text" mwlFlatpickr
-                                      [altInput]="true" altFormat="d/m/Y" [convertModelValue]="true"
-                                      placeholder="Select date" id="event-date" formControlName="date">
-                              </div>
-                          </div>
-                      </div>
-                      <!--end col-->
-                      <div class="col-12" id="event-time">
-                          <div class="row">
-                              <div class="col-6">
-                                  <div class="mb-3">
-                                      <label class="form-label">Start Time</label>
-                                      <div class="input-group">
-                                          <input class="form-control flatpickr-input" type="text"
-                                              placeholder="Select start time" mwlFlatpickr [noCalendar]="true"
-                                              [enableTime]="true" [dateFormat]="'H:i'" formControlName="start">
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-6">
-                                  <div class="mb-3">
-                                      <label class="form-label">End Time</label>
-                                      <div class="input-group">
-                                          <input class="form-control flatpickr-input" type="text"
-                                              placeholder="Select end time" mwlFlatpickr [noCalendar]="true"
-                                              [enableTime]="true" [dateFormat]="'H:i'" formControlName="end">
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <!--end col-->
-                      <div class="col-12">
-                          <div class="mb-3">
-                              <label for="event-location">Location</label>
-                              <div>
-                                  <input class="form-control" placeholder="Event location" type="text"
-                                      name="event-location" id="event-location" required value=""
-                                      formControlName="location"
-                                      [ngClass]="{ 'is-invalid': submitted && form['location'].errors }" />
-                                  <div *ngIf="submitted && form['location'].errors" class="invalid-feedback">
-                                      <span *ngIf="form['location'].errors['required']">This value is required.</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <!--end col-->
-                      <div class="col-12">
-                          <div class="mb-3">
-                              <label class="form-label">Description</label>
-                              <textarea class="form-control" id="event-description" placeholder="Enter a description"
-                                  rows="3" spellcheck="false" formControlName="desription"
-                                  [ngClass]="{ 'is-invalid': submitted && form['desription'].errors }"></textarea>
-                              <div *ngIf="submitted && form['desription'].errors" class="invalid-feedback">
-                                  <span *ngIf="form['desription'].errors['required']">This value is required.</span>
-                              </div>
-                          </div>
-                      </div>
-                      <!--end col-->
+    <!-- Edit event modal -->
+    <ng-template #editmodalShow let-modal>
+      <div class="modal-header p-3 bg-soft-info">
+        <h5 class="modal-title" id="modal-title">All Day Event</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"
+          (click)="modal.dismiss('Cross click')"></button>
+      </div>
+      <div class="modal-body p-4">
+        <form [formGroup]="formEditData" (ngSubmit)="editEventSave()">
+          <div class="row event-form">
+            <div class="col-12">
+              <div class="mb-3">
+                <label class="form-label">Type</label>
+                <select class="form-control" name="ecategory" formControlName="editCategory" required>
+                  <option *ngFor="let option of category" value="{{ option.value }}">
+                    {{ option.name }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <!--end col-->
+            <div class="col-12">
+              <div class="mb-3">
+                <label class="form-label">Event Name</label>
+                <input class="form-control" placeholder="Insert Event Name" type="text" name="editTitle"
+                  formControlName="editTitle" />
+              </div>
+            </div>
+            <!--end col-->
+            <div class="col-12">
+              <div class="mb-3">
+                <label>Event Date</label>
+                <div class="input-group">
+                  <input class="form-control flatpickr-input" type="text" mwlFlatpickr name="editDate"
+                    formControlName="editDate" [altInput]="true" [convertModelValue]="true" placeholder="Select date">
+                </div>
+              </div>
+            </div>
+            <!--end col-->
+            <div class="col-12" id="event-time">
+              <div class="row">
+                <div class="col-6">
+                  <div class="mb-3">
+                    <label class="form-label">Start Time</label>
+                    <div class="input-group">
+                      <input class="form-control flatpickr-input" type="text" placeholder="Select start time"
+                        mwlFlatpickr [noCalendar]="true" name="editStart" formControlName="editStart"
+                        [enableTime]="true" [dateFormat]="'H:i'">
+                    </div>
                   </div>
-                  <div class="hstack gap-2 justify-content-end">
-                      <button type="submit" class="btn btn-success" id="btn-save-event">Add Event</button>
+                </div>
+                <div class="col-6">
+                  <div class="mb-3">
+                    <label class="form-label">End Time</label>
+                    <div class="input-group">
+                      <input class="form-control flatpickr-input" type="text" placeholder="Select end time" mwlFlatpickr
+                        [noCalendar]="true" name="editEnd" formControlName="editEnd" [enableTime]="true"
+                        [dateFormat]="'H:i'">
+                    </div>
                   </div>
-              </form>
+                </div>
+              </div>
+            </div>
+            <!--end col-->
+            <div class="col-12">
+              <div class="mb-3">
+                <label for="event-location">Location</label>
+                <div>
+                  <input type="text" class="form-control" name="editlocation" formControlName="editlocation"
+                    placeholder="Event location">
+                </div>
+              </div>
+            </div>
+            <!--end col-->
+            <div class="col-12">
+              <div class="mb-3">
+                <label class="form-label">Description</label>
+                <textarea class="form-control" name="editDescription" placeholder="Enter a description"
+                  formControlName="editDescription" rows="3" spellcheck="false"></textarea>
+              </div>
+            </div>
+            <!--end col-->
           </div>
-      </ng-template>
-      <!-- end modal-->
-
-      <!-- Edit event modal -->
-      <ng-template #editmodalShow let-modal>
-          <div class="modal-header p-3 bg-soft-info">
-              <h5 class="modal-title" id="modal-title">All Day Event</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"
-                  (click)="modal.dismiss('Cross click')"></button>
+          <div class="hstack gap-2 justify-content-end">
+            <button type="button" class="btn btn-soft-danger" id="btn-delete-event" (click)="confirm()"><i
+                class="ri-close-line align-bottom"></i> Delete</button>
+            <button type="submit" class="btn btn-success" id="btn-save-event">Update Event</button>
           </div>
-          <div class="modal-body p-4">
-              <form [formGroup]="formEditData" (ngSubmit)="editEventSave()">
-                  <div class="row event-form">
-                      <div class="col-12">
-                          <div class="mb-3">
-                              <label class="form-label">Type</label>
-                              <select class="form-control" name="ecategory" formControlName="editCategory" required>
-                                  <option *ngFor="let option of category" value="{{ option.value }}">
-                                      {{ option.name }}
-                                  </option>
-                              </select>
-                          </div>
-                      </div>
-                      <!--end col-->
-                      <div class="col-12">
-                          <div class="mb-3">
-                              <label class="form-label">Event Name</label>
-                              <input class="form-control" placeholder="Insert Event Name" type="text" name="editTitle"
-                                  formControlName="editTitle" />
-                          </div>
-                      </div>
-                      <!--end col-->
-                      <div class="col-12">
-                          <div class="mb-3">
-                              <label>Event Date</label>
-                              <div class="input-group">
-                                  <input class="form-control flatpickr-input" type="text" mwlFlatpickr name="editDate" formControlName="editDate"
-                                      [altInput]="true" [convertModelValue]="true" placeholder="Select date">
-                              </div>
-                          </div>
-                      </div>
-                      <!--end col-->
-                      <div class="col-12" id="event-time">
-                          <div class="row">
-                              <div class="col-6">
-                                  <div class="mb-3">
-                                      <label class="form-label">Start Time</label>
-                                      <div class="input-group">
-                                          <input class="form-control flatpickr-input" type="text"
-                                              placeholder="Select start time" mwlFlatpickr [noCalendar]="true" name="editStart" formControlName="editStart"
-                                              [enableTime]="true" [dateFormat]="'H:i'">
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-6">
-                                  <div class="mb-3">
-                                      <label class="form-label">End Time</label>
-                                      <div class="input-group">
-                                          <input class="form-control flatpickr-input" type="text"
-                                              placeholder="Select end time" mwlFlatpickr [noCalendar]="true" name="editEnd" formControlName="editEnd"
-                                              [enableTime]="true" [dateFormat]="'H:i'">
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <!--end col-->
-                      <div class="col-12">
-                          <div class="mb-3">
-                              <label for="event-location">Location</label>
-                              <div>
-                                  <input type="text" class="form-control" name="editlocation" formControlName="editlocation"
-                                      placeholder="Event location">
-                              </div>
-                          </div>
-                      </div>
-                      <!--end col-->
-                      <div class="col-12">
-                          <div class="mb-3">
-                              <label class="form-label">Description</label>
-                              <textarea class="form-control" name="editDescription" placeholder="Enter a description" formControlName="editDescription"
-                                  rows="3" spellcheck="false"></textarea>
-                          </div>
-                      </div>
-                      <!--end col-->
-                  </div>
-                  <div class="hstack gap-2 justify-content-end">
-                      <button type="button" class="btn btn-soft-danger" id="btn-delete-event" (click)="confirm()"><i
-                              class="ri-close-line align-bottom"></i> Delete</button>
-                      <button type="submit" class="btn btn-success" id="btn-save-event">Update Event</button>
-                  </div>
-              </form>
-          </div>
-      </ng-template>
-      <!-- end modal-->
+        </form>
+      </div>
+    </ng-template>
+    <!-- end modal-->
   </div>
 </div> <!-- end row-->

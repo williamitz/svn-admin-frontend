@@ -28,6 +28,13 @@
         "ONSITEINTERPRETER":"Intérprete en sitio"
       }
     },
+    "POOLINTERPRETER": {
+      "TEXT": "Intérpretes bajo Demanda",
+      "LIST": {
+        "POOLADDINTERPRETER": "Añadir Intérpretes",
+        "POOLACTIVITYINTERPRETER": "Actividad"
+      }
+    },
 
     "PAGES": {
       "TEXT": "Paginas"

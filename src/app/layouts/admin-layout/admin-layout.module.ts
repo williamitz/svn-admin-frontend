@@ -27,6 +27,7 @@ import { FlatpickrModule } from 'angularx-flatpickr';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { NgbTooltipModule, NgbDropdownModule, NgbTypeaheadModule, NgbAccordionModule, NgbProgressbarModule, NgbNavModule, NgbPaginationModule, NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import { PoolAddInterpreterComponent } from './pool-add-interpreter/pool-add-interpreter.component';
 
 // FullCalendarModule.registerPlugins([
 //   dayGridPlugin,
@@ -42,7 +43,8 @@ import { NgbTooltipModule, NgbDropdownModule, NgbTypeaheadModule, NgbAccordionMo
     OrganizationPageComponent,
     ScheduleInterpreterComponent,
     NewassignmentInterpreterComponent,
-    OnsiteInterpreterComponent
+    OnsiteInterpreterComponent,
+    PoolAddInterpreterComponent
   ],
   imports: [
     CommonModule,

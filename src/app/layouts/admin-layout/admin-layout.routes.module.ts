@@ -7,6 +7,7 @@ import { OrganizationPageComponent } from './organization-page/organization-page
 import { ScheduleInterpreterComponent } from './schedule-interpreter/schedule-interpreter.component';
 import { NewassignmentInterpreterComponent } from './newassignment-interpreter/newassignment-interpreter.component';
 import { OnsiteInterpreterComponent } from './onsite-interpreter/onsite-interpreter.component';
+import { PoolAddInterpreterComponent } from './pool-add-interpreter/pool-add-interpreter.component';
 
 // TODO: crear rutas
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'schedule-interpreter', component: ScheduleInterpreterComponent },
   { path: 'new-assignment-interpreter', component: NewassignmentInterpreterComponent },
   { path: 'onsite-interpreter', component: OnsiteInterpreterComponent },
+  { path: 'pool-interpreter', component: PoolAddInterpreterComponent },
   { path: 'organizations', component: OrganizationPageComponent },
   { path: '**', component: NotFoundPageComponent },
 ];
