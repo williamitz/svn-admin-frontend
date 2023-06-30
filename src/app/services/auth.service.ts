@@ -12,4 +12,8 @@ export class AuthService {
     return this._http.post<IAuthResponse>( admin_service + '/auth/singin', body );
   }
 
+  onAuthToken() {
+    return this._http.get<IAuthResponse>( admin_service + '/auth/token' );
+  }
+
 }
