@@ -17,6 +17,22 @@ import { ScheduleInterpreterComponent } from './schedule-interpreter/schedule-in
 import { NewassignmentInterpreterComponent } from './newassignment-interpreter/newassignment-interpreter.component';
 import { OnsiteInterpreterComponent } from './onsite-interpreter/onsite-interpreter.component';
 
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction';
+
+// Flat Picker
+import { FlatpickrModule } from 'angularx-flatpickr';
+
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { NgbTooltipModule, NgbDropdownModule, NgbTypeaheadModule, NgbAccordionModule, NgbProgressbarModule, NgbNavModule, NgbPaginationModule, NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+
+// FullCalendarModule.registerPlugins([
+//   dayGridPlugin,
+//   interactionPlugin
+// ]);
+
 @NgModule({
   // TODO: importar vistas
   declarations: [
@@ -38,7 +54,22 @@ import { OnsiteInterpreterComponent } from './onsite-interpreter/onsite-interpre
     RouterModule,
     PipesModule,
 
-     NgSelectModule
+    NgSelectModule,
+    NgbModalModule,
+
+    // PickerModule,
+    FullCalendarModule,
+    // dayGridPlugin,
+    // interactionPlugin,
+    FlatpickrModule.forRoot(),
+
+    NgbTooltipModule, NgbDropdownModule,
+    NgbTypeaheadModule,
+    NgbAccordionModule,
+    NgbProgressbarModule,
+    NgbNavModule,
+    NgbPaginationModule,
+    NgbCollapseModule
   ]
 })
 export class AdminLayoutModule { }

@@ -7,7 +7,7 @@ import { AuthGuard } from 'src/app/guards/auth.guard';
 const routes: Routes = [
   {
     path: 'calls',
-    canActivate: [ TokenGuard, AuthGuard ],
+    // canActivate: [ TokenGuard, AuthGuard ],
     component: CallLayoutComponent,
     loadChildren: () => import('./call-layout.routes.module').then( (m) => m.CallLayoutRoutesModule )
   },
