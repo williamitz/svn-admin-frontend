@@ -20,6 +20,15 @@
       "TEXT": "Reportes llamada"
     },
 
+    "SCHEDULEINTERPRETER": {
+      "TEXT": "Horario Intérprete",
+      "LIST": {
+        "SCHEDULEINTERPRETERACTIVITY": "Horario de actividad",
+        "NEWASSIGNMENT": "Nueva tarea",
+        "ONSITEINTERPRETER":"Intérprete en sitio"
+      }
+    },
+
     "PAGES": {
       "TEXT": "Paginas"
     },

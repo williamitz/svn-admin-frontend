@@ -30,6 +30,32 @@ export const MENU: MenuItem[] = [
   },
 
   {
+    id: 20,
+    label: 'MENUITEMS.SCHEDULEINTERPRETER.TEXT',
+    icon: 'ri-rocket-line',
+    subItems: [
+      {
+        id: 85,
+        label: 'MENUITEMS.SCHEDULEINTERPRETER.LIST.SCHEDULEINTERPRETERACTIVITY',
+        link: '/admin/schedule-interpreter',
+        parentId: 84
+      },
+      {
+        id: 86,
+        label: 'MENUITEMS.SCHEDULEINTERPRETER.LIST.NEWASSIGNMENT',
+        link: '/admin/new-assignment-interpreter',
+        parentId: 84,
+      },
+      {
+        id: 87,
+        label: 'MENUITEMS.SCHEDULEINTERPRETER.LIST.ONSITEINTERPRETER',
+        link: '/admin/onsite-interpreter',
+        parentId: 84,
+      },
+    ]
+  },
+
+  {
     id: 1,
     label: 'MENUITEMS.PAGES.TEXT',
     isTitle: true

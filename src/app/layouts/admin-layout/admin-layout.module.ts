@@ -13,6 +13,9 @@ import { WidgetsModule } from 'src/app/widgets/widgets.module';
 import { OrganizationPageComponent } from './organization-page/organization-page.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { PipesModule } from 'src/app/pipes/pipes.module';
+import { ScheduleInterpreterComponent } from './schedule-interpreter/schedule-interpreter.component';
+import { NewassignmentInterpreterComponent } from './newassignment-interpreter/newassignment-interpreter.component';
+import { OnsiteInterpreterComponent } from './onsite-interpreter/onsite-interpreter.component';
 
 @NgModule({
   // TODO: importar vistas
@@ -20,7 +23,10 @@ import { PipesModule } from 'src/app/pipes/pipes.module';
     AdminLayoutComponent,
     HomePageComponent,
     ClientPageComponent,
-    OrganizationPageComponent
+    OrganizationPageComponent,
+    ScheduleInterpreterComponent,
+    NewassignmentInterpreterComponent,
+    OnsiteInterpreterComponent
   ],
   imports: [
     CommonModule,
