@@ -29,6 +29,13 @@
         "ONSITEINTERPRETER":"On-site Interpreter"
       }
     },
+    "POOLINTERPRETER": {
+      "TEXT": "Interpreter On-Demand",
+      "LIST": {
+        "POOLADDINTERPRETER": "Add Interpreter",
+        "POOLACTIVITYINTERPRETER": "Activity"
+      }
+    },
 
     "PAGES": {
       "TEXT": "Pages"
