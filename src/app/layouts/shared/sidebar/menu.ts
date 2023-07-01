@@ -69,7 +69,7 @@ export const MENU: MenuItem[] = [
       {
         id: 86,
         label: 'MENUITEMS.POOLINTERPRETER.LIST.POOLACTIVITYINTERPRETER',
-        link: '/admin/pool-interpreter',
+        link: '/admin/pool-activity-interpreter',
         parentId: 84,
       },
     ]

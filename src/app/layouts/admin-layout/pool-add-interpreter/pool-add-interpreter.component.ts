@@ -7,4 +7,25 @@ import { Component } from '@angular/core';
 })
 export class PoolAddInterpreterComponent {
 
+  lista=[
+    {
+      name: 'Javier',
+      language: 'Spanish',
+      service: 'Certifications',
+      gender: 'Male'
+    },
+    {
+      name: 'Lorena',
+      language: 'English',
+      service: 'Certifications',
+      gender: 'Female'
+    },
+    {
+      name: 'Javier',
+      language: 'Spanish',
+      service: 'Certifications',
+      gender: 'Male'
+    }
+  ];
+
 }

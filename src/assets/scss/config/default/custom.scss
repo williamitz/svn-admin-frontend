@@ -10,9 +10,12 @@ File: Custom Css File
 
 :root{
   --sidebar-menu: #1D1F28;
+  --clr-primary: #F4631E;
 }
 
-
+.clr-primary{
+  background-color: var(--clr-primary) 
+}
 
 [data-layout=vertical][data-sidebar=dark] .navbar-menu{
   background: var(--sidebar-menu);
