@@ -111,10 +111,10 @@ export class NewassignmentInterpreterComponent {
    * Event add modal
    */
   openModal(event?: any) {
-    this.newEventDate = event,
-      this.formBuilder.group({
-        editDate: this.newEventDate.date
-      })
+    this.newEventDate = event;
+      // this.formBuilder.group({
+      //   editDate: this.newEventDate.date
+      // })
     this.modalService.open(this.modalShow, { centered: true });
   }
 
