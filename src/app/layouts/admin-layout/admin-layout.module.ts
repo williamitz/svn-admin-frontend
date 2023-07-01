@@ -29,6 +29,7 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbTooltipModule, NgbDropdownModule, NgbTypeaheadModule, NgbAccordionModule, NgbProgressbarModule, NgbNavModule, NgbPaginationModule, NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 import { PoolAddInterpreterComponent } from './pool-add-interpreter/pool-add-interpreter.component';
 import { PoolActivityInterpreterComponent } from './pool-activity-interpreter/pool-activity-interpreter.component';
+import { ProfileInterpreterComponent } from './profile-interpreter/profile-interpreter.component';
 
 // FullCalendarModule.registerPlugins([
 //   dayGridPlugin,
@@ -46,7 +47,8 @@ import { PoolActivityInterpreterComponent } from './pool-activity-interpreter/po
     NewassignmentInterpreterComponent,
     OnsiteInterpreterComponent,
     PoolAddInterpreterComponent,
-    PoolActivityInterpreterComponent
+    PoolActivityInterpreterComponent,
+    ProfileInterpreterComponent
   ],
   imports: [
     CommonModule,

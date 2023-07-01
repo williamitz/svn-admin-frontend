@@ -9,6 +9,7 @@ import { NewassignmentInterpreterComponent } from './newassignment-interpreter/n
 import { OnsiteInterpreterComponent } from './onsite-interpreter/onsite-interpreter.component';
 import { PoolAddInterpreterComponent } from './pool-add-interpreter/pool-add-interpreter.component';
 import { PoolActivityInterpreterComponent } from './pool-activity-interpreter/pool-activity-interpreter.component';
+import { ProfileInterpreterComponent } from './profile-interpreter/profile-interpreter.component';
 
 // TODO: crear rutas
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'onsite-interpreter', component: OnsiteInterpreterComponent },
   { path: 'pool-interpreter', component: PoolAddInterpreterComponent },
   { path: 'pool-activity-interpreter', component: PoolActivityInterpreterComponent },
+  { path: 'profile-interpreter', component: ProfileInterpreterComponent },
   { path: 'organizations', component: OrganizationPageComponent },
   { path: '**', component: NotFoundPageComponent },
 ];
