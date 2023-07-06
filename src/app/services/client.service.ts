@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { admin_service } from 'src/globals';
 import { IPagerFilter } from '../interfaces/pager.interface';
-import { IUserListResponse } from '../interfaces/user.interface';
+import { IUserByIdResponse, IUserListResponse } from '../interfaces/user.interface';
 
 const entity = '/user';
 
@@ -24,6 +24,18 @@ export class ClientService {
     params += `&order=${ filter.order }`;
 
     return this._http.get<IUserListResponse>( admin_service + `${entity}/find/client?${params}` );
+  }
+
+  onFindById( id: string ) {
+    return this._http.get<IUserByIdResponse>( admin_service + `${entity}/find/client/${ id }` );
+  }
+
+  onUpdate( body: any, id: string ) {
+    return this._http.patch( admin_service + `${entity}/update/client/${ id }`, body );
+  }
+
+  onDelete( id: string ) {
+    return this._http.delete( admin_service + `${entity}/delete/client/${ id }` );
   }
 
 }

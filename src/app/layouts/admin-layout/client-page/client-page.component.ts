@@ -24,7 +24,8 @@ export class ClientPageComponent {
   private _create$?: Subscription;
   private _update$?: Subscription;
   private _delete$?: Subscription;
-  private _interpreter$?: Subscription;
+  private _client$?: Subscription;
+  private _clientById$?: Subscription;
 
   private _countrysvc = inject( CountryService );
   private _timezonesvc = inject( TimezoneService );
@@ -57,9 +58,10 @@ export class ClientPageComponent {
   get loadingTimezone() { return this._loadingTimezone; }
   get saving() { return this._saving; }
   get total() { return this._total; }
+  get loadData() { return this._loadData; }
   get values() { return this.frmUser.value; }
   get valuesFilter():IPagerFilter { return this.frmFilter.value; }
-
+  get currentPage() { return this.paginate.currentPage; }
   get invalid() { return this.frmUser.invalid; }
 
   ngOnInit(): void {
@@ -120,6 +122,8 @@ export class ClientPageComponent {
   onReset() {
     this.frmUser.reset();
     this._saving = false;
+    this._loadData = false;
+    this._id = '';
     document.getElementById('btnCloseModal')?.click();
   }
 
@@ -137,6 +141,7 @@ export class ClientPageComponent {
           this.onReset();
           this._saving = false;
           this._uisvc.onShowAlert( 'Cliente creado exitosamente', EIconAlert.success );
+          this.onGetClients( this.currentPage );
           this._create$?.unsubscribe();
         },
         error: (e) => {
@@ -148,7 +153,7 @@ export class ClientPageComponent {
 
     } else {
 
-      this._update$ = this._clientsvc.onCreate( this.values )
+      this._update$ = this._clientsvc.onUpdate( this.values, this._id )
       .subscribe({
         next: (response) => {
 
@@ -156,6 +161,7 @@ export class ClientPageComponent {
           this._saving = false;
           this.onReset();
           this._uisvc.onShowAlert( 'Cliente actualizado exitosamente', EIconAlert.success );
+          this.onGetClients( this.currentPage );
           this._update$?.unsubscribe();
         },
         error: (e) => {
@@ -171,7 +177,7 @@ export class ClientPageComponent {
   }
 
   onGetClients( page = 1 ) {
-    this._interpreter$ = this._clientsvc.onFindAll( this.valuesFilter, page )
+    this._client$ = this._clientsvc.onFindAll( this.valuesFilter, page )
     .subscribe({
       next: (response) => {
 
@@ -182,20 +188,81 @@ export class ClientPageComponent {
 
         this.paginate = this._pagersvc.getPager( total, page, this.valuesFilter.limit );
 
-        this._interpreter$?.unsubscribe();
+        this._client$?.unsubscribe();
       },
       error: (e) => {
 
-        this._interpreter$?.unsubscribe();
+        this._client$?.unsubscribe();
       }
     });
   }
 
   onLoadData( record: IUser ) {
+    const { id } = record;
+
+    this._clientById$ = this._clientsvc.onFindById( id )
+    .subscribe({
+      next: (response) => {
+
+        const { data } = response;
+
+        this._loadData = true;
+        this._id = id;
+        this.frmUser.get('name')?.setValue( data.name );
+        this.frmUser.get('surname')?.setValue( data.surname );
+        this.frmUser.get('email')?.setValue( data.email );
+        this.frmUser.get('phone')?.setValue( data.phone );
+        this.frmUser.get('timezone')?.setValue( data.timezone?.id );
+        this.frmUser.get('country')?.setValue( data.timezone?.country.id );
+
+        if( data.timezone ) {
+          this.onGetTimezones();
+        }
+
+        document.getElementById('btnShowModal')?.click();
+
+        this._clientById$?.unsubscribe();
+      },
+      error: (e) => {
+
+        this._clientById$?.unsubscribe();
+      }
+    });
 
   }
 
   onConfirm( record: IUser ) {
+    const { id, fullname, status } = record;
+
+    this._uisvc.onShowConfirm(`¿Está seguro de ${ status ? 'eliminar' : 'restaurar' } a: "${ fullname }" ?`)
+    .then( (result) => {
+
+      if( result.isConfirmed ) {
+        this.onDeleteRole( id, status );
+      }
+
+    } );
+  }
+
+  onDeleteRole( id: string, status: boolean ) {
+
+    this._uisvc.onShowLoading();
+
+    this._delete$ = this._clientsvc.onDelete( id )
+    .subscribe({
+      next: (response) => {
+
+        this.onGetClients( this.currentPage );
+
+        this._uisvc.onClose();
+        this._uisvc.onShowAlert(`Cliente ${ status ? 'eliminada' : 'restaurada' } exitosamente`, EIconAlert.success);
+
+        this._delete$?.unsubscribe();
+      },
+      error: (e) => {
+        this._delete$?.unsubscribe();
+      }
+    })
 
   }
 
@@ -207,9 +274,11 @@ export class ClientPageComponent {
 
     this._create$?.unsubscribe();
     this._update$?.unsubscribe();
+    this._delete$?.unsubscribe();
     this._country$?.unsubscribe();
     this._timezone$?.unsubscribe();
-    this._interpreter$?.unsubscribe();
+    this._client$?.unsubscribe();
+    this._clientById$?.unsubscribe();
 
   }
 

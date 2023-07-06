@@ -39,8 +39,8 @@
                   </div>
                   <div class="col-6 ">
                     <div class="d-flex justify-content-end align-items-center gap-2">
-                      <button type="button" class="btn btn-primary custom-toggle active" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >
-                            <i class="ri-add-fill align-bottom me-1"></i> Nuevo usuario
+                      <button type="button" class="btn btn-primary custom-toggle active" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="btnShowModal" >
+                            <i class="ri-add-fill align-bottom me-1"></i> Nuevo intérprete
                       </button>
                     </div>
                   </div>
@@ -78,7 +78,12 @@
                                 {{ item.timezone?.name ?? '' }}
                               </td>
                               <td>
-                                <span class="badge bg-success">Paid</span>
+                                <span class="badge bg-success"
+                                [class.bg-success]="item.status"
+                                [class.bg-danger]="!item.status"
+                                >
+                                  {{ item.status | status }}
+                                </span>
                               </td>
                               <td>
                                 <button
@@ -111,15 +116,24 @@
             <div class="row mt-2">
               <div class="col-6">
 
-                <div class="d-flex justify-content-start align-items-center gap-2 ms-3">
-                  Ver
-                  <select class="form-select   " style="width: 70px;" formControlName="limit" >
-                    <option selected></option>
-                    <option [value]="5">5</option>
-                    <option [value]="10">10</option>
-                    <option [value]="20">20</option>
-                  </select>
-                  registros
+                <div class="d-flex justify-content-start align-items-center gap-4 ms-3">
+
+                  <div class="d-flex justify-content-start align-items-center gap-2 ms-3">
+                    Ver
+                    <select class="form-select " style="width: 70px;" formControlName="limit" >
+                      <option selected></option>
+                      <option [value]="5">5</option>
+                      <option [value]="10">10</option>
+                      <option [value]="20">20</option>
+                    </select>
+                    registros
+                  </div>
+                  |
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="chxActive" formControlName="active" (change)="onGetInterpreters()" >
+                    <label class="form-check-label" for="chxActive">Ver inactivos</label>
+                  </div>
+
                 </div>
 
               </div>
@@ -139,8 +153,11 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
           <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalPopoversLabel">
+              <h5 class="modal-title" *ngIf="!loadData" >
                 Crear Intérprete
+              </h5>
+              <h5 class="modal-title" *ngIf="!loadData" >
+                Editar Intérprete
               </h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
@@ -214,7 +231,8 @@
                   <div class="spinner-border text-light" role="status" *ngIf="saving" >
                     <span class="sr-only">Loading...</span>
                   </div>
-                  <span *ngIf="!saving" > Guardar </span>
+                  <span *ngIf="!saving && !loadData" > Guardar </span>
+                  <span *ngIf="!saving && loadData" > Guardar cambios </span>
                   <span *ngIf="saving" > Guardando... </span>
 
                 </button>

@@ -5,6 +5,10 @@ export interface IUserListResponse {
   total: number;
 }
 
+export interface IUserByIdResponse {
+  data:  IUser;
+}
+
 export interface IUser {
   status:       boolean;
   createAt:     string;
