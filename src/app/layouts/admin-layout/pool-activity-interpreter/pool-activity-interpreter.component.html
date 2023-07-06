@@ -1,1 +1,116 @@
-<p>pool-activity-interpreter works!</p>
+<div class="row">
+  <div class="col-12">
+    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+      <h4 class="mb-sm-0">ACTIVITY INTERPRETER</h4>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xxl-12">
+    <div class="card">
+      <div class="card-header">
+        <!-- Nav tabs -->
+        <ul class="nav nav-pills nav-primary" role="tablist">
+          <li class="nav-item waves-effect waves-light" role="presentation">
+            <a class="nav-link active" data-bs-toggle="tab" href="#home-1" role="tab" aria-selected="false"
+              tabindex="-1">Pool Of Interpreters On-Demand</a>
+          </li>
+          <li class="nav-item waves-effect waves-light" role="presentation">
+            <a class="nav-link" data-bs-toggle="tab" href="#profile-1" role="tab" aria-selected="false"
+              tabindex="-1">Call Queues</a>
+          </li>
+        </ul>
+      </div>
+      <div class="card-body">
+        <div class="tab-content text-muted">
+          <div class="tab-pane active show" id="home-1" role="tabpanel">
+
+            <!-- search -->
+            <div class="row">
+              <div class="col-md-4 mb-3 mb-md-0">
+                <div>
+                  <label for="exampleInputdate" class="form-label">Start Date</label>
+                  <input type="date" class="form-control rounded-pill" id="exampleInputdate">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div>
+                  <label for="exampleInputdateEnd" class="form-label">End Date</label>
+                  <input type="date" class="form-control rounded-pill" id="exampleInputdateEnd">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="d-flex justify-content-end">
+                  <div class="search-box" style="margin-top: 26px;width: 100%;">
+                    <input type="text" class="form-control rounded-pill search" placeholder="Search...">
+                    <i class="ri-search-line search-icon"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="text-end mt-3">
+              <button type="button"
+                class="btn rounded-pill fw-medium px-4 btn-danger waves-effect waves-light">Search</button>
+            </div>
+
+            <div>
+              <h5 class="fs-15 my-3 p-2 border-bottom border-bottom-dashed">OPI/VRI On-Demand</h5>
+              <div class="table-responsive">
+                <!-- Hoverable Rows -->
+                <table class="table table-hover table-nowrap table-striped mb-0">
+                  <thead>
+                    <tr>
+                      <th scope="col">Date/Time</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Client</th>
+                      <th scope="col">Language</th>
+                      <th scope="col">Interpreter ID</th>
+                      <th scope="col">Rate/Minute</th>
+                      <th scope="col">Enable</th>
+                      <th scope="col">Call Status</th>
+                      <th scope="col" style="width: 30px;">Avg-Connect Time</th>
+                      <th scope="col">Duration</th>
+                      <th scope="col">Rating</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of lista">
+                      <td>20/04/2023</td>
+                      <td>{{item.name}}</td>
+                      <td>{{item.client}}</td>
+                      <td>
+                        <i class="ri-phone-line me-2"></i>
+                        <span>Spanish</span>
+                      </td>
+                      <td>{{item.idinterpreter}}</td>
+                      <td>${{item.rate}}</td>
+                      <td>
+                        <div class="form-check form-switch form-switch-success">
+                          <input class="form-check-input" type="checkbox" role="switch" id="SwitchCheck3" checked="">
+                          <label class="form-check-label ms-1" for="SwitchCheck3">On</label>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="badge rounded-pill badge-soft-warning">In Progress</span>
+                      </td>
+                      <td>{{item.avg}}</td>
+                      <td>{{item.duration}}</td>
+                      <td>
+                        <div id="basic-rater" dir="ltr"></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+          <div class="tab-pane" id="profile-1" role="tabpanel">
+            Call Queues
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -30,6 +30,15 @@ import { NgbTooltipModule, NgbDropdownModule, NgbTypeaheadModule, NgbAccordionMo
 import { PoolAddInterpreterComponent } from './pool-add-interpreter/pool-add-interpreter.component';
 import { PoolActivityInterpreterComponent } from './pool-activity-interpreter/pool-activity-interpreter.component';
 import { ProfileInterpreterComponent } from './profile-interpreter/profile-interpreter.component';
+import { CustomerComponent } from './customer/customer.component';
+import { InternalUserComponent } from './internal-user/internal-user.component';
+import { BillingComponent } from './billing/billing.component';
+import { InvoiceComponent } from './invoice/invoice.component';
+import { QuickbooksComponent } from './quickbooks/quickbooks.component';
+import { CallQueuesComponent } from './call-queues/call-queues.component';
+import { ProfileAccountComponent } from './profile-account/profile-account.component';
+import { PortalInterprterComponent } from './portal-interprter/portal-interprter.component';
+import { MyassignmetInterpreterComponent } from './myassignmet-interpreter/myassignmet-interpreter.component';
 
 // FullCalendarModule.registerPlugins([
 //   dayGridPlugin,
@@ -48,7 +57,16 @@ import { ProfileInterpreterComponent } from './profile-interpreter/profile-inter
     OnsiteInterpreterComponent,
     PoolAddInterpreterComponent,
     PoolActivityInterpreterComponent,
-    ProfileInterpreterComponent
+    ProfileInterpreterComponent,
+    CustomerComponent,
+    InternalUserComponent,
+    BillingComponent,
+    InvoiceComponent,
+    QuickbooksComponent,
+    CallQueuesComponent,
+    ProfileAccountComponent,
+    PortalInterprterComponent,
+    MyassignmetInterpreterComponent
   ],
   imports: [
     CommonModule,

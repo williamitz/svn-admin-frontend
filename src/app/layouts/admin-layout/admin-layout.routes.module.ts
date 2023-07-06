@@ -10,6 +10,15 @@ import { OnsiteInterpreterComponent } from './onsite-interpreter/onsite-interpre
 import { PoolAddInterpreterComponent } from './pool-add-interpreter/pool-add-interpreter.component';
 import { PoolActivityInterpreterComponent } from './pool-activity-interpreter/pool-activity-interpreter.component';
 import { ProfileInterpreterComponent } from './profile-interpreter/profile-interpreter.component';
+import { CustomerComponent } from './customer/customer.component';
+import { InternalUserComponent } from './internal-user/internal-user.component';
+import { BillingComponent } from './billing/billing.component';
+import { InvoiceComponent } from './invoice/invoice.component';
+import { QuickbooksComponent } from './quickbooks/quickbooks.component';
+import { CallQueuesComponent } from './call-queues/call-queues.component';
+import { ProfileAccountComponent } from './profile-account/profile-account.component';
+import { PortalInterprterComponent } from './portal-interprter/portal-interprter.component';
+import { MyassignmetInterpreterComponent } from './myassignmet-interpreter/myassignmet-interpreter.component';
 
 // TODO: crear rutas
 const routes: Routes = [
@@ -21,7 +30,16 @@ const routes: Routes = [
   { path: 'pool-interpreter', component: PoolAddInterpreterComponent },
   { path: 'pool-activity-interpreter', component: PoolActivityInterpreterComponent },
   { path: 'profile-interpreter', component: ProfileInterpreterComponent },
+  { path: 'customer', component: CustomerComponent },
+  { path: 'internal-user', component: InternalUserComponent },
+  { path: 'billing', component: BillingComponent },
+  { path: 'invoice', component: InvoiceComponent },
+  { path: 'quickbooks', component: QuickbooksComponent },
+  { path: 'call-queues', component: CallQueuesComponent },
+  { path: 'profile-account', component: ProfileAccountComponent },
   { path: 'organizations', component: OrganizationPageComponent },
+  { path: 'portal-interpreter', component: PortalInterprterComponent },
+  { path: 'my-assignments', component: MyassignmetInterpreterComponent },
   { path: '**', component: NotFoundPageComponent },
 ];
 

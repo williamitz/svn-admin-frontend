@@ -1,3 +1,4 @@
+// import { Component } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { Component, inject, ViewChild, TemplateRef } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
@@ -9,15 +10,12 @@ import Swal from 'sweetalert2';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 
-
-
-
 @Component({
-  selector: 'app-newassignment-interpreter',
-  templateUrl: './newassignment-interpreter.component.html',
-  styleUrls: ['./newassignment-interpreter.component.scss']
+  selector: 'app-myassignmet-interpreter',
+  templateUrl: './myassignmet-interpreter.component.html',
+  styleUrls: ['./myassignmet-interpreter.component.scss']
 })
-export class NewassignmentInterpreterComponent {
+export class MyassignmetInterpreterComponent {
 
   private modalService = inject( NgbModal );
   private formBuilder = inject( UntypedFormBuilder );

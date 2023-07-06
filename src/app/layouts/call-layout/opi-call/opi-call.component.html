@@ -1,0 +1,123 @@
+<div class="row">
+  <div class="col-12">
+    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+      <h4 class="mb-sm-0">CALL REPORTS</h4>
+    </div>
+  </div>
+</div>
+
+<!-- filter -->
+<div class="row">
+  <div class="col-xl-12">
+    <div class="card">
+      <div class="card-header align-items-center d-flex">
+        <h4 class="card-title mb-0 flex-grow-1">Filter by</h4>
+      </div><!-- end card header -->
+
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <div>
+              <label for="exampleInputrounded" class="form-label">Customer</label>
+              <input type="text" class="form-control rounded-pill" id="exampleInputrounded">
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <div>
+              <label class="form-label">Account</label>
+              <select class="form-select rounded-pill" aria-label="Default select example">
+                <option selected="">Select</option>
+                <option value="1">Information Architecture</option>
+                <option value="2">UI/UX Design</option>
+                <option value="3">Back End Development</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6 mb-3 mb-md-0">
+            <div>
+              <label for="accesscode" class="form-label">Access Code</label>
+              <input type="text" class="form-control rounded-pill" id="accesscode">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div>
+              <label for="phoneNumber" class="form-label">Phone Number</label>
+              <input type="text" class="form-control rounded-pill" id="phoneNumber">
+            </div>
+          </div>
+        </div>
+        <div class="text-end mt-3">
+          <button type="button"
+            class="btn rounded-pill btn-danger px-5 fw-medium waves-effect waves-light">Apply</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- filter end-->
+
+
+<div class="row">
+  <div class="col-xl-12">
+    <div class="card">
+
+      <div class="card-body">
+        <!-- Striped Rows -->
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Interpreter</th>
+                <th scope="col">Language</th>
+                <th scope="col">ID</th>
+                <th scope="col">OPI</th>
+                <th scope="col">Date</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Bobby Davis</td>
+                <td>Spanish</td>
+                <td>12345</td>
+                <td>-</td>
+                <td>Nov 14, 2021</td>
+                <td><span class="badge badge-soft-success">Active</span></td>
+                <td>
+                  <a routerLink="/admin/invoice" class="btn btn-success btn-sm">Detail</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Christopher Neal</td>
+                <td>Spanish</td>
+                <td>12345</td>
+                <td>-</td>
+                <td>Nov 14, 2021</td>
+                <td><span class="badge badge-soft-success">Active</span></td>
+                <td>
+                  <a routerLink="/admin/invoice" class="btn btn-success btn-sm">Detail</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Monkey Karry</td>
+                <td>Spanish</td>
+                <td>12345</td>
+                <td>-</td>
+                <td>Nov 14, 2021</td>
+                <td><span class="badge badge-soft-success">Active</span></td>
+                <td>
+                  <a routerLink="/admin/invoice" class="btn btn-success btn-sm">Detail</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

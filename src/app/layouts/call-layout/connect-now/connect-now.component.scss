@@ -1,14 +1,15 @@
 .box-icon{
   align-items: center;
-  background-color: #9A9A9A;
+  background-color: var(--neutral-01);
   border-radius: 50%;
+  border: solid 1px var(--neutral-05);
   display: flex;
   justify-content: center;
   height: 80px;
   width: 80px;
 
   i{
-    color: #fff;
+    color: var(--clr-neutral-05);
     font-size: 40px;
   }
 }

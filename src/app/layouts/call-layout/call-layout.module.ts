@@ -14,6 +14,8 @@ import { ConnectNowComponent } from './connect-now/connect-now.component';
 import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { CallReportComponent } from './call-report/call-report.component';
+import { OpiCallComponent } from './opi-call/opi-call.component';
+import { CallHistoryComponent } from './call-history/call-history.component';
 
 
 
@@ -22,7 +24,9 @@ import { CallReportComponent } from './call-report/call-report.component';
     CallLayoutComponent,
     HomePageComponent,
     ConnectNowComponent,
-    CallReportComponent
+    CallReportComponent,
+    OpiCallComponent,
+    CallHistoryComponent
   ],
   imports: [
     CommonModule,

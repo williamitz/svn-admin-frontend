@@ -6,6 +6,8 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { NotFoundPageComponent } from 'src/app/pages/not-found-page/not-found-page.component';
 import { ConnectNowComponent } from './connect-now/connect-now.component';
 import { CallReportComponent } from './call-report/call-report.component';
+import { OpiCallComponent } from './opi-call/opi-call.component';
+import { CallHistoryComponent } from './call-history/call-history.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -18,6 +20,12 @@ const routes: Routes = [
     path: 'callReport',
     component: CallReportComponent,
     // title: 'Conexion ahora'
+  },
+  {
+    path: 'opi-call', component: OpiCallComponent
+  },
+  {
+    path: 'call-history', component: CallHistoryComponent
   },
   { path: '**', component: NotFoundPageComponent },
 
