@@ -4,16 +4,17 @@ import { AuthService } from '../services/auth.service';
 import { Observable, Subscription } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 
-const _authSvc = inject( AuthService );
-const _cookieSvc = inject( CookieService );
-const _router = inject( Router );
-
-let _token$: Subscription;
 
 export const AuthGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
   ) => {
+
+    const _authSvc = inject( AuthService );
+    const _cookieSvc = inject( CookieService );
+    const _router = inject( Router );
+
+    let _token$: Subscription;
 
     return new Observable<boolean>( (obs) => {
 
@@ -31,6 +32,8 @@ export const AuthGuard: CanActivateFn = (
         },
         error: (e) => {
 
+          console.log('error ::: ', e);
+          _router.navigateByUrl('/auth');
           obs.next( false );
           _token$?.unsubscribe();
         }

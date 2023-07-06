@@ -11,6 +11,12 @@
       "BADGE": "New"
     },
 
+    "CLIENTS": {
+      "TEXT": "Clients"
+    },
+    "INTERPRETERS": {
+      "TEXT": "Interpreters"
+    },
     "CALLS": {
       "TEXT": "Calls"
     },

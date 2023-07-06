@@ -8,7 +8,7 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminLayoutComponent,
-    // canActivate: [ TokenGuard, AuthGuard ],
+    canActivate: [ TokenGuard, AuthGuard ],
     loadChildren: () => import('./admin-layout.routes.module').then( (m) => m.AdminLayoutRoutesModule )
   },
 

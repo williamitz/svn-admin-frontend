@@ -7,7 +7,7 @@ import { AuthGuard } from 'src/app/guards/auth.guard';
 const routes: Routes = [
   {
     path: 'segurity',
-    // canActivate: [ TokenGuard, AuthGuard ],
+    canActivate: [ TokenGuard, AuthGuard ],
     component: SegurityLayoutComponent,
     loadChildren: () => import('./segurity-layout.routes.module').then( (m) => m.SegurityChildRoutingModule )
   },

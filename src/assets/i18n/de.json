@@ -8,6 +8,13 @@
     "PAGES": {
       "TEXT": "Seiten"
     },
+
+    "CLIENTS": {
+      "TEXT": "Clients"
+    },
+    "INTERPRETERS": {
+      "TEXT": "Interpreters"
+    },
     "LANDING": {
       "TEXT": "Landung",
       "LIST": {

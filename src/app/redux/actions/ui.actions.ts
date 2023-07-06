@@ -1,4 +1,5 @@
 import { createAction, props } from "@ngrx/store";
+import { Allow } from "src/app/interfaces/auth.interface";
 
 export const onResizeScreen = createAction(
   '[UI] onResizeScreen',
@@ -8,5 +9,4 @@ export const onResizeScreen = createAction(
 export const onToggle = createAction(
   '[UI] onToggle'
 );
-
 

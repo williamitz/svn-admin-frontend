@@ -23,6 +23,8 @@ export const decimalPatt = new RegExp(/^\d+(?:\.\d{1,2})?$/);
 export const materialIconPatt = new RegExp(/^[a-zA-Z\_]{0,200}$/);
 export const riIconPatt = new RegExp(/^[a-z\d\-]{0,100}$/i);
 
+export const translatePatt = new RegExp(/^[A-Z\.]{0,200}$/);
+
 export const timeZonePatt = new RegExp(/^[a-zA-Z\/\_]{0,50}$/);
 
 export const isoThreePatt = new RegExp(/^[a-zA-Z]{2,3}$/);

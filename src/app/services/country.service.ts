@@ -11,13 +11,10 @@ export class CountryService {
 
   private _http = inject( HttpClient );
 
-  onFindAll( page: number, filter?: IPagerFilter ) {
+  onFindAll( page = 1, filter?: IPagerFilter ) {
 
     let params = `page=${ page }`;
-    // params += `&filter=${ filter?.filter }`;
-    // params += `&active=${ !filter?.active }`;
     params += `&limit=${ filter?.limit ?? 0 }`;
-    // params += `&order=${ filter?.order }`;
 
     return this._http.get<ICountryListResponse>( `${ admin_service }/${ entity }?${ params }` );
   }

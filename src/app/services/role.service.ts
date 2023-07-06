@@ -19,6 +19,7 @@ export class RoleService {
         const { pathers, children } = response;
 
         const menusFinal = pathers.map( (e) => {
+
           const childrens = children.filter( (c) => c.patherMenuId == e.id )
                                     .map( (a) => {
                                       let { actions, ...rest } = a;
@@ -31,6 +32,9 @@ export class RoleService {
           e.children = childrens as any;
           e.haveChildren = childrens.length > 0 ? true : false;
           e.selected = false;
+
+          console.log('e.actions ::: ', e.actions);
+          e.actions = e.actions?.map( (a) => { return { selected: false, action: a } } ) ?? [];
 
           return e;
 

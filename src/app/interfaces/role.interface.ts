@@ -24,7 +24,7 @@ export interface IMenuRole {
 
 
 export interface IAllow {
-  action:       string;
+  action:       any;
   selected:     boolean;
 }
 

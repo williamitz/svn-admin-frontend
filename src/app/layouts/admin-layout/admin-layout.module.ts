@@ -30,6 +30,8 @@ import { NgbTooltipModule, NgbDropdownModule, NgbTypeaheadModule, NgbAccordionMo
 import { PoolAddInterpreterComponent } from './pool-add-interpreter/pool-add-interpreter.component';
 import { PoolActivityInterpreterComponent } from './pool-activity-interpreter/pool-activity-interpreter.component';
 import { ProfileInterpreterComponent } from './profile-interpreter/profile-interpreter.component';
+import { InterpreterPageComponent } from './interpreter-page/interpreter-page.component';
+import { NgxMaskDirective } from 'ngx-mask';
 
 // FullCalendarModule.registerPlugins([
 //   dayGridPlugin,
@@ -42,6 +44,7 @@ import { ProfileInterpreterComponent } from './profile-interpreter/profile-inter
     AdminLayoutComponent,
     HomePageComponent,
     ClientPageComponent,
+    InterpreterPageComponent,
     OrganizationPageComponent,
     ScheduleInterpreterComponent,
     NewassignmentInterpreterComponent,
@@ -75,7 +78,8 @@ import { ProfileInterpreterComponent } from './profile-interpreter/profile-inter
     NgbProgressbarModule,
     NgbNavModule,
     NgbPaginationModule,
-    NgbCollapseModule
+    NgbCollapseModule,
+    NgxMaskDirective
   ]
 })
 export class AdminLayoutModule { }

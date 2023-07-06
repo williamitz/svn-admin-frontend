@@ -1,11 +1,12 @@
 import { Component, inject, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RoleService } from 'src/app/services/role.service';
 import { Subscription } from 'rxjs';
 import { UiService } from 'src/app/services/ui.service';
 import { IMenuRole } from 'src/app/interfaces/role.interface';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { codePatt, fullTextPatt } from 'src/app/utils';
+import { EIconAlert } from 'src/app/interfaces/alertIcon.enum';
 
 @Component({
   selector: 'app-role-frm',
@@ -14,15 +15,16 @@ import { codePatt, fullTextPatt } from 'src/app/utils';
 })
 export class RoleFrmComponent {
 
-  private _role$?: Subscription;
+  private _role$?:   Subscription;
   private _create$?: Subscription;
   private _update$?: Subscription;
-  private _load$?: Subscription;
+  private _load$?:   Subscription;
 
   private _activateRoute = inject( ActivatedRoute );
   private _rolesvc = inject( RoleService );
   private _uisvc = inject( UiService );
   private _frmBuilder = inject( UntypedFormBuilder );
+  private _router = inject( Router );
   private _roleId?: string;
   private _toUpdate = false;
 
@@ -53,6 +55,7 @@ export class RoleFrmComponent {
     if( menu ) {
 
       if( !menu.selected ) {
+
         menu.actions = menu.actions.map( (a) => {
 
           return { selected: false, action: a.action }
@@ -188,25 +191,30 @@ export class RoleFrmComponent {
 
             // const children = this._menus.find( (m) => m.id == e.menu.id );
 
-            this._menus.find( (m) => m.id == e.menu.patherMenuId )
-            ?.children?.forEach( (c) => {
+            const pather = this._menus.find( (m) => m.id == e.menu.patherMenuId );
 
-              console.log('children.forEach');
+            if( pather ) {
+              pather.selected = true;
+              pather
+              ?.children?.forEach( (c) => {
 
-              if( c.id == e.menu.id ) {
+                console.log('children.forEach');
 
-                c.selected = true;
-                c.idRoleMenuAllow = e.id;
-                // c.id = e.id;
-                c.actions = c?.actions.map( (a) => {
+                if( c.id == e.menu.id ) {
 
-                  if( e.actions.includes( a.action ) ) a.selected = true;
+                  c.selected = true;
+                  c.idRoleMenuAllow = e.id;
+                  // c.id = e.id;
+                  c.actions = c?.actions.map( (a) => {
 
-                  return a;
-                } );
-              }
+                    if( e.actions.includes( a.action ) ) a.selected = true;
 
-            } );
+                    return a;
+                  } );
+                }
+
+              } );
+            }
 
           }
 
@@ -225,13 +233,15 @@ export class RoleFrmComponent {
   }
 
   private get _onGetAllowsBody() {
-    let allowBody: { id?: string; menu: string; actions: string[]}[] = [];
+    let allowBody: { id?: string; menu: string; actions?: string[]}[] = [];
+
+    console.log('this._menus ::: ', this._menus);
 
     this._menus.forEach( (m) => {
 
-      if( m.selected || m.children?.some( (c) => c.selected ) ) {
+      if( m.selected || m.children?.some( (c) => c.selected ) || m.actions?.some( (c) => c.selected ) ) {
 
-        if( m.selected ) {
+        if( !m.children || m.children.length == 0 ) {
 
           const finalActions = m.actions.filter( (e) => e.selected );
 
@@ -245,12 +255,20 @@ export class RoleFrmComponent {
 
           const childrenSelects = m.children?.filter( (c) => c.selected );
 
+          if( m.selected ) {
+            allowBody.push({
+              id: m?.idRoleMenuAllow,
+              menu: m.id,
+              actions: []
+            });
+          }
+
           childrenSelects?.forEach( (e) => {
 
             const finalActions = e.actions.filter( (e) => e.selected );
 
             allowBody.push({
-              id: e.idRoleMenuAllow,
+              id: e?.idRoleMenuAllow,
               menu: e.id,
               actions: finalActions.map( (a) => a.action )
             });
@@ -277,6 +295,9 @@ export class RoleFrmComponent {
 
     const allowBody = this._onGetAllowsBody;
 
+    console.log('allowBody ::: ', allowBody);
+    debugger;
+
     this.frmRole.get('allows')?.setValue( allowBody );
 
     this._saving = true;
@@ -289,8 +310,9 @@ export class RoleFrmComponent {
 
           console.log('response ::: ', response);
 
-
+          this._uisvc.onShowAlert('Rol creado exitosamente!', EIconAlert.success);
           this._saving = false;
+          this._router.navigateByUrl('/segurity/role');
           this._create$?.unsubscribe();
         },
         error: (e) => {
@@ -310,8 +332,9 @@ export class RoleFrmComponent {
 
           console.log('response ::: ', response);
 
-
+          this._uisvc.onShowAlert('Rol actualizado exitosamente!', EIconAlert.success);
           this._saving = false;
+          this._router.navigateByUrl('/segurity/role');
           this._update$?.unsubscribe();
         },
         error: (e) => {

@@ -6,18 +6,18 @@ import { ICountry } from 'src/app/interfaces/country.interface';
 import { IPager, IPagerFilter } from 'src/app/interfaces/pager.interface';
 import { ITimezone } from 'src/app/interfaces/timezone.interface';
 import { IUser } from 'src/app/interfaces/user.interface';
-import { ClientService } from 'src/app/services/client.service';
 import { CountryService } from 'src/app/services/country.service';
+import { InterpreterService } from 'src/app/services/interpreter.service';
 import { PagerService } from 'src/app/services/pager.service';
 import { TimezoneService } from 'src/app/services/timezone.service';
 import { UiService } from 'src/app/services/ui.service';
 
 @Component({
-  selector: 'app-client-page',
-  templateUrl: './client-page.component.html',
-  styleUrls: ['./client-page.component.scss']
+  selector: 'app-interpreter-page',
+  templateUrl: './interpreter-page.component.html',
+  styleUrls: ['./interpreter-page.component.scss']
 })
-export class ClientPageComponent {
+export class InterpreterPageComponent {
 
   private _country$?: Subscription;
   private _timezone$?: Subscription;
@@ -28,7 +28,7 @@ export class ClientPageComponent {
 
   private _countrysvc = inject( CountryService );
   private _timezonesvc = inject( TimezoneService );
-  private _clientsvc = inject( ClientService );
+  private _interpretersvc = inject( InterpreterService );
   private _uisvc = inject( UiService );
   private _pagersvc = inject( PagerService );
 
@@ -68,7 +68,7 @@ export class ClientPageComponent {
     this.onBuildFrm();
     this.onGetCountries();
 
-    this.onGetClients();
+    this.onGetInterpreters();
 
   }
 
@@ -130,13 +130,13 @@ export class ClientPageComponent {
 
     if( !this._loadData ) {
 
-      this._create$ = this._clientsvc.onCreate( this.values )
+      this._create$ = this._interpretersvc.onCreate( this.values )
       .subscribe({
         next: (response) => {
 
           this.onReset();
           this._saving = false;
-          this._uisvc.onShowAlert( 'Cliente creado exitosamente', EIconAlert.success );
+          this._uisvc.onShowAlert( 'Intérprete creado exitosamente', EIconAlert.success );
           this._create$?.unsubscribe();
         },
         error: (e) => {
@@ -148,14 +148,14 @@ export class ClientPageComponent {
 
     } else {
 
-      this._update$ = this._clientsvc.onCreate( this.values )
+      this._update$ = this._interpretersvc.onCreate( this.values )
       .subscribe({
         next: (response) => {
 
 
           this._saving = false;
           this.onReset();
-          this._uisvc.onShowAlert( 'Cliente actualizado exitosamente', EIconAlert.success );
+          this._uisvc.onShowAlert( 'Intérprete actualizado exitosamente', EIconAlert.success );
           this._update$?.unsubscribe();
         },
         error: (e) => {
@@ -170,8 +170,8 @@ export class ClientPageComponent {
 
   }
 
-  onGetClients( page = 1 ) {
-    this._interpreter$ = this._clientsvc.onFindAll( this.valuesFilter, page )
+  onGetInterpreters( page = 1 ) {
+    this._interpreter$ = this._interpretersvc.onFindAll( this.valuesFilter, page )
     .subscribe({
       next: (response) => {
 

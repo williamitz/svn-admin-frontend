@@ -1,9 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import { StorageService } from 'src/app/services/storage.service';
+//redux
+import { Store } from '@ngrx/store';
+// import * as uiActions from '../../../redux/actions/ui.actions';
+import * as segurityActions from '../../../redux/actions/segurity.actions';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +19,8 @@ export class LoginComponent {
   singin$?: Subscription;
 
   private _authsvc = inject( AuthService );
-  private _cookiesvc = inject( CookieService );
+  private _st = inject( StorageService );
+  private _store = inject( Store );
   private _router = inject( Router );
 
   frmLogin = new UntypedFormGroup({});
@@ -52,8 +57,8 @@ export class LoginComponent {
 
       const { data, token } = response;
 
-      this._cookiesvc.set('token', token);
-
+      this._st.setItem('token', token);
+      this._store.dispatch( segurityActions.onLoadMenu() );
       this._router.navigateByUrl('/admin');
 
       console.log('response ::: ', response);

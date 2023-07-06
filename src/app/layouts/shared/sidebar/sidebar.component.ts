@@ -1,8 +1,13 @@
-import { Component, OnInit, ViewChild, Output, ElementRef, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, ElementRef, EventEmitter, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { MenuItem } from '../../../interfaces/sidebar.interfaces';
 import { MENU } from './menu';
+import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { IAppState } from 'src/app/app.state';
+import { Allow } from 'src/app/interfaces/auth.interface';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,9 +16,14 @@ import { MENU } from './menu';
 })
 export class SidebarComponent implements OnInit {
 
+  private _segurity$?: Subscription;
+  private _store = inject<Store<IAppState>>( Store<IAppState> );
+  private _st = inject( StorageService );
+
   menu: any;
   toggle: any = true;
-  menuItems: MenuItem[] = MENU;
+  // menuItems: MenuItem[] = MENU;
+  menuItems: Allow[] = [];
   @ViewChild('sideMenu') sideMenu!: ElementRef;
   @Output() mobileMenuButtonClicked = new EventEmitter();
 
@@ -26,6 +36,58 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.onListenRx();
+
+
+
+  }
+
+  onListenRx() {
+    this._segurity$ = this._store.select('segurity')
+    .subscribe( (state) => {
+
+      const { menuSystem } = state;
+
+      this.menuItems = menuSystem;
+
+      setTimeout(() => {
+        const id = this._st.getItem('a-id');
+        if( id != '' ) {
+
+          const isCurrentMenuId = document.getElementById(id);
+
+
+          let isMenu = isCurrentMenuId?.nextElementSibling as any;
+          if (isMenu.classList.contains("show")) {
+            isMenu.classList.remove("show");
+            isCurrentMenuId?.setAttribute("aria-expanded", "false");
+          } else {
+            let dropDowns = Array.from(document.querySelectorAll('#navbar-nav .show'));
+            dropDowns.forEach((node: any) => {
+              node.classList.remove('show');
+            });
+            (isMenu) ? isMenu.classList.add('show') : null;
+            const ul = document.getElementById("navbar-nav");
+            if (ul) {
+              const iconItems = Array.from(ul.getElementsByTagName("a"));
+              let activeIconItems = iconItems.filter((x: any) => x.classList.contains("active"));
+              activeIconItems.forEach((item: any) => {
+                item.setAttribute('aria-expanded', "false")
+                item.classList.remove("active");
+              });
+            }
+            isCurrentMenuId?.setAttribute("aria-expanded", "true");
+            if (isCurrentMenuId) {
+              this.activateParentDropdown(isCurrentMenuId);
+            }
+          }
+        }
+      }, 10);
+
+      console.log('menuSystem ::: ', menuSystem);
+
+    });
   }
 
   /***
@@ -74,6 +136,9 @@ export class SidebarComponent implements OnInit {
 
   toggleExtraSubItem(event: any) {
     let isCurrentMenuId = event.target.closest('a.nav-link');
+
+    // console.log('isCurrentMenuId ::: ', isCurrentMenuId);
+
     let isMenu = isCurrentMenuId.nextElementSibling as any;
     let dropDowns = Array.from(document.querySelectorAll('.extra-sub-menu'));
     dropDowns.forEach((node: any) => {
@@ -94,6 +159,10 @@ export class SidebarComponent implements OnInit {
   // Click wise Parent active class add
   toggleParentItem(event: any) {
     let isCurrentMenuId = event.target.closest('a.nav-link');
+    
+    this._st.setItem( 'a-id', '' );
+    // console.log('isCurrentMenuId ::: ', isCurrentMenuId);
+
     let dropDowns = Array.from(document.querySelectorAll('#navbar-nav .show'));
     dropDowns.forEach((node: any) => {
       node.classList.remove('show');
@@ -113,8 +182,12 @@ export class SidebarComponent implements OnInit {
     }
   }
 
-  toggleItem(event: any) {
+  toggleItem(event: any, id: string) {
     let isCurrentMenuId = event.target.closest('a.nav-link');
+
+    console.log('isCurrentMenuId ::: ', isCurrentMenuId);
+    this._st.setItem( 'a-id', `a-${ id }` );
+
     let isMenu = isCurrentMenuId.nextElementSibling as any;
     if (isMenu.classList.contains("show")) {
       isMenu.classList.remove("show");
@@ -192,10 +265,10 @@ export class SidebarComponent implements OnInit {
 
   /**
    * Returns true or false if given menu item has child or not
-   * @param item menuItem
+   * @param item Allow
    */
-  hasItems(item: MenuItem) {
-    return item.subItems !== undefined ? item.subItems.length > 0 : false;
+  hasItems(item: Allow) {
+    return item.children !== undefined ? item.children.length > 0 : false;
   }
 
   /**
@@ -216,6 +289,13 @@ export class SidebarComponent implements OnInit {
    */
    SidebarHide() {
     document.body.classList.remove('vertical-sidebar-enable');
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+
+    this._segurity$?.unsubscribe();
   }
 
 }

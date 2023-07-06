@@ -24,6 +24,12 @@
     },
 
 
+    "CLIENTS": {
+      "TEXT": "Clients"
+    },
+    "INTERPRETERS": {
+      "TEXT": "Interpreters"
+    },
     "SEGURITY": {
       "TEXT": "Segurity",
       "LIST": {

@@ -4,9 +4,13 @@ import { IAppState } from './app.state';
 //redux
 import { Store } from '@ngrx/store';
 import * as uiActions from './redux/actions/ui.actions';
+import * as segurityActions from './redux/actions/segurity.actions';
+
 import { Subscription } from 'rxjs';
 import { StorageService } from './services/storage.service';
 import { EThemeMode } from './interfaces/theme.enum';
+import { CookieService } from 'ngx-cookie-service';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -17,9 +21,14 @@ export class AppComponent {
   title = 'shell-velzon';
 
   private _uirx$?: Subscription;
+  private _segurity$?: Subscription;
+  private _menu$?: Subscription;
 
   private _store = inject<Store<IAppState>>( Store<IAppState> );
   private _st = inject( StorageService );
+  private _authsvc = inject( AuthService );
+
+  private _loadMenu = false;
 
   ngOnInit(): void {
 
@@ -29,9 +38,49 @@ export class AppComponent {
 
     this._store.dispatch( uiActions.onResizeScreen( { screenWidth } ) );
 
-
     this.onChangeThemeMode( themeMode == EThemeMode.dark ? EThemeMode.dark : EThemeMode.light );
 
+    this.onSetSizeScreen();
+    this.onListenResizeScreen();
+    this.onListenUiRx();
+    this.onListenSegurityRx();
+
+    this.onLoadMenu();
+  }
+
+  onLoadMenu() {
+
+    // validar el token
+    // listar menú dinámico
+
+    const token = this._st.getItem('token');
+    if( token != '' ) {
+
+      this._menu$ = this._authsvc.onFindMenu()
+      .subscribe({
+        next: (response) => {
+
+          const { allowMenu, data } = response;
+
+
+
+          this._store.dispatch( segurityActions.onLoadMenuSystem( { allow: allowMenu } ) );
+          // this._store.dispatch( uiActions.onLoadedMenu() );
+
+          console.log('response ::: ', response);
+
+        },
+        error: (e) => {
+          console.log('error ::: ', e);
+
+        }
+      });
+
+    }
+
+  }
+
+  onSetSizeScreen() {
     document.documentElement.setAttribute('data-layout', 'vertical');
     document.documentElement.setAttribute('data-topbar', 'light');
     document.documentElement.setAttribute('data-sidebar', 'dark');
@@ -42,10 +91,6 @@ export class AppComponent {
     document.documentElement.setAttribute('data-sidebar-image', 'none');
     document.documentElement.setAttribute('data-preloader', 'disable');
     document.documentElement.setAttribute('data-sidebar-size', 'sm');
-
-
-    this.onListenResizeScreen();
-    this.onListenUiRx();
   }
 
   onListenResizeScreen() {
@@ -62,6 +107,7 @@ export class AppComponent {
       else if (screenWidth >= 1024) {
         document.documentElement.setAttribute('data-sidebar-size', 'lg');
       }
+
     });
   }
 
@@ -76,7 +122,6 @@ export class AppComponent {
       if (windowSize > 767)
         document.querySelector(".hamburger-icon")?.classList.toggle("open");
 
-      //For collapse vertical menu
       if (document.documentElement.getAttribute("data-layout") === "vertical") {
         if (windowSize < 1025 && windowSize >= 767) {
 
@@ -86,8 +131,6 @@ export class AppComponent {
             document.documentElement.setAttribute("data-sidebar-size", "") :
             document.documentElement.setAttribute("data-sidebar-size", "sm");
         } else if (windowSize > 1025) {
-
-          console.log('if (windowSize > 1025)');
 
           document.body.classList.remove("vertical-sidebar-enable");
 
@@ -99,6 +142,24 @@ export class AppComponent {
           document.body.classList.add("vertical-sidebar-enable");
           document.documentElement.setAttribute("data-sidebar-size", "lg");
         }
+      }
+
+    });
+
+  }
+
+  onListenSegurityRx() {
+
+    this._segurity$ = this._store.select('segurity')
+    .subscribe( (state) => {
+
+      const { loadMenu } = state;
+
+
+
+      if( loadMenu && !this._loadMenu ) {
+        this._loadMenu = true;
+        this.onLoadMenu();
       }
 
     });
@@ -126,6 +187,8 @@ export class AppComponent {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
     this._uirx$?.unsubscribe();
+    this._menu$?.unsubscribe();
+    this._segurity$?.unsubscribe();
   }
 
 }

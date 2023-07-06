@@ -82,34 +82,48 @@
 
           <div class="list-group-item nested-1" *ngFor="let menu of menus" >
 
-              <i class="{{ menu.icon }} fs-16 align-middle text-primary me-2"></i> {{ menu.name }}
+            <div class="list-group-item nested-2 d-flex justify-content-between">
+
+              <div>
+                <i class="{{ menu.icon }} fs-16 align-middle text-primary me-2"></i> {{ menu.name }}
+              </div>
+
+              <div class="d-flex gap-4" *ngIf="!menu.haveChildren">
+                <div class="form-check form-switch form-switch-success" *ngFor="let allow of menu.actions" >
+                    <input class="form-check-input" type="checkbox" role="switch" id="{{menu.id}}-action-chk-{{ allow.action }}" [(ngModel)]="allow.selected" (change)="onInvalidAllows()" >
+                    <label class="form-check-label" for="{{menu.id}}-action-chk-{{ allow.action }}">
+                      {{ allow.action }}
+                    </label>
+                </div>
+              </div>
+            </div>
 
               <div class="list-group nested-list nested-sortable" *ngIf="menu.haveChildren" >
-                  <div class="list-group-item nested-2 d-flex justify-content-between" draggable="false" *ngFor="let children of menu.children" >
-                    <div>
+                <div class="list-group-item nested-2 d-flex justify-content-between" draggable="false" *ngFor="let children of menu.children" >
+                  <div>
 
-                      <div class="form-check  form-switch form-switch-primary" >
-                        <input class="form-check-input" type="checkbox" role="switch" id="{{children.id}}-action-chk"
-                        [(ngModel)]="children.selected" (change)="onInvalidAllows( children )" >
-                        <label class="form-check-label" for="{{children.id}}-action-chk">
-                          {{ children.name }}
-                        </label>
-                      </div>
-
-
+                    <div class="form-check  form-switch form-switch-primary" >
+                      <input class="form-check-input" type="checkbox" role="switch" id="{{children.id}}-action-chk"
+                      [(ngModel)]="children.selected" (change)="onInvalidAllows( children )" >
+                      <label class="form-check-label" for="{{children.id}}-action-chk">
+                        {{ children.name }}
+                      </label>
                     </div>
-                    <div class="d-flex gap-4">
-
-                      <div class="form-check form-switch form-switch-success" *ngFor="let allow of children.actions" >
-                          <input class="form-check-input" type="checkbox" role="switch" id="{{children.id}}-action-chk-{{ allow.action }}" [(ngModel)]="allow.selected" (change)="onInvalidAllows()" >
-                          <label class="form-check-label" for="{{children.id}}-action-chk-{{ allow.action }}">
-                            {{ allow.action }}
-                          </label>
-                      </div>
 
 
-                    </div>
                   </div>
+                  <div class="d-flex gap-4">
+
+                    <div class="form-check form-switch form-switch-success" *ngFor="let allow of children.actions" >
+                        <input class="form-check-input" type="checkbox" role="switch" id="{{children.id}}-action-chk-{{ allow.action }}" [(ngModel)]="allow.selected" (change)="onInvalidAllows()" >
+                        <label class="form-check-label" for="{{children.id}}-action-chk-{{ allow.action }}">
+                          {{ allow.action }}
+                        </label>
+                    </div>
+
+
+                  </div>
+                </div>
               </div>
 
           </div>

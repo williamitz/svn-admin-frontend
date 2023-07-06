@@ -198,7 +198,6 @@
               <div class="pt-2">
                 <label for="iconInput" class="form-label">api Url</label>
                 <input type="text" class="form-control " id="iconInput" placeholder="/v1/entity" formControlName="apiUrl">
-
               </div>
 
               <div class="pt-2">
@@ -225,20 +224,36 @@
 
                     </ng-select>
                   </div>
+
                   <div class="col-5">
                     <br>
                     <div class="form-check  form-switch form-switch-primary" >
-                      <input class="form-check-input" type="checkbox" role="switch" id="chx-hidden"
-                      >
+                      <input class="form-check-input" type="checkbox" role="switch" id="chx-hidden" formControlName="hidden" >
                       <label class="form-check-label" for="chx-hidden">
                         ocultar
                       </label>
                     </div>
+
+                    <!-- <br> -->
+                    <div class="form-check  form-switch form-switch-primary" >
+                      <input class="form-check-input" type="checkbox" role="switch" id="chx-translate" formControlName="haveTranslate" (ngModelChange)="onHaveTranslate()" >
+                      <label class="form-check-label" for="chx-translate">
+                        Traducir
+                      </label>
+                    </div>
                   </div>
+
+
                 </div>
 
               </div>
 
+              <div class="pt-2" *ngIf="haveTranslate">
+                <label for="txtTranslate" class="form-label">Traducción</label>
+                <input type="text" class="form-control " id="txtTranslate" placeholder="MENUITEMS.CALLREPORT.TEXT" formControlName="translate"
+                [class.is-invalid]="controls['translate'].errors && touched('translate')"
+                >
+              </div>
 
 
               <div class="pt-2">

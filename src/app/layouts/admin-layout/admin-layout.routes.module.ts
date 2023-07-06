@@ -10,12 +10,14 @@ import { OnsiteInterpreterComponent } from './onsite-interpreter/onsite-interpre
 import { PoolAddInterpreterComponent } from './pool-add-interpreter/pool-add-interpreter.component';
 import { PoolActivityInterpreterComponent } from './pool-activity-interpreter/pool-activity-interpreter.component';
 import { ProfileInterpreterComponent } from './profile-interpreter/profile-interpreter.component';
+import { InterpreterPageComponent } from './interpreter-page/interpreter-page.component';
 
 // TODO: crear rutas
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'clients', component: ClientPageComponent },
-  { path: 'schedule-interpreter', component: ScheduleInterpreterComponent },
+  { path: 'interpreters', component: InterpreterPageComponent },
+  { path: 'shedule', component: ScheduleInterpreterComponent },
   { path: 'new-assignment-interpreter', component: NewassignmentInterpreterComponent },
   { path: 'onsite-interpreter', component: OnsiteInterpreterComponent },
   { path: 'pool-interpreter', component: PoolAddInterpreterComponent },

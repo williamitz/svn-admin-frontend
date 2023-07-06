@@ -8,6 +8,13 @@
     "PAGES": {
       "TEXT": "页面"
     },
+
+    "CLIENTS": {
+      "TEXT": "Clients"
+    },
+    "INTERPRETERS": {
+      "TEXT": "Interpreters"
+    },
     "LANDING": {
       "TEXT": "降落",
       "LIST": {

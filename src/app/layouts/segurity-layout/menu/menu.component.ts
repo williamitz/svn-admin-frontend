@@ -8,7 +8,7 @@ import { NomenclatureService } from 'src/app/services/nomenclature.service';
 import { PagerService } from 'src/app/services/pager.service';
 import { UiService } from 'src/app/services/ui.service';
 import { INomenclature } from '../../../interfaces/nomenclature.interface';
-import { fullTextPatt, riIconPatt } from 'src/app/utils';
+import { fullTextPatt, riIconPatt, translatePatt } from 'src/app/utils';
 import { EIconAlert } from 'src/app/interfaces/alertIcon.enum';
 
 @Component({
@@ -64,6 +64,7 @@ export class MenuComponent {
   get counter() { return this.menus.length; }
   get value(): IPagerFilter { return this.frmFilter.value; }
   private get _valueFrm() { return this.frmMenu.value; }
+  get haveTranslate() { return this._valueFrm.haveTranslate; }
   get invalid() { return this.frmMenu.invalid ?? false; }
   private get _currentPage() { return this.paginate.currentPage; }
 
@@ -87,13 +88,15 @@ export class MenuComponent {
     });
 
     this.frmMenu = this._frmBuilder.group({
-      name:         [ '', [ Validators.required, Validators.pattern( fullTextPatt ), Validators.minLength(5) ] ],
-      icon:         [ 'ri-checkbox-blank-circle-line', [ Validators.pattern( riIconPatt ) ] ],
-      webUrl:       [ '', [] ],
-      apiUrl:       [ '', [] ],
-      patherMenuId: [ null, [] ],
-      actions:      [ null, [] ],
-      hidden:       [ false, [] ]
+      name:          [ '', [ Validators.required, Validators.pattern( fullTextPatt ), Validators.minLength(5) ] ],
+      icon:          [ 'ri-checkbox-blank-circle-line', [ Validators.pattern( riIconPatt ) ] ],
+      webUrl:        [ '', [] ],
+      apiUrl:        [ '', [] ],
+      patherMenuId:  [ null, [] ],
+      actions:       [ null, [] ],
+      hidden:        [ false, [] ],
+      haveTranslate: [ false, [] ],
+      translate:     [ '', [] ],
     })
   }
 
@@ -165,10 +168,12 @@ export class MenuComponent {
   }
 
   onReset() {
+    this.frmMenu.get('translate')?.removeValidators( [ Validators.required, Validators.pattern( translatePatt ) ] );
     this.frmMenu.reset();
     this._menuId = undefined;
     this._loadData = false;
     document.getElementById('btnCloseModal')?.click();
+
   }
 
   onConfirm( record: IMenu ) {
@@ -283,6 +288,8 @@ export class MenuComponent {
         this.frmMenu.get('webUrl')?.setValue(data.webUrl);
         this.frmMenu.get('hidden')?.setValue(data.hidden);
         this.frmMenu.get('patherMenuId')?.setValue(data.patherMenuId);
+        this.frmMenu.get('haveTranslate')?.setValue(data.haveTranslate);
+        this.frmMenu.get('translate')?.setValue(data.translate);
         this.frmMenu.get('actions')?.setValue(data.actions);
 
         console.log('response ::: ', response);
@@ -295,6 +302,18 @@ export class MenuComponent {
         this._listById$?.unsubscribe();
       }
     })
+
+  }
+
+  onHaveTranslate() {
+
+    const haveTranslate = this._valueFrm.haveTranslate;
+
+    if( haveTranslate ) {
+      this.frmMenu.get('translate')?.addValidators( [ Validators.required, Validators.pattern( translatePatt ) ] );
+    } else {
+      this.frmMenu.get('translate')?.removeValidators( [ Validators.required, Validators.pattern( translatePatt ) ] );
+    }
 
   }
 

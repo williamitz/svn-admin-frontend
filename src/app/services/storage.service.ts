@@ -1,14 +1,16 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 
 const USER_KEY = 'currentUser';
 
 @Injectable({providedIn: 'root'})
 export class StorageService {
 
-  constructor() { }
+  private _cookiesvc = inject( CookieService );
+
 
   public getUser(): any {
-    const user = window.localStorage.getItem(USER_KEY);
+    const user = this._cookiesvc.get(USER_KEY);
     if (user) {
       return JSON.parse(user);
     }
@@ -17,11 +19,11 @@ export class StorageService {
   }
 
   setItem( key: string, val: string ) {
-    localStorage.setItem( key, val);
+    this._cookiesvc.set( key, val);
   }
 
   getItem( key: string ) {
-    return localStorage.getItem( key);
+    return this._cookiesvc.get( key);
   }
 
 }

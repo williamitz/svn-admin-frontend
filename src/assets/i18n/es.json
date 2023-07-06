@@ -20,6 +20,12 @@
       "TEXT": "Reportes llamada"
     },
 
+    "CLIENTS": {
+      "TEXT": "Clientes"
+    },
+    "INTERPRETERS": {
+      "TEXT": "Intérpretes"
+    },
     "SCHEDULEINTERPRETER": {
       "TEXT": "Horario Intérprete",
       "LIST": {

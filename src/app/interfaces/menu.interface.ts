@@ -19,6 +19,8 @@ export interface IMenu {
   webUrl:       string;
   apiUrl:       string;
   hidden:       boolean;
+  haveTranslate: boolean;
+  translate: string;
   patherMenuId: null | string;
   actions:      string[];
 }
