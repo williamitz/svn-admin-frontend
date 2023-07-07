@@ -5,13 +5,13 @@
   <div class="col-12">
       <div class="page-title-box d-sm-flex align-items-center justify-content-between">
           <h4 class="mb-sm-0">
-            Mis intérpretes
+            Intepreters
           </h4>
 
           <div class="page-title-right">
               <ol class="breadcrumb m-0">
-                  <li class="breadcrumb-item"><a href="javascript: void(0);">Administración</a></li>
-                  <li class="breadcrumb-item active">Intérpretes</li>
+                  <li class="breadcrumb-item"><a href="javascript: void(0);">Admin</a></li>
+                  <li class="breadcrumb-item active">Intepreters</li>
               </ol>
           </div>
 
@@ -40,7 +40,7 @@
                   <div class="col-6 ">
                     <div class="d-flex justify-content-end align-items-center gap-2">
                       <button type="button" class="btn btn-primary custom-toggle active" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="btnShowModal" >
-                            <i class="ri-add-fill align-bottom me-1"></i> Nuevo intérprete
+                            <i class="ri-add-fill align-bottom me-1"></i> New tntepreter
                       </button>
                     </div>
                   </div>
@@ -51,7 +51,7 @@
                       <thead class="table-light">
                           <tr>
 
-                              <th scope="col">Nombres y apellidos</th>
+                              <th scope="col">Fullname</th>
                               <th scope="col">Email</th>
                               <th scope="col">Date</th>
                               <th scope="col">Time zone</th>
@@ -119,19 +119,19 @@
                 <div class="d-flex justify-content-start align-items-center gap-4 ms-3">
 
                   <div class="d-flex justify-content-start align-items-center gap-2 ms-3">
-                    Ver
-                    <select class="form-select " style="width: 70px;" formControlName="limit" >
+                    View
+                    <select class="form-select " style="width: 90px;" formControlName="limit" >
                       <option selected></option>
                       <option [value]="5">5</option>
                       <option [value]="10">10</option>
                       <option [value]="20">20</option>
                     </select>
-                    registros
+                    records
                   </div>
                   |
                   <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" role="switch" id="chxActive" formControlName="active" (change)="onGetInterpreters()" >
-                    <label class="form-check-label" for="chxActive">Ver inactivos</label>
+                    <label class="form-check-label" for="chxActive">view disabled</label>
                   </div>
 
                 </div>
@@ -154,10 +154,10 @@
       <div class="modal-content">
           <div class="modal-header">
               <h5 class="modal-title" *ngIf="!loadData" >
-                Crear Intérprete
+                Create Interpreter
               </h5>
-              <h5 class="modal-title" *ngIf="!loadData" >
-                Editar Intérprete
+              <h5 class="modal-title" *ngIf="loadData" >
+                Edit Interpreter
               </h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
@@ -166,7 +166,7 @@
             <div class="modal-body ">
 
               <div>
-                <label for="placeholderInput" class="form-label">Nombres y apellidos</label>
+                <label for="placeholderInput" class="form-label">Fullname</label>
                 <div class="row">
                   <div class="col-6">
                     <input type="text" class="form-control" id="placeholderInput" placeholder="Nombres"
@@ -189,18 +189,18 @@
               </div>
 
               <div class="pt-2">
-                <label for="cleave-phone" class="form-label">Teléfono</label>
+                <label for="cleave-phone" class="form-label">Phone</label>
                 <input type="text" class="form-control" id="cleave-phone" placeholder="xxx-xxx-xxx" mask="000-000-000"
                 formControlName="phone" >
               </div>
 
               <div class="pt-2">
-                <label for="cleave-phone" class="form-label">País</label>
+                <label for="cleave-phone" class="form-label">Country</label>
                 <ng-select
                     [items]="countries"
                     bindLabel="name"
                     bindValue="id"
-                    placeholder="Seleccione país"
+                    placeholder="Select country"
                     formControlName="country"
                     (change)="onGetTimezones()"
                   >
@@ -208,12 +208,12 @@
               </div>
 
               <div class="pt-2">
-                <label for="cleave-phone" class="form-label">Zona horaria</label>
+                <label for="cleave-phone" class="form-label">Time zone</label>
                 <ng-select
                     [items]="timezones"
                     bindLabel="name"
                     bindValue="id"
-                    placeholder="Seleccione zona horaria"
+                    placeholder="Select Time zone"
                     formControlName="timezone"
                     [loading]="loadingTimezone"
                   >
@@ -231,9 +231,9 @@
                   <div class="spinner-border text-light" role="status" *ngIf="saving" >
                     <span class="sr-only">Loading...</span>
                   </div>
-                  <span *ngIf="!saving && !loadData" > Guardar </span>
-                  <span *ngIf="!saving && loadData" > Guardar cambios </span>
-                  <span *ngIf="saving" > Guardando... </span>
+                  <span *ngIf="!saving && !loadData" > Save </span>
+                  <span *ngIf="!saving && loadData" > Save changes </span>
+                  <span *ngIf="saving" > Saving... </span>
 
                 </button>
             </div>

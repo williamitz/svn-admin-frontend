@@ -145,8 +145,11 @@
                     <div class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
 
                         <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item notify-item language py-2" data-lang="eng" *ngFor="let item of listLang" (click)="setLanguage(item.text, item.lang, item.flag)" [ngClass]="{'active': cookieValue === item.lang}">
-                            <img src="{{item.flag}}" alt="user-image" class="me-2 rounded" height="18"> <span class="align-middle">{{item.text}}</span>
+                        <a href="javascript:void(0);" class="dropdown-item notify-item language py-2" data-lang="en" *ngFor="let item of listLang" (click)="setLanguage(item.text, item.lang, item.flag)" [ngClass]="{'active': cookieValue === item.lang}">
+                            <img src="{{item.flag}}" alt="user-image" class="me-2 rounded" height="18">
+                            <span class="align-middle">
+                              {{item.text}}
+                            </span>
                         </a>
                     </div>
                 </div>

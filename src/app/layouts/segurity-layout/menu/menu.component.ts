@@ -97,6 +97,7 @@ export class MenuComponent {
       hidden:        [ false, [] ],
       haveTranslate: [ false, [] ],
       translate:     [ '', [] ],
+      order:         [ 0, [ Validators.required ] ],
     })
   }
 
@@ -291,6 +292,8 @@ export class MenuComponent {
         this.frmMenu.get('haveTranslate')?.setValue(data.haveTranslate);
         this.frmMenu.get('translate')?.setValue(data.translate);
         this.frmMenu.get('actions')?.setValue(data.actions);
+        this.frmMenu.get('order')?.setValue(data.order);
+
 
         console.log('response ::: ', response);
         this._loadData = true;

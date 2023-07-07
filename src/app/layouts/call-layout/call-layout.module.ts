@@ -33,7 +33,7 @@ import { CallHistoryComponent } from './call-history/call-history.component';
     SharedLayoutModule,
     FormsModule,
     ReactiveFormsModule,
-    TranslateModule,
+    // TranslateModule,
 
     NgSelectModule,
     NgbNavModule,

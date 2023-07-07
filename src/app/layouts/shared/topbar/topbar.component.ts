@@ -29,7 +29,7 @@ export class TopbarComponent implements OnInit {
 
 
 
-  flagvalue = 'assets/images/flags/spain.svg';
+  flagvalue = 'assets/images/flags/us.svg';
   valueset: any;
   countryName: any;
   cookieValue: any;
@@ -68,7 +68,9 @@ export class TopbarComponent implements OnInit {
   ngOnInit(): void {
     this.element = document.documentElement;
 
-    this.cookieValue = this._cookiesService.get('lang');
+    this._st.setItem('lang', 'en');
+
+    this.cookieValue = 'en';
 
     this.onListenRx();
   }

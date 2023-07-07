@@ -19,6 +19,7 @@ export interface IMenu {
   webUrl:       string;
   apiUrl:       string;
   hidden:       boolean;
+  order:        number;
   haveTranslate: boolean;
   translate: string;
   patherMenuId: null | string;

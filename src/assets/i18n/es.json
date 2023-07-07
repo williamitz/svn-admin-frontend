@@ -102,7 +102,7 @@
     "ADMIN": {
       "TEXT": "Administración",
       "LIST": {
-        "ORGANIZATION": "Organizaciones"
+        "ORGANIZATION": "Agencias"
       }
     }
   }
