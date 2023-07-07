@@ -9,19 +9,19 @@ export const MENU: MenuItem[] = [
     link: '/admin'
   },
 
-  {
-    id: 11,
-    label: 'MENUITEMS.CALLS.TEXT',
-    icon: 'ri-dashboard-2-line',
-    link: '/calls'
-  },
+  // {
+  //   id: 11,
+  //   label: 'MENUITEMS.CALLS.TEXT',
+  //   icon: 'ri-dashboard-2-line',
+  //   link: '/calls'
+  // },
 
-  {
-    id: 12,
-    label: 'MENUITEMS.CONNECTNOW.TEXT',
-    icon: 'ri-dashboard-2-line',
-    link: '/calls/connectNow'
-  },
+  // {
+  //   id: 12,
+  //   label: 'MENUITEMS.CONNECTNOW.TEXT',
+  //   icon: 'ri-dashboard-2-line',
+  //   link: '/calls/connectNow'
+  // },
 
   {
     id: 20,
