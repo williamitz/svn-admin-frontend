@@ -115,7 +115,7 @@ export class NewassignmentInterpreterComponent {
       // this.formBuilder.group({
       //   editDate: this.newEventDate.date
       // })
-    this.modalService.open(this.modalShow, { centered: true });
+    this.modalService.open(this.modalShow, { centered: true, size: 'lg' });
   }
 
   /**

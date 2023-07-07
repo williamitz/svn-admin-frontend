@@ -1,0 +1,181 @@
+<div class="row">
+  <div class="col-12">
+    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+      <h4 class="mb-sm-0">INVOICES</h4>
+      <div class="page-title-right">
+        <ol class="breadcrumb m-0">
+          <li class="breadcrumb-item"><a routerLink="/admin/billing">Billings</a></li>
+          <li class="breadcrumb-item active">Invoices</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xl-12">
+    <div class="card">
+      <div class="card-header align-items-center d-flex">
+        <h4 class="card-title mb-0 flex-grow-1">Filter by</h4>
+      </div><!-- end card header -->
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-4 mb-3 mb-md-0">
+            <div>
+              <label for="customer" class="form-label">Customer</label>
+              <input type="text" class="form-control rounded-pill" id="customer">
+            </div>
+          </div>
+          <div class="col-md-4 mb-3 mb-md-0">
+            <div>
+              <label for="exampleInputdate" class="form-label">From</label>
+              <input type="date" class="form-control rounded-pill" id="exampleInputdate">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div>
+              <label for="exampleInputdateEnd" class="form-label">To</label>
+              <input type="date" class="form-control rounded-pill" id="exampleInputdateEnd">
+            </div>
+          </div>
+        </div>
+        <div class="text-end mt-3">
+          <button type="button"
+            class="btn rounded-pill btn-danger px-5 fw-medium waves-effect waves-light">Apply</button>
+        </div>
+
+        <div>
+          <div class="card-header mt-5 p-0 border-0 bg-soft-light">
+            <h4 _ngcontent-ng-c3467080123="" class="card-title mb-0 flex-grow-1">Total: 22/06/2023 - 30/06/2023</h4>
+          </div><!-- end card header -->
+          <div class="row g-0 text-center">
+            <div class="col-md-4">
+              <div class="p-3 border border-dashed border-start-0">
+                <h5 class="mb-1">196</h5>
+                <p class="text-muted mb-0">Total Calls</p>
+              </div>
+            </div>
+            <!--end col-->
+            <div class="col-md-4">
+              <div class="p-3 border border-dashed border-start-0">
+                <h5 class="mb-1">1629</h5>
+                <p class="text-muted mb-0">Total Minutes</p>
+              </div>
+            </div>
+            <!--end col-->
+            <div class="col-md-4">
+              <div class="p-3 border border-dashed border-start-0 border-end-0">
+                <div class="box-flex">
+                  <h5 class="mb-1">Total Earnings</h5>
+                  <div class="box-mount">$334.00</div>
+                </div>
+                <p class="text-muted mb-0"></p>
+              </div>
+            </div>
+            <!--end col-->
+          </div>
+        </div>
+
+        <div class="mt-5">
+          <form>
+            <div class="table-responsive table-card">
+              <table class="table table-nowrap table-hover table-striped mb-0">
+                <thead class="table-light">
+                  <tr>
+                    <th scope="col" style="width:25px">
+                      <div class="form-check form-check-danger">
+                        <input type="checkbox" id="checkAll" value="option1" class="form-check-input">
+                      </div>
+                    </th>
+                    <th scope="col" style="width:30px">Call Start</th>
+                    <th scope="col">Call End</th>
+                    <th scope="col">Language</th>
+                    <th scope="col">Rate x min.</th>
+                    <th scope="col">Duration(m)</th>
+                    <th scope="col">Avg. connect Time</th>
+                    <th scope="col">Call ID</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">MRN</th>
+                    <th scope="col">Client/Patient Name</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of lista">
+                    <td scope="col" style="width:25px">
+                      <div class="form-check form-check-danger">
+                        <input type="checkbox" id="checkAll" value="option1" class="form-check-input">
+                      </div>
+                    </td>
+                    <td scope="col" style="width:30px">
+                      {{ item.callstart }}
+                    </td>
+                    <td scope="col" style="width:30px">
+                      {{ item.callend }}
+                    </td>
+                    <td>
+                      {{ item.language }}
+                    </td>
+                    <td>
+                      ${{ item.ratexmin }}
+                    </td>
+                    <td>
+                      {{ item.duration }}
+                    </td>
+                    <td>
+                      {{ item.avg }}s
+                    </td>
+                    <td>
+                      {{ item.callid }}
+                    </td>
+                    <td>
+                      {{ item.location }}
+                    </td>
+                    <td>
+                      {{ item.mrn }}
+                    </td>
+                    <td>
+                      {{ item.patientname }}
+                    </td>
+                  </tr>
+                  <!-- <tr>
+                    <td colspan="5" class="text-center">
+                      Sin registros
+                    </td>
+                  </tr> -->
+                </tbody>
+              </table>
+            </div>
+            <div class="row mt-4">
+              <div class="col-md-6">
+                <div>
+                  <span>Export:</span>
+                  <button type="button" class="btn btn-outline-dark waves-effect waves-light ms-2">XLS</button>
+                  <button type="button" class="btn btn-outline-dark waves-effect waves-light ms-2">CSV</button>
+                  <button type="button" class="btn btn-outline-dark waves-effect waves-light ms-2">PDF</button>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div class="row my-2">
+              <div class="col-6 ">
+                <div class="d-flex justify-content-start align-items-center gap-4 ms-3">
+                  Showing
+                  <select class="form-select " style="width: 70px;" formControlName="limit">
+                    <option [value]="5">5</option>
+                    <option [value]="10">10</option>
+                    <option [value]="20">20</option>
+                  </select>
+                  register
+                </div>
+              </div>
+              <!-- <div class="col-6">
+              <app-pagination [paginate]="paginate" [total]="total" (navigate)="onGetRole()"></app-pagination>
+            </div> -->
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class ProfileInterpreterComponent {
 
+  lista = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+
 }

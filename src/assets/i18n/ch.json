@@ -29,7 +29,14 @@
     "WIDGETS": {
       "TEXT": "小部件"
     },
-
+    "SCHEDULEINTERPRETER": {
+      "TEXT": "Schedule Interpreter",
+      "LIST": {
+        "SCHEDULEINTERPRETERACTIVITY": "Schedule Interpreter Activity",
+        "NEWASSIGNMENT": "New Assignment",
+        "ONSITEINTERPRETER":"On-site Interpreter"
+      }
+    },
 
     "SEGURITY": {
       "TEXT": "Segurity",

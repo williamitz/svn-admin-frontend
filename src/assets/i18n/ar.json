@@ -23,6 +23,14 @@
         "JOB":"مهنة"
       }
     },
+    "SCHEDULEINTERPRETER": {
+      "TEXT": "Schedule Interpreter",
+      "LIST": {
+        "SCHEDULEINTERPRETERACTIVITY": "Schedule Interpreter Activity",
+        "NEWASSIGNMENT": "New Assignment",
+        "ONSITEINTERPRETER":"On-site Interpreter"
+      }
+    },
     "COMPONENTS": {
       "TEXT": "عناصر"
     },

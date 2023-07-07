@@ -26,4 +26,8 @@ export class StorageService {
     return this._cookiesvc.get( key);
   }
 
+  onClearStorage() {
+    this._cookiesvc.deleteAll();
+  }
+
 }

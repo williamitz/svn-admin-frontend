@@ -1,0 +1,229 @@
+<div class="row">
+  <div class="col-12">
+    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+      <h4 class="mb-sm-0">MY ASSIGNMENTS</h4>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    <!-- Nav tabs -->
+    <ul class="nav nav-pills" role="tablist">
+      <li class="nav-item waves-effect waves-light" role="presentation">
+        <a class="nav-link active" data-bs-toggle="tab" href="#pill-justified-home-1" role="tab" aria-selected="true">
+          Scheduled Calls
+        </a>
+      </li>
+      <li class="nav-item waves-effect waves-light" role="presentation">
+        <a class="nav-link" data-bs-toggle="tab" href="#pill-justified-profile-1" role="tab" aria-selected="false"
+          tabindex="-1">
+          On-Site Interpreting
+        </a>
+      </li>
+    </ul>
+    <!-- Tab panes -->
+    <!-- <div class="tab-content text-muted">
+      <div class="tab-pane active" id="pill-justified-home-1" role="tabpanel">
+        11
+      </div>
+      <div class="tab-pane" id="pill-justified-profile-1" role="tabpanel">
+        22
+      </div>
+    </div> -->
+  </div><!-- end card-body -->
+</div>
+
+
+<div class="tab-content text-muted">
+  <div class="tab-pane active" id="pill-justified-home-1" role="tabpanel">
+    <div class="row">
+      <div class="col-xl-3">
+        <div>
+          <h5 class="mb-1">Upcoming Events</h5>
+          <p class="text-muted">Don't miss scheduled events</p>
+          <div class="pe-2 me-n1 mb-3" data-simplebar="init" style="height: 400px">
+            <div class="simplebar-wrapper" style="margin: 0px -8px 0px 0px;">
+              <div class="simplebar-height-auto-observer-wrapper">
+                <div class="simplebar-height-auto-observer"></div>
+              </div>
+              <div class="simplebar-mask">
+                <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
+                  <div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content"
+                    style="height: 100%; overflow: hidden scroll;">
+                    <div class="simplebar-content" style="padding: 0px 8px 0px 0px;">
+                      <div id="upcoming-event-list">
+                        <div class="card mb-3">
+                          <div class="card-body">
+                            <div class="d-flex mb-3">
+                              <div class="flex-grow-1">
+                                <i class="mdi mdi-checkbox-blank-circle me-2 text-info"></i>
+                                <span class="fw-medium">3 Jan 2022 </span>
+                              </div>
+                              <div class="flex-shrink-0">
+                                <small class="badge badge-soft-primary ms-auto">7:00 PM to 12:00 AM</small>
+                              </div>
+                            </div>
+                            <h6 class="card-title fs-16"> World Braille Day</h6>
+                            <p class="text-muted text-truncate-two-lines mb-0"> </p>
+                          </div>
+                        </div>
+                        <div class="card mb-3">
+                          <div class="card-body">
+                            <div class="d-flex mb-3">
+                              <div class="flex-grow-1">
+                                <i class="mdi mdi-checkbox-blank-circle me-2 text-info"></i>
+                                <span class="fw-medium">29 Jan 2022 </span>
+                              </div>
+                              <div class="flex-shrink-0">
+                                <small class="badge badge-soft-primary ms-auto">7:00 PM to 12:00 AM</small>
+                              </div>
+                            </div>
+                            <h6 class="card-title fs-16"> World Leprosy Day</h6>
+                            <p class="text-muted text-truncate-two-lines mb-0"> </p>
+                          </div>
+                        </div>
+                        <div class="card mb-3">
+                          <div class="card-body">
+                            <div class="d-flex mb-3">
+                              <div class="flex-grow-1">
+                                <i class="mdi mdi-checkbox-blank-circle me-2 text-info"></i>
+                                <span class="fw-medium">20 Feb 2022 </span>
+                              </div>
+                              <div class="flex-shrink-0">
+                                <small class="badge badge-soft-primary ms-auto">7:00 PM to 12:00 AM</small>
+                              </div>
+                            </div>
+                            <h6 class="card-title fs-16"> International Mother Language Day</h6>
+                            <p class="text-muted text-truncate-two-lines mb-0"> </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="simplebar-placeholder" style="width: auto; height: 2437px;"></div>
+            </div>
+            <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;">
+              <div class="simplebar-scrollbar" style="width: 0px; display: none;">
+              </div>
+            </div>
+            <div class="simplebar-track simplebar-vertical" style="visibility: visible;">
+              <div class="simplebar-scrollbar"
+                style="height: 65px; display: block; transform: translate3d(0px, 302px, 0px);">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-9">
+        <div class="card card-h-100">
+          <div class="card-body">
+            <div id="calendar"></div>
+            <full-calendar [options]="calendarOptions">
+              <ng-template #eventContent let-arg>
+                <b>{{ arg.event.title }}</b>
+              </ng-template>
+            </full-calendar>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane" id="pill-justified-profile-1" role="tabpanel">
+    <div class="row">
+      <div class="col-xl-3">
+        <div>
+          <h5 class="mb-1">Upcoming Events</h5>
+          <p class="text-muted">Don't miss scheduled events</p>
+          <div class="pe-2 me-n1 mb-3" data-simplebar="init" style="height: 400px">
+            <div class="simplebar-wrapper" style="margin: 0px -8px 0px 0px;">
+              <div class="simplebar-height-auto-observer-wrapper">
+                <div class="simplebar-height-auto-observer"></div>
+              </div>
+              <div class="simplebar-mask">
+                <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
+                  <div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content"
+                    style="height: 100%; overflow: hidden scroll;">
+                    <div class="simplebar-content" style="padding: 0px 8px 0px 0px;">
+                      <div id="upcoming-event-list">
+                        <div class="card mb-3">
+                          <div class="card-body">
+                            <div class="d-flex mb-3">
+                              <div class="flex-grow-1">
+                                <i class="mdi mdi-checkbox-blank-circle me-2 text-info"></i>
+                                <span class="fw-medium">3 Jan 2022 </span>
+                              </div>
+                              <div class="flex-shrink-0">
+                                <small class="badge badge-soft-primary ms-auto">7:00 PM to 12:00 AM</small>
+                              </div>
+                            </div>
+                            <h6 class="card-title fs-16"> World Braille Day</h6>
+                            <p class="text-muted text-truncate-two-lines mb-0"> </p>
+                          </div>
+                        </div>
+                        <div class="card mb-3">
+                          <div class="card-body">
+                            <div class="d-flex mb-3">
+                              <div class="flex-grow-1">
+                                <i class="mdi mdi-checkbox-blank-circle me-2 text-info"></i>
+                                <span class="fw-medium">29 Jan 2022 </span>
+                              </div>
+                              <div class="flex-shrink-0">
+                                <small class="badge badge-soft-primary ms-auto">7:00 PM to 12:00 AM</small>
+                              </div>
+                            </div>
+                            <h6 class="card-title fs-16"> World Leprosy Day</h6>
+                            <p class="text-muted text-truncate-two-lines mb-0"> </p>
+                          </div>
+                        </div>
+                        <div class="card mb-3">
+                          <div class="card-body">
+                            <div class="d-flex mb-3">
+                              <div class="flex-grow-1">
+                                <i class="mdi mdi-checkbox-blank-circle me-2 text-info"></i>
+                                <span class="fw-medium">20 Feb 2022 </span>
+                              </div>
+                              <div class="flex-shrink-0">
+                                <small class="badge badge-soft-primary ms-auto">7:00 PM to 12:00 AM</small>
+                              </div>
+                            </div>
+                            <h6 class="card-title fs-16"> International Mother Language Day</h6>
+                            <p class="text-muted text-truncate-two-lines mb-0"> </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="simplebar-placeholder" style="width: auto; height: 2437px;"></div>
+            </div>
+            <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;">
+              <div class="simplebar-scrollbar" style="width: 0px; display: none;">
+              </div>
+            </div>
+            <div class="simplebar-track simplebar-vertical" style="visibility: visible;">
+              <div class="simplebar-scrollbar"
+                style="height: 65px; display: block; transform: translate3d(0px, 302px, 0px);">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-9">
+        <div class="card card-h-100">
+          <div class="card-body">
+            <div id="calendar"></div>
+            <full-calendar [options]="calendarOptions">
+              <ng-template #eventContent let-arg>
+                <b>{{ arg.event.title }}</b>
+              </ng-template>
+            </full-calendar>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -23,9 +23,6 @@
     "CONNECTNOW": {
       "TEXT": "Connect Now"
     },
-    "CALLREPORT": {
-      "TEXT": "Call Reports"
-    },
 
     "SCHEDULEINTERPRETER": {
       "TEXT": "Schedule Interpreter",
@@ -41,6 +38,40 @@
         "POOLADDINTERPRETER": "Add Interpreter",
         "POOLACTIVITYINTERPRETER": "Activity"
       }
+    },
+
+    "CALLREPORT": {
+      "TEXT": "Call Reports",
+      "LIST": {
+        "OPICALLDETAIL": "OPI Call Detail",
+        "VRICALLDETAIL": "VRI Call Detail",
+        "ASLCALLDETAIL": "ASL Call Detail"
+      }
+    },
+
+    "CUSTOMERS": {
+      "TEXT": "Customers"
+    },
+    "BILLINGS": {
+      "TEXT": "Billings"
+    },
+
+    "CONFIGURATION": {
+      "TEXT": "Configuration",
+      "LIST": {
+        "QUICKBOOK": "Quickbooks",
+        "CALLQUEUES": "Call Queues",
+        "PROFILEACCOUNT": "Profile Account"
+      }
+    },
+    "INTERPRETERPORTAL": {
+      "TEXT": "Interpreter Portal"
+    },
+    "MYASSIGNMENT": {
+      "TEXT": "My Assignments"
+    },
+    "CALLHISTORY": {
+      "TEXT": "Call History"
     },
 
     "PAGES": {

@@ -86,12 +86,13 @@ export class RoleFrmComponent {
 
         } );
 
-      } else {
-
-        const haveAction = e.actions?.some( (a) => a.selected );
-
-        if( !haveAction ) allowValid = false;
       }
+      // else {
+
+      //   const haveAction = e.actions?.some( (a) => a.selected );
+
+      //   if( !haveAction ) allowValid = false;
+      // }
 
     });
 
@@ -239,7 +240,8 @@ export class RoleFrmComponent {
 
     this._menus.forEach( (m) => {
 
-      if( m.selected || m.children?.some( (c) => c.selected ) || m.actions?.some( (c) => c.selected ) ) {
+      // m.selected ||
+      if(  m.children?.some( (c) => c.selected ) || m.actions?.some( (c) => c.selected ) ) {
 
         if( !m.children || m.children.length == 0 ) {
 
@@ -286,7 +288,7 @@ export class RoleFrmComponent {
 
   onSubmit() {
 
-    if( this._saving || this.invalid || !this.invalidAllow$() ) return;
+    if( this._saving || this.invalid  ) return;
 
     // {
     //   "menu": "1c3b3409-da92-46d1-9b7b-71f91b56c760",
@@ -296,7 +298,7 @@ export class RoleFrmComponent {
     const allowBody = this._onGetAllowsBody;
 
     console.log('allowBody ::: ', allowBody);
-    debugger;
+    // debugger;
 
     this.frmRole.get('allows')?.setValue( allowBody );
 

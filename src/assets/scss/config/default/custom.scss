@@ -11,12 +11,29 @@ File: Custom Css File
 :root{
   --sidebar-menu: #1D1F28;
   --clr-primary: #F4631E;
+  --clr-neutral-01: #F3F3F9;
+  --clr-neutral-05: #393941;
 }
 
 .clr-primary{
-  background-color: var(--clr-primary) 
+  background-color: var(--clr-primary)
 }
 
 [data-layout=vertical][data-sidebar=dark] .navbar-menu{
   background: var(--sidebar-menu);
+}
+
+.modal-header .btn-close{
+  filter: invert(1);
+}
+.navbar-brand-box{
+  background-color: white;
+}
+
+@media screen and (max-width: 600px) {
+  
+  li.nav-item.waves-effect.waves-light{
+    width: 50%;
+  }
+
 }

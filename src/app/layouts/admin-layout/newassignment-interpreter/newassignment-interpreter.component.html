@@ -1,9 +1,16 @@
 <div class="row">
+  <div class="col-12">
+    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+      <h4 class="mb-sm-0">NEW ASSIGNMET</h4>
+    </div>
+  </div>
+</div>
 
+<div class="row">
   <div class="col-xl-3">
     <div class="card card-h-100">
       <div class="card-body">
-        <button class="btn btn-danger rounded-pill w-100" id="btn-new-event" (click)="openModal()"><i
+        <button class="btn btn-danger fw-medium rounded-pill w-100" id="btn-new-event" (click)="openModal()"><i
             class="mdi mdi-plus"></i> Create New
           Assignment</button>
       </div>
@@ -230,8 +237,9 @@
 
     <!-- Add New Event MODAL -->
     <ng-template #modalShow let-modal>
-      <div class="modal-header p-3 bg-soft-info">
-        <h5 class="modal-title" id="modal-title">Add Event</h5>
+      <div class="modal-header bg-dark p-3">
+        <h5 class="modal-title text-white" id="modal-title">Assignment Request Form for OPI/VRI (Consecutive
+          Interpreting and Simultaneous Interpreting) and ASL</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"
           (click)="closeEventModal()"></button>
       </div>
@@ -239,17 +247,14 @@
         <form class="needs-validation" name="event-form" id="form-event" novalidate (ngSubmit)="saveEvent()"
           [formGroup]="formData">
           <div class="row event-form">
-            <div class="col-12">
+            <div class="col-md-6">
               <div class="mb-3">
-                <label class="form-label">Type</label>
-                <select class="form-select" name="category" formControlName="category"
+                <label class="form-label">Native Language</label>
+                <select class="form-select rounded-pill" name="category" formControlName="category"
                   [ngClass]="{'is-invalid': submitted && form['category'].errors}" id="event-category" required>
-                  <option value="bg-soft-danger">Danger</option>
-                  <option value="bg-soft-success">Success</option>
-                  <option value="bg-soft-primary">Primary</option>
-                  <option value="bg-soft-info">Info</option>
-                  <option value="bg-soft-dark">Dark</option>
-                  <option value="bg-soft-warning">Warning</option>
+                  <option value="" select>English</option>
+                  <option value="">Spanish</option>
+                  <option value="">Cantones</option>
                 </select>
                 <div *ngIf="submitted && form['category'].errors" class="invalid-feedback">
                   <div *ngIf="form['category'].errors['required']">
@@ -259,73 +264,133 @@
               </div>
             </div>
             <!--end col-->
-            <div class="col-12">
+            <div class="col-md-6">
               <div class="mb-3">
-                <label class="form-label">Event Name</label>
-                <input class="form-control" placeholder="Enter event name" type="text" name="title" id="event-title"
-                  required value="" formControlName="title"
-                  [ngClass]="{ 'is-invalid': submitted && form['title'].errors }" />
-                <div *ngIf="submitted && form['title'].errors" class="invalid-feedback">
-                  <span *ngIf="form['title'].errors['required']">This value is required.</span>
-                </div>
-              </div>
-            </div>
-            <!--end col-->
-            <div class="col-12">
-              <div class="mb-3">
-                <label>Event Date</label>
-                <div class="input-group">
-                  <!-- <input class="form-control flatpickr-input" type="text" mwlFlatpickr [altInput]="true" [convertModelValue]="true" placeholder="Select date"> -->
-                  <input class="form-control flatpickr-input" type="text" mwlFlatpickr [altInput]="true"
-                    altFormat="d/m/Y" [convertModelValue]="true" placeholder="Select date" id="event-date"
-                    formControlName="date">
-                </div>
-              </div>
-            </div>
-            <!--end col-->
-            <div class="col-12" id="event-time">
-              <div class="row">
-                <div class="col-6">
-                  <div class="mb-3">
-                    <label class="form-label">Start Time</label>
-                    <div class="input-group">
-                      <input class="form-control flatpickr-input" type="text" placeholder="Select start time"
-                        mwlFlatpickr [noCalendar]="true" [enableTime]="true" [dateFormat]="'H:i'"
-                        formControlName="start">
-                    </div>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="mb-3">
-                    <label class="form-label">End Time</label>
-                    <div class="input-group">
-                      <input class="form-control flatpickr-input" type="text" placeholder="Select end time" mwlFlatpickr
-                        [noCalendar]="true" [enableTime]="true" [dateFormat]="'H:i'" formControlName="end">
-                    </div>
+                <label class="form-label">Target Language</label>
+                <select class="form-select rounded-pill" name="category" formControlName="category"
+                  [ngClass]="{'is-invalid': submitted && form['category'].errors}" id="event-category" required>
+                  <option value="" select>Select a language</option>
+                  <option value="">Spanish</option>
+                  <option value="">Cantones</option>
+                </select>
+                <div *ngIf="submitted && form['category'].errors" class="invalid-feedback">
+                  <div *ngIf="form['category'].errors['required']">
+                    This value is required
                   </div>
                 </div>
               </div>
             </div>
-            <!--end col-->
-            <div class="col-12">
+            <div class="col-md-3">
               <div class="mb-3">
-                <label for="event-location">Location</label>
-                <div>
-                  <input class="form-control" placeholder="Event location" type="text" name="event-location"
-                    id="event-location" required value="" formControlName="location"
-                    [ngClass]="{ 'is-invalid': submitted && form['location'].errors }" />
-                  <div *ngIf="submitted && form['location'].errors" class="invalid-feedback">
-                    <span *ngIf="form['location'].errors['required']">This value is required.</span>
+                <label for="exampleInputdate" class="form-label">Start Date</label>
+                <input type="date" class="form-control rounded-pill" id="exampleInputdate">
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="mb-3">
+                <label for="exampleInputtime" class="form-label">Start Time</label>
+                <input type="time" class="form-control rounded-pill" id="exampleInputtime">
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="mb-3">
+                <label for="exampleInputdate" class="form-label">End Date</label>
+                <input type="date" class="form-control rounded-pill" id="exampleInputdate">
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="mb-3">
+                <label for="exampleInputtime" class="form-label">End Time</label>
+                <input type="time" class="form-control rounded-pill" id="exampleInputtime">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label class="form-label">What do you need interpreting for?</label>
+                <select class="form-select rounded-pill" name="category" formControlName="category"
+                  [ngClass]="{'is-invalid': submitted && form['category'].errors}" id="event-category" required>
+                  <option value="">Select</option>
+                  <option value="">Spanish</option>
+                  <option value="">Cantones</option>
+                </select>
+                <div *ngIf="submitted && form['category'].errors" class="invalid-feedback">
+                  <div *ngIf="form['category'].errors['required']">
+                    This value is required
                   </div>
                 </div>
               </div>
             </div>
-            <!--end col-->
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label class="form-label">Communication Type</label>
+                <select class="form-select rounded-pill" name="category" formControlName="category"
+                  [ngClass]="{'is-invalid': submitted && form['category'].errors}" id="event-category" required>
+                  <option value="">Select</option>
+                  <option value="">Spanish</option>
+                  <option value="">Cantones</option>
+                </select>
+                <div *ngIf="submitted && form['category'].errors" class="invalid-feedback">
+                  <div *ngIf="form['category'].errors['required']">
+                    This value is required
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label class="form-label">Member who will place the call</label>
+                <select class="form-select rounded-pill" name="category" formControlName="category"
+                  [ngClass]="{'is-invalid': submitted && form['category'].errors}" id="event-category" required>
+                  <option value="" select>Jose Demo</option>
+                  <option value="">Spanish</option>
+                  <option value="">Cantones</option>
+                </select>
+                <small>Only change this if you are scheduling this call for another member of your organization.</small>
+                <div *ngIf="submitted && form['category'].errors" class="invalid-feedback">
+                  <div *ngIf="form['category'].errors['required']">
+                    This value is required
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label class="form-label">How many interpreters do you need?</label>
+                <select class="form-select rounded-pill" name="category" formControlName="category"
+                  [ngClass]="{'is-invalid': submitted && form['category'].errors}" id="event-category" required>
+                  <option value="" select>1</option>
+                  <option value="">2</option>
+                  <option value="">3</option>
+                </select>
+                <div *ngIf="submitted && form['category'].errors" class="invalid-feedback">
+                  <div *ngIf="form['category'].errors['required']">
+                    This value is required
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label class="form-label">Will the call take place on Speak Now Video, or another platform?</label>
+                <select class="form-select rounded-pill" name="category" formControlName="category"
+                  [ngClass]="{'is-invalid': submitted && form['category'].errors}" id="event-category" required>
+                  <option value="" select>Speak Now Video</option>
+                  <option value="">2</option>
+                  <option value="">3</option>
+                </select>
+                <div *ngIf="submitted && form['category'].errors" class="invalid-feedback">
+                  <div *ngIf="form['category'].errors['required']">
+                    This value is required
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="col-12">
               <div class="mb-3">
                 <label class="form-label">Description</label>
-                <textarea class="form-control" id="event-description" placeholder="Enter a description" rows="3"
-                  spellcheck="false" formControlName="desription"
+                <textarea class="form-control" id="event-description"
+                  placeholder="Please provide any additional information about the appoinment/event special instructions for the interpreter. If you share your Speak Now Video ID with anyone else, please include your name, phone number and email address, so that we can contact you with a confirmation and/or questions."
+                  rows="3" spellcheck="false" formControlName="desription"
                   [ngClass]="{ 'is-invalid': submitted && form['desription'].errors }"></textarea>
                 <div *ngIf="submitted && form['desription'].errors" class="invalid-feedback">
                   <span *ngIf="form['desription'].errors['required']">This value is required.</span>
@@ -335,7 +400,7 @@
             <!--end col-->
           </div>
           <div class="hstack gap-2 justify-content-end">
-            <button type="submit" class="btn btn-success" id="btn-save-event">Add Event</button>
+            <button type="submit" class="btn btn-danger rounded-pill fw-medium px-5" id="btn-save-event">Submit</button>
           </div>
         </form>
       </div>

@@ -1,5 +1,12 @@
 <div class="row">
+  <div class="col-12">
+    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+      <h4 class="mb-sm-0">ON-SITE INTERPRETER</h4>
+    </div>
+  </div>
+</div>
 
+<div class="row">
   <div class="col-xl-3">
     <div class="card card-h-100">
       <div class="card-body">
@@ -230,8 +237,8 @@
 
     <!-- Add New Event MODAL -->
     <ng-template #modalShow let-modal>
-      <div class="modal-header p-3 bg-soft-info">
-        <h5 class="modal-title" id="modal-title">Add Event</h5>
+      <div class="modal-header bg-dark p-3">
+        <h5 class="modal-title text-white" id="modal-title">Add Assignment</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"
           (click)="closeEventModal()"></button>
       </div>
@@ -241,15 +248,12 @@
           <div class="row event-form">
             <div class="col-12">
               <div class="mb-3">
-                <label class="form-label">Type</label>
-                <select class="form-select" name="category" formControlName="category"
+                <label class="form-label">Assignment Type</label>
+                <select class="form-select rounded-pill" name="category" formControlName="category"
                   [ngClass]="{'is-invalid': submitted && form['category'].errors}" id="event-category" required>
-                  <option value="bg-soft-danger">Danger</option>
-                  <option value="bg-soft-success">Success</option>
-                  <option value="bg-soft-primary">Primary</option>
-                  <option value="bg-soft-info">Info</option>
-                  <option value="bg-soft-dark">Dark</option>
-                  <option value="bg-soft-warning">Warning</option>
+                  <option value="" select>Primary</option>
+                  <option value="">Spanish</option>
+                  <option value="">Cantones</option>
                 </select>
                 <div *ngIf="submitted && form['category'].errors" class="invalid-feedback">
                   <div *ngIf="form['category'].errors['required']">
@@ -261,58 +265,39 @@
             <!--end col-->
             <div class="col-12">
               <div class="mb-3">
-                <label class="form-label">Event Name</label>
-                <input class="form-control" placeholder="Enter event name" type="text" name="title" id="event-title"
-                  required value="" formControlName="title"
-                  [ngClass]="{ 'is-invalid': submitted && form['title'].errors }" />
-                <div *ngIf="submitted && form['title'].errors" class="invalid-feedback">
-                  <span *ngIf="form['title'].errors['required']">This value is required.</span>
+                <label class="form-label">Requestor</label>
+                <select class="form-select rounded-pill" name="category" formControlName="category"
+                  [ngClass]="{'is-invalid': submitted && form['category'].errors}" id="event-category" required>
+                  <option value="" select>Enter event name</option>
+                  <option value="">Spanish</option>
+                  <option value="">Cantones</option>
+                </select>
+                <div *ngIf="submitted && form['category'].errors" class="invalid-feedback">
+                  <div *ngIf="form['category'].errors['required']">
+                    This value is required
+                  </div>
                 </div>
               </div>
             </div>
             <!--end col-->
-            <div class="col-12">
+            <div class="col-md-6">
               <div class="mb-3">
-                <label>Event Date</label>
-                <div class="input-group">
-                  <!-- <input class="form-control flatpickr-input" type="text" mwlFlatpickr [altInput]="true" [convertModelValue]="true" placeholder="Select date"> -->
-                  <input class="form-control flatpickr-input" type="text" mwlFlatpickr [altInput]="true"
-                    altFormat="d/m/Y" [convertModelValue]="true" placeholder="Select date" id="event-date"
-                    formControlName="date">
-                </div>
+                <label for="exampleInputdate" class="form-label">Date</label>
+                <input type="date" class="form-control rounded-pill" id="exampleInputdate">
               </div>
             </div>
-            <!--end col-->
-            <div class="col-12" id="event-time">
-              <div class="row">
-                <div class="col-6">
-                  <div class="mb-3">
-                    <label class="form-label">Start Time</label>
-                    <div class="input-group">
-                      <input class="form-control flatpickr-input" type="text" placeholder="Select start time"
-                        mwlFlatpickr [noCalendar]="true" [enableTime]="true" [dateFormat]="'H:i'"
-                        formControlName="start">
-                    </div>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="mb-3">
-                    <label class="form-label">End Time</label>
-                    <div class="input-group">
-                      <input class="form-control flatpickr-input" type="text" placeholder="Select end time" mwlFlatpickr
-                        [noCalendar]="true" [enableTime]="true" [dateFormat]="'H:i'" formControlName="end">
-                    </div>
-                  </div>
-                </div>
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="exampleInputtime" class="form-label">Time</label>
+                <input type="time" class="form-control rounded-pill" id="exampleInputtime">
               </div>
             </div>
-            <!--end col-->
             <div class="col-12">
               <div class="mb-3">
                 <label for="event-location">Location</label>
                 <div>
-                  <input class="form-control" placeholder="Event location" type="text" name="event-location"
-                    id="event-location" required value="" formControlName="location"
+                  <input class="form-control rounded-pill" placeholder="Event location" type="text"
+                    name="event-location" id="event-location" required value="" formControlName="location"
                     [ngClass]="{ 'is-invalid': submitted && form['location'].errors }" />
                   <div *ngIf="submitted && form['location'].errors" class="invalid-feedback">
                     <span *ngIf="form['location'].errors['required']">This value is required.</span>
@@ -335,7 +320,7 @@
             <!--end col-->
           </div>
           <div class="hstack gap-2 justify-content-end">
-            <button type="submit" class="btn btn-success" id="btn-save-event">Add Event</button>
+            <button type="submit" class="btn btn-danger rounded-pill fw-medium px-5" id="btn-save-event">Save</button>
           </div>
         </form>
       </div>

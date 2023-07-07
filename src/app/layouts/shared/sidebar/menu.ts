@@ -9,30 +9,24 @@ export const MENU: MenuItem[] = [
     link: '/admin'
   },
 
-  {
-    id: 11,
-    label: 'MENUITEMS.CALLS.TEXT',
-    icon: 'ri-dashboard-2-line',
-    link: '/calls'
-  },
+  // {
+  //   id: 11,
+  //   label: 'MENUITEMS.CALLS.TEXT',
+  //   icon: 'ri-dashboard-2-line',
+  //   link: '/calls'
+  // },
 
-  {
-    id: 12,
-    label: 'MENUITEMS.CONNECTNOW.TEXT',
-    icon: 'ri-dashboard-2-line',
-    link: '/calls/connectNow'
-  },
-  {
-    id: 13,
-    label: 'MENUITEMS.CALLREPORT.TEXT',
-    icon: 'ri-dashboard-2-line',
-    link: '/calls/callReport'
-  },
+  // {
+  //   id: 12,
+  //   label: 'MENUITEMS.CONNECTNOW.TEXT',
+  //   icon: 'ri-dashboard-2-line',
+  //   link: '/calls/connectNow'
+  // },
 
   {
     id: 20,
     label: 'MENUITEMS.SCHEDULEINTERPRETER.TEXT',
-    icon: 'ri-rocket-line',
+    icon: 'ri-calendar-2-line',
     subItems: [
       {
         id: 85,
@@ -58,7 +52,7 @@ export const MENU: MenuItem[] = [
   {
     id: 21,
     label: 'MENUITEMS.POOLINTERPRETER.TEXT',
-    icon: 'ri-rocket-line',
+    icon: 'ri-translate-2',
     subItems: [
       {
         id: 85,
@@ -73,6 +67,91 @@ export const MENU: MenuItem[] = [
         parentId: 84,
       },
     ]
+  },
+
+  {
+    id: 13,
+    label: 'MENUITEMS.CALLREPORT.TEXT',
+    icon: 'mdi mdi-phone-log-outline',
+    // link: '/calls/callReport',
+    subItems: [
+      {
+        id: 85,
+        label: 'MENUITEMS.CALLREPORT.LIST.OPICALLDETAIL',
+        link: '/calls/opi-call',
+        parentId: 84
+      },
+      {
+        id: 86,
+        label: 'MENUITEMS.CALLREPORT.LIST.VRICALLDETAIL',
+        link: '/calls/opi-call',
+        parentId: 84,
+      },
+      {
+        id: 87,
+        label: 'MENUITEMS.CALLREPORT.LIST.ASLCALLDETAIL',
+        link: '/calls/opi-call',
+        parentId: 84,
+      },
+    ]
+  },
+  {
+    id: 22,
+    label: 'MENUITEMS.CUSTOMERS.TEXT',
+    icon: ' ri-team-line',
+    link: '/admin/customer'
+  },
+  {
+    id: 23,
+    label: 'MENUITEMS.BILLINGS.TEXT',
+    icon: 'ri-article-line',
+    link: '/admin/billing'
+  },
+
+  {
+    id: 14,
+    label: 'MENUITEMS.CONFIGURATION.TEXT',
+    icon: 'ri-settings-line',
+    // link: '/calls/callReport',
+    subItems: [
+      {
+        id: 85,
+        label: 'MENUITEMS.CONFIGURATION.LIST.QUICKBOOK',
+        link: '/admin/quickbooks',
+        parentId: 84
+      },
+      {
+        id: 86,
+        label: 'MENUITEMS.CONFIGURATION.LIST.CALLQUEUES',
+        link: '/admin/call-queues',
+        parentId: 84,
+      },
+      {
+        id: 87,
+        label: 'MENUITEMS.CONFIGURATION.LIST.PROFILEACCOUNT',
+        link: '/admin/profile-account',
+        parentId: 84,
+      },
+    ]
+  },
+
+  {
+    id: 24,
+    label: 'MENUITEMS.INTERPRETERPORTAL.TEXT',
+    icon: 'ri-dashboard-line',
+    link: '/admin/portal-interpreter'
+  },
+  {
+    id: 24,
+    label: 'MENUITEMS.MYASSIGNMENT.TEXT',
+    icon: 'ri-calendar-2-line',
+    link: '/admin/my-assignments'
+  },
+  {
+    id: 24,
+    label: 'MENUITEMS.CALLHISTORY.TEXT',
+    icon: 'mdi mdi-phone-dial-outline',
+    link: '/calls/call-history'
   },
 
   {

@@ -6,7 +6,7 @@ import { MENU } from './menu';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { IAppState } from 'src/app/app.state';
-import { Allow } from 'src/app/interfaces/auth.interface';
+import { Allow, IUserData } from 'src/app/interfaces/auth.interface';
 import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
@@ -22,11 +22,19 @@ export class SidebarComponent implements OnInit {
 
   menu: any;
   toggle: any = true;
+
+  private _loadedMenu = false;
+  private _userData?: IUserData;
+
   // menuItems: MenuItem[] = MENU;
   menuItems: Allow[] = [];
   @ViewChild('sideMenu') sideMenu!: ElementRef;
   @Output() mobileMenuButtonClicked = new EventEmitter();
 
+
+  get userRoles() { return this._userData?.roles.map( (r) => r.name ).join(' - ') ?? 'sin rol'; }
+  get fullname() { return this._userData?.fullname ?? 'undefined'; }
+  get companyLogo() { return this._userData?.organization.logoUrl ?? '/assets/images/logo-color.png'; }
 
   constructor(
     private router: Router,
@@ -40,50 +48,58 @@ export class SidebarComponent implements OnInit {
     this.onListenRx();
 
 
-
   }
 
   onListenRx() {
     this._segurity$ = this._store.select('segurity')
     .subscribe( (state) => {
 
-      const { menuSystem } = state;
+      const { menuSystem, userData } = state;
 
-      this.menuItems = menuSystem;
+      if( !this._loadedMenu && menuSystem.length > 0 ) {
 
-      setTimeout(() => {
-        const id = this._st.getItem('a-id');
-        if( id != '' ) {
+        this._loadedMenu = true;
 
-          const isCurrentMenuId = document.getElementById(id);
+        this.menuItems = menuSystem;
+        this._userData = userData;
+
+        setTimeout(() => {
+          const id = this._st.getItem('a-id');
+          if( id != '' ) {
+
+            const isCurrentMenuId = document.getElementById(id);
 
 
-          let isMenu = isCurrentMenuId?.nextElementSibling as any;
-          if (isMenu.classList.contains("show")) {
-            isMenu.classList.remove("show");
-            isCurrentMenuId?.setAttribute("aria-expanded", "false");
-          } else {
-            let dropDowns = Array.from(document.querySelectorAll('#navbar-nav .show'));
-            dropDowns.forEach((node: any) => {
-              node.classList.remove('show');
-            });
-            (isMenu) ? isMenu.classList.add('show') : null;
-            const ul = document.getElementById("navbar-nav");
-            if (ul) {
-              const iconItems = Array.from(ul.getElementsByTagName("a"));
-              let activeIconItems = iconItems.filter((x: any) => x.classList.contains("active"));
-              activeIconItems.forEach((item: any) => {
-                item.setAttribute('aria-expanded', "false")
-                item.classList.remove("active");
+            let isMenu = isCurrentMenuId?.nextElementSibling as any;
+            if (isMenu.classList.contains("show")) {
+              isMenu.classList.remove("show");
+              isCurrentMenuId?.setAttribute("aria-expanded", "false");
+            } else {
+              let dropDowns = Array.from(document.querySelectorAll('#navbar-nav .show'));
+              dropDowns.forEach((node: any) => {
+                node.classList.remove('show');
               });
-            }
-            isCurrentMenuId?.setAttribute("aria-expanded", "true");
-            if (isCurrentMenuId) {
-              this.activateParentDropdown(isCurrentMenuId);
+              (isMenu) ? isMenu.classList.add('show') : null;
+              const ul = document.getElementById("navbar-nav");
+              if (ul) {
+                const iconItems = Array.from(ul.getElementsByTagName("a"));
+                let activeIconItems = iconItems.filter((x: any) => x.classList.contains("active"));
+                activeIconItems.forEach((item: any) => {
+                  item.setAttribute('aria-expanded', "false")
+                  item.classList.remove("active");
+                });
+              }
+              isCurrentMenuId?.setAttribute("aria-expanded", "true");
+              if (isCurrentMenuId) {
+                this.activateParentDropdown(isCurrentMenuId);
+              }
             }
           }
-        }
-      }, 10);
+        }, 10);
+
+        // this._segurity$?.unsubscribe();
+      }
+
 
       console.log('menuSystem ::: ', menuSystem);
 
@@ -159,7 +175,7 @@ export class SidebarComponent implements OnInit {
   // Click wise Parent active class add
   toggleParentItem(event: any) {
     let isCurrentMenuId = event.target.closest('a.nav-link');
-    
+
     this._st.setItem( 'a-id', '' );
     // console.log('isCurrentMenuId ::: ', isCurrentMenuId);
 

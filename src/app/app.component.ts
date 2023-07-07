@@ -9,7 +9,6 @@ import * as segurityActions from './redux/actions/segurity.actions';
 import { Subscription } from 'rxjs';
 import { StorageService } from './services/storage.service';
 import { EThemeMode } from './interfaces/theme.enum';
-import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from './services/auth.service';
 
 @Component({
@@ -62,9 +61,7 @@ export class AppComponent {
 
           const { allowMenu, data } = response;
 
-
-
-          this._store.dispatch( segurityActions.onLoadMenuSystem( { allow: allowMenu } ) );
+          this._store.dispatch( segurityActions.onLoadMenuSystem( { allow: allowMenu, userData: data } ) );
           // this._store.dispatch( uiActions.onLoadedMenu() );
 
           console.log('response ::: ', response);
@@ -155,7 +152,7 @@ export class AppComponent {
 
       const { loadMenu } = state;
 
-
+      if( !loadMenu ) this._loadMenu = false;
 
       if( loadMenu && !this._loadMenu ) {
         this._loadMenu = true;

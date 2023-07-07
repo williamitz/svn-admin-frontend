@@ -9,8 +9,12 @@ import { CookieService } from 'ngx-cookie-service';
 //redux
 import { Store } from '@ngrx/store';
 import * as uiActions from '../../../redux/actions/ui.actions';
+import * as segurityActions from '../../../redux/actions/segurity.actions';
 import { IAppState } from 'src/app/app.state';
 import { StorageService } from 'src/app/services/storage.service';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { IUserData } from 'src/app/interfaces/auth.interface';
 
 @Component({
   selector: 'app-topbar',
@@ -24,15 +28,12 @@ export class TopbarComponent implements OnInit {
   // @Output() mobileMenuButtonClicked = new EventEmitter();
 
 
+
   flagvalue = 'assets/images/flags/spain.svg';
   valueset: any;
   countryName: any;
   cookieValue: any;
-  userData = {
-    first_name: 'William',
-    last_name: 'Calle',
-    role: 'Admin'
-  };
+
 
    /***
    * Language Listing
@@ -54,6 +55,13 @@ export class TopbarComponent implements OnInit {
   private _cookiesService = inject( CookieService );
   private _st = inject( StorageService );
   private _store = inject( Store<IAppState> );
+  private _router = inject( Router );
+
+  private _segurity$?: Subscription;
+
+  private _loadedUser = false;
+
+  private _userData?: IUserData;
 
   constructor(@Inject(DOCUMENT) private document: any){}
 
@@ -61,7 +69,12 @@ export class TopbarComponent implements OnInit {
     this.element = document.documentElement;
 
     this.cookieValue = this._cookiesService.get('lang');
+
+    this.onListenRx();
   }
+
+  get userRoles() { return this._userData?.roles.map( (r) => r.name ).join(' - ') ?? 'sin rol'; }
+  get fullname() { return this._userData?.fullname ?? 'undefined'; }
 
   /***
    * Language Value Set
@@ -160,6 +173,26 @@ export class TopbarComponent implements OnInit {
   }
 
 
+  onListenRx() {
+    this._segurity$ = this._store.select('segurity')
+    .subscribe( (state) => {
+
+      const { userData } = state;
+
+      if( !this._loadedUser && userData ) {
+
+        this._loadedUser = true;
+
+        this._userData = userData;
+
+        // this._segurity$?.unsubscribe();
+      }
+
+
+
+    });
+  }
+
   /**
    * Search Close Btn
    */
@@ -210,6 +243,20 @@ export class TopbarComponent implements OnInit {
   }
 
   logout() {
+
+    this._st.setItem('token', '');
+    this._st.onClearStorage();
+
+    this._store.dispatch( segurityActions.onClear() );
+
+    this._router.navigateByUrl('/auth');
+
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this._segurity$?.unsubscribe();
 
   }
 
