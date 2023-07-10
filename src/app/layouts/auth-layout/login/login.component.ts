@@ -8,6 +8,7 @@ import { StorageService } from 'src/app/services/storage.service';
 import { Store } from '@ngrx/store';
 // import * as uiActions from '../../../redux/actions/ui.actions';
 import * as segurityActions from '../../../redux/actions/segurity.actions';
+import { UiService } from 'src/app/services/ui.service';
 
 @Component({
   selector: 'app-login',
@@ -22,6 +23,7 @@ export class LoginComponent {
   private _st = inject( StorageService );
   private _store = inject( Store );
   private _router = inject( Router );
+  private _uisvc = inject( UiService );
 
   frmLogin = new UntypedFormGroup({});
   submitted = false;
@@ -52,6 +54,9 @@ export class LoginComponent {
 
     if( this.invalid || this.loading ) return;
 
+    this.loading = true;
+    this._uisvc.onShowLoading();
+
     this.singin$ = this._authsvc.onSingin( this.values )
     .subscribe( (response) => {
 
@@ -59,6 +64,8 @@ export class LoginComponent {
 
       this._st.setItem('token', token);
       this._store.dispatch( segurityActions.onLoadMenu() );
+      this.loading = false;
+      this._uisvc.onClose();
       this._router.navigateByUrl('/admin');
 
       console.log('response ::: ', response);

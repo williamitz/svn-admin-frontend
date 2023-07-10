@@ -33,9 +33,9 @@
               "node_modules/shepherd.js/dist/css/shepherd.css",
               "node_modules/flatpickr/dist/flatpickr.css",
               "src/styles.scss",
-              "src/assets/scss/config/default/bootstrap.scss",
-              "src/assets/scss/config/default/app.scss",
-              "src/assets/scss/icons.scss"
+              "src/scss/config/default/bootstrap.scss",
+              "src/scss/config/default/app.scss",
+              "src/scss/icons.scss"
             ],
             "scripts": [
             ]
