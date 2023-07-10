@@ -38,6 +38,7 @@
               "src/scss/icons.scss"
             ],
             "scripts": [
+              "node_modules/apexcharts/dist/apexcharts.min.js"
             ]
           },
           "configurations": {
