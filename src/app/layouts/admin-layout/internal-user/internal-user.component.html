@@ -21,7 +21,7 @@
             <div class="col-sm-auto">
               <div>
                 <button type="button" class="btn btn-danger rounded-pill add-btn" data-bs-toggle="modal" id="create-btn"
-                  data-bs-target="#addModalInterpreter"><i class="ri-add-line align-bottom me-1"></i> Add User</button>
+                  data-bs-target="#addModalInterpreter"><i class="ri-add-line align-bottom me-1"></i> New User</button>
               </div>
             </div>
             <div class="col-sm">
@@ -91,11 +91,11 @@
                 <option [value]="10">10</option>
                 <option [value]="20">20</option>
               </select>
-              register |
+              <!-- register |
               <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" role="switch" id="chxActive" formControlName="active">
                 <label class="form-check-label" for="chxActive">See inactive</label>
-              </div>
+              </div> -->
             </div>
           </div>
           <!-- <div class="col-6">
@@ -116,7 +116,7 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header bg-dark p-3">
-        <h5 class="modal-title text-white" id="exampleModalgridLabel">Add User</h5>
+        <h5 class="modal-title text-white" id="exampleModalgridLabel">Create User</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -136,7 +136,7 @@
             </div>
             <div class="col-md-6">
               <div>
-                <label for="firstName" class="form-label">E-mail</label>
+                <label for="firstName" class="form-label">Email</label>
                 <input type="email" class="form-control rounded-pill" id="firstName" placeholder="Enter name">
               </div>
             </div>
@@ -168,16 +168,17 @@
                 <input type="number" class="form-control rounded-pill" id="firstName" disabled>
               </div>
             </div>
-
-            <div class="col-lg-12">
-              <div class="hstack gap-2 justify-content-center">
-                <button type="submit" class="btn btn-danger rounded-pill fw-medium px-5">Save</button>
-              </div>
-            </div>
-            <!--end col-->
           </div>
           <!--end row-->
         </form>
+      </div>
+      <div class="modal-footer">
+        <div class="col-lg-12">
+          <div class="hstack gap-2 justify-content-center">
+            <button type="submit" class="btn btn-danger rounded-pill fw-medium px-5">Save</button>
+          </div>
+        </div>
+        <!--end col-->
       </div>
     </div>
   </div>

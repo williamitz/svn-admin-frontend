@@ -1,7 +1,7 @@
 <!-- ========== App Menu ========== -->
 <div class="app-menu navbar-menu">
-    <!-- LOGO -->
-    <!-- <div class="navbar-brand-box">
+  <!-- LOGO -->
+  <!-- <div class="navbar-brand-box">
         <a routerLink="/" class="logo logo-dark">
             <span class="logo-sm">
               <img src="assets/images/logo-sm.png" alt="" height="22">
@@ -39,8 +39,7 @@
         <img src="assets/images/logo-sm.png" alt="" height="22">
       </span>
       <span class="logo-lg">
-        <!-- <img src="assets/images/logo-light.png" alt="" height="17"> -->
-        <img [src]="companyLogo" height="60">
+        <img [src]="companyLogo" class="logo-img">
       </span>
     </a>
     <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover" id="vertical-hover"
@@ -56,152 +55,143 @@
       </div>
       <ngx-simplebar class="sidebar-menu-scroll" style="max-height: calc(100vh - 70px)">
 
-              <div class="menu-title" >
+        <!-- <div class="menu-title" >
                 <span data-key="t-menu">
                   Bienvenido
                 </span>
-              </div>
+              </div> -->
 
-                <ul class="metismenu list-unstyled navbar-nav" id="navbar-nav">
-                    <ng-container *ngFor="let item of menuItems">
+        <ul class="metismenu list-unstyled navbar-nav" id="navbar-nav">
+          <ng-container *ngFor="let item of menuItems">
 
-                        <!-- <li class="menu-title" *ngIf="item.isTitle">
+            <!-- <li class="menu-title" *ngIf="item.isTitle">
                             <span data-key="t-menu">
                             {{ item.label | translate }}
                           </span>
                         </li> -->
 
-                        <!-- [ngClass]="{'has-arrow': !item.badge, 'has-dropdown': item.badge}"  -->
-                        <li class="nav-item" >
-                            <a *ngIf="hasItems(item)"
-                              href="javascript:void(0);"
-                              class="is-parent nav-link menu-link"
-                              data-bs-toggle="collapse"
-                              id="a-{{ item.id }}"
-                              aria-expanded="false"
-                              (click)="toggleItem($event, item.id)">
+            <!-- [ngClass]="{'has-arrow': !item.badge, 'has-dropdown': item.badge}"  -->
+            <li class="nav-item">
+              <a *ngIf="hasItems(item)" href="javascript:void(0);" class="is-parent nav-link menu-link"
+                data-bs-toggle="collapse" id="a-{{ item.id }}" aria-expanded="false"
+                (click)="toggleItem($event, item.id)">
 
-                                <i class="{{ item.menu.icon }} icon nav-icon" class=""></i>
+                <i class="{{ item.menu.icon }} icon nav-icon" class=""></i>
 
-                                <span class="" *ngIf="item.menu.haveTranslate" > {{ item.menu.translate | translate }}</span>
-                                <span class="" *ngIf="!item.menu.haveTranslate" > {{ item.menu.name }}</span>
+                <span class="" *ngIf="item.menu.haveTranslate"> {{ item.menu.translate | translate }}</span>
+                <span class="" *ngIf="!item.menu.haveTranslate"> {{ item.menu.name }}</span>
 
-                                <!-- TODO: agregar luego campos haveBadge y badgeText -->
-                                <!-- <span class="badge badge-pill {{item.badge.variant}}" *ngIf="item.badge">
+                <!-- TODO: agregar luego campos haveBadge y badgeText -->
+                <!-- <span class="badge badge-pill {{item.badge.variant}}" *ngIf="item.badge">
                                   {{item.badge.text | translate}}
                                 </span> -->
-                            </a>
+              </a>
 
-                            <a [routerLink]="item.menu.webUrl" *ngIf="!hasItems(item)" class="side-nav-link-ref nav-link menu-link" (click)="toggleParentItem($event)">
+              <a [routerLink]="item.menu.webUrl" *ngIf="!hasItems(item)" class="side-nav-link-ref nav-link menu-link"
+                (click)="toggleParentItem($event)">
 
-                                <i class="bx {{ item.menu.icon }} icon nav-icon" *ngIf="item.menu.icon" class=""></i>
-                                <span class="" *ngIf="item.menu.haveTranslate" > {{ item.menu.translate | translate }}</span>
-                                <span class="" *ngIf="!item.menu.haveTranslate" > {{ item.menu.name }}</span>
-                                <!-- <span class="badge badge-pill {{item.badge.variant}}" *ngIf="item.badge">
+                <i class="bx {{ item.menu.icon }} icon nav-icon" *ngIf="item.menu.icon" class=""></i>
+                <span class="" *ngIf="item.menu.haveTranslate"> {{ item.menu.translate | translate }}</span>
+                <span class="" *ngIf="!item.menu.haveTranslate"> {{ item.menu.name }}</span>
+                <!-- <span class="badge badge-pill {{item.badge.variant}}" *ngIf="item.badge">
                                   {{item.badge.text | translate}}
                                 </span> -->
-                            </a>
+              </a>
 
-                            <div class="collapse menu-dropdown" *ngIf="hasItems(item)">
+              <div class="collapse menu-dropdown" *ngIf="hasItems(item)">
 
-                                <ul *ngIf="hasItems(item)" class="nav nav-sm flex-column" aria-expanded="false">
+                <ul *ngIf="hasItems(item)" class="nav nav-sm flex-column" aria-expanded="false">
 
-                                    <li *ngFor="let subitem of item.children" class="nav-item">
+                  <li *ngFor="let subitem of item.children" class="nav-item">
 
-                                        <a [routerLink]="subitem.menu.webUrl"
-                                          *ngIf="!hasItems(subitem)"
-                                          class="nav-link"
-                                          [attr.data-parent]="subitem.menu.patherMenuId"
-                                          (click)="updateActive($event)">
+                    <a [routerLink]="subitem.menu.webUrl" *ngIf="!hasItems(subitem)" class="nav-link"
+                      [attr.data-parent]="subitem.menu.patherMenuId" (click)="updateActive($event)">
 
-                                          <!-- {{ subitem.menu.name | translate}} -->
+                      <!-- {{ subitem.menu.name | translate}} -->
 
-                                          <span class="" *ngIf="subitem.menu.haveTranslate" > {{ subitem.menu.translate | translate }}</span>
-                                          <span class="" *ngIf="!subitem.menu.haveTranslate" > {{ subitem.menu.name }}</span>
+                      <span class="" *ngIf="subitem.menu.haveTranslate"> {{ subitem.menu.translate | translate }}</span>
+                      <span class="" *ngIf="!subitem.menu.haveTranslate"> {{ subitem.menu.name }}</span>
 
-                                          <!-- <span class="badge badge-pill {{subitem.badge.variant}}" *ngIf="subitem.badge">
+                      <!-- <span class="badge badge-pill {{subitem.badge.variant}}" *ngIf="subitem.badge">
                                             {{subitem.badge.text | translate}}
                                           </span> -->
 
-                                        </a>
+                    </a>
 
-                                        <a *ngIf="hasItems(subitem)"
-                                          class="nav-link"
-                                          href="javascript:void(0);"
-                                          [attr.data-parent]="subitem.menu.patherMenuId"
-                                          data-bs-toggle="collapse"
-                                          aria-expanded="false"
-                                          (click)="toggleSubItem($event)"
-                                          >
+                    <a *ngIf="hasItems(subitem)" class="nav-link" href="javascript:void(0);"
+                      [attr.data-parent]="subitem.menu.patherMenuId" data-bs-toggle="collapse" aria-expanded="false"
+                      (click)="toggleSubItem($event)">
 
-                                          <!-- {{ subitem.menu.name| translate}} -->
-                                          <span class="" *ngIf="subitem.menu.haveTranslate" > {{ subitem.menu.translate | translate }}</span>
-                                          <span class="" *ngIf="!subitem.menu.haveTranslate" > {{ subitem.menu.name }}</span>
+                      <!-- {{ subitem.menu.name| translate}} -->
+                      <span class="" *ngIf="subitem.menu.haveTranslate"> {{ subitem.menu.translate | translate }}</span>
+                      <span class="" *ngIf="!subitem.menu.haveTranslate"> {{ subitem.menu.name }}</span>
 
-                                          <!-- <span class="badge badge-pill {{subitem.badge.variant}}" *ngIf="subitem.badge">
+                      <!-- <span class="badge badge-pill {{subitem.badge.variant}}" *ngIf="subitem.badge">
                                             {{subitem.badge.text | translate}}
                                           </span> -->
 
-                                        </a>
+                    </a>
 
-                                        <div class="collapse menu-dropdown sub-menu" *ngIf="hasItems(subitem)">
-                                            <ul *ngIf="hasItems(subitem)" class="nav nav-sm flex-column" aria-expanded="false">
-                                                <li *ngFor="let subSubitem of subitem.children" class="nav-item">
+                    <div class="collapse menu-dropdown sub-menu" *ngIf="hasItems(subitem)">
+                      <ul *ngIf="hasItems(subitem)" class="nav nav-sm flex-column" aria-expanded="false">
+                        <li *ngFor="let subSubitem of subitem.children" class="nav-item">
 
-                                                    <a  [routerLink]="subSubitem.menu.webUrl" *ngIf="!hasItems(subSubitem)" class="nav-link" [attr.data-parent]="subSubitem.menu.patherMenuId" (click)="updateActive($event)">
-                                                      <!-- {{ subSubitem.menu.name| translate}} -->
+                          <a [routerLink]="subSubitem.menu.webUrl" *ngIf="!hasItems(subSubitem)" class="nav-link"
+                            [attr.data-parent]="subSubitem.menu.patherMenuId" (click)="updateActive($event)">
+                            <!-- {{ subSubitem.menu.name| translate}} -->
 
-                                                      <span class="" *ngIf="subitem.menu.haveTranslate" > {{ subitem.menu.translate | translate }}</span>
-                                                      <span class="" *ngIf="!subitem.menu.haveTranslate" > {{ subitem.menu.name }}</span>
+                            <span class="" *ngIf="subitem.menu.haveTranslate"> {{ subitem.menu.translate | translate
+                              }}</span>
+                            <span class="" *ngIf="!subitem.menu.haveTranslate"> {{ subitem.menu.name }}</span>
 
-                                                    </a>
+                          </a>
 
-                                                    <a *ngIf="hasItems(subSubitem)"
-                                                      class="nav-link"
-                                                      href="javascript:void(0);"
-                                                      [attr.data-parent]="subSubitem.menu.patherMenuId"
-                                                      data-bs-toggle="collapse"
-                                                      aria-expanded="false"
-                                                      (click)="toggleExtraSubItem($event)"
-                                                      >
+                          <a *ngIf="hasItems(subSubitem)" class="nav-link" href="javascript:void(0);"
+                            [attr.data-parent]="subSubitem.menu.patherMenuId" data-bs-toggle="collapse"
+                            aria-expanded="false" (click)="toggleExtraSubItem($event)">
 
-                                                      <!-- {{ subSubitem.menu.name| translate}} -->
+                            <!-- {{ subSubitem.menu.name| translate}} -->
 
-                                                      <span class="" *ngIf="subitem.menu.haveTranslate" > {{ subitem.menu.translate | translate }}</span>
-                                                      <span class="" *ngIf="!subitem.menu.haveTranslate" > {{ subitem.menu.name }}</span>
+                            <span class="" *ngIf="subitem.menu.haveTranslate"> {{ subitem.menu.translate | translate
+                              }}</span>
+                            <span class="" *ngIf="!subitem.menu.haveTranslate"> {{ subitem.menu.name }}</span>
 
-                                                      <!-- <span class="badge badge-pill {{subSubitem.badge.variant}}" *ngIf="subSubitem.badge">
+                            <!-- <span class="badge badge-pill {{subSubitem.badge.variant}}" *ngIf="subSubitem.badge">
                                                         {{subSubitem.badge.text | translate}}
                                                       </span> -->
 
-                                                    </a>
+                          </a>
 
-                                                    <div class="collapse menu-dropdown extra-sub-menu" *ngIf="hasItems(subSubitem)">
-                                                        <ul *ngIf="hasItems(subSubitem)" class="nav nav-sm flex-column" aria-expanded="false">
-                                                            <li *ngFor="let subSubitem1 of subSubitem.children" class="nav-item">
+                          <div class="collapse menu-dropdown extra-sub-menu" *ngIf="hasItems(subSubitem)">
+                            <ul *ngIf="hasItems(subSubitem)" class="nav nav-sm flex-column" aria-expanded="false">
+                              <li *ngFor="let subSubitem1 of subSubitem.children" class="nav-item">
 
-                                                                <a [attr.data-parent]="subSubitem1.menu.patherMenuId" [routerLink]="subSubitem1.menu.webUrl" class="nav-link" (click)="updateActive($event)">
-                                                                  <!-- {{ subSubitem1.menu.name | translate }} -->
+                                <a [attr.data-parent]="subSubitem1.menu.patherMenuId"
+                                  [routerLink]="subSubitem1.menu.webUrl" class="nav-link"
+                                  (click)="updateActive($event)">
+                                  <!-- {{ subSubitem1.menu.name | translate }} -->
 
-                                                                  <span class="" *ngIf="subSubitem1.menu.haveTranslate" > {{ subSubitem1.menu.translate | translate }}</span>
-                                                                  <span class="" *ngIf="!subSubitem1.menu.haveTranslate" > {{ subSubitem1.menu.name }}</span>
+                                  <span class="" *ngIf="subSubitem1.menu.haveTranslate"> {{ subSubitem1.menu.translate |
+                                    translate }}</span>
+                                  <span class="" *ngIf="!subSubitem1.menu.haveTranslate"> {{ subSubitem1.menu.name
+                                    }}</span>
 
-                                                                </a>
+                                </a>
 
-                                                            </li>
-                                                        </ul>
-                                                    </div>
+                              </li>
+                            </ul>
+                          </div>
 
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
                         </li>
-
-                    </ng-container>
+                      </ul>
+                    </div>
+                  </li>
                 </ul>
+              </div>
+            </li>
+
+          </ng-container>
+        </ul>
 
 
       </ngx-simplebar>

@@ -3,145 +3,136 @@
 
 <div class="row">
   <div class="col-12">
-      <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-          <h4 class="mb-sm-0">
-            Clients
-          </h4>
+    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+      <h4 class="mb-sm-0">
+        Clients
+      </h4>
 
-          <div class="page-title-right">
-              <ol class="breadcrumb m-0">
-                  <li class="breadcrumb-item"><a href="javascript: void(0);">Administración</a></li>
-                  <li class="breadcrumb-item active">Clients</li>
-              </ol>
-          </div>
-
+      <div class="page-title-right">
+        <ol class="breadcrumb m-0">
+          <li class="breadcrumb-item"><a href="javascript: void(0);">Administración</a></li>
+          <li class="breadcrumb-item active">Clients</li>
+        </ol>
       </div>
+
+    </div>
   </div>
 </div>
 
 <div class="row">
   <div class="col">
-    <form [formGroup]="frmFilter" >
+    <form [formGroup]="frmFilter">
 
       <div class="card">
 
-            <div class="card-body">
+        <div class="card-body">
 
-                <div class="row pb-4 ">
-                  <div class="col-6 ">
+          <div class="row pb-4 ">
+            <div class="col-6 ">
 
-                    <div class="d-flex justify-content-star align-items-center gap-2">
-                      <div class="">
-                        <input type="text" class="form-control" id="placeholderInput" placeholder="Buscar..." formControlName="filter" >
-                      </div>
-                    </div>
-
-                  </div>
-                  <div class="col-6 ">
-                    <div class="d-flex justify-content-end align-items-center gap-2">
-                      <button type="button" class="btn btn-primary custom-toggle active" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="btnShowModal" >
-                            <i class="ri-add-fill align-bottom me-1"></i> New client
-                      </button>
-                    </div>
-                  </div>
+              <div class="d-flex justify-content-star align-items-center gap-2">
+                <div class="">
+                  <input type="text" class="form-control" id="placeholderInput" placeholder="Buscar..."
+                    formControlName="filter">
                 </div>
-
-                <div class="table-responsive table-card">
-                  <table class="table table-nowrap table-hover mb-0">
-                      <thead class="table-light">
-                          <tr>
-
-                              <th scope="col">Fullname</th>
-                              <th scope="col">Email</th>
-                              <th scope="col">Date</th>
-                              <th scope="col">Time zone</th>
-                              <th scope="col">Status</th>
-                              <th scope="col">Action</th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                          <tr *ngFor="let item of interpreters" >
-                              <td>
-                                <span class="fw-semibold">
-                                  {{ item.fullname }}
-                                </span>
-                                <!-- <a href="#" class="fw-semibold">#VL2110</a> -->
-                              </td>
-                              <td>
-                                {{ item.email }}
-                              </td>
-                              <td>
-                                {{ item.createAt }}
-                                <!-- 07 Oct, 2021 -->
-                              </td>
-                              <td>
-                                {{ item.timezone?.name ?? '' }}
-                              </td>
-                              <td>
-                                <span class="badge bg-success"
-                                [class.bg-success]="item.status"
-                                [class.bg-danger]="!item.status"
-                                >
-                                  {{ item.status | status }}
-                                </span>
-                              </td>
-                              <td>
-                                <button
-                                type="button"
-                                class="btn btn-sm btn-primary"
-                                *ngIf="item.status"
-                                data-bs-toggle="modal"
-                                data-bs-target="#organizationModal"
-                                (click)="onLoadData( item )"
-                              >
-                                <i class="ri-edit-box-line align-bottom" ></i>
-                              </button>
-
-                              <button type="button" class="btn btn-sm btn-danger ms-2"
-                                [class.btn-success]="!item.status"
-                                [class.btn-danger]="item.status"
-                                (click)="onConfirm(item)"
-                              >
-                                <i class="ri-delete-bin-7-line align-bottom" *ngIf="item.status" ></i>
-                                <i class="ri-restart-line align-bottom" *ngIf="!item.status"></i>
-                              </button>
-                              </td>
-                          </tr>
-                      </tbody>
-                  </table>
-
               </div>
 
             </div>
-            <div class="row mt-2">
-              <div class="col-6">
-
-                <div class="d-flex justify-content-start align-items-center gap-4 ms-3">
-
-                  <div class="d-flex justify-content-start align-items-center gap-2 ms-3">
-                    View
-                    <select class="form-select " style="width: 90px;" formControlName="limit" >
-                      <option selected></option>
-                      <option [value]="5">5</option>
-                      <option [value]="10">10</option>
-                      <option [value]="20">20</option>
-                    </select>
-                    records
-                  </div>
-                  |
-                  <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="chxActive" formControlName="active" (change)="onGetClients()" >
-                    <label class="form-check-label" for="chxActive">view disabled</label>
-                  </div>
-
-                </div>
-
-              </div>
-              <div class="col-6">
-                <app-pagination [paginate]="paginate" [total]="total" (navigate)="onGetClients($event)" ></app-pagination>
+            <div class="col-6 ">
+              <div class="d-flex justify-content-end align-items-center gap-2">
+                <button type="button" class="btn btn-danger rounded-pill px-md-5 fw-medium custom-toggle"
+                  data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="btnShowModal">
+                  <i class="ri-add-fill align-bottom me-1"></i> New client
+                </button>
               </div>
             </div>
+          </div>
+
+          <div class="table-responsive table-card">
+            <table class="table table-nowrap table-hover mb-0">
+              <thead class="table-light">
+                <tr>
+
+                  <th scope="col">Fullname</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Time zone</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of interpreters">
+                  <td>
+                    <span class="fw-semibold">
+                      {{ item.fullname }}
+                    </span>
+                    <!-- <a href="#" class="fw-semibold">#VL2110</a> -->
+                  </td>
+                  <td>
+                    {{ item.email }}
+                  </td>
+                  <td>
+                    {{ item.createAt }}
+                    <!-- 07 Oct, 2021 -->
+                  </td>
+                  <td>
+                    {{ item.timezone?.name ?? '' }}
+                  </td>
+                  <td>
+                    <span class="badge badge-soft-success rounded-pill" [class.badge-soft-success]="item.status"
+                      [class.badge-soft-danger]="!item.status">
+                      {{ item.status | status }}
+                    </span>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-sm btn-success" *ngIf="item.status" data-bs-toggle="modal"
+                      data-bs-target="#organizationModal" (click)="onLoadData( item )">
+                      <i class="ri-pencil-fill align-bottom"></i>
+                    </button>
+
+                    <button type="button" class="btn btn-sm btn-danger ms-2" [class.btn-success]="!item.status"
+                      [class.btn-danger]="item.status" (click)="onConfirm(item)">
+                      <i class="ri-delete-bin-7-line align-bottom" *ngIf="item.status"></i>
+                      <i class="ri-restart-line align-bottom" *ngIf="!item.status"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+
         </div>
+        <div class="row mt-2">
+          <!-- <div class="col-6">
+            <div class="d-flex justify-content-start align-items-center gap-4 ms-3">
+              <div class="d-flex justify-content-start align-items-center gap-2 ms-3">
+                View
+                <select class="form-select " style="width: 90px;" formControlName="limit">
+                  <option selected></option>
+                  <option [value]="5">5</option>
+                  <option [value]="10">10</option>
+                  <option [value]="20">20</option>
+                </select>
+                records
+              </div>
+              |
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="chxActive" formControlName="active"
+                  (change)="onGetClients()">
+                <label class="form-check-label" for="chxActive">view disabled</label>
+              </div>
+
+            </div>
+
+          </div> -->
+          <div class="col-6"></div>
+          <div class="col-6">
+            <app-pagination [paginate]="paginate" [total]="total" (navigate)="onGetClients($event)"></app-pagination>
+          </div>
+        </div>
+      </div>
 
     </form>
 
@@ -149,96 +140,88 @@
 </div>
 
 <!-- staticBackdrop Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" *ngIf="!loadData" >
-              Crear Cliente
-            </h5>
-            <h5 class="modal-title" *ngIf="loadData" >
-              Editar Cliente
-            </h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <form [formGroup]="frmUser" (submit)="onSubmit()" >
+    <div class="modal-content">
+      <div class="modal-header bg-dark p-3">
+        <h5 class="modal-title text-white" *ngIf="!loadData">
+          Create Client
+        </h5>
+        <h5 class="modal-title text-white" *ngIf="loadData">
+          Edit Client
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
 
-            <div class="modal-body ">
-
-              <div>
-                <label for="placeholderInput" class="form-label">Fullname</label>
-                <div class="row">
-                  <div class="col-6">
-                    <input type="text" class="form-control" id="placeholderInput" placeholder="Nombres"
-                    formControlName="name" >
-                  </div>
-                  <div class="col-6">
-                    <input type="text" class="form-control" placeholder="Apellidos"
-                    formControlName="surname" >
-                  </div>
-                </div>
+      <form [formGroup]="frmUser" (submit)="onSubmit()">
+        <div class="modal-body ">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="placeholderInput" class="form-label">Name</label>
+                <input type="text" class="form-control" id="placeholderInput" placeholder="Enter name"
+                  formControlName="name">
               </div>
-
-              <div class="pt-2">
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="" class="form-label">Last Name</label>
+                <input type="text" class="form-control" placeholder="Enter last name" formControlName="surname">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3">
                 <label for="iconInput" class="form-label">Email</label>
-                <div class="form-icon">
-                    <input type="email" class="form-control form-control-icon" id="iconInput" placeholder="example@gmail.com"
-                    formControlName="email" >
-                    <i class="ri-user-line"></i>
+                <div class="mb-3">
+                  <input type="email" class="form-control" id="iconInput" placeholder="example@gmail.com"
+                    formControlName="email">
                 </div>
               </div>
-
-              <div class="pt-2">
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3">
                 <label for="cleave-phone" class="form-label">Phone</label>
                 <input type="text" class="form-control" id="cleave-phone" placeholder="xxx-xxx-xxx" mask="000-000-000"
-                formControlName="phone" >
+                  formControlName="phone">
               </div>
-
-              <div class="pt-2">
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3">
                 <label for="cleave-phone" class="form-label">Country</label>
-                <ng-select
-                    [items]="countries"
-                    bindLabel="name"
-                    bindValue="id"
-                    placeholder="Select country"
-                    formControlName="country"
-                    (change)="onGetTimezones()"
-                  >
+                <ng-select [items]="countries" bindLabel="name" bindValue="id" placeholder="Select country"
+                  formControlName="country" (change)="onGetTimezones()">
                 </ng-select>
               </div>
-
-              <div class="pt-2">
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3">
                 <label for="cleave-phone" class="form-label">Time zone</label>
-                <ng-select
-                    [items]="timezones"
-                    bindLabel="name"
-                    bindValue="id"
-                    placeholder="Select time zone"
-                    formControlName="timezone"
-                    [loading]="loadingTimezone"
-                  >
+                <ng-select [items]="timezones" bindLabel="name" bindValue="id" placeholder="Select time zone"
+                  formControlName="timezone" [loading]="loadingTimezone">
                 </ng-select>
               </div>
-
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-light" data-bs-dismiss="modal" id="btnCloseModal" >
-                  Cerrar
-                </button>
-                <button type="submit" class="btn btn-primary" [disabled]="invalid || saving" >
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <!-- <button type="button" class="btn btn-light" data-bs-dismiss="modal" id="btnCloseModal">
+            Cerrar
+          </button> -->
+          <button type="submit" class="btn btn-danger rounded-pill fw-medium px-5" [disabled]="invalid || saving">
 
 
-                  <div class="spinner-border text-light" role="status" *ngIf="saving" >
-                    <span class="sr-only">Loading...</span>
-                  </div>
-                  <span *ngIf="!saving && !loadData" > Save </span>
-                  <span *ngIf="!saving && loadData" > Save changes </span>
-                  <span *ngIf="saving" > Saving... </span>
-
-                </button>
+            <div class="spinner-border text-light" role="status" *ngIf="saving">
+              <span class="sr-only">Loading...</span>
             </div>
-          </form>
-      </div>
+            <span *ngIf="!saving && !loadData"> Save </span>
+            <span *ngIf="!saving && loadData"> Save changes </span>
+            <span *ngIf="saving"> Saving... </span>
+
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
-
