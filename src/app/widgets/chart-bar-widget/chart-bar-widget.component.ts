@@ -136,7 +136,7 @@ export class ChartBarWidgetComponent {
         }
       },
       title: {
-        text: "Call volume",
+        // text: "Call volume",
         // floating: 0,
         offsetX: -10,
         // offsetY: 10,

@@ -10,30 +10,30 @@
 
       <div class="card-header p-0 border-0 bg-soft-light">
         <div class="row g-0 text-center">
-          <div class="col-6 col-sm-3">
+          <div class="col-md-3">
             <div class="p-3 border border-dashed border-start-0">
               <h5 class="mb-1">196</h5>
               <p class="text-muted mb-0">Calls</p>
             </div>
           </div>
           <!--end col-->
-          <div class="col-6 col-sm-3">
+          <div class="col-md-3">
             <div class="p-3 border border-dashed border-start-0">
               <h5 class="mb-1">1,629</h5>
               <p class="text-muted mb-0">Minutes</p>
             </div>
           </div>
           <!--end col-->
-          <div class="col-6 col-sm-3">
+          <div class="col-md-3">
             <div class="p-3 border border-dashed border-start-0">
               <h5 class="mb-1">19s</h5>
               <p class="text-muted mb-0">Avg Connect Time</p>
             </div>
           </div>
           <!--end col-->
-          <div class="col-6 col-sm-3">
+          <div class="col-md-3">
             <div class="p-3 border border-dashed border-start-0 border-end-0">
-              <div class="box-flex">
+              <div class="box-flex justify-content-center">
                 <h5 class="mb-1">Total Earnings</h5>
                 <div class="box-mount">$8534.00</div>
               </div>
@@ -60,7 +60,7 @@
       <div class="card-body">
         <div class="row">
           <div class="col-md-4">
-            <div>
+            <div class="mb-3">
               <label class="form-label">Select Account</label>
               <select class="form-select rounded-pill mb-3" aria-label="Default select example">
                 <option selected="">Search for account</option>
@@ -71,20 +71,21 @@
             </div>
           </div>
           <div class="col-md-4">
-            <div>
+            <div class="mb-3">
               <label for="exampleInputdate" class="form-label">Start Date</label>
               <input type="date" class="form-control" id="exampleInputdate">
             </div>
           </div>
           <div class="col-md-4">
-            <div>
+            <div class="mb-3">
               <label for="exampleInputdateEnd" class="form-label">End Date</label>
               <input type="date" class="form-control" id="exampleInputdateEnd">
             </div>
           </div>
         </div>
-        <div class="text-end mt-3">
-          <button type="button" class="btn rounded-pill btn-danger waves-effect waves-light">Search</button>
+        <div class="text-end">
+          <button type="button"
+            class="btn rounded-pill btn-danger px-5 fw-medium waves-effect waves-light">Search</button>
         </div>
       </div>
     </div>
@@ -103,30 +104,30 @@
 
       <div class="card-header p-0 border-0 bg-soft-light">
         <div class="row g-0 text-center">
-          <div class="col-6 col-sm-3">
+          <div class="col-md-3">
             <div class="p-3 border border-dashed border-start-0">
               <h5 class="mb-1">17</h5>
               <p class="text-muted mb-0">Calls</p>
             </div>
           </div>
           <!--end col-->
-          <div class="col-6 col-sm-3">
+          <div class="col-md-3">
             <div class="p-3 border border-dashed border-start-0">
               <h5 class="mb-1">291</h5>
               <p class="text-muted mb-0">Minutes</p>
             </div>
           </div>
           <!--end col-->
-          <div class="col-6 col-sm-3">
+          <div class="col-md-3">
             <div class="p-3 border border-dashed border-start-0">
               <h5 class="mb-1">14s</h5>
               <p class="text-muted mb-0">Avg Connect Time</p>
             </div>
           </div>
           <!--end col-->
-          <div class="col-6 col-sm-3">
+          <div class="col-md-3">
             <div class="p-3 border border-dashed border-start-0 border-end-0">
-              <div class="box-flex">
+              <div class="box-flex justify-content-center">
                 <h5 class="mb-1">Earnings</h5>
                 <div class="box-mount">$334.00</div>
               </div>
@@ -142,15 +143,204 @@
 <!-- Overview - filter end-->
 
 <div class="row">
-  <div class="col-6">
+  <div class="col-md-6">
     <div class="card">
-      <app-chart-bar-widget></app-chart-bar-widget>
+      <div class="card-header align-items-center d-flex">
+        <h4 class="card-title mb-0 flex-grow-1">Call Volume</h4>
+      </div>
+      <div class="card-body">
+        <app-chart-bar-widget></app-chart-bar-widget>
+
+        <table class="table table-nowrap">
+          <thead>
+            <tr class="table-dark">
+              <th colspan="2">
+                <h5 class="text-center mb-0 text-white">On-Demand Services</h5>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td rowspan="4" class="border">
+                <div class="d-flex flex-column">
+                  <div class="box-icon mx-auto mb-2">
+                    <i class="mdi mdi-phone"></i>
+                  </div>
+                  <span class="text-center">Phone Calls</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="text-end">85 Calls</td>
+            </tr>
+            <tr>
+              <td class="text-end">834 Total Minutes</td>
+            </tr>
+            <tr>
+              <td class="text-end">11 min Avg. Duration</td>
+            </tr>
+            <tr>
+              <td rowspan="4" class="border">
+                <div class="d-flex flex-column">
+                  <div class="box-icon mx-auto mb-2">
+                    <i class="mdi mdi-video"></i>
+                  </div>
+                  <span class="text-center">Video Calls</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="text-end">111 Calls</td>
+            </tr>
+            <tr>
+              <td class="text-end">795 Total Minutes</td>
+            </tr>
+            <tr>
+              <td class="text-end">8 min Avg. Duration</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
-  <div class="col-6">
+  <div class="col-md-6">
     <div class="card">
-      <app-chart-pie-widget></app-chart-pie-widget>
+      <div class="card-header align-items-center d-flex">
+        <h4 class="card-title mb-0 flex-grow-1">Top 5 languages</h4>
+      </div>
+      <div class="card-body">
+        <app-chart-pie-widget></app-chart-pie-widget>
+
+        <div class="table-responsive">
+          <table class="table table-nowrap">
+            <thead>
+              <tr class="table-dark">
+                <th>
+                  <!-- <h5 class="text-center mb-0 text-white">On-Demand Services</h5> -->
+                  Language
+                </th>
+                <th class="text-end">Calls</th>
+                <th class="text-end">Avg. Duration</th>
+                <th class="text-end">Connect Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Spanish</td>
+                <td class="text-end">90</td>
+                <td class="text-end">11 min</td>
+                <td class="text-end">6s</td>
+              </tr>
+              <tr>
+                <td>Cantonese</td>
+                <td class="text-end">90</td>
+                <td class="text-end">11 min</td>
+                <td class="text-end">6s</td>
+              </tr>
+              <tr>
+                <td>Russian</td>
+                <td class="text-end">90</td>
+                <td class="text-end">11 min</td>
+                <td class="text-end">6s</td>
+              </tr>
+              <tr>
+                <td>Toishanese</td>
+                <td class="text-end">90</td>
+                <td class="text-end">11 min</td>
+                <td class="text-end">6s</td>
+              </tr>
+              <tr>
+                <td>Vietnamese</td>
+                <td class="text-end">90</td>
+                <td class="text-end">11 min</td>
+                <td class="text-end">6s</td>
+              </tr>
+              <tr>
+                <td>All Other Languages</td>
+                <td class="text-end">3</td>
+                <td class="text-end">8 min</td>
+                <td class="text-end">26s</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-nowrap">
+            <thead>
+              <tr class="table-dark">
+                <th colspan="4">
+                  <h5 class="text-center mb-0 text-white">Scheduled Services</h5>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="border">
+                  <div class="d-flex flex-column">
+                    <strong class="">Audio Interpreting</strong>
+                    <small>This Month</small>
+                  </div>
+                </td>
+                <td class="text-center">
+                  <div class="d-flex flex-column">
+                    <strong>Calls</strong>
+                    <span>0</span>
+                  </div>
+                </td>
+                <td class="text-center">
+                  <div class="d-flex flex-column">
+                    <strong>Minutes</strong>
+                    <span>0</span>
+                  </div>
+                </td>
+                <td class="bg-soft-primary">
+                  <div class="d-flex flex-column align-items-baseline">
+                    <strong>Earnings</strong>
+                    <strong>$</strong>
+                    <strong>$</strong>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="border">
+                  <div class="d-flex flex-column">
+                    <strong class="">Video Interpreting</strong>
+                    <small>This Month</small>
+                    <small>Total Earning</small>
+                  </div>
+                </td>
+                <td class="text-center">
+                  <div class="d-flex flex-column">
+                    <strong>Calls</strong>
+                    <span>0</span>
+                  </div>
+                </td>
+                <td class="text-center">
+                  <div class="d-flex flex-column">
+                    <strong>Minutes</strong>
+                    <span>0</span>
+                  </div>
+                </td>
+                <td class="bg-soft-primary">
+                  <div class="d-flex flex-column align-items-baseline">
+                    <strong>Earnings</strong>
+                    <strong>$</strong>
+                    <strong>$</strong>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 </div>

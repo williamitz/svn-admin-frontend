@@ -29,12 +29,13 @@ export class ChartPieWidgetComponent {
       width: 490
     },
     labels: ["Cantones", "Mandarin Chinese", "Spanish", "Japanese", "Russian"],
+    
     responsive: [
       {
         breakpoint: 480,
         options: {
           chart: {
-            width: 200
+            width: 340
           },
           legend: {
             position: "bottom"
@@ -43,7 +44,5 @@ export class ChartPieWidgetComponent {
       }
     ]
   };
-
-
 
 }
