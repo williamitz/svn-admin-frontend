@@ -83,6 +83,7 @@ import { MyassignmetInterpreterComponent } from './myassignmet-interpreter/myass
 
     NgSelectModule,
     NgbModalModule,
+    WidgetsModule,
 
     // PickerModule,
     FullCalendarModule,
