@@ -111,9 +111,8 @@ export class OrganizationPageComponent {
 
         this.organizations  = data;
         this._total         = total;
-        this.paginate       = this._pagersvc.getPager( total, page, 5 );
+        this.paginate       = this._pagersvc.getPager( total, page, this.value.limit );
 
-        console.log('response ::: ', response);
         this._findAll$?.unsubscribe();
       },
       error: (e) => {
@@ -153,15 +152,14 @@ export class OrganizationPageComponent {
   }
 
   onAddDepartment() {
+
     this.campus.push(
       new CampusClass( '', '' )
     );
 
-    console.log('campus ::. ', this.campus);
   }
 
   onLoadData( record: IOrganization ) {
-
 
     const { id } = record;
 
@@ -185,8 +183,6 @@ export class OrganizationPageComponent {
         this.campus = [];
 
         this.campus = data.campus.map( (e) => {
-
-          console.log('e ::: ', e);
 
           return new CampusClass(
             e.campusName,
@@ -246,15 +242,11 @@ export class OrganizationPageComponent {
 
     if( this.invalid || this.saving ) return;
 
-
     this._saving = true;
 
     const campus = this.campus.map( (e) => e.values );
 
     this.frmOrganization.get('campus')?.setValue( campus );
-
-    console.log('submit frm ::: ', this._valueFrm);
-    debugger;
 
     if( !this.loadData ) {
 
@@ -262,7 +254,7 @@ export class OrganizationPageComponent {
       .subscribe({
         next: (response) => {
 
-          console.log('response ::: ', response);
+          // console.log('response ::: ', response);
 
           this.onGetOrganizations( this._currentPage );
           this._saving = false;
@@ -282,7 +274,7 @@ export class OrganizationPageComponent {
       .subscribe({
         next: (response) => {
 
-          console.log('response ::: ', response);
+          // console.log('response ::: ', response);
 
           this.onGetOrganizations( this._currentPage );
           this._saving = false;
