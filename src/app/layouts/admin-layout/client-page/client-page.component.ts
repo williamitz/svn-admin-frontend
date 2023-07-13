@@ -2,14 +2,14 @@ import { Component, inject } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { EIconAlert } from 'src/app/interfaces/alertIcon.enum';
-import { ICountry } from 'src/app/interfaces/country.interface';
+import { ICountry } from 'src/app/interfaces/admin-interfaces/country.interface';
 import { IPager, IPagerFilter } from 'src/app/interfaces/pager.interface';
-import { ITimezone } from 'src/app/interfaces/timezone.interface';
-import { IUser } from 'src/app/interfaces/user.interface';
-import { ClientService } from 'src/app/services/client.service';
-import { CountryService } from 'src/app/services/country.service';
+import { ITimezone } from 'src/app/interfaces/admin-interfaces/timezone.interface';
+import { IUser } from 'src/app/interfaces/segurity-interfaces/user.interface';
+import { ClientService } from 'src/app/services/admin-services/client.service';
+import { CountryService } from 'src/app/services/admin-services/country.service';
 import { PagerService } from 'src/app/services/pager.service';
-import { TimezoneService } from 'src/app/services/timezone.service';
+import { TimezoneService } from 'src/app/services/admin-services/timezone.service';
 import { UiService } from 'src/app/services/ui.service';
 
 @Component({
@@ -63,6 +63,8 @@ export class ClientPageComponent {
   get valuesFilter():IPagerFilter { return this.frmFilter.value; }
   get currentPage() { return this.paginate.currentPage; }
   get invalid() { return this.frmUser.invalid; }
+  get controls() { return this.frmUser.controls; }
+  touched( field: string ) { return this.frmUser.get( field )?.touched; }
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -80,8 +82,8 @@ export class ClientPageComponent {
       surname:  [ '', [ Validators.required ] ],
       email:    [ '', [ Validators.required ] ],
       phone:    [ '', [ ] ],
-      country:  [ null, [ Validators.required ] ],
-      timezone: [ null, [ Validators.required ] ],
+      countryCode:  [ null, [ Validators.required ] ],
+      timzoneId: [ null, [ Validators.required ] ],
     });
 
     this.frmFilter = this._frmBuilder.group({
@@ -105,9 +107,12 @@ export class ClientPageComponent {
     });
   }
 
-  onGetTimezones() {
+  onGetTimezones( data: ICountry ) {
+
+    const { code2 } = data;
+
     this._loadingTimezone = true;
-    this._timezone$ = this._timezonesvc.onFindAll( this.values.country )
+    this._timezone$ = this._timezonesvc.onFindAll( code2 )
     .subscribe((response) => {
 
       const { data, total } = response;
@@ -215,9 +220,9 @@ export class ClientPageComponent {
         this.frmUser.get('timezone')?.setValue( data.timezone?.id );
         this.frmUser.get('country')?.setValue( data.timezone?.country.id );
 
-        if( data.timezone ) {
-          this.onGetTimezones();
-        }
+        // if( data.timezone ) {
+        //   this.onGetTimezones();
+        // }
 
         document.getElementById('btnShowModal')?.click();
 

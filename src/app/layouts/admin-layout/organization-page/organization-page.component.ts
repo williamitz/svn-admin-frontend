@@ -3,10 +3,10 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
 import { Subscription } from 'rxjs';
 import { CampusClass } from 'src/app/classes/campus.class';
 import { EIconAlert } from 'src/app/interfaces/alertIcon.enum';
-import { ICountry } from 'src/app/interfaces/country.interface';
-import { IOrganization } from 'src/app/interfaces/organization.interface';
+import { ICountry } from 'src/app/interfaces/admin-interfaces/country.interface';
+import { IOrganization } from 'src/app/interfaces/admin-interfaces/organization.interface';
 import { IPager, IPagerFilter } from 'src/app/interfaces/pager.interface';
-import { OrganizationService } from 'src/app/services/organization.service';
+import { OrganizationService } from 'src/app/services/admin-services/organization.service';
 import { PagerService } from 'src/app/services/pager.service';
 import { UiService } from 'src/app/services/ui.service';
 import { decimalPatt, fullTextNumberPatt, fullTextPatt } from 'src/app/utils';

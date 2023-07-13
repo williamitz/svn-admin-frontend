@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { IMenu } from 'src/app/interfaces/menu.interface';
+import { IMenu } from 'src/app/interfaces/segurity-interfaces/menu.interface';
 import { IPager, IPagerFilter } from 'src/app/interfaces/pager.interface';
-import { MenuService } from 'src/app/services/menu.service';
+import { MenuService } from 'src/app/services/segurity-services/menu.service';
 import { NomenclatureService } from 'src/app/services/nomenclature.service';
 import { PagerService } from 'src/app/services/pager.service';
 import { UiService } from 'src/app/services/ui.service';

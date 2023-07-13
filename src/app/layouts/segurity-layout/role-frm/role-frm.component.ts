@@ -1,9 +1,9 @@
 import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RoleService } from 'src/app/services/role.service';
+import { RoleService } from 'src/app/services/segurity-services/role.service';
 import { Subscription } from 'rxjs';
 import { UiService } from 'src/app/services/ui.service';
-import { IMenuRole } from 'src/app/interfaces/role.interface';
+import { IMenuRole } from 'src/app/interfaces/segurity-interfaces/role.interface';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { codePatt, fullTextPatt } from 'src/app/utils';
 import { EIconAlert } from 'src/app/interfaces/alertIcon.enum';

@@ -2,14 +2,14 @@ import { Component, inject } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { EIconAlert } from 'src/app/interfaces/alertIcon.enum';
-import { ICountry } from 'src/app/interfaces/country.interface';
+import { ICountry } from 'src/app/interfaces/admin-interfaces/country.interface';
 import { IPager, IPagerFilter } from 'src/app/interfaces/pager.interface';
-import { ITimezone } from 'src/app/interfaces/timezone.interface';
-import { IUser } from 'src/app/interfaces/user.interface';
-import { CountryService } from 'src/app/services/country.service';
-import { InterpreterService } from 'src/app/services/interpreter.service';
+import { ITimezone } from 'src/app/interfaces/admin-interfaces/timezone.interface';
+import { IUser } from 'src/app/interfaces/segurity-interfaces/user.interface';
+import { CountryService } from 'src/app/services/admin-services/country.service';
+import { InterpreterService } from 'src/app/services/admin-services/interpreter.service';
 import { PagerService } from 'src/app/services/pager.service';
-import { TimezoneService } from 'src/app/services/timezone.service';
+import { TimezoneService } from 'src/app/services/admin-services/timezone.service';
 import { UiService } from 'src/app/services/ui.service';
 
 @Component({

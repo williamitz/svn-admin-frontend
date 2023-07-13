@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter, Inject, inject } from '@angula
 import { DOCUMENT } from '@angular/common';
 
 
-import { LanguageService } from '../../../services/language.service';
+import { LanguageService } from '../../../services/admin-services/language.service';
 import { EventService } from '../../../services/event.service';
 import { CookieService } from 'ngx-cookie-service';
 

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { admin_service } from 'src/globals';
-import { ITimezoneListresponse } from '../interfaces/timezone.interface';
+import { ITimezoneListresponse } from '../../interfaces/admin-interfaces/timezone.interface';
 
 const entity = '/time-zone';
 

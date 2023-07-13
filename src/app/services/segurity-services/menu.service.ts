@@ -1,8 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { admin_service } from 'src/globals';
-import { IPagerFilter } from '../interfaces/pager.interface';
-import { IMenuByIdResponse, IMenuResponse } from '../interfaces/menu.interface';
+import { IPagerFilter } from '../../interfaces/pager.interface';
+import { IMenuByIdResponse, IMenuResponse } from '../../interfaces/segurity-interfaces/menu.interface';
 
 const entity = '/menu';
 

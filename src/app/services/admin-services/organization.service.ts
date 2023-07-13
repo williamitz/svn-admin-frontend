@@ -1,8 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { admin_service } from 'src/globals';
-import { IPagerFilter } from '../interfaces/pager.interface';
-import { IOrganizationByIdResponse, IOrganizationListResponse } from '../interfaces/organization.interface';
+import { IPagerFilter } from '../../interfaces/pager.interface';
+import { IOrganizationByIdResponse, IOrganizationListResponse } from '../../interfaces/admin-interfaces/organization.interface';
 
 const entity = 'organization'
 

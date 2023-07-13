@@ -1,8 +1,8 @@
 import { Injectable, inject } from '@angular/core';
-import { IPagerFilter } from '../interfaces/pager.interface';
+import { IPagerFilter } from '../../interfaces/pager.interface';
 import { HttpClient } from '@angular/common/http';
 import { admin_service } from 'src/globals';
-import { ICountryListResponse } from '../interfaces/country.interface';
+import { ICountryListResponse } from '../../interfaces/admin-interfaces/country.interface';
 
 const entity = 'country';
 

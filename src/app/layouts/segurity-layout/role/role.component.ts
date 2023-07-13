@@ -3,9 +3,9 @@ import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { EIconAlert } from 'src/app/interfaces/alertIcon.enum';
 import { IPager, IPagerFilter } from 'src/app/interfaces/pager.interface';
-import { IRole } from 'src/app/interfaces/role.interface';
+import { IRole } from 'src/app/interfaces/segurity-interfaces/role.interface';
 import { PagerService } from 'src/app/services/pager.service';
-import { RoleService } from 'src/app/services/role.service';
+import { RoleService } from 'src/app/services/segurity-services/role.service';
 import { UiService } from 'src/app/services/ui.service';
 
 @Component({

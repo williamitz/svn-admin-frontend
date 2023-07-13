@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { admin_service } from 'src/globals';
-import { IRoleByIDResponse, IRoleMenuResponse, IRoleResponse } from '../interfaces/role.interface';
+import { IRoleByIDResponse, IRoleMenuResponse, IRoleResponse } from '../../interfaces/segurity-interfaces/role.interface';
 import { map } from 'rxjs';
-import { IPagerFilter } from '../interfaces/pager.interface';
+import { IPagerFilter } from '../../interfaces/pager.interface';
 
 @Injectable({providedIn: 'root'})
 export class RoleService {

@@ -1,8 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { admin_service } from 'src/globals';
-import { IPagerFilter } from '../interfaces/pager.interface';
-import { IUserByIdResponse, IUserListResponse } from '../interfaces/user.interface';
+import { IPagerFilter } from '../../interfaces/pager.interface';
+import { IUserByIdResponse, IUserListResponse } from '../../interfaces/segurity-interfaces/user.interface';
 
 const entity = '/user';
 

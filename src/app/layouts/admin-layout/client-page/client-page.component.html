@@ -151,7 +151,7 @@
         <h5 class="modal-title text-white" *ngIf="loadData">
           Edit Client
         </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="btnCloseModal"></button>
       </div>
 
       <form [formGroup]="frmUser" (submit)="onSubmit()">
@@ -160,45 +160,78 @@
             <div class="col-md-6">
               <div class="mb-3">
                 <label for="placeholderInput" class="form-label">Name</label>
-                <input type="text" class="form-control" id="placeholderInput" placeholder="Enter name"
-                  formControlName="name">
+                <input type="text"
+                  class="form-control"
+                  id="placeholderInput"
+                  placeholder="Enter name"
+                  formControlName="name"
+                  [class.is-invalid]="controls['name'].errors  &&  touched('name')"
+                >
               </div>
             </div>
             <div class="col-md-6">
               <div class="mb-3">
                 <label for="" class="form-label">Last Name</label>
-                <input type="text" class="form-control" placeholder="Enter last name" formControlName="surname">
+                <input type="text"
+                  class="form-control"
+                  placeholder="Enter last name"
+                  formControlName="surname"
+                  [class.is-invalid]="controls['surname'].errors  &&  touched('surname')"
+                >
               </div>
             </div>
             <div class="col-md-6">
               <div class="mb-3">
                 <label for="iconInput" class="form-label">Email</label>
                 <div class="mb-3">
-                  <input type="email" class="form-control" id="iconInput" placeholder="example@gmail.com"
-                    formControlName="email">
+                  <input type="email"
+                    class="form-control"
+                    id="iconInput"
+                    placeholder="example@gmail.com"
+                    formControlName="email"
+                    [class.is-invalid]="controls['email'].errors  &&  touched('email')"
+                  >
                 </div>
               </div>
             </div>
             <div class="col-md-6">
               <div class="mb-3">
                 <label for="cleave-phone" class="form-label">Phone</label>
-                <input type="text" class="form-control" id="cleave-phone" placeholder="xxx-xxx-xxx" mask="000-000-000"
-                  formControlName="phone">
+                <input type="text"
+                  class="form-control"
+                  id="cleave-phone"
+                  placeholder="xxx-xxx-xxx"
+                  mask="000-000-000"
+                  formControlName="phone"
+                  [class.is-invalid]="controls['phone'].errors  &&  touched('phone')"
+                >
               </div>
             </div>
             <div class="col-md-6">
               <div class="mb-3">
                 <label for="cleave-phone" class="form-label">Country</label>
-                <ng-select [items]="countries" bindLabel="name" bindValue="id" placeholder="Select country"
-                  formControlName="country" (change)="onGetTimezones()">
+                <ng-select [items]="countries"
+                  bindLabel="name"
+                  bindValue="code"
+                  placeholder="Select country"
+                  formControlName="countryCode"
+                  (change)="onGetTimezones($event)"
+                  [class.is-invalid]="controls['countryCode'].errors  &&  touched('countryCode')"
+                >
                 </ng-select>
               </div>
             </div>
             <div class="col-md-6">
               <div class="mb-3">
                 <label for="cleave-phone" class="form-label">Time zone</label>
-                <ng-select [items]="timezones" bindLabel="name" bindValue="id" placeholder="Select time zone"
-                  formControlName="timezone" [loading]="loadingTimezone">
+                <ng-select [items]="timezones"
+                  bindLabel="zoneName"
+                  bindValue="id"
+                  placeholder="Select time zone"
+                  formControlName="timzoneId"
+                  [loading]="loadingTimezone"
+                  [class.is-invalid]="controls['timzoneId'].errors  &&  touched('timzoneId')"
+                >
                 </ng-select>
               </div>
             </div>
