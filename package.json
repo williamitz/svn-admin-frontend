@@ -50,6 +50,7 @@
     "sweetalert2": "^11.7.12",
     "swiper": "^8.4.5",
     "tslib": "^2.3.0",
+    "uuid": "^9.0.0",
     "zone.js": "~0.13.0"
   },
   "devDependencies": {
@@ -58,6 +59,7 @@
     "@angular/compiler-cli": "^16.0.0",
     "@angular/localize": "^16.0.0",
     "@types/jasmine": "~4.3.0",
+    "@types/uuid": "^9.0.2",
     "jasmine-core": "~4.6.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",

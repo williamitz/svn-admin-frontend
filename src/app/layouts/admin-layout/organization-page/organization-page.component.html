@@ -1,12 +1,12 @@
 <div class="row">
   <div class="col-12">
       <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-          <h4 class="mb-sm-0">Customers</h4>
+          <h4 class="mb-sm-0">Agencies</h4>
 
           <div class="page-title-right">
               <ol class="breadcrumb m-0">
                   <li class="breadcrumb-item"><a href="javascript: void(0);">Admin</a></li>
-                  <li class="breadcrumb-item active">Customers</li>
+                  <li class="breadcrumb-item active">Agencies</li>
               </ol>
           </div>
 
@@ -35,7 +35,7 @@
                 <div class="col-6 ">
                   <div class="d-flex justify-content-end align-items-center gap-2">
                     <button type="button" class="btn btn-primary custom-toggle active" data-bs-toggle="modal" data-bs-target="#organizationModal" >
-                      <i class="ri-add-fill align-bottom me-1"></i> New customer
+                      <i class="ri-add-fill align-bottom me-1"></i> New agencie
                     </button>
                   </div>
                 </div>
@@ -67,8 +67,8 @@
                               {{ item.createAt }}
                             </td>
                             <td>
-                              {{ item.country.moneySymbol }}
-                              {{ item.costPerMinute }}
+                              <!-- {{ item.country.moneySymbol }}
+                              {{ item.costPerMinute }} -->
                             </td>
                             <td>
                               <span class="badge bg-success"
@@ -155,7 +155,7 @@
 
 <!-- organizationModal Modal -->
 <div class="modal fade" id="organizationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="organizationModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
       <div class="modal-content">
           <div class="modal-header">
               <h5 class="modal-title" id="exampleModalPopoversLabel">
@@ -170,68 +170,91 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
 
-          <form [formGroup]="frmOrganization">
 
-            <div class="modal-body ">
+          <div class="modal-body ">
 
-              <div class="pt-2">
-                <label for="txtbusssinessname" class="form-label">Razón social</label>
-                <input type="text"
-                  class="form-control "
-                  id="txtbusssinessname"
-                  placeholder="Organization name"
-                  formControlName="bussinnesName"
-                  [class.is-invalid]="controls['bussinnesName'].errors && touched('bussinnesName')"
-                >
+            <form [formGroup]="frmOrganization">
+              <div class="row">
+                <div class=" col-lg-6 col-md-12 col-sm-12 pt-2">
+                  <label for="txtbusssinessname" class="form-label">Razón social</label>
+                  <input type="text"
+                    class="form-control "
+                    id="txtbusssinessname"
+                    placeholder="Organization name"
+                    formControlName="bussinnesName"
+                    [class.is-invalid]="controls['bussinnesName'].errors && touched('bussinnesName')"
+                  >
+                </div>
+
+                <div class=" col-lg-6 col-md-12 col-sm-12 pt-2">
+                  <label for="txtdocument" class="form-label">Documento</label>
+                  <input type="text"
+                    class="form-control "
+                    id="txtdocument"
+                    placeholder="00000000000"
+                    formControlName="document"
+                    [class.is-invalid]="controls['document'].errors && touched('document')"
+                  >
+                </div>
               </div>
 
-              <div class="pt-2">
-                <label for="txtdocument" class="form-label">Documento</label>
-                <input type="text"
-                  class="form-control "
-                  id="txtdocument"
-                  placeholder="00000000000"
-                  formControlName="document"
-                  [class.is-invalid]="controls['document'].errors && touched('document')"
-                >
+              <div class="row">
+                <div class="col-12 pt-2">
+                  <label for="txtaddress" class="form-label">Dirección</label>
+                  <input type="text"
+                    class="form-control "
+                    id="txtaddress"
+                    placeholder="Street #000 "
+                    formControlName="address"
+                    [class.is-invalid]="controls['address'].errors && touched('address')"
+                  >
+                </div>
               </div>
 
-              <div class="pt-2">
-                <label for="txtaddress" class="form-label">Dirección</label>
+              <div class="row">
+
+                <div class="col-lg-7 col-md-12 col-sm-12 pt-2">
+                  <label for="txtemail" class="form-label">Email</label>
                 <input type="text"
-                  class="form-control "
-                  id="txtaddress"
-                  placeholder="Street #000 "
-                  formControlName="address"
-                  [class.is-invalid]="controls['address'].errors && touched('address')"
-                >
+                    class="form-control "
+                    id="txtemail"
+                    placeholder="example@domain.com"
+                    formControlName="email"
+                    [class.is-invalid]="controls['email'].errors && touched('email')"
+                  >
+                </div>
+
+                <div class="col-lg-5 col-md-12 col-sm-12 pt-2">
+
+                  <label for="txtphone" class="form-label">Phone</label>
+                  <input type="text"
+                    class="form-control "
+                    id="txtphone"
+                    placeholder="000 000 000"
+                    formControlName="phone"
+                    [class.is-invalid]="controls['phone'].errors && touched('phone')"
+                  >
+
+                </div>
+
+
               </div>
 
-              <div class="pt-2">
-                <label for="txtemail" class="form-label">Email</label>
-                <input type="text"
-                  class="form-control "
-                  id="txtemail"
-                  placeholder="example@domain.com"
-                  formControlName="email"
-                  [class.is-invalid]="controls['email'].errors && touched('email')"
-                >
-              </div>
-
-              <div class="pt-2">
-                <label for="txtphone" class="form-label">Phone</label>
-                <input type="text"
-                  class="form-control "
-                  id="txtphone"
-                  placeholder="000 000 000"
-                  formControlName="phone"
-                  [class.is-invalid]="controls['phone'].errors && touched('phone')"
-                >
-              </div>
 
               <div class="pt-2">
                 <div class="row">
-                  <div class="col-7">
+
+                  <div class="col-lg-3 col-sm-12">
+                    <label for="iconInput" class="form-label">Costo por minuto</label>
+                    <input type="number"
+                      class="form-control "
+                      id="iconInput"
+                      placeholder="0.00"
+                      formControlName="costPerMinute"
+                      [class.is-invalid]="controls['costPerMinute'].errors && touched('costPerMinute')"
+                    >
+                  </div>
+                  <!-- <div class="col-lg-8">
                     <label  class="form-label">País</label>
                     {{ controls['country'].errors | json }}
                     <ng-select
@@ -244,26 +267,96 @@
                       >
                     </ng-select>
 
-                  </div>
-                  <div class="col-5">
-                    <label for="iconInput" class="form-label">Costo por minuto</label>
-                    <input type="number"
-                      class="form-control "
-                      id="iconInput"
-                      placeholder="0.00"
-                      formControlName="costPerMinute"
-                      [class.is-invalid]="controls['costPerMinute'].errors && touched('costPerMinute')"
-                    >
-                  </div>
+                  </div> -->
                 </div>
               </div>
+            </form>
+              <div class="pt-2">
+                <div class="row">
+
+                  <div class="row pb-2 pt-2">
+                    <div class="col-6">
+                      <h4>
+                        Departments
+                      </h4>
+                    </div>
+                    <div class="col-6 d-flex justify-content-end">
+                      <button type="button" class="btn btn-sm btn-dark " (click)="onAddDepartment()">
+                          <i class="ri-add-line align-bottom me-1"></i>
+                          Add
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+
+                    <!-- Table Head -->
+                    <table class="table table-responsive  table-nowrap mb-0">
+                      <thead class="table-light">
+                          <tr>
+                              <th scope="col">Department</th>
+                              <th scope="col">City</th>
+                              <th scope="col">Address</th>
+                              <th scope="col">Actions</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+
+                        <tr *ngFor="let campu of campus">
+                            <td>
+
+                                <input type="text"
+                                  class="form-control "
+                                  placeholder="Department"
+                                  [formControl]="campu.nameControl"
+                                  [class.is-invalid]="campu.invalidName "
+
+                                >
+                              <!-- nameControl
+                                nameCity
+                                nameAddress -->
+                            </td>
+                            <td>
+                              <input type="text"
+                                class="form-control "
+                                placeholder="City name"
+                                [formControl]="campu.cityControl"
+                                [class.is-invalid]="campu.invalidCity "
+                              >
+                            </td>
+                            <td>
+                              <input type="text"
+                                class="form-control "
+                                placeholder="City name"
+                                [formControl]="campu.addressControl"
+                                [class.is-invalid]="campu.invalidAddress "
+                              >
+                            </td>
+
+                            <td>
+                                <div class="mt-2 text-center">
+                                  <a href="javascript:void(0);" class="link-danger " (click)="onRemoveCampus( campu )" >
+                                    <i class="ri-delete-bin-line align-bottom "></i>
+                                  </a>
+                                </div>
+                            </td>
+                          </tr>
+
+                      </tbody>
+                    </table>
+
+                  </div>
+
+                </div>
+              </div>
+
 
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-light" data-bs-dismiss="modal" (click)="onReset()" id="btnCloseModal" >
                 Cerrar
               </button>
-              <button type="button" class="btn btn-primary" [disabled]="saving || invalid" (click)="onSubmit()" >
+              <button type="button" class="btn btn-primary" [disabled]="saving || invalid || invalidDetail" (click)="onSubmit()" >
 
                 <span *ngIf="!loadData" >
                   Guardar
@@ -274,7 +367,6 @@
                 </span>
               </button>
             </div>
-          </form>
 
       </div>
   </div>

@@ -1,15 +1,16 @@
 import { Component, inject } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { CampusClass } from 'src/app/classes/campus.class';
 import { EIconAlert } from 'src/app/interfaces/alertIcon.enum';
 import { ICountry } from 'src/app/interfaces/country.interface';
 import { IOrganization } from 'src/app/interfaces/organization.interface';
 import { IPager, IPagerFilter } from 'src/app/interfaces/pager.interface';
-import { CountryService } from 'src/app/services/country.service';
 import { OrganizationService } from 'src/app/services/organization.service';
 import { PagerService } from 'src/app/services/pager.service';
 import { UiService } from 'src/app/services/ui.service';
 import { decimalPatt, fullTextNumberPatt, fullTextPatt } from 'src/app/utils';
+// import { CountryService } from 'src/app/services/country.service';
 
 @Component({
   selector: 'app-organization-page',
@@ -25,7 +26,7 @@ export class OrganizationPageComponent {
   private _update$?: Subscription;
   private _delete$?: Subscription;
 
-  private _countrysvc      = inject( CountryService );
+  // private _countrysvc      = inject( CountryService );
   private _pagersvc        = inject( PagerService );
   private _uisvc           = inject( UiService );
   private _organizationsvc = inject( OrganizationService );
@@ -52,8 +53,10 @@ export class OrganizationPageComponent {
   countries: ICountry[] = [];
   organizations: IOrganization[] = [];
 
+  campus: CampusClass[] = [];
+
   get controls() { return this.frmOrganization.controls; }
-  touched( field: string ) { return this.frmOrganization.get( field )?.touched ?? false; }
+  touched( field: string ) { return this.frmOrganization.get( field )?.touched; }
   get loadData() { return this._loadData; }
   get loading() { return this._loading; }
   get saving() { return this._saving; }
@@ -62,6 +65,9 @@ export class OrganizationPageComponent {
   get value(): IPagerFilter { return this.frmFilter.value; }
   private get _valueFrm() { return this.frmOrganization.value; }
   get invalid() { return this.frmOrganization.invalid ?? false; }
+
+  get invalidDetail() { return this.campus.length > 0 ? this.campus.some( (e) => e.invalid ) : false ; }
+
   private get _currentPage() { return this.paginate.currentPage; }
 
   ngOnInit(): void {
@@ -69,8 +75,6 @@ export class OrganizationPageComponent {
     //Add 'implements OnInit' to the class.
 
     this.onBuildFrm();
-
-    this.onListCountry();
 
     this.onGetOrganizations();
 
@@ -85,7 +89,8 @@ export class OrganizationPageComponent {
       email:           [ null, [] ],
       phone:           [ null, [] ],
       costPerMinute:   [ null, [ Validators.required, Validators.pattern( decimalPatt ) ] ],
-      country:         [ null, [ Validators.required ] ],
+      campus:          [ [], [] ],
+      // removeTemp:      [ [], [] ]
     });
 
     this.frmFilter = this._frmBuilder.group({
@@ -118,35 +123,45 @@ export class OrganizationPageComponent {
     });
   }
 
-  onListCountry() {
-    this._country$ = this._countrysvc.onFindAll(0)
-    .subscribe({
-      next: (response) => {
+  // onListCountry() {
+  //   this._country$ = this._countrysvc.onFindAll(0)
+  //   .subscribe({
+  //     next: (response) => {
 
-        const { data, total } = response;
+  //       const { data, total } = response;
 
-        this.countries = data;
+  //       this.countries = data;
 
-        console.log('response ::: ', response);
+  //       console.log('response ::: ', response);
 
-        this._country$?.unsubscribe();
-      },
-      error: (e) => {
+  //       this._country$?.unsubscribe();
+  //     },
+  //     error: (e) => {
 
-        this._country$?.unsubscribe();
-      }
-    })
-  }
+  //       this._country$?.unsubscribe();
+  //     }
+  //   })
+  // }
 
   onReset() {
 
     this.frmOrganization.reset();
     this._organizationId = undefined;
     this._loadData = false;
+    this.campus = [];
 
   }
 
+  onAddDepartment() {
+    this.campus.push(
+      new CampusClass( '', '' )
+    );
+
+    console.log('campus ::. ', this.campus);
+  }
+
   onLoadData( record: IOrganization ) {
+
 
     const { id } = record;
 
@@ -164,10 +179,22 @@ export class OrganizationPageComponent {
         this.frmOrganization.get('address')?.setValue(data.address);
         this.frmOrganization.get('email')?.setValue(data.email);
         this.frmOrganization.get('phone')?.setValue(data.phone);
-        this.frmOrganization.get('country')?.setValue(data.country.id);
         this.frmOrganization.get('costPerMinute')?.setValue(data.costPerMinute);
+        // this.frmOrganization.get('country')?.setValue(data.country.id);
 
-        console.log('response ::: ', response);
+        this.campus = [];
+
+        this.campus = data.campus.map( (e) => {
+
+          console.log('e ::: ', e);
+
+          return new CampusClass(
+            e.campusName,
+            e.city,
+            e.address ??  undefined,
+            e.id
+          );
+        } );
 
         this._findById$?.unsubscribe();
       },
@@ -222,6 +249,13 @@ export class OrganizationPageComponent {
 
     this._saving = true;
 
+    const campus = this.campus.map( (e) => e.values );
+
+    this.frmOrganization.get('campus')?.setValue( campus );
+
+    console.log('submit frm ::: ', this._valueFrm);
+    debugger;
+
     if( !this.loadData ) {
 
       this._create$ = this._organizationsvc.onCreate( this._valueFrm )
@@ -263,6 +297,12 @@ export class OrganizationPageComponent {
       });
 
     }
+
+  }
+
+  onRemoveCampus( campu: CampusClass ) {
+
+    this.campus = this.campus.filter( (c) => c.auxId != campu.auxId );
 
   }
 

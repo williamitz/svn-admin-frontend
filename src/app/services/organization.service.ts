@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { admin_service } from 'src/globals';
 import { IPagerFilter } from '../interfaces/pager.interface';
-import { IListOrganizationByIdResponse, IListOrganizationResponse } from '../interfaces/organization.interface';
+import { IOrganizationByIdResponse, IOrganizationListResponse } from '../interfaces/organization.interface';
 
 const entity = 'organization'
 
@@ -31,11 +31,11 @@ export class OrganizationService {
     params += `&limit=${ filter.limit }`;
     params += `&order=${ filter.order }`;
 
-    return this._http.get<IListOrganizationResponse>( `${ admin_service }/${ entity }?${ params }` );
+    return this._http.get<IOrganizationListResponse>( `${ admin_service }/${ entity }?${ params }` );
   }
 
   onFindById( id: string ) {
-    return this._http.get<IListOrganizationByIdResponse>( `${ admin_service }/${ entity }/${ id }` );
+    return this._http.get<IOrganizationByIdResponse>( `${ admin_service }/${ entity }/${ id }` );
   }
 
 }
