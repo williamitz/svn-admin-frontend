@@ -11,12 +11,12 @@ export { cartData };
 
 export const passwordPatt = new RegExp(/(?:(?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/);
 
-export const fullTextPatt = new RegExp(/^[a-zA-Záéíóúüñ\.\,\s]{0,200}$/i);
+export const fullTextPatt = new RegExp(/^[a-zA-Záéíóúüñ\'\.\,\s]{0,200}$/i);
 // export const fullTextPatt = new RegExp(/^[a-zA-ZáéíóúüÁÉÍÓÚÜñÑ\.\,\s]{0,200}$/);
 export const fullTextWithoutSpacePatt = new RegExp(/^[a-zA-Záéíóúüñ]{0,200}$/i);
 // export const fullTextWithoutSpacePatt = new RegExp(/^[a-zA-ZáéíóúüÁÉÍÓÚÜñÑ]{0,200}$/);
 export const urlMenuPatt = new RegExp(/^[a-zA-Z0-9\/\-]{0,200}$/);
-export const fullTextNumberPatt = new RegExp(/^[a-zA-Záéíóúüñ\#\-\d\.\,\s]{0,200}$/i);
+export const fullTextNumberPatt = new RegExp(/^[a-záéíóúüñ\#\-\d\.\,\s\(\)]{0,200}$/i);
 // export const fullTextNumberPatt = new RegExp(/^[a-zA-ZáéíóúüÁÉÍÓÚÜñÑ\#\-\d\.\,\s]{0,200}$/);
 export const numberPatt = new RegExp(/^[\d]{0,200}$/);
 export const decimalPatt = new RegExp(/^\d+(?:\.\d{1,2})?$/);
@@ -32,6 +32,8 @@ export const isoThreePatt = new RegExp(/^[a-zA-Z]{2,3}$/);
 export const codePatt = new RegExp(/^[a-z\_]{0,10}$/i);
 
 export const symbolPatt = new RegExp(/^[a-zA-Z\.\$\/]{2,5}$/);
+
+export const postalCodePatt = new RegExp(/^[\d]{5,5}$/i);
 
 export const prefixPhonePatt = new RegExp(/^[\+\d]{2,6}$/);
 

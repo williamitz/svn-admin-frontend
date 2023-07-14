@@ -11,6 +11,11 @@ import { CountryService } from 'src/app/services/admin-services/country.service'
 import { PagerService } from 'src/app/services/pager.service';
 import { TimezoneService } from 'src/app/services/admin-services/timezone.service';
 import { UiService } from 'src/app/services/ui.service';
+import { CustomerTypeService } from 'src/app/services/admin-services/customer-type.service';
+import { ICustomerType } from 'src/app/interfaces/admin-interfaces/customer-type.interface';
+import { emailPatt, fullTextNumberPatt, fullTextPatt, postalCodePatt } from 'src/app/utils';
+import { CampusService } from 'src/app/services/admin-services/campus.service';
+import { ICampus } from 'src/app/interfaces/admin-interfaces/campus.interface';
 
 @Component({
   selector: 'app-client-page',
@@ -26,16 +31,22 @@ export class ClientPageComponent {
   private _delete$?: Subscription;
   private _client$?: Subscription;
   private _clientById$?: Subscription;
+  private _customertype$?: Subscription;
+  private _campus$?: Subscription;
 
   private _countrysvc = inject( CountryService );
   private _timezonesvc = inject( TimezoneService );
   private _clientsvc = inject( ClientService );
+  private _customertypesvc = inject( CustomerTypeService );
+  private _campussvc = inject( CampusService );
   private _uisvc = inject( UiService );
   private _pagersvc = inject( PagerService );
 
   countries: ICountry[] = [];
   timezones: ITimezone[] = [];
   interpreters: IUser[] = [];
+  customerType: ICustomerType[] = [];
+  campus: ICampus[] = [];
 
   frmUser!: UntypedFormGroup;
   frmFilter!: UntypedFormGroup;
@@ -73,17 +84,24 @@ export class ClientPageComponent {
     this.onGetCountries();
 
     this.onGetClients();
+    this.onGetCustomerType();
+    this.onGetCampus();
 
   }
 
   onBuildFrm() {
     this.frmUser = this._frmBuilder.group({
-      name:     [ '', [ Validators.required ] ],
-      surname:  [ '', [ Validators.required ] ],
-      email:    [ '', [ Validators.required ] ],
-      phone:    [ '', [ ] ],
-      countryCode:  [ null, [ Validators.required ] ],
-      timzoneId: [ null, [ Validators.required ] ],
+      name:           [ '', [ Validators.required, Validators.pattern( fullTextPatt ) ] ],
+      surname:        [ '', [ Validators.required, Validators.pattern( fullTextPatt ) ] ],
+      email:          [ '', [ Validators.required, Validators.pattern( emailPatt ) ] ],
+      phone:          [ '', [ ] ],
+      address:        [ '', [ Validators.required, Validators.pattern( fullTextNumberPatt ) ] ],
+      cityname:       [ '', [ Validators.required ] ],
+      postalcode:     [ '', [ Validators.required, Validators.pattern( postalCodePatt ) ] ],
+      countryCode:    [ null, [ Validators.required ] ],
+      timzoneId:      [ null, [ Validators.required ] ],
+      customertypeId: [ null, [ Validators.required ] ],
+      campusId:       [ null, [] ],
     });
 
     this.frmFilter = this._frmBuilder.group({
@@ -124,6 +142,44 @@ export class ClientPageComponent {
     });
   }
 
+  onGetCustomerType() {
+    this._customertype$ = this._customertypesvc.onFindAll()
+    .subscribe({
+      next: (response) => {
+
+        const { data, total } = response;
+
+        this.customerType = data;
+        console.log('response ::: ', response);
+
+        this._customertype$?.unsubscribe();
+      },
+      error: (e) => {
+
+        this._customertype$?.unsubscribe();
+      }
+    });
+  }
+
+  onGetCampus() {
+    this._campus$ = this._campussvc.onFindAll()
+    .subscribe({
+      next: (response) => {
+
+        const { data, total } = response;
+
+        this.campus = data;
+        console.log('response ::: ', response);
+
+        this._campus$?.unsubscribe();
+      },
+      error: (e) => {
+
+        this._campus$?.unsubscribe();
+      }
+    });
+  }
+
   onReset() {
     this.frmUser.reset();
     this._saving = false;
@@ -137,6 +193,8 @@ export class ClientPageComponent {
 
     this._saving = true;
 
+    this._uisvc.onShowLoading();
+
     if( !this._loadData ) {
 
       this._create$ = this._clientsvc.onCreate( this.values )
@@ -145,12 +203,16 @@ export class ClientPageComponent {
 
           this.onReset();
           this._saving = false;
+          this._uisvc.onClose();
           this._uisvc.onShowAlert( 'Cliente creado exitosamente', EIconAlert.success );
           this.onGetClients( this.currentPage );
+
+
           this._create$?.unsubscribe();
         },
         error: (e) => {
 
+          this._uisvc.onClose();
           this._saving = false;
           this._create$?.unsubscribe();
         }
@@ -165,19 +227,20 @@ export class ClientPageComponent {
 
           this._saving = false;
           this.onReset();
+          this._uisvc.onClose();
           this._uisvc.onShowAlert( 'Cliente actualizado exitosamente', EIconAlert.success );
           this.onGetClients( this.currentPage );
           this._update$?.unsubscribe();
         },
         error: (e) => {
 
+          this._uisvc.onClose();
           this._saving = false;
           this._update$?.unsubscribe();
         }
       });
 
     }
-
 
   }
 
@@ -211,18 +274,29 @@ export class ClientPageComponent {
 
         const { data } = response;
 
+        console.log('data ::: ', data);
+
         this._loadData = true;
         this._id = id;
         this.frmUser.get('name')?.setValue( data.name );
         this.frmUser.get('surname')?.setValue( data.surname );
         this.frmUser.get('email')?.setValue( data.email );
         this.frmUser.get('phone')?.setValue( data.phone );
-        this.frmUser.get('timezone')?.setValue( data.timezone?.id );
-        this.frmUser.get('country')?.setValue( data.timezone?.country.id );
 
-        // if( data.timezone ) {
-        //   this.onGetTimezones();
-        // }
+
+        this.frmUser.get('address')?.setValue( data.address );
+        this.frmUser.get('cityname')?.setValue( data.cityname );
+        this.frmUser.get('postalcode')?.setValue( data.postalcode );
+        this.frmUser.get('countryCode')?.setValue( data.countryCode );
+        this.frmUser.get('timzoneId')?.setValue( data.timezone?.id );
+        this.frmUser.get('customertypeId')?.setValue( data.customertype?.id );
+        this.frmUser.get('campusId')?.setValue( data.campusId );
+
+        const findCountry = this.countries.find( (e) => e.code == data.countryCode );
+
+        if( data.timezone && findCountry ) {
+          this.onGetTimezones( findCountry );
+        }
 
         document.getElementById('btnShowModal')?.click();
 
@@ -284,6 +358,8 @@ export class ClientPageComponent {
     this._timezone$?.unsubscribe();
     this._client$?.unsubscribe();
     this._clientById$?.unsubscribe();
+    this._customertype$?.unsubscribe();
+    this._campus$?.unsubscribe();
 
   }
 

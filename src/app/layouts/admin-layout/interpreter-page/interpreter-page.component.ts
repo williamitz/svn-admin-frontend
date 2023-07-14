@@ -213,7 +213,7 @@ export class InterpreterPageComponent {
         this.frmUser.get('surname')?.setValue( data.surname );
         this.frmUser.get('email')?.setValue( data.email );
         this.frmUser.get('phone')?.setValue( data.phone );
-        this.frmUser.get('country')?.setValue( data.timezone?.country.id );
+        // this.frmUser.get('country')?.setValue( data. );
         this.frmUser.get('timezone')?.setValue( data.timezone?.id );
 
         if( data.timezone ) {
