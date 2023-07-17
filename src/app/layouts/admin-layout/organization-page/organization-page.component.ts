@@ -1,12 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { CampusClass } from 'src/app/classes/campus.class';
 import { EIconAlert } from 'src/app/interfaces/alertIcon.enum';
 import { ICountry } from 'src/app/interfaces/admin-interfaces/country.interface';
 import { IOrganization } from 'src/app/interfaces/admin-interfaces/organization.interface';
 import { IPager, IPagerFilter } from 'src/app/interfaces/pager.interface';
-import { OrganizationService } from 'src/app/services/admin-services/organization.service';
+import { AgencyService } from 'src/app/services/admin-services/agency.service';
 import { PagerService } from 'src/app/services/pager.service';
 import { UiService } from 'src/app/services/ui.service';
 import { decimalPatt, fullTextNumberPatt, fullTextPatt } from 'src/app/utils';
@@ -29,7 +28,7 @@ export class OrganizationPageComponent {
   // private _countrysvc      = inject( CountryService );
   private _pagersvc        = inject( PagerService );
   private _uisvc           = inject( UiService );
-  private _organizationsvc = inject( OrganizationService );
+  private _agencysvc = inject( AgencyService );
 
   private _frmBuilder      = inject( UntypedFormBuilder );
 
@@ -53,8 +52,6 @@ export class OrganizationPageComponent {
   countries: ICountry[] = [];
   organizations: IOrganization[] = [];
 
-  campus: CampusClass[] = [];
-
   get controls() { return this.frmOrganization.controls; }
   touched( field: string ) { return this.frmOrganization.get( field )?.touched; }
   get loadData() { return this._loadData; }
@@ -66,7 +63,7 @@ export class OrganizationPageComponent {
   private get _valueFrm() { return this.frmOrganization.value; }
   get invalid() { return this.frmOrganization.invalid ?? false; }
 
-  get invalidDetail() { return this.campus.length > 0 ? this.campus.some( (e) => e.invalid ) : false ; }
+  // get invalidDetail() { return this.campus.length > 0 ? this.campus.some( (e) => e.invalid ) : false ; }
 
   private get _currentPage() { return this.paginate.currentPage; }
 
@@ -89,8 +86,6 @@ export class OrganizationPageComponent {
       email:           [ null, [] ],
       phone:           [ null, [] ],
       costPerMinute:   [ null, [ Validators.required, Validators.pattern( decimalPatt ) ] ],
-      campus:          [ [], [] ],
-      // removeTemp:      [ [], [] ]
     });
 
     this.frmFilter = this._frmBuilder.group({
@@ -103,7 +98,7 @@ export class OrganizationPageComponent {
   }
 
   onGetOrganizations( page = 1 ) {
-    this._findAll$ = this._organizationsvc.onFindAll( this.value, page )
+    this._findAll$ = this._agencysvc.onFindAll( this.value, page )
     .subscribe({
       next: (response) => {
 
@@ -122,40 +117,12 @@ export class OrganizationPageComponent {
     });
   }
 
-  // onListCountry() {
-  //   this._country$ = this._countrysvc.onFindAll(0)
-  //   .subscribe({
-  //     next: (response) => {
-
-  //       const { data, total } = response;
-
-  //       this.countries = data;
-
-  //       console.log('response ::: ', response);
-
-  //       this._country$?.unsubscribe();
-  //     },
-  //     error: (e) => {
-
-  //       this._country$?.unsubscribe();
-  //     }
-  //   })
-  // }
-
   onReset() {
 
     this.frmOrganization.reset();
     this._organizationId = undefined;
     this._loadData = false;
-    this.campus = [];
-
-  }
-
-  onAddDepartment() {
-
-    this.campus.push(
-      new CampusClass( '', '' )
-    );
+    // this.campus = [];
 
   }
 
@@ -166,7 +133,7 @@ export class OrganizationPageComponent {
     this._organizationId = id;
     this._loadData = true;
 
-    this._findById$ = this._organizationsvc.onFindById( id )
+    this._findById$ = this._agencysvc.onFindById( id )
     .subscribe({
       next: (response) => {
 
@@ -178,19 +145,6 @@ export class OrganizationPageComponent {
         this.frmOrganization.get('email')?.setValue(data.email);
         this.frmOrganization.get('phone')?.setValue(data.phone);
         this.frmOrganization.get('costPerMinute')?.setValue(data.costPerMinute);
-        // this.frmOrganization.get('country')?.setValue(data.country.id);
-
-        this.campus = [];
-
-        this.campus = data.campus.map( (e) => {
-
-          return new CampusClass(
-            e.campusName,
-            e.city,
-            e.address ??  undefined,
-            e.id
-          );
-        } );
 
         this._findById$?.unsubscribe();
       },
@@ -219,7 +173,7 @@ export class OrganizationPageComponent {
 
     this._uisvc.onShowLoading();
 
-    this._delete$ = this._organizationsvc.onDelete( id )
+    this._delete$ = this._agencysvc.onDelete( id )
     .subscribe({
       next: (response) => {
 
@@ -244,13 +198,9 @@ export class OrganizationPageComponent {
 
     this._saving = true;
 
-    const campus = this.campus.map( (e) => e.values );
-
-    this.frmOrganization.get('campus')?.setValue( campus );
-
     if( !this.loadData ) {
 
-      this._create$ = this._organizationsvc.onCreate( this._valueFrm )
+      this._create$ = this._agencysvc.onCreate( this._valueFrm )
       .subscribe({
         next: (response) => {
 
@@ -270,7 +220,7 @@ export class OrganizationPageComponent {
 
     } else {
 
-      this._update$ = this._organizationsvc.onUpdate( this._valueFrm, this._organizationId! )
+      this._update$ = this._agencysvc.onUpdate( this._valueFrm, this._organizationId! )
       .subscribe({
         next: (response) => {
 
@@ -289,12 +239,6 @@ export class OrganizationPageComponent {
       });
 
     }
-
-  }
-
-  onRemoveCampus( campu: CampusClass ) {
-
-    this.campus = this.campus.filter( (c) => c.auxId != campu.auxId );
 
   }
 

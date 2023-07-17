@@ -2,7 +2,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { NotFoundPageComponent } from 'src/app/pages/not-found-page/not-found-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
-import { ClientPageComponent } from './client-page/client-page.component';
 import { OrganizationPageComponent } from './organization-page/organization-page.component';
 import { ScheduleInterpreterComponent } from './schedule-interpreter/schedule-interpreter.component';
 import { NewassignmentInterpreterComponent } from './newassignment-interpreter/newassignment-interpreter.component';
@@ -24,7 +23,6 @@ import { MyassignmetInterpreterComponent } from './myassignmet-interpreter/myass
 // TODO: crear rutas
 const routes: Routes = [
   { path: '', component: HomePageComponent },
-  { path: 'clients', component: ClientPageComponent },
   { path: 'interpreters', component: InterpreterPageComponent },
   { path: 'shedule', component: ScheduleInterpreterComponent },
   { path: 'new-assignment-interpreter', component: NewassignmentInterpreterComponent },
@@ -32,7 +30,7 @@ const routes: Routes = [
   { path: 'pool-interpreter', component: PoolAddInterpreterComponent },
   { path: 'pool-activity-interpreter', component: PoolActivityInterpreterComponent },
   { path: 'profile-interpreter', component: ProfileInterpreterComponent },
-  { path: 'customer', component: CustomerComponent },
+  { path: 'customers', component: CustomerComponent },
   { path: 'internal-user', component: InternalUserComponent },
   { path: 'billing', component: BillingComponent },
   { path: 'invoice', component: InvoiceComponent },

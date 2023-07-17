@@ -4,10 +4,10 @@ import { admin_service } from 'src/globals';
 import { IPagerFilter } from '../../interfaces/pager.interface';
 import { IOrganizationByIdResponse, IOrganizationListResponse } from '../../interfaces/admin-interfaces/organization.interface';
 
-const entity = 'organization'
+const entity = 'agency'
 
 @Injectable({providedIn: 'root'})
-export class OrganizationService {
+export class AgencyService {
 
   private _http = inject( HttpClient );
 

@@ -8,7 +8,6 @@ import { FeatherModule } from 'angular-feather';
 import { allIcons } from 'angular-feather/icons';
 import { AdminLayoutRoutingModule } from './admin-layout.routing.module';
 import { RouterModule } from '@angular/router';
-import { ClientPageComponent } from './client-page/client-page.component';
 import { WidgetsModule } from 'src/app/widgets/widgets.module';
 import { OrganizationPageComponent } from './organization-page/organization-page.component';
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -52,7 +51,6 @@ import { MyassignmetInterpreterComponent } from './myassignmet-interpreter/myass
   declarations: [
     AdminLayoutComponent,
     HomePageComponent,
-    ClientPageComponent,
     InterpreterPageComponent,
     OrganizationPageComponent,
     ScheduleInterpreterComponent,

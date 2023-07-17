@@ -75,10 +75,10 @@ export interface IUserData {
   email:        string;
   google:       boolean;
   isVerify:     boolean;
-  organization: Organization;
+  agency: IAgency;
 }
 
-export interface Organization {
+export interface IAgency {
   status:        boolean;
   userCreate:    string;
   createAt:      string;

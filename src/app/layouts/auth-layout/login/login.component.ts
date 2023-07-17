@@ -58,19 +58,26 @@ export class LoginComponent {
     this._uisvc.onShowLoading();
 
     this.singin$ = this._authsvc.onSingin( this.values )
-    .subscribe( (response) => {
+    .subscribe( {
+      next: (response) => {
 
-      const { data, token } = response;
+        const { data, token } = response;
 
-      this._st.setItem('token', token);
-      this._store.dispatch( segurityActions.onLoadMenu() );
-      this.loading = false;
-      this._uisvc.onClose();
-      this._router.navigateByUrl('/admin');
+        this._st.setItem('token', token);
+        this._store.dispatch( segurityActions.onLoadMenu() );
+        this.loading = false;
+        this._uisvc.onClose();
+        this._router.navigateByUrl('/admin');
 
-      console.log('response ::: ', response);
+        console.log('response ::: ', response);
 
-      this.singin$?.unsubscribe();
+        this.singin$?.unsubscribe();
+      },
+      error: (e) => {
+
+        this.loading = false;
+        this.singin$?.unsubscribe();
+      }
     } );
 
   }
