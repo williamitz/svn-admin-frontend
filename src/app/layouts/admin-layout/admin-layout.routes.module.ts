@@ -37,7 +37,7 @@ const routes: Routes = [
   { path: 'quickbooks', component: QuickbooksComponent },
   { path: 'call-queues', component: CallQueuesComponent },
   { path: 'profile-account', component: ProfileAccountComponent },
-  { path: 'organizations', component: OrganizationPageComponent },
+  { path: 'agencies', component: OrganizationPageComponent },
   { path: 'portal-interpreter', component: PortalInterprterComponent },
   { path: 'my-assignments', component: MyassignmetInterpreterComponent },
   { path: '**', component: NotFoundPageComponent },

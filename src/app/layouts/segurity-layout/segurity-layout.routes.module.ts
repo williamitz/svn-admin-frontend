@@ -15,7 +15,7 @@ const routes: Routes = [
     title: 'Usuarios',
   },
   {
-    path: 'user',
+    path: 'users',
     component: UserComponent,
     title: 'Usuarios',
   },

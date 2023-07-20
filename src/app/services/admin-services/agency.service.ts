@@ -34,6 +34,11 @@ export class AgencyService {
     return this._http.get<IOrganizationListResponse>( `${ admin_service }/${ entity }?${ params }` );
   }
 
+  onFindAllByUser() {
+    return this._http.get<IOrganizationListResponse>( `${ admin_service }/${ entity }/all/to-user` );
+  }
+
+
   onFindById( id: string ) {
     return this._http.get<IOrganizationByIdResponse>( `${ admin_service }/${ entity }/${ id }` );
   }

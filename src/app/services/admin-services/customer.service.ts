@@ -13,7 +13,7 @@ export class CustomerService {
   private _http = inject( HttpClient );
 
   onCreate( body: any ) {
-    return this._http.post( admin_service + `${entity}/create/client`, body );
+    return this._http.post( admin_service + `${entity}`, body );
   }
 
   onFindAll( filter: IPagerFilter, page: number ) {

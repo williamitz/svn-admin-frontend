@@ -8,6 +8,7 @@ export class StorageService {
 
   private _cookiesvc = inject( CookieService );
 
+  agencyId = '';
 
   public getUser(): any {
     const user = this._cookiesvc.get(USER_KEY);

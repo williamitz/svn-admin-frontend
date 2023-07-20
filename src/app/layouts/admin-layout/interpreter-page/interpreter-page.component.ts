@@ -11,6 +11,9 @@ import { InterpreterService } from 'src/app/services/admin-services/interpreter.
 import { PagerService } from 'src/app/services/pager.service';
 import { TimezoneService } from 'src/app/services/admin-services/timezone.service';
 import { UiService } from 'src/app/services/ui.service';
+import { IdiomService } from 'src/app/services/admin-services/idiom.service';
+import { ILanguage } from 'src/app/interfaces/admin-interfaces/language.interface';
+import { IInterpreter } from 'src/app/interfaces/admin-interfaces/interpreter.interface';
 
 @Component({
   selector: 'app-interpreter-page',
@@ -20,6 +23,7 @@ import { UiService } from 'src/app/services/ui.service';
 export class InterpreterPageComponent {
 
   private _country$?: Subscription;
+  private _idiom$?: Subscription;
   private _timezone$?: Subscription;
   private _create$?: Subscription;
   private _update$?: Subscription;
@@ -32,16 +36,21 @@ export class InterpreterPageComponent {
   private _interpretersvc = inject( InterpreterService );
   private _uisvc = inject( UiService );
   private _pagersvc = inject( PagerService );
+  private _idiomsvc = inject( IdiomService );
 
   countries: ICountry[] = [];
+  idioms: ILanguage[] = [];
   timezones: ITimezone[] = [];
-  interpreters: IUser[] = [];
+  interpreters: IInterpreter[] = [];
+
+  genders = [ 'Male', 'Female', 'Other' ];
 
   frmUser!: UntypedFormGroup;
   frmFilter!: UntypedFormGroup;
   private _frmBuilder = inject( UntypedFormBuilder );
 
   private _loadingTimezone = false;
+  private _loadingIdioms = false;
   private _saving = false;
   private _loadData = false;
   private _id = '';
@@ -56,11 +65,15 @@ export class InterpreterPageComponent {
   };
 
   get loadingTimezone() { return this._loadingTimezone; }
+  get loadingIdioms() { return this._loadingIdioms; }
   get saving() { return this._saving; }
   get total() { return this._total; }
   get loadData() { return this._loadData; }
   get values() { return this.frmUser.value; }
   get valuesFilter():IPagerFilter { return this.frmFilter.value; }
+
+  get controls() { return this.frmUser.controls; }
+  touched( field: string ) { return this.frmUser.get( field )?.touched; }
 
   get invalid() { return this.frmUser.invalid; }
   get currentPage() { return this.paginate.currentPage; }
@@ -72,17 +85,21 @@ export class InterpreterPageComponent {
     this.onGetCountries();
 
     this.onGetInterpreters();
+    // this.onGetIdioms();
 
   }
 
   onBuildFrm() {
     this.frmUser = this._frmBuilder.group({
-      name:     [ '', [ Validators.required ] ],
-      surname:  [ '', [ Validators.required ] ],
-      email:    [ '', [ Validators.required ] ],
-      phone:    [ '', [ ] ],
-      country:  [ null, [ Validators.required ] ],
-      timezone: [ null, [ Validators.required ] ],
+      name:             [ '', [ Validators.required ] ],
+      surname:          [ '', [ Validators.required ] ],
+      email:            [ '', [ Validators.required ] ],
+      phone:            [ '', [ ] ],
+      countryCode:          [ null, [ Validators.required ] ],
+      timzoneId:         [ null, [ Validators.required ] ],
+      nativeLanguageId: [ null, [ Validators.required ] ],
+      gender:           [ 'Male', [ Validators.required ] ],
+
     });
 
     this.frmFilter = this._frmBuilder.group({
@@ -106,9 +123,17 @@ export class InterpreterPageComponent {
     });
   }
 
-  onGetTimezones() {
+  onGetTimezones( country: ICountry ) {
+
+    if( !this.values.countryCode ) {
+      this.timezones = [];
+      this.idioms = [];
+      return;
+    }
+
     this._loadingTimezone = true;
-    this._timezone$ = this._timezonesvc.onFindAll( this.values.country )
+    this._loadingIdioms = true;
+    this._timezone$ = this._timezonesvc.onFindAll( country.code2 )
     .subscribe((response) => {
 
       const { data, total } = response;
@@ -118,6 +143,23 @@ export class InterpreterPageComponent {
 
       this._timezone$?.unsubscribe();
     });
+
+    this._idiom$ = this._idiomsvc.findAll( country.code )
+    .subscribe({
+      next: (response) => {
+        const { data, total } = response;
+        this.idioms = data;
+        console.log('response ::: ', response);
+        this._loadingIdioms = false;
+        this._idiom$?.unsubscribe();
+      },
+      error: (e) => {
+
+        this._loadingIdioms = false;
+        this._idiom$?.unsubscribe();
+      }
+    })
+
   }
 
   onReset() {
@@ -198,7 +240,7 @@ export class InterpreterPageComponent {
     });
   }
 
-  onLoadData( record: IUser ) {
+  onLoadData( record: IInterpreter ) {
     const { id } = record;
 
     this._interpreterById$ = this._interpretersvc.onFindById( id )
@@ -213,11 +255,17 @@ export class InterpreterPageComponent {
         this.frmUser.get('surname')?.setValue( data.surname );
         this.frmUser.get('email')?.setValue( data.email );
         this.frmUser.get('phone')?.setValue( data.phone );
-        // this.frmUser.get('country')?.setValue( data. );
-        this.frmUser.get('timezone')?.setValue( data.timezone?.id );
+        this.frmUser.get('countryCode')?.setValue( data.countryCode );
+        this.frmUser.get('timzoneId')?.setValue( data.timezone.id );
+        this.frmUser.get('nativeLanguageId')?.setValue( data.nativeLanguage?.id );
+        this.frmUser.get('gender')?.setValue( data.gender );
 
-        if( data.timezone ) {
-          this.onGetTimezones();
+
+        const findCountry = this.countries.find( (c) => c.code == data.countryCode );
+
+        if( data.timezone && findCountry ) {
+          this.onGetTimezones( findCountry );
+          this.onGetTimezones( findCountry );
         }
 
         document.getElementById('btnShowModal')?.click();
@@ -232,7 +280,7 @@ export class InterpreterPageComponent {
 
   }
 
-  onConfirm( record: IUser ) {
+  onConfirm( record: IInterpreter ) {
     const { id, fullname, status } = record;
 
     this._uisvc.onShowConfirm(`¿Está seguro de ${ status ? 'eliminar' : 'restaurar' } a: "${ fullname }" ?`)
@@ -280,6 +328,7 @@ export class InterpreterPageComponent {
     this._timezone$?.unsubscribe();
     this._interpreter$?.unsubscribe();
     this._interpreterById$?.unsubscribe();
+    this._idiom$?.unsubscribe();
 
   }
 

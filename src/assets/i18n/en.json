@@ -52,6 +52,10 @@
     "CUSTOMERS": {
       "TEXT": "Customers"
     },
+
+    "AGENCY": {
+      "TEXT": "Agency"
+    },
     "BILLINGS": {
       "TEXT": "Billings"
     },
@@ -104,7 +108,7 @@
     "ADMIN": {
       "TEXT": "Admin",
       "LIST": {
-        "ORGANIZATION": "Customers"
+        "AGENCY": "Agencies"
       }
     }
   }

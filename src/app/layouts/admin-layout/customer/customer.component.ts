@@ -15,7 +15,7 @@ import { PagerService } from 'src/app/services/pager.service';
 import { UiService } from 'src/app/services/ui.service';
 import { emailPatt, fullTextNumberPatt, fullTextPatt, postalCodePatt } from 'src/app/utils';
 import { DepartmentClass } from 'src/app/classes/department.class';
-import { IDepartment } from 'src/app/interfaces/admin-interfaces/customer.interface';
+import { ICustomer, IDepartment } from 'src/app/interfaces/admin-interfaces/customer.interface';
 
 @Component({
   selector: 'app-customer',
@@ -42,7 +42,7 @@ export class CustomerComponent {
 
   countries: ICountry[] = [];
   timezones: ITimezone[] = [];
-  customers: any[] = [];
+  customers: ICustomer[] = [];
   customerType: ICustomerType[] = [];
 
   department: DepartmentClass[] = [];
@@ -54,6 +54,7 @@ export class CustomerComponent {
   private _loadingTimezone = false;
   private _saving = false;
   private _loadData = false;
+  private _loading = false;
   private _id = '';
   private _total = 0
 
@@ -73,6 +74,7 @@ export class CustomerComponent {
   get valuesFilter():IPagerFilter { return this.frmFilter.value; }
   get currentPage() { return this.paginate.currentPage; }
   get invalid() { return this.frmCustomer.invalid; }
+  get loading() { return this._loading; }
   get controls() { return this.frmCustomer.controls; }
   touched( field: string ) { return this.frmCustomer.get( field )?.touched; }
 
@@ -93,8 +95,8 @@ export class CustomerComponent {
       email:          [ '', [ Validators.required, Validators.pattern( emailPatt ) ] ],
       phone:          [ '', [ ] ],
       address:        [ '', [ Validators.required, Validators.pattern( fullTextNumberPatt ) ] ],
-      cityname:       [ '', [ Validators.required ] ],
-      postalcode:     [ '', [ Validators.required, Validators.pattern( postalCodePatt ) ] ],
+      cityName:       [ '', [ Validators.required ] ],
+      postalCode:     [ '', [ Validators.required, Validators.pattern( postalCodePatt ) ] ],
       countryCode:    [ null, [ Validators.required ] ],
       timzoneId:      [ null, [ Validators.required ] ],
       customertypeId: [ null, [ Validators.required ] ],
@@ -243,6 +245,7 @@ export class CustomerComponent {
   }
 
   onGetClients( page = 1 ) {
+    this._loading = true;
     this._client$ = this._customersvc.onFindAll( this.valuesFilter, page )
     .subscribe({
       next: (response) => {
@@ -254,16 +257,18 @@ export class CustomerComponent {
 
         this.paginate = this._pagersvc.getPager( total, page, this.valuesFilter.limit );
 
+        this._loading = false;
         this._client$?.unsubscribe();
       },
       error: (e) => {
 
+        this._loading = false;
         this._client$?.unsubscribe();
       }
     });
   }
 
-  onLoadData( record: IUser ) {
+  onLoadData( record: ICustomer ) {
     const { id } = record;
 
     this._clientById$ = this._customersvc.onFindById( id )
@@ -282,8 +287,8 @@ export class CustomerComponent {
 
 
         this.frmCustomer.get('address')?.setValue( data.address );
-        this.frmCustomer.get('cityname')?.setValue( data.cityName );
-        this.frmCustomer.get('postalcode')?.setValue( data.postalCode );
+        this.frmCustomer.get('cityName')?.setValue( data.cityName );
+        this.frmCustomer.get('postalCode')?.setValue( data.postalCode );
         this.frmCustomer.get('countryCode')?.setValue( data.countryCode );
         this.frmCustomer.get('timzoneId')?.setValue( data.timezone?.id );
         this.frmCustomer.get('customertypeId')?.setValue( data.customerType?.id );
@@ -320,10 +325,10 @@ export class CustomerComponent {
 
   }
 
-  onConfirm( record: IUser ) {
-    const { id, fullname, status } = record;
+  onConfirm( record: ICustomer ) {
+    const { id, customerName, status } = record;
 
-    this._uisvc.onShowConfirm(`¿Está seguro de ${ status ? 'eliminar' : 'restaurar' } a: "${ fullname }" ?`)
+    this._uisvc.onShowConfirm(`¿Está seguro de ${ status ? 'eliminar' : 'restaurar' } a: "${ customerName }" ?`)
     .then( (result) => {
 
       if( result.isConfirmed ) {

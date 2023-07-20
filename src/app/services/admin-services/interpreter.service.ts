@@ -3,8 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { admin_service } from 'src/globals';
 import { IPagerFilter } from '../../interfaces/pager.interface';
 import { IUserByIdResponse, IUserListResponse } from '../../interfaces/segurity-interfaces/user.interface';
+import { IInterpreterByIdResponse, IInterpreterListResponse } from 'src/app/interfaces/admin-interfaces/interpreter.interface';
 
-const entity = '/user';
+const entity = '/interpreter';
 
 @Injectable({providedIn: 'root'})
 export class InterpreterService {
@@ -12,7 +13,7 @@ export class InterpreterService {
   private _http = inject( HttpClient );
 
   onCreate( body: any ) {
-    return this._http.post( admin_service + `${entity}/create/interpreter`, body );
+    return this._http.post( admin_service + `${entity}`, body );
   }
 
   onFindAll( filter: IPagerFilter, page: number ) {
@@ -23,19 +24,19 @@ export class InterpreterService {
     params += `&limit=${ filter.limit }`;
     params += `&order=${ filter.order }`;
 
-    return this._http.get<IUserListResponse>( admin_service + `${entity}/find/interpreter?${params}` );
+    return this._http.get<IInterpreterListResponse>( admin_service + `${entity}?${params}` );
   }
 
   onFindById( id: string ) {
-    return this._http.get<IUserByIdResponse>( admin_service + `${entity}/find/interpreter/${ id }` );
+    return this._http.get<IInterpreterByIdResponse>( admin_service + `${entity}/${ id }` );
   }
 
   onUpdate( body: any, id: string ) {
-    return this._http.patch( admin_service + `${entity}/update/interpreter/${ id }`, body );
+    return this._http.patch( admin_service + `${entity}/${ id }`, body );
   }
 
   onDelete( id: string ) {
-    return this._http.delete( admin_service + `${entity}/delete/interpreter/${ id }` );
+    return this._http.delete( admin_service + `${entity}/${ id }` );
   }
 
 }

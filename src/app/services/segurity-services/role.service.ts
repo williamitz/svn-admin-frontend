@@ -45,12 +45,12 @@ export class RoleService {
     );
   }
 
-  onFindAll( filter: IPagerFilter, page: number ) {
+  onFindAll( filter?: IPagerFilter, page = 1 ) {
 
     let params = `page=${ page }`;
-    params += `&filter=${ filter.filter }`;
-    params += `&active=${ !filter.active }`;
-    params += `&order=${ filter.order }`;
+    params += `&filter=${ filter?.filter ?? '' }`;
+    params += `&active=${ !filter?.active }`;
+    params += `&order=${ filter?.order }`;
 
     return this._http.get<IRoleResponse>( admin_service + '/role?' + params );
   }

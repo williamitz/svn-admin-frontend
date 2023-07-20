@@ -56,6 +56,8 @@ export class SidebarComponent implements OnInit {
 
       const { menuSystem, userData } = state;
 
+      this._st.agencyId = userData?.agency?.id ?? '';
+
       if( !this._loadedMenu && menuSystem.length > 0 ) {
 
         this._loadedMenu = true;
