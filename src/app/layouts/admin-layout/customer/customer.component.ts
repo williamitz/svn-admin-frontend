@@ -205,7 +205,7 @@ export class CustomerComponent {
           this._saving = false;
           this._uisvc.onClose();
           this._uisvc.onShowAlert( 'Cliente creado exitosamente', EIconAlert.success );
-          this.onGetClients( this.currentPage );
+          this.onGetClients( this.currentPage > 0 ? this.currentPage : 1 );
 
 
           this._create$?.unsubscribe();

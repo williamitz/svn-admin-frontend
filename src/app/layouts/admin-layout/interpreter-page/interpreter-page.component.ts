@@ -14,6 +14,7 @@ import { UiService } from 'src/app/services/ui.service';
 import { IdiomService } from 'src/app/services/admin-services/idiom.service';
 import { ILanguage } from 'src/app/interfaces/admin-interfaces/language.interface';
 import { IInterpreter } from 'src/app/interfaces/admin-interfaces/interpreter.interface';
+import { IIdiom } from 'src/app/interfaces/admin-interfaces/idiom.interface';
 
 @Component({
   selector: 'app-interpreter-page',
@@ -23,6 +24,7 @@ import { IInterpreter } from 'src/app/interfaces/admin-interfaces/interpreter.in
 export class InterpreterPageComponent {
 
   private _country$?: Subscription;
+  private _targetIdiom$?: Subscription;
   private _idiom$?: Subscription;
   private _timezone$?: Subscription;
   private _create$?: Subscription;
@@ -42,6 +44,7 @@ export class InterpreterPageComponent {
   idioms: ILanguage[] = [];
   timezones: ITimezone[] = [];
   interpreters: IInterpreter[] = [];
+  targetIdioms: IIdiom[] = [];
 
   genders = [ 'Male', 'Female', 'Other' ];
 
@@ -83,7 +86,7 @@ export class InterpreterPageComponent {
     //Add 'implements OnInit' to the class.
     this.onBuildFrm();
     this.onGetCountries();
-
+    this.onGetTargetIdioms();
     this.onGetInterpreters();
     // this.onGetIdioms();
 
@@ -95,10 +98,11 @@ export class InterpreterPageComponent {
       surname:          [ '', [ Validators.required ] ],
       email:            [ '', [ Validators.required ] ],
       phone:            [ '', [ ] ],
-      countryCode:          [ null, [ Validators.required ] ],
-      timzoneId:         [ null, [ Validators.required ] ],
+      countryCode:      [ null, [ Validators.required ] ],
+      timzoneId:        [ null, [ Validators.required ] ],
       nativeLanguageId: [ null, [ Validators.required ] ],
       gender:           [ 'Male', [ Validators.required ] ],
+      targetLanguages:  [ [], [ Validators.required, Validators.min(1) ] ],
 
     });
 
@@ -120,6 +124,26 @@ export class InterpreterPageComponent {
       this.countries = data;
 
       this._country$?.unsubscribe();
+    });
+  }
+
+  onGetTargetIdioms() {
+    this._targetIdiom$ = this._idiomsvc.findIdiomsAll()
+    .subscribe({
+      next: (response) => {
+
+        const { data, total } = response;
+
+        console.log('response ::: ', response);
+
+        this.targetIdioms = [...data];
+
+        this._targetIdiom$?.unsubscribe();
+      },
+      error: (e) => {
+
+        this._targetIdiom$?.unsubscribe();
+      }
     });
   }
 
@@ -329,6 +353,7 @@ export class InterpreterPageComponent {
     this._interpreter$?.unsubscribe();
     this._interpreterById$?.unsubscribe();
     this._idiom$?.unsubscribe();
+    this._targetIdiom$?.unsubscribe();
 
   }
 
