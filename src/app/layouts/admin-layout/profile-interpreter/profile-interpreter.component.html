@@ -36,87 +36,139 @@
         <!-- Tab panes -->
         <div class="tab-content text-muted">
           <div class="tab-pane active show" id="home-1" role="tabpanel">
-            <div class="row gy-4">
-              <div class="col-md-3">
-                <div>
-                  <label for="firstname" class="form-label">First Name</label>
-                  <input type="text" class="form-control rounded-pill" id="firstname" placeholder="Enter your name">
+
+            <form [formGroup]="frmInterpreter" >
+
+              <div class="row gy-4">
+
+                <div class="col-md-3">
+                  <div>
+                    <label for="firstname" class="form-label">First Name</label>
+                    <input type="text"
+                      class="form-control rounded-pill"
+                      id="firstname"
+                      placeholder="Enter your name"
+                      formControlName="name"
+                    >
+                  </div>
                 </div>
-              </div>
-              <div class="col-md-3">
-                <div>
-                  <label for="lastname" class="form-label">Last Name</label>
-                  <input type="text" class="form-control rounded-pill" id="lastname" placeholder="Enter your name">
+
+                <div class="col-md-3">
+                  <div>
+                    <label for="lastname" class="form-label">Last Name</label>
+                    <input type="text"
+                      class="form-control rounded-pill"
+                      id="lastname"
+                      placeholder="Enter your name"
+                      formControlName="surname"
+                    >
+                  </div>
                 </div>
-              </div>
-              <div class="col-md-3">
-                <label for="lastname" class="form-label">Target Language</label>
-                <select class="form-select rounded-pill" aria-label="Default select example">
-                  <option selected="">Select</option>
-                  <option value="1">Information Architecture</option>
-                  <option value="2">UI/UX Design</option>
-                  <option value="3">Back End Development</option>
-                </select>
-              </div>
-              <div class="col-md-3">
-                <div>
-                  <label for="lastname" class="form-label">Telephone Number</label>
-                  <input type="number" class="form-control rounded-pill" id="lastname" placeholder="Enter your name">
+
+                <div class="col-md-3">
+
+                  <label for="cleave-phone" class="form-label">Target languages</label>
+                  <ng-select
+                    class=""
+                    [items]="targetIdioms"
+                    bindLabel="name"
+                    bindValue="id"
+                    placeholder="Select target languages"
+                    formControlName="targetLanguages"
+                    [multiple]="true"
+                    [loading]="loadingIdioms"
+                    [class.is-invalid]="controls['targetLanguages'].errors  &&  touched('targetLanguages')"
+                  >
+                  </ng-select>
                 </div>
-              </div>
-              <div class="col-md-3">
-                <div>
-                  <label for="exampleInputtime" class="form-label">Time Zone</label>
-                  <input type="time" class="form-control rounded-pill" id="exampleInputtime">
+
+                <div class="col-md-3">
+                  <div>
+                    <label for="lastname" class="form-label">Telephone Number</label>
+                    <input type="number"
+                      class="form-control rounded-pill"
+                      id="lastname"
+                      placeholder="Enter your name"
+                      formControlName="phone"
+                    >
+                  </div>
                 </div>
-              </div>
-              <div class="col-md-3">
-                <label for="lastname" class="form-label">Gender</label>
-                <select class="form-select rounded-pill" aria-label="Default select example">
-                  <option selected="">Select</option>
-                  <option value="1">Male</option>
-                  <option value="2">Female</option>
-                  <option value="3">Other</option>
-                </select>
-              </div>
-              <div class="col-md-3">
-                <label for="lastname" class="form-label">Specialized Types</label>
-                <select class="form-select rounded-pill" aria-label="Default select example">
-                  <option selected="">Select</option>
-                  <option value="1">Specialized 1</option>
-                  <option value="2">Specialized 2</option>
-                  <option value="3">Specialized 3</option>
-                </select>
-              </div>
-              <div class="col-md-3">
-                <div>
-                  <label for="lastname" class="form-label">Years of Experience</label>
-                  <input type="text" class="form-control rounded-pill" id="lastname" placeholder="Enter your name">
+
+                <div class="col-md-3">
+                  <div>
+                    <label for="exampleInputtime" class="form-label">Time Zone</label>
+                    <ng-select
+                      [items]="timezones"
+                      bindLabel="zoneName"
+                      bindValue="id"
+                      placeholder="Select Time zone"
+                      formControlName="timzoneId"
+                      [loading]="loadingTimezone"
+                      [class.is-invalid]="controls['timzoneId'].errors  &&  touched('timzoneId')"
+                    >
+
+              </ng-select>
+                  </div>
+
                 </div>
-              </div>
-              <div class="col-md-6">
-                <div>
-                  <label for="formFile" class="form-label">File Input</label>
-                  <input class="form-control rounded-pill" type="file" id="formFile">
+
+                <div class="col-md-3">
+                  <label for="lastname" class="form-label">Gender</label>
+                  <select class="form-select rounded-pill" aria-label="Default select example">
+                    <option selected="">Select</option>
+                    <option value="1">Male</option>
+                    <option value="2">Female</option>
+                    <option value="3">Other</option>
+                  </select>
                 </div>
-              </div>
-              <div class="col-md-6">
-                <div>
-                  <label for="iconInput" class="form-label">E-mail</label>
-                  <input type="email" class="form-control rounded-pill" id="iconInput" placeholder="example@gmail.com">
+
+                <div class="col-md-3">
+                  <label for="lastname" class="form-label">Specialized Types</label>
+                  <select class="form-select rounded-pill" aria-label="Default select example">
+                    <option selected="">Select</option>
+                    <option value="1">Specialized 1</option>
+                    <option value="2">Specialized 2</option>
+                    <option value="3">Specialized 3</option>
+                  </select>
                 </div>
-              </div>
-              <div class="col-md-6">
-                <div>
-                  <label for="disabledInput" class="form-label">Rate</label>
-                  <input type="text" class="form-control" id="disabledInput" value="Disabled input" disabled="">
+
+                <div class="col-md-3">
+                  <div>
+                    <label for="lastname" class="form-label">Years of Experience</label>
+                    <input type="text" class="form-control rounded-pill" id="lastname" placeholder="Enter your name">
+                  </div>
                 </div>
+
+                <div class="col-md-6">
+                  <div>
+                    <label for="formFile" class="form-label">File Input</label>
+                    <input class="form-control rounded-pill" type="file" id="formFile">
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div>
+                    <label for="iconInput" class="form-label">E-mail</label>
+                    <input type="email" class="form-control rounded-pill" id="iconInput" placeholder="example@gmail.com">
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div>
+                    <label for="disabledInput" class="form-label">Rate</label>
+                    <input type="text" class="form-control" id="disabledInput" value="Disabled input" disabled="">
+                  </div>
+                </div>
+
               </div>
-            </div>
+
+            </form>
+
             <div class="hstack gap-2 justify-content-center mt-4">
               <a href="javascript:void(0);" class="btn btn-danger rounded-pill fw-medium px-5">Save</a>
               <a href="javascript:void(0);" class="btn btn-light rounded-pill fw-medium px-5">Reset</a>
             </div>
+
           </div>
           <div class="tab-pane" id="profile-1" role="tabpanel">
             <div>

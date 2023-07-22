@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Subscription, find } from 'rxjs';
 import { EIconAlert } from 'src/app/interfaces/alertIcon.enum';
 import { ICountry } from 'src/app/interfaces/admin-interfaces/country.interface';
 import { IPager, IPagerFilter } from 'src/app/interfaces/pager.interface';
@@ -122,6 +122,13 @@ export class InterpreterPageComponent {
       const { data, total } = response;
 
       this.countries = data;
+
+      const finded = data.find( (e) => e.code = 'US' );
+
+      console.log('finded ::: ', finded);
+      if( finded ) {
+        this.frmUser.get('countryCode')?.setValue( finded.code );
+      }
 
       this._country$?.unsubscribe();
     });

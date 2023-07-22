@@ -4,6 +4,7 @@ import { admin_service } from 'src/globals';
 import { IPagerFilter } from '../../interfaces/pager.interface';
 import { IUserByIdResponse, IUserListResponse } from '../../interfaces/segurity-interfaces/user.interface';
 import { IInterpreterByIdResponse, IInterpreterListResponse } from 'src/app/interfaces/admin-interfaces/interpreter.interface';
+import { IInterpreterProfileResponse } from 'src/app/interfaces/admin-interfaces/profile.interface';
 
 @Injectable({providedIn: 'root'})
 export class InterpreterService {
@@ -26,7 +27,7 @@ export class InterpreterService {
   }
 
   onFindById( id: string ) {
-    return this._http.get<IInterpreterByIdResponse>( admin_service + `/interpreter/${ id }` );
+    return this._http.get<IInterpreterProfileResponse>( admin_service + `/interpreter/${ id }` );
   }
 
   onUpdate( body: any, id: string ) {

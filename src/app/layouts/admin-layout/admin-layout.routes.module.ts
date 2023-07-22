@@ -29,7 +29,7 @@ const routes: Routes = [
   { path: 'onsite-interpreter', component: OnsiteInterpreterComponent },
   { path: 'pool-interpreter', component: PoolAddInterpreterComponent },
   { path: 'pool-activity-interpreter', component: PoolActivityInterpreterComponent },
-  { path: 'profile-interpreter', component: ProfileInterpreterComponent },
+  { path: 'profile-interpreter/:id', component: ProfileInterpreterComponent },
   { path: 'customers', component: CustomerComponent },
   { path: 'internal-user', component: InternalUserComponent },
   { path: 'billing', component: BillingComponent },

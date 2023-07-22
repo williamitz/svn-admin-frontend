@@ -20,8 +20,6 @@ export interface IInterpreter {
   phone:          null | string;
   gender:         string;
   countryCode:    string;
-  roles:          IRoleRef[];
-  agency:         IAgency;
   timezone:       Timezone;
   nativeLanguage: INativeLanguageRef | null;
 }
@@ -49,10 +47,6 @@ export interface INativeLanguageRef {
   percentage:  string;
 }
 
-export interface IRoleRef {
-  id:   string;
-  name: string;
-}
 
 export interface Timezone {
   status:       boolean;
