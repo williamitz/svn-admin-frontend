@@ -19,4 +19,8 @@ export class NomenclatureService {
     return this._http.get<INomenclatureResponse>( admin_service + `${ entity }/menu?${ params }` );
   }
 
+  onGetCallType() {
+    return this._http.get<INomenclatureResponse>( admin_service + `${ entity }/call-type` );
+  }
+
 }

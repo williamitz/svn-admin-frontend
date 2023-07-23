@@ -41,61 +41,62 @@
 
               <div class="row gy-4">
 
-                <div class="col-md-3">
-                  <div>
-                    <label for="firstname" class="form-label">First Name</label>
-                    <input type="text"
-                      class="form-control rounded-pill"
-                      id="firstname"
-                      placeholder="Enter your name"
-                      formControlName="name"
-                    >
+                  <div class="col-md-3 col-sm-6 col-xs-12">
+                      <label for="firstname" class="form-label">First Name</label>
+                      <input type="text"
+                        class="form-control rounded-pill"
+                        id="firstname"
+                        placeholder="Enter your name"
+                        formControlName="name"
+                      >
                   </div>
-                </div>
 
-                <div class="col-md-3">
-                  <div>
-                    <label for="lastname" class="form-label">Last Name</label>
-                    <input type="text"
-                      class="form-control rounded-pill"
-                      id="lastname"
-                      placeholder="Enter your name"
-                      formControlName="surname"
-                    >
+                  <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div>
+                      <label for="lastname" class="form-label">Last Name</label>
+                      <input type="text"
+                        class="form-control rounded-pill"
+                        id="lastname"
+                        placeholder="Enter your name"
+                        formControlName="surname"
+                      >
+                    </div>
                   </div>
-                </div>
 
-                <div class="col-md-3">
+                  <div class="col-md-3 col-sm-6 col-xs-12">
 
-                  <label for="cleave-phone" class="form-label">Target languages</label>
-                  <ng-select
-                    class=""
-                    [items]="targetIdioms"
-                    bindLabel="name"
-                    bindValue="id"
-                    placeholder="Select target languages"
-                    formControlName="targetLanguages"
-                    [multiple]="true"
-                    [loading]="loadingIdioms"
-                    [class.is-invalid]="controls['targetLanguages'].errors  &&  touched('targetLanguages')"
-                  >
-                  </ng-select>
-                </div>
-
-                <div class="col-md-3">
-                  <div>
-                    <label for="lastname" class="form-label">Telephone Number</label>
-                    <input type="number"
-                      class="form-control rounded-pill"
-                      id="lastname"
-                      placeholder="Enter your name"
-                      formControlName="phone"
+                    <label for="cleave-phone" class="form-label">Target languages</label>
+                    <ng-select
+                      class=""
+                      [items]="targetIdioms"
+                      bindLabel="name"
+                      bindValue="id"
+                      placeholder="Select target languages"
+                      formControlName="targetLanguages"
+                      [multiple]="true"
+                      [loading]="loadingIdioms"
+                      [class.is-invalid]="controls['targetLanguages'].errors  &&  touched('targetLanguages')"
                     >
+                    </ng-select>
                   </div>
-                </div>
 
-                <div class="col-md-3">
-                  <div>
+                  <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div>
+                      <label for="lastname" class="form-label">Telephone Number</label>
+                      <input type="number"
+                        class="form-control rounded-pill"
+                        id="lastname"
+                        placeholder="Enter your name"
+                        formControlName="phone"
+                      >
+                    </div>
+                  </div>
+
+              </div>
+
+              <div class="row pt-3">
+
+                <div class="col-md-3 col-sm-6 col-xs-12">
                     <label for="exampleInputtime" class="form-label">Time Zone</label>
                     <ng-select
                       [items]="timezones"
@@ -107,22 +108,20 @@
                       [class.is-invalid]="controls['timzoneId'].errors  &&  touched('timzoneId')"
                     >
 
-              </ng-select>
-                  </div>
-
+                    </ng-select>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-3 col-sm-6 col-xs-12">
                   <label for="lastname" class="form-label">Gender</label>
-                  <select class="form-select rounded-pill" aria-label="Default select example">
+                  <select class="form-select rounded-pill" aria-label="Default select example" formControlName="gender">
                     <option selected="">Select</option>
-                    <option value="1">Male</option>
-                    <option value="2">Female</option>
-                    <option value="3">Other</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
                   </select>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-3 col-sm-6 col-xs-12">
                   <label for="lastname" class="form-label">Specialized Types</label>
                   <select class="form-select rounded-pill" aria-label="Default select example">
                     <option selected="">Select</option>
@@ -132,41 +131,124 @@
                   </select>
                 </div>
 
-                <div class="col-md-3">
-                  <div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
                     <label for="lastname" class="form-label">Years of Experience</label>
                     <input type="text" class="form-control rounded-pill" id="lastname" placeholder="Enter your name">
-                  </div>
                 </div>
 
-                <div class="col-md-6">
-                  <div>
-                    <label for="formFile" class="form-label">File Input</label>
-                    <input class="form-control rounded-pill" type="file" id="formFile">
-                  </div>
+              </div>
+
+              <div class="row pt-3">
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                  <label for="formFile" class="form-label">File Input</label>
+                  <input class="form-control rounded-pill" type="file" id="formFile">
                 </div>
 
-                <div class="col-md-6">
-                  <div>
+                <div class="col-md-6 col-sm-12 col-xs-12">
                     <label for="iconInput" class="form-label">E-mail</label>
-                    <input type="email" class="form-control rounded-pill" id="iconInput" placeholder="example@gmail.com">
+                    <input type="email"
+                      class="form-control rounded-pill"
+                      id="iconInput"
+                      placeholder="example@gmail.com"
+                      formControlName="email"
+                    >
+                </div>
+              </div>
+
+            </form>
+
+            <div class="row pt-3">
+
+              <div class="col-md-6">
+                  <label for="disabledInput" class="form-label">Rate</label>
+                  <input type="text"
+                    class="form-control"
+                    id="disabledInput"
+                    value="Disabled input"
+                  >
+              </div>
+
+              <div class="col-md-6">
+
+                <div class="row pb-2 pt-2">
+                  <div class="col-6">
+                    <h4>
+                      Rate
+                    </h4>
+                  </div>
+                  <div class="col-6 d-flex justify-content-end">
+                    <button type="button" class="btn btn-sm btn-dark " (click)="onAddrate()">
+                        <i class="ri-add-line align-bottom me-1"></i>
+                        Add
+                    </button>
                   </div>
                 </div>
 
-                <div class="col-md-6">
-                  <div>
-                    <label for="disabledInput" class="form-label">Rate</label>
-                    <input type="text" class="form-control" id="disabledInput" value="Disabled input" disabled="">
+                <div class="row">
+                  <div class="col-12">
+
+                    <table class="table table-responsive  table-nowrap mb-0">
+                      <thead class="table-light">
+                          <tr>
+                              <th scope="col">Type</th>
+                              <th scope="col">Rate</th>
+                              <th scope="col">Actions</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+
+                        <tr *ngFor="let dpt of rates">
+                            <td>
+
+                              <select class="form-select rounded-pill" aria-label="Default select example" [formControl]="dpt.type" [class.is-invalid]="dpt.invalidType ">
+                                <option selected="" disabled>Select</option>
+                                <option [value]="item.value" *ngFor="let item of calltype" >
+                                  {{ item.value }}
+                                </option>
+                              </select>
+
+                            </td>
+                            <td>
+                              <input type="text"
+                                class="form-control rounded-pill"
+                                placeholder="Access Code"
+                                [formControl]="dpt.rate"
+                                [class.is-invalid]="dpt.invalidRate "
+                              >
+                            </td>
+
+                            <td>
+                                <div class="mt-2 text-center">
+                                  <a href="javascript:void(0);" class="link-danger " (click)="onRemoveRate( dpt )" >
+                                    <i class="ri-delete-bin-line align-bottom "></i>
+                                  </a>
+                                </div>
+                            </td>
+                          </tr>
+
+                      </tbody>
+                    </table>
+
                   </div>
                 </div>
 
               </div>
 
-            </form>
+            </div>
 
             <div class="hstack gap-2 justify-content-center mt-4">
-              <a href="javascript:void(0);" class="btn btn-danger rounded-pill fw-medium px-5">Save</a>
-              <a href="javascript:void(0);" class="btn btn-light rounded-pill fw-medium px-5">Reset</a>
+
+              <button class="btn btn-danger rounded-pill fw-medium px-5"
+                [disabled]="invalid || invalidRate || saving"
+                (click)="onSubmit()"
+              >
+                Save
+              </button>
+
+              <button class="btn btn-light rounded-pill fw-medium px-5">
+                Reset
+              </button>
+
             </div>
 
           </div>
