@@ -53,4 +53,8 @@ export class InterpreterService {
     return this._http.put<IRateUpdateResponse>( admin_service + `/interpreter/${ id }/rate`, body );
   }
 
+  onUpdateOfficeHours( id: string, body: any ) {
+    return this._http.put<IRateUpdateResponse>( admin_service + `/interpreter/${ id }/office-hours`, body );
+  }
+
 }

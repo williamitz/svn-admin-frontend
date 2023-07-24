@@ -40,6 +40,7 @@ import { CallQueuesComponent } from './call-queues/call-queues.component';
 import { ProfileAccountComponent } from './profile-account/profile-account.component';
 import { PortalInterprterComponent } from './portal-interprter/portal-interprter.component';
 import { MyassignmetInterpreterComponent } from './myassignmet-interpreter/myassignmet-interpreter.component';
+import { SharedAdminModule } from './shared-admin/shared-admin.module';
 
 // FullCalendarModule.registerPlugins([
 //   dayGridPlugin,
@@ -97,7 +98,9 @@ import { MyassignmetInterpreterComponent } from './myassignmet-interpreter/myass
     NgbNavModule,
     NgbPaginationModule,
     NgbCollapseModule,
-    NgxMaskDirective
+    NgxMaskDirective,
+
+    SharedAdminModule,
   ]
 })
 export class AdminLayoutModule { }

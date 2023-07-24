@@ -64,7 +64,7 @@ export class AppComponent {
           this._store.dispatch( segurityActions.onLoadMenuSystem( { allow: allowMenu, userData: data } ) );
           // this._store.dispatch( uiActions.onLoadedMenu() );
 
-          console.log('response ::: ', response);
+          // console.log('response ::: ', response);
 
         },
         error: (e) => {

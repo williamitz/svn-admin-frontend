@@ -1,11 +1,12 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, forkJoin } from 'rxjs';
+import { OfficeHourClass } from 'src/app/classes/office-hours.class';
 import { RateClass } from 'src/app/classes/rate.class';
 import { IIdiom } from 'src/app/interfaces/admin-interfaces/idiom.interface';
-import { IProfileInterpreter } from 'src/app/interfaces/admin-interfaces/profile.interface';
+import { IProfileInterpreter, OfficeHour } from 'src/app/interfaces/admin-interfaces/profile.interface';
 import { ITimezone } from 'src/app/interfaces/admin-interfaces/timezone.interface';
 import { EIconAlert } from 'src/app/interfaces/alertIcon.enum';
 import { INomenclature } from 'src/app/interfaces/nomenclature.interface';
@@ -28,9 +29,6 @@ export class ProfileInterpreterComponent {
   private _calltype$?: Subscription;
   private _update$?: Subscription;
 
-
-  lista = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-
   private _acivatedRoute = inject( ActivatedRoute );
   private _idiomsvc = inject( IdiomService );
   private _router = inject( Router );
@@ -38,6 +36,28 @@ export class ProfileInterpreterComponent {
   private _timezonesvc = inject( TimezoneService );
   private _nomenclaturesvc = inject( NomenclatureService );
   private _uisvc = inject( UiService );
+
+  private _officeHour: OfficeHour[] = [];
+
+  private _days = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
+
+  officeHours: OfficeHourClass[] = [
+    new OfficeHourClass( false, 'Monday', null, null ),
+    new OfficeHourClass( false, 'Tuesday', null, null ),
+    new OfficeHourClass( false, 'Wednesday', null, null ),
+    new OfficeHourClass( false, 'Thursday', null, null ),
+    new OfficeHourClass( false, 'Friday', null, null ),
+    new OfficeHourClass( false, 'Saturday', null, null ),
+    new OfficeHourClass( false, 'Sunday', null, null ),
+  ];
 
   private _id = '';
 
@@ -75,6 +95,8 @@ export class ProfileInterpreterComponent {
   get invalidRate() {
     return this.rates.some( (e) => e.invalid );
   }
+
+  get id() { return this._id; }
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -153,6 +175,28 @@ export class ProfileInterpreterComponent {
         this.frmInterpreter.get('targetLanguages')?.setValue(
           data.targetLanguages.map( (e) => e.id )
         );
+
+        this._officeHour = data.officeHours;
+
+        this.officeHours = [];
+
+        this.officeHours = this._days.map( (day) => {
+
+
+          const finded = this._officeHour.find( (e) => e.dayName == day );
+
+          if( finded ) {
+            return new OfficeHourClass( finded.status, day, finded.timeStart, finded.timeEnd, finded.id );
+          }
+
+          return new OfficeHourClass( false, day, null, null );
+
+        } );
+
+
+
+
+        console.log('data.officeHours ::: ', data.officeHours);
 
         this.onGetTimeZones( data.countryCode.substring(0, 2) );
 

@@ -19,6 +19,15 @@ export interface IProfileInterpreter {
   targetLanguages: TargetLanguage[];
   timezone:        Timezone;
   rates:           Rate[];
+  officeHours:     OfficeHour[];
+}
+
+export interface OfficeHour {
+  status:    boolean;
+  id:        string;
+  dayName:   string;
+  timeStart: string;
+  timeEnd:   string;
 }
 
 export interface NativeLanguage {
@@ -77,4 +86,5 @@ export interface IRateUpdateResponse {
   userDelete?: null;
   deleteAt?:   null;
 }
+
 

@@ -25,7 +25,7 @@ export const AuthGuard: CanActivateFn = (
           const { token } = response;
 
           _cookieSvc.set( 'token', token );
-          console.log('response ::: ', response);
+          // console.log('response ::: ', response);
 
           obs.next( true );
           _token$?.unsubscribe();

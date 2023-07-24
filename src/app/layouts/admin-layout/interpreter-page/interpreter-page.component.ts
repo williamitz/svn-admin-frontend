@@ -100,7 +100,7 @@ export class InterpreterPageComponent {
       phone:            [ '', [ ] ],
       countryCode:      [ null, [ Validators.required ] ],
       timzoneId:        [ null, [ Validators.required ] ],
-      nativeLanguageId: [ null, [ Validators.required ] ],
+      nativeLanguageId: [ '1a0a2949-adc5-4e15-9947-73447dded377', [ Validators.required ] ],
       gender:           [ 'Male', [ Validators.required ] ],
       targetLanguages:  [ [], [ Validators.required, Validators.min(1) ] ],
 

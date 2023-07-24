@@ -13,6 +13,7 @@ export interface IInterpreter {
   status:         boolean;
   createAt:       string;
   id:             string;
+  code?:           string;
   name:           string;
   surname:        string;
   fullname:       string;

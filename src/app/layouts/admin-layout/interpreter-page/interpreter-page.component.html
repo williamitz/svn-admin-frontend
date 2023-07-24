@@ -68,6 +68,7 @@
                       {{ item.fullname }}
                     </span> -->
                     <a [routerLink]="['/admin/profile-interpreter/', item.id]" class="fw-semibold">
+                      {{ item?.code }}
                       {{ item.fullname }}
                     </a>
                   </td>

@@ -1,0 +1,148 @@
+<div>
+
+  <h5 class="fs-15 mb-3 p-2 border-bottom border-bottom-dashed">Service Type</h5>
+
+  <div class="row">
+
+    <div class="col-md-3">
+      <div class="form-check form-check-danger mb-3">
+        <input class="form-check-input" type="checkbox" id="hippa">
+        <label class="form-check-label" for="hippa">
+          HIPPA
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-check form-check-danger mb-3">
+        <input class="form-check-input" type="checkbox" id="experiencemedical">
+        <label class="form-check-label" for="experiencemedical">
+          Medical Experience
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-check form-check-danger mb-3">
+        <input class="form-check-input" type="checkbox" id="bussiness">
+        <label class="form-check-label" for="bussiness">
+          Bussiness
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-check form-check-danger mb-3">
+        <input class="form-check-input" type="checkbox" id="aslcertification">
+        <label class="form-check-label" for="aslcertification">
+          ASL Certification / RID
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-check form-check-danger mb-3">
+        <input class="form-check-input" type="checkbox" id="legalexperience">
+        <label class="form-check-label" for="legalexperience">
+          Legal Experience
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-check form-check-danger mb-3">
+        <input class="form-check-input" type="checkbox" id="educational">
+        <label class="form-check-label" for="educational">
+          Educational
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-check form-check-danger mb-3">
+        <input class="form-check-input" type="checkbox" id="others">
+        <label class="form-check-label" for="others">
+          Others
+        </label>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+<div>
+  <h5 class="fs-15 my-3 p-2 border-bottom border-bottom-dashed">Interpreter Schedule</h5>
+  <!-- Hoverable Rows -->
+  <table class="table table-hover table-nowrap table-striped mb-0">
+    <thead>
+      <tr>
+        <th scope="col" style="width:25px">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="checkAll" value="option1">
+          </div>
+        </th>
+        <th scope="col">Days</th>
+        <th scope="col">From</th>
+        <th scope="col">To</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr *ngFor="let item of officeHours">
+        <th scope="row">
+          <div class="form-check form-check-danger">
+            <input class="form-check-input"
+              type="checkbox"
+              id="chk-{{ item.dayName }}"
+              [formControl]="item.checked"
+              (change)="item.onChangeValidators()"
+            >
+          </div>
+        </th>
+        <td>
+          <label for="chk-{{ item.dayName }}">
+            {{ item.dayName }}
+          </label>
+        </td>
+        <td>
+          <input type="time"
+            class="form-control"
+            placeholder="00"
+            [formControl]="item.timeStart"
+            [class.is-invalid]="item.invalidTimeStart "
+          >
+        </td>
+        <td>
+          <input type="time"
+            class="form-control"
+            placeholder="00"
+            [formControl]="item.timeEnd"
+            [class.is-invalid]="item.invalidTimeEnd "
+          >
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="hstack gap-2 justify-content-center mt-4">
+
+    <button class="btn btn-danger rounded-pill fw-medium px-5" [disabled]="saving || invalid" (click)="onSumit()" >
+
+      <div class="spinner-border text-light" role="status" *ngIf="saving">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <span *ngIf="!saving"> Save </span>
+      <!-- <span *ngIf="!saving"> Save changes </span> -->
+      <span *ngIf="saving"> Saving... </span>
+
+    </button>
+
+    <button class="btn btn-light rounded-pill fw-medium px-5">
+      Reset
+    </button>
+
+  </div>
+
+</div>

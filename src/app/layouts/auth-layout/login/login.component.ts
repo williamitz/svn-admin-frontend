@@ -67,6 +67,12 @@ export class LoginComponent {
         this._store.dispatch( segurityActions.onLoadMenu() );
         this.loading = false;
         this._uisvc.onClose();
+
+        if( data.roles.some( (r) => r.code == 'INTERPRETER' ) ) {
+
+          this._router.navigateByUrl('/admin/portal-interpreter');
+        }
+
         this._router.navigateByUrl('/admin');
 
         console.log('response ::: ', response);

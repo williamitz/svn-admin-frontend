@@ -103,7 +103,7 @@ export class SidebarComponent implements OnInit {
       }
 
 
-      console.log('menuSystem ::: ', menuSystem);
+      // console.log('menuSystem ::: ', menuSystem);
 
     });
   }
