@@ -118,16 +118,17 @@ export class CustomerComponent {
 
   onBuildFrm() {
     this.frmCustomer = this._frmBuilder.group({
-      customerName:           [ '', [ Validators.required, Validators.pattern( fullTextPatt ) ] ],
+      customerName:   [ '', [ Validators.required, Validators.pattern( fullTextPatt ) ] ],
       email:          [ '', [ Validators.required, Validators.pattern( emailPatt ) ] ],
-      phone:          [ '', [ ] ],
+      phone:          [ '', [] ],
       address:        [ '', [ Validators.required, Validators.pattern( fullTextNumberPatt ) ] ],
       cityName:       [ '', [ Validators.required ] ],
       postalCode:     [ '', [ Validators.required, Validators.pattern( postalCodePatt ) ] ],
       countryCode:    [ null, [ Validators.required ] ],
       timzoneId:      [ null, [ Validators.required ] ],
       customertypeId: [ null, [ Validators.required ] ],
-      departments:          [ [], [] ],
+      departments:    [ [], [] ],
+      rates:          [ [], [] ],
     });
 
     this.frmFilter = this._frmBuilder.group({
@@ -226,8 +227,12 @@ export class CustomerComponent {
 
     this._saving = true;
 
-    const department = this.department.map( (e) => e.values );
-    this.frmCustomer.get('departments')?.setValue( department );
+    const departmentFinal = this.department.map( (e) => e.values );
+    const ratesFinal = this.rates.map( (e) => e.values );
+
+
+    this.frmCustomer.get('departments')?.setValue( departmentFinal );
+    this.frmCustomer.get('rates')?.setValue( ratesFinal );
 
     this._uisvc.onShowLoading();
 
