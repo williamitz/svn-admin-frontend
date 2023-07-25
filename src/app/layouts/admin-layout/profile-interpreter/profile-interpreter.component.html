@@ -240,9 +240,16 @@
               <div class="col-md-4">
                 <div>
                   <label for="formFile" class="form-label">File</label>
-                  <input type="file" id="formFile" class="form-control rounded-pill">
-                  <dropzone class="dropzone_sec"></dropzone>
+                  <!-- <input type="file" id="formFile" class="form-control rounded-pill"> -->
 
+                  <ngx-dropzone class="dropzone_sec" (change)="onSelect($event)" accept="image/jpeg,image/jpg,application/pdf" >
+                    <ngx-dropzone-label>Drop or selec files</ngx-dropzone-label>
+
+                    <ngx-dropzone-preview class="c-dropzone-preview" *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                      <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                    </ngx-dropzone-preview>
+
+                  </ngx-dropzone>
 
                 </div>
               </div>

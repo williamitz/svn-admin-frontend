@@ -16,6 +16,9 @@ import { UiService } from 'src/app/services/ui.service';
 import { emailPatt, fullTextNumberPatt, fullTextPatt, postalCodePatt } from 'src/app/utils';
 import { DepartmentClass } from 'src/app/classes/department.class';
 import { ICustomer, IDepartment } from 'src/app/interfaces/admin-interfaces/customer.interface';
+import { RateClass } from 'src/app/classes/rate.class';
+import { INomenclature } from 'src/app/interfaces/nomenclature.interface';
+import { NomenclatureService } from 'src/app/services/nomenclature.service';
 
 @Component({
   selector: 'app-customer',
@@ -32,6 +35,7 @@ export class CustomerComponent {
   private _client$?: Subscription;
   private _clientById$?: Subscription;
   private _customertype$?: Subscription;
+  private _calltype$?: Subscription;
 
   private _countrysvc = inject( CountryService );
   private _timezonesvc = inject( TimezoneService );
@@ -39,6 +43,7 @@ export class CustomerComponent {
   private _customertypesvc = inject( CustomerTypeService );
   private _uisvc = inject( UiService );
   private _pagersvc = inject( PagerService );
+  private _nomenclaturesvc = inject( NomenclatureService );
 
   countries: ICountry[] = [];
   timezones: ITimezone[] = [];
@@ -57,6 +62,9 @@ export class CustomerComponent {
   private _loading = false;
   private _id = '';
   private _total = 0
+
+  rates: RateClass[] = [];
+  calltype: INomenclature[] = [];
 
   paginate: IPager = {
     currentPage: 0,
@@ -86,7 +94,26 @@ export class CustomerComponent {
 
     this.onGetClients();
     this.onGetCustomerType();
+    this.onLoadCallType();
 
+  }
+
+  onLoadCallType() {
+    this._calltype$ = this._nomenclaturesvc.onGetCallType()
+    .subscribe({
+      next: (response) => {
+
+        const { data } = response;
+
+        this.calltype = data;
+
+        this._calltype$?.unsubscribe();
+      },
+      error: (e) => {
+
+        this._calltype$?.unsubscribe();
+      }
+    })
   }
 
   onBuildFrm() {
@@ -124,6 +151,15 @@ export class CustomerComponent {
     });
   }
 
+  onAddrate() {
+    this.rates.push(
+      new RateClass( '', 0 )
+    );
+  }
+
+  onRemoveRate( record: RateClass ) {
+    this.rates = this.rates.filter( (c) => c.auxId != record.auxId );
+  }
 
   onAddDepartment() {
 
