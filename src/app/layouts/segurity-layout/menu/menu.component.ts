@@ -114,7 +114,7 @@ export class MenuComponent {
         this.menus = data;
 
         this._total = total;
-        this.paginate = this._pagersvc.getPager( total, page, 5 );
+        this.paginate = this._pagersvc.getPager( total, page, this.value.limit );
 
         this._list$?.unsubscribe();
 

@@ -106,16 +106,11 @@ export class ProfileInterpreterComponent {
 
     this.onBuildFrm();
 
-    if( this._id !== '' ) {
-      this.onLoadProfile();
+    this.onLoadProfile();
 
-      this.onGetTargetIdioms();
+    this.onGetTargetIdioms();
 
-      this.onLoadCallType();
-
-    } else {
-      this._router.navigateByUrl('/admin/notfound');
-    }
+    this.onLoadCallType();
 
   }
 

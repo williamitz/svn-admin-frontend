@@ -117,7 +117,7 @@
 
               <div class="d-flex justify-content-start align-items-center gap-2 ">
                 Ver
-                <select class="form-select " style="width: 70px;" formControlName="limit">
+                <select class="form-select " style="width: 70px;" formControlName="limit" (change)="onGetMenu()" >
                   <!-- <option selected></option> -->
                   <option [value]="5">5</option>
                   <option [value]="10">10</option>

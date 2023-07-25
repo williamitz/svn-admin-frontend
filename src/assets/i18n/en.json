@@ -15,7 +15,10 @@
       "TEXT": "Clients"
     },
     "INTERPRETERS": {
-      "TEXT": "Interpreters"
+      "TEXT": "Interpreters",
+      "LIST": {
+        "MY-PROFILE": "My Profile"
+      }
     },
     "CALLS": {
       "TEXT": "Calls"

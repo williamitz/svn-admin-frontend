@@ -21,7 +21,10 @@
       "TEXT": "Clientes"
     },
     "INTERPRETERS": {
-      "TEXT": "Intérpretes"
+      "TEXT": "Intérpretes",
+      "LIST": {
+        "MY-PROFILE": "Mi perfil"
+      }
     },
     "SCHEDULEINTERPRETER": {
       "TEXT": "Horario Intérprete",

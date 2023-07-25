@@ -28,7 +28,10 @@ export class InterpreterService {
   }
 
   onFindById( id: string ) {
-    return this._http.get<IInterpreterProfileResponse>( admin_service + `/interpreter/${ id }` )
+
+    const urlGetProfile = id == '' ? '/interpreter/find/my-profile' : `/interpreter/${ id }`;
+
+    return this._http.get<IInterpreterProfileResponse>( admin_service + urlGetProfile )
     .pipe(
       map( (response) => {
 
@@ -42,7 +45,12 @@ export class InterpreterService {
   }
 
   onUpdate( body: any, id: string ) {
-    return this._http.put( admin_service + `/interpreter/${ id }`, body );
+
+    const urlUpdate = id == ''
+              ? '/interpreter/update/my-profile'
+              : `/interpreter/${ id }`;
+
+    return this._http.put( admin_service + urlUpdate, body );
   }
 
   onDelete( id: string ) {
@@ -50,11 +58,21 @@ export class InterpreterService {
   }
 
   onUpdateRate( id: string, body: any ) {
-    return this._http.put<IRateUpdateResponse>( admin_service + `/interpreter/${ id }/rate`, body );
+
+    const urlUpdate = id == ''
+              ? '/interpreter/update/rate-profile'
+              : `/interpreter/${ id }/rate`;
+
+    return this._http.put<IRateUpdateResponse>( admin_service + urlUpdate, body );
   }
 
   onUpdateOfficeHours( id: string, body: any ) {
-    return this._http.put<IRateUpdateResponse>( admin_service + `/interpreter/${ id }/office-hours`, body );
+
+    const urlUpdate = id == ''
+              ? '/interpreter/update/office-hours-profile'
+              : `/interpreter/${ id }/office-hours`;
+
+    return this._http.put<IRateUpdateResponse>( admin_service + urlUpdate, body );
   }
 
 }

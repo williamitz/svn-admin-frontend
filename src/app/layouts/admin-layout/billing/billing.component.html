@@ -60,6 +60,7 @@
                     <th scope="col">Access Code</th>
                     <th scope="col">Phone Number</th>
                     <th scope="col">Action</th>
+                    <th scope="col">Rating</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -78,6 +79,31 @@
                     </td>
                     <td>
                       <a routerLink="/admin/invoice" class="btn btn-success btn-sm">Create Invoice</a>
+                    </td>
+                    <td>
+
+                      <!-- [starTemplate]="t" -->
+                      <!-- [ariaValueText]="ariaValueText" -->
+                      <ngb-rating
+                        [(rate)]="item.rating"
+                        [readonly]="true"
+                        [max]="5"
+                      >
+
+                      <ng-template let-fill="fill" let-index="index">
+                        <i class="ri-star{{fill === 5 ? '-fill' : '-line'}}"
+                         [class.filled]="fill === 100"
+                         >
+                        </i>
+
+                        <!-- <i class="ri-star-line"></i>
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-half-line"></i> -->
+                      </ng-template>
+
+                      </ngb-rating>
+
+
                     </td>
                   </tr>
                   <tr>

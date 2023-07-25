@@ -23,7 +23,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 // Flat Picker
 import { FlatpickrModule } from 'angularx-flatpickr';
 
-import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalModule, NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { NgbTooltipModule, NgbDropdownModule, NgbTypeaheadModule, NgbAccordionModule, NgbProgressbarModule, NgbNavModule, NgbPaginationModule, NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 import { PoolAddInterpreterComponent } from './pool-add-interpreter/pool-add-interpreter.component';
@@ -99,6 +99,7 @@ import { SharedAdminModule } from './shared-admin/shared-admin.module';
     NgbPaginationModule,
     NgbCollapseModule,
     NgxMaskDirective,
+    NgbRatingModule,
 
     SharedAdminModule,
   ]
