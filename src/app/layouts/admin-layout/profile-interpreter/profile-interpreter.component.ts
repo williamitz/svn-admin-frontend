@@ -59,6 +59,18 @@ export class ProfileInterpreterComponent {
     new OfficeHourClass( false, 'Sunday', null, null ),
   ];
 
+  files: File[] = [];
+
+  onSelect(event: any) {
+    console.log(event);
+    this.files.push(...event.addedFiles);
+  }
+
+  onRemove(event: any) {
+    console.log(event);
+    this.files.splice(this.files.indexOf(event), 1);
+  }
+
   private _id = '';
 
   targetIdioms: IIdiom[] = [];

@@ -41,12 +41,19 @@ import { ProfileAccountComponent } from './profile-account/profile-account.compo
 import { PortalInterprterComponent } from './portal-interprter/portal-interprter.component';
 import { MyassignmetInterpreterComponent } from './myassignmet-interpreter/myassignmet-interpreter.component';
 import { SharedAdminModule } from './shared-admin/shared-admin.module';
-import { NgxDropzoneModule } from 'ngx-dropzone';
+import { DropzoneModule, DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 
 // FullCalendarModule.registerPlugins([
 //   dayGridPlugin,
 //   interactionPlugin
 // ]);
+
+const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
+  // Change this to your upload POST address:
+   url: 'https://httpbin.org/post',
+   maxFilesize: 50,
+   acceptedFiles: 'image/*'
+ };
 
 @NgModule({
   // TODO: importar vistas
@@ -102,8 +109,7 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     NgxMaskDirective,
     NgbRatingModule,
 
-    NgxDropzoneModule,
-
+    DropzoneModule,
     SharedAdminModule,
   ]
 })
