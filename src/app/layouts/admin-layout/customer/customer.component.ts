@@ -86,6 +86,12 @@ export class CustomerComponent {
   get controls() { return this.frmCustomer.controls; }
   touched( field: string ) { return this.frmCustomer.get( field )?.touched; }
 
+  get invalidDepartments() { return this.department.some( (e) => e.invalid ); }
+  get invalidRates() { return this.rates.some( (e) => e.invalid ); }
+
+  get counterRates(){ return this.rates.length; }
+  get counterDepartments(){ return this.department.length; }
+
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
@@ -212,13 +218,13 @@ export class CustomerComponent {
     });
   }
 
-
   onReset() {
     this.frmCustomer.reset();
     this._saving = false;
     this._loadData = false;
     this._id = '';
     this.department = [];
+    this.rates = [];
     document.getElementById('btnCloseModal')?.click();
   }
 
@@ -343,6 +349,17 @@ export class CustomerComponent {
             e.accessCode,
             e.id
           );
+        } );
+
+        this.rates = [];
+
+        this.rates = data.rates.map( (e) => {
+
+          return new RateClass(
+            e.type,
+            +e.rate,
+            e.id
+          )
         } );
 
 

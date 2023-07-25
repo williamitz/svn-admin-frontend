@@ -28,6 +28,16 @@ export interface ICustomer {
   departments:  IDepartment[];
 
   customerType: ICustomerType;
+  rates:        Rate[];
+}
+
+export interface Rate {
+  status:     boolean;
+  userCreate: string;
+  createAt:   string;
+  id:         string;
+  type:       string;
+  rate:       string;
 }
 
 export interface ICustomerType {
