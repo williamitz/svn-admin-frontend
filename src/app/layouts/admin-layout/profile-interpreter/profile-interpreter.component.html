@@ -77,10 +77,6 @@
                   </div>
                 </div>
 
-              </div>
-
-              <div class="row pt-3">
-
                 <div class="col-md-3 col-sm-6 col-xs-12">
                   <label for="exampleInputtime" class="form-label">Time Zone</label>
                   <ng-select [items]="timezones" bindLabel="zoneName" bindValue="id" placeholder="Select Time zone"
@@ -115,27 +111,22 @@
                   <input type="text" class="form-control rounded-pill" id="lastname" placeholder="Enter your name">
                 </div>
 
-              </div>
-
-              <div class="row pt-3">
-                <div class="col-md-6 col-sm-12 col-xs-12">
-                  <label for="formFile" class="form-label">File Input</label>
-                  <div class="file-select">
-                    <input class="form-control rounded-pill" type="file" id="formFile" placeholder="filessss">
-                  </div>
-                  <!-- <div class="card-body">
-                    <p class="text-muted">DropzoneJS is an open source library that provides drag’n’drop file uploads
-                      with
-                      image previews.</p>
-
-                    <dropzone class="dropzone_sec"></dropzone>
-                  </div> -->
-                </div>
-
                 <div class="col-md-6 col-sm-12 col-xs-12">
                   <label for="iconInput" class="form-label">E-mail</label>
                   <input type="email" class="form-control rounded-pill" id="iconInput" placeholder="example@gmail.com"
                     formControlName="email">
+                </div>
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                  <label for="formFile" class="form-label">File Input</label>
+                  <ngx-dropzone class="dropzone_sec" (change)="onSelect($event)"
+                    accept="image/jpeg,image/jpg,application/pdf">
+                    <ngx-dropzone-label>Drop or selec files</ngx-dropzone-label>
+
+                    <ngx-dropzone-preview class="c-dropzone-preview" *ngFor="let f of files" [removable]="true"
+                      (removed)="onRemove(f)">
+                      <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                    </ngx-dropzone-preview>
+                  </ngx-dropzone>
                 </div>
               </div>
 
@@ -150,11 +141,9 @@
 
               <div class="col-md-6">
 
-                <div class="row pb-2 pt-2">
+                <div class="row mt-md-0 mt-3 pb-2">
                   <div class="col-6">
-                    <h4>
-                      Rate
-                    </h4>
+                    <h5 class="m-0 lh-base">Rate</h5>
                   </div>
                   <div class="col-6 d-flex justify-content-end">
                     <button type="button" class="btn btn-sm btn-dark " (click)="onAddrate()">
@@ -242,10 +231,12 @@
                   <label for="formFile" class="form-label">File</label>
                   <!-- <input type="file" id="formFile" class="form-control rounded-pill"> -->
 
-                  <ngx-dropzone class="dropzone_sec" (change)="onSelect($event)" accept="image/jpeg,image/jpg,application/pdf" >
+                  <ngx-dropzone class="dropzone_sec" (change)="onSelect($event)"
+                    accept="image/jpeg,image/jpg,application/pdf">
                     <ngx-dropzone-label>Drop or selec files</ngx-dropzone-label>
 
-                    <ngx-dropzone-preview class="c-dropzone-preview" *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                    <ngx-dropzone-preview class="c-dropzone-preview" *ngFor="let f of files" [removable]="true"
+                      (removed)="onRemove(f)">
                       <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
                     </ngx-dropzone-preview>
 
