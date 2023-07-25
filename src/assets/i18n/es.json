@@ -62,11 +62,11 @@
     },
 
     "CONFIGURATION": {
-      "TEXT": "Configuration",
+      "TEXT": "Configuración",
       "LIST": {
         "QUICKBOOK": "Quickbooks",
         "CALLQUEUES": "Call Queues",
-        "PROFILEACCOUNT": "Profile Account"
+        "PROFILEACCOUNT": "Mi perfil"
       }
     },
     "INTERPRETERPORTAL": {

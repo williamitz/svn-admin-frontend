@@ -122,7 +122,7 @@ export class ProfileInterpreterComponent {
       phone:            [ '',   [ ] ],
       countryCode:      [ null, [ Validators.required ] ],
       timzoneId:        [ null, [ Validators.required ] ],
-      nativeLanguageId: [ null, [ Validators.required ] ],
+      nativeLanguageId: [ null, [  ] ],
       gender:           [ 'Male', [ Validators.required ] ],
       targetLanguages:  [ [],   [ Validators.required, Validators.min(1) ] ],
     });
@@ -165,7 +165,7 @@ export class ProfileInterpreterComponent {
         this.frmInterpreter.get('phone')?.setValue(data.phone);
         this.frmInterpreter.get('countryCode')?.setValue(data.countryCode);
         this.frmInterpreter.get('timzoneId')?.setValue(data.timezone.id);
-        this.frmInterpreter.get('nativeLanguageId')?.setValue(data.nativeLanguage.id);
+        this.frmInterpreter.get('nativeLanguageId')?.setValue(data?.nativeLanguage?.id);
         this.frmInterpreter.get('gender')?.setValue(data.gender);
         this.frmInterpreter.get('targetLanguages')?.setValue(
           data.targetLanguages.map( (e) => e.id )
@@ -176,7 +176,6 @@ export class ProfileInterpreterComponent {
         this.officeHours = [];
 
         this.officeHours = this._days.map( (day) => {
-
 
           const finded = this._officeHour.find( (e) => e.dayName == day );
 

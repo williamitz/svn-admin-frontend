@@ -28,6 +28,9 @@ export class StorageService {
   }
 
   onClearStorage() {
+    this._cookiesvc.delete('token');
+    this._cookiesvc.delete('token');
+    this._cookiesvc.delete('token');
     this._cookiesvc.deleteAll();
   }
 

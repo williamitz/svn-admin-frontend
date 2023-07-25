@@ -30,6 +30,7 @@ const routes: Routes = [
   { path: 'pool-interpreter', component: PoolAddInterpreterComponent },
   { path: 'pool-activity-interpreter', component: PoolActivityInterpreterComponent },
   { path: 'profile-interpreter/:id', component: ProfileInterpreterComponent },
+  { path: 'my-profile', component: ProfileInterpreterComponent },
   { path: 'customers', component: CustomerComponent },
   { path: 'internal-user', component: InternalUserComponent },
   { path: 'billing', component: BillingComponent },

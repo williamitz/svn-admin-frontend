@@ -41,6 +41,7 @@ import { ProfileAccountComponent } from './profile-account/profile-account.compo
 import { PortalInterprterComponent } from './portal-interprter/portal-interprter.component';
 import { MyassignmetInterpreterComponent } from './myassignmet-interpreter/myassignmet-interpreter.component';
 import { SharedAdminModule } from './shared-admin/shared-admin.module';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 // FullCalendarModule.registerPlugins([
 //   dayGridPlugin,
@@ -100,6 +101,8 @@ import { SharedAdminModule } from './shared-admin/shared-admin.module';
     NgbCollapseModule,
     NgxMaskDirective,
     NgbRatingModule,
+
+    NgxDropzoneModule,
 
     SharedAdminModule,
   ]

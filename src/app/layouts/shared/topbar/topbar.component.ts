@@ -174,7 +174,6 @@ export class TopbarComponent implements OnInit {
     }
   }
 
-
   onListenRx() {
     this._segurity$ = this._store.select('segurity')
     .subscribe( (state) => {
