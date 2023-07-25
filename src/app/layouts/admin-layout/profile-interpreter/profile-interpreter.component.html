@@ -32,8 +32,7 @@
           </li>
 
           <li class="nav-item waves-effect waves-light" role="presentation">
-            <a class="nav-link" data-bs-toggle="tab" href="#resume-tap" role="tab"
-              aria-selected="true">Resume</a>
+            <a class="nav-link" data-bs-toggle="tab" href="#resume-tap" role="tab" aria-selected="true">Resume</a>
           </li>
         </ul>
       </div>
@@ -42,78 +41,53 @@
         <div class="tab-content text-muted">
           <div class="tab-pane active show" id="home-1" role="tabpanel">
 
-            <form [formGroup]="frmInterpreter" >
+            <form [formGroup]="frmInterpreter">
 
               <div class="row gy-4">
 
-                  <div class="col-md-3 col-sm-6 col-xs-12">
-                      <label for="firstname" class="form-label">First Name</label>
-                      <input type="text"
-                        class="form-control rounded-pill"
-                        id="firstname"
-                        placeholder="Enter your name"
-                        formControlName="name"
-                      >
-                  </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                  <label for="firstname" class="form-label">First Name</label>
+                  <input type="text" class="form-control rounded-pill" id="firstname" placeholder="Enter your name"
+                    formControlName="name">
+                </div>
 
-                  <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div>
-                      <label for="lastname" class="form-label">Last Name</label>
-                      <input type="text"
-                        class="form-control rounded-pill"
-                        id="lastname"
-                        placeholder="Enter your name"
-                        formControlName="surname"
-                      >
-                    </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div>
+                    <label for="lastname" class="form-label">Last Name</label>
+                    <input type="text" class="form-control rounded-pill" id="lastname" placeholder="Enter your name"
+                      formControlName="surname">
                   </div>
+                </div>
 
-                  <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="col-md-3 col-sm-6 col-xs-12">
 
-                    <label for="cleave-phone" class="form-label">Target languages</label>
-                    <ng-select
-                      class=""
-                      [items]="targetIdioms"
-                      bindLabel="name"
-                      bindValue="id"
-                      placeholder="Select target languages"
-                      formControlName="targetLanguages"
-                      [multiple]="true"
-                      [loading]="loadingIdioms"
-                      [class.is-invalid]="controls['targetLanguages'].errors  &&  touched('targetLanguages')"
-                    >
-                    </ng-select>
+                  <label for="cleave-phone" class="form-label">Target languages</label>
+                  <ng-select class="" [items]="targetIdioms" bindLabel="name" bindValue="id"
+                    placeholder="Select target languages" formControlName="targetLanguages" [multiple]="true"
+                    [loading]="loadingIdioms"
+                    [class.is-invalid]="controls['targetLanguages'].errors  &&  touched('targetLanguages')">
+                  </ng-select>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div>
+                    <label for="lastname" class="form-label">Telephone Number</label>
+                    <input type="number" class="form-control rounded-pill" id="lastname" placeholder="Enter your name"
+                      formControlName="phone">
                   </div>
-
-                  <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div>
-                      <label for="lastname" class="form-label">Telephone Number</label>
-                      <input type="number"
-                        class="form-control rounded-pill"
-                        id="lastname"
-                        placeholder="Enter your name"
-                        formControlName="phone"
-                      >
-                    </div>
-                  </div>
+                </div>
 
               </div>
 
               <div class="row pt-3">
 
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <label for="exampleInputtime" class="form-label">Time Zone</label>
-                    <ng-select
-                      [items]="timezones"
-                      bindLabel="zoneName"
-                      bindValue="id"
-                      placeholder="Select Time zone"
-                      formControlName="timzoneId"
-                      [loading]="loadingTimezone"
-                      [class.is-invalid]="controls['timzoneId'].errors  &&  touched('timzoneId')"
-                    >
+                  <label for="exampleInputtime" class="form-label">Time Zone</label>
+                  <ng-select [items]="timezones" bindLabel="zoneName" bindValue="id" placeholder="Select Time zone"
+                    formControlName="timzoneId" [loading]="loadingTimezone"
+                    [class.is-invalid]="controls['timzoneId'].errors  &&  touched('timzoneId')">
 
-                    </ng-select>
+                  </ng-select>
                 </div>
 
                 <div class="col-md-3 col-sm-6 col-xs-12">
@@ -137,8 +111,8 @@
                 </div>
 
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <label for="lastname" class="form-label">Years of Experience</label>
-                    <input type="text" class="form-control rounded-pill" id="lastname" placeholder="Enter your name">
+                  <label for="lastname" class="form-label">Years of Experience</label>
+                  <input type="text" class="form-control rounded-pill" id="lastname" placeholder="Enter your name">
                 </div>
 
               </div>
@@ -146,17 +120,23 @@
               <div class="row pt-3">
                 <div class="col-md-6 col-sm-12 col-xs-12">
                   <label for="formFile" class="form-label">File Input</label>
-                  <input class="form-control rounded-pill" type="file" id="formFile" placeholder="Select file">
+                  <div class="file-select">
+                    <input class="form-control rounded-pill" type="file" id="formFile" placeholder="filessss">
+                  </div>
+                  <div class="card-body">
+                    <p class="text-muted">DropzoneJS is an open source library that provides drag’n’drop file uploads
+                      with
+                      image previews.</p>
+
+                    <dropzone class="dropzone_sec"></dropzone>
+                    <!-- end dropzon-preview -->
+                  </div>
                 </div>
 
                 <div class="col-md-6 col-sm-12 col-xs-12">
-                    <label for="iconInput" class="form-label">E-mail</label>
-                    <input type="email"
-                      class="form-control rounded-pill"
-                      id="iconInput"
-                      placeholder="example@gmail.com"
-                      formControlName="email"
-                    >
+                  <label for="iconInput" class="form-label">E-mail</label>
+                  <input type="email" class="form-control rounded-pill" id="iconInput" placeholder="example@gmail.com"
+                    formControlName="email">
                 </div>
               </div>
 
@@ -165,12 +145,8 @@
             <div class="row pt-3">
 
               <div class="col-md-6">
-                  <label for="disabledInput" class="form-label">Rate</label>
-                  <input type="text"
-                    class="form-control"
-                    id="disabledInput"
-                    value="Disabled input"
-                  >
+                <label for="disabledInput" class="form-label">Rate</label>
+                <input type="text" class="form-control" id="disabledInput" value="Disabled input">
               </div>
 
               <div class="col-md-6">
@@ -183,8 +159,8 @@
                   </div>
                   <div class="col-6 d-flex justify-content-end">
                     <button type="button" class="btn btn-sm btn-dark " (click)="onAddrate()">
-                        <i class="ri-add-line align-bottom me-1"></i>
-                        Add
+                      <i class="ri-add-line align-bottom me-1"></i>
+                      Add
                     </button>
                   </div>
                 </div>
@@ -194,42 +170,39 @@
 
                     <table class="table table-responsive  table-nowrap mb-0">
                       <thead class="table-light">
-                          <tr>
-                              <th scope="col">Type</th>
-                              <th scope="col">Rate</th>
-                              <th scope="col">Actions</th>
-                          </tr>
+                        <tr>
+                          <th scope="col">Type</th>
+                          <th scope="col">Rate</th>
+                          <th scope="col">Actions</th>
+                        </tr>
                       </thead>
                       <tbody>
 
                         <tr *ngFor="let dpt of rates">
-                            <td>
+                          <td>
 
-                              <select class="form-select rounded-pill" aria-label="Default select example" [formControl]="dpt.type" [class.is-invalid]="dpt.invalidType ">
-                                <option selected="" disabled>Select</option>
-                                <option [value]="item.value" *ngFor="let item of calltype" >
-                                  {{ item.value }}
-                                </option>
-                              </select>
+                            <select class="form-select rounded-pill" aria-label="Default select example"
+                              [formControl]="dpt.type" [class.is-invalid]="dpt.invalidType ">
+                              <option selected="" disabled>Select</option>
+                              <option [value]="item.value" *ngFor="let item of calltype">
+                                {{ item.value }}
+                              </option>
+                            </select>
 
-                            </td>
-                            <td>
-                              <input type="text"
-                                class="form-control rounded-pill"
-                                placeholder="Access Code"
-                                [formControl]="dpt.rate"
-                                [class.is-invalid]="dpt.invalidRate "
-                              >
-                            </td>
+                          </td>
+                          <td>
+                            <input type="text" class="form-control rounded-pill" placeholder="Access Code"
+                              [formControl]="dpt.rate" [class.is-invalid]="dpt.invalidRate ">
+                          </td>
 
-                            <td>
-                                <div class="mt-2 text-center">
-                                  <a href="javascript:void(0);" class="link-danger " (click)="onRemoveRate( dpt )" >
-                                    <i class="ri-delete-bin-line align-bottom "></i>
-                                  </a>
-                                </div>
-                            </td>
-                          </tr>
+                          <td>
+                            <div class="mt-2 text-center">
+                              <a href="javascript:void(0);" class="link-danger " (click)="onRemoveRate( dpt )">
+                                <i class="ri-delete-bin-line align-bottom "></i>
+                              </a>
+                            </div>
+                          </td>
+                        </tr>
 
                       </tbody>
                     </table>
@@ -243,10 +216,8 @@
 
             <div class="hstack gap-2 justify-content-center mt-4">
 
-              <button class="btn btn-danger rounded-pill fw-medium px-5"
-                [disabled]="invalid || invalidRate || saving"
-                (click)="onSubmit()"
-              >
+              <button class="btn btn-danger rounded-pill fw-medium px-5" [disabled]="invalid || invalidRate || saving"
+                (click)="onSubmit()">
                 Save
               </button>
 
@@ -260,7 +231,7 @@
 
           <div class="tab-pane" id="profile-1" role="tabpanel">
 
-            <app-interpreter-services [id]="id" [officeHours]="officeHours" ></app-interpreter-services>
+            <app-interpreter-services [id]="id" [officeHours]="officeHours"></app-interpreter-services>
 
           </div>
           <div class="tab-pane" id="messages-1" role="tabpanel">
