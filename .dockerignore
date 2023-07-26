@@ -1,0 +1,9 @@
+dist/
+node_modules/
+.angular/
+.gitignore
+.git
+README.md
+.prettierrc
+dockerfile
+.editorconfig
