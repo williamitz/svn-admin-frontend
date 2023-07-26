@@ -1,0 +1,11 @@
+dist/
+node_modules/
+postgres-db/
+test/
+.gitignore
+.git
+README.md
+.prettierrc
+docker-compose.yml
+docker-compose.prod.yml
+dockerfile

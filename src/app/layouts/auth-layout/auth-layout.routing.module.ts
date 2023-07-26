@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { NotFoundPageComponent } from '../../pages/not-found-page/not-found-page.component';
 import { AuthLayoutComponent } from './auth-layout.component';
+import { LoginToInterpreterComponent } from './login-to-interpreter/login-to-interpreter.component';
 
 const _authRoutes: Routes = [
   {
@@ -18,7 +19,7 @@ const _authRoutes: Routes = [
   },
   {
     path: 'login-to-interpreter',
-    component: LoginComponent
+    component: LoginToInterpreterComponent
   },
   {
     path: 'forgot-password',
