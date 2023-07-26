@@ -14,7 +14,10 @@ const _authRoutes: Routes = [
   },
   {
     path: 'login',
-    // pathMatch: 'full',
+    component: LoginComponent
+  },
+  {
+    path: 'login-to-interpreter',
     component: LoginComponent
   },
   {

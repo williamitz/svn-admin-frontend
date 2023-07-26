@@ -8,11 +8,13 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { AuthLayoutRoutingModule } from './auth-layout.routing.module';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginToInterpreterComponent } from './login-to-interpreter/login-to-interpreter.component';
 
 @NgModule({
   declarations: [
     AuthLayoutComponent,
     LoginComponent,
+    LoginToInterpreterComponent,
     ForgotPasswordComponent
   ],
   imports: [

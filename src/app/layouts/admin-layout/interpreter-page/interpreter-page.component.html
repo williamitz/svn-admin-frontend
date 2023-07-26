@@ -125,7 +125,8 @@
 
               <div class="d-flex justify-content-start align-items-center gap-2 ms-3">
                 View
-                <select class="form-select " style="width: 90px;" formControlName="limit" (change)="onGetInterpreters()" >
+                <select class="form-select " style="width: 90px;" formControlName="limit"
+                  (change)="onGetInterpreters()">
                   <option selected></option>
                   <option [value]="5">5</option>
                   <option [value]="10">10</option>
@@ -135,7 +136,8 @@
               </div>
               |
               <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" role="switch" id="chxActive" formControlName="active" (change)="onGetInterpreters()" >
+                <input class="form-check-input" type="checkbox" role="switch" id="chxActive" formControlName="active"
+                  (change)="onGetInterpreters()">
                 <label class="form-check-label" for="chxActive">view disabled</label>
               </div>
 
@@ -166,7 +168,8 @@
         <h5 class="modal-title text-white" *ngIf="loadData">
           Edit Interpreter
         </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="btnCloseModal" (click)="onReset()" ></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="btnCloseModal"
+          (click)="onReset()"></button>
       </div>
       <form [formGroup]="frmUser" (submit)="onSubmit()">
 
@@ -176,29 +179,20 @@
             <div class="col-md-6">
               <div class="mb-3">
                 <label for="placeholderInput" class="form-label">First Name</label>
-                <input type="text"
-                  class="form-control"
-                  id="placeholderInput"
-                  placeholder="Enter name"
-                  formControlName="name"
-                  [class.is-invalid]="controls['name'].errors  &&  touched('name')"
-                >
+                <input type="text" class="form-control" id="placeholderInput" placeholder="Enter name"
+                  formControlName="name" [class.is-invalid]="controls['name'].errors  &&  touched('name')">
 
-                  <div *ngIf="touched('name') && controls['name'].errors" class="invalid-feedback">
-                    <div *ngIf="controls['name'].errors['required']">Name is required</div>
-                    <div *ngIf="controls['name'].errors['pattern']">Name is invalid</div>
-                  </div>
+                <div *ngIf="touched('name') && controls['name'].errors" class="invalid-feedback">
+                  <div *ngIf="controls['name'].errors['required']">Name is required</div>
+                  <div *ngIf="controls['name'].errors['pattern']">Name is invalid</div>
+                </div>
               </div>
             </div>
             <div class="col-md-6">
               <div class="mb-3">
                 <label for="placeholderInput" class="form-label">Last Name</label>
-                <input type="text"
-                  class="form-control"
-                  placeholder="Lastname"
-                  formControlName="surname"
-                  [class.is-invalid]="controls['surname'].errors  &&  touched('surname')"
-                >
+                <input type="text" class="form-control" placeholder="Lastname" formControlName="surname"
+                  [class.is-invalid]="controls['surname'].errors  &&  touched('surname')">
 
                 <div *ngIf="touched('surname') && controls['surname'].errors" class="invalid-feedback">
                   <div *ngIf="controls['surname'].errors['required']">Surname is required</div>
@@ -213,13 +207,8 @@
             <div class="col-md-6">
               <div class="mb-3">
                 <label for="iconInput" class="form-label">Email</label>
-                <input type="email"
-                  class="form-control"
-                  id="iconInput"
-                  placeholder="example@gmail.com"
-                  formControlName="email"
-                  [class.is-invalid]="controls['email'].errors  &&  touched('email')"
-                >
+                <input type="email" class="form-control" id="iconInput" placeholder="example@gmail.com"
+                  formControlName="email" [class.is-invalid]="controls['email'].errors  &&  touched('email')">
 
                 <div *ngIf="touched('email') && controls['email'].errors" class="invalid-feedback">
                   <div *ngIf="controls['email'].errors['required']">Email is required</div>
@@ -231,14 +220,8 @@
             <div class="col-md-6">
               <div class="mb-3">
                 <label for="cleave-phone" class="form-label">Phone</label>
-                <input type="text"
-                  class="form-control"
-                  id="cleave-phone"
-                  placeholder="xxx-xxx-xxx"
-                  mask="000-000-000"
-                  formControlName="phone"
-                  [class.is-invalid]="controls['phone'].errors  &&  touched('phone')"
-                >
+                <input type="text" class="form-control" id="cleave-phone" placeholder="xxx-xxx-xxx" mask="000-000-000"
+                  formControlName="phone" [class.is-invalid]="controls['phone'].errors  &&  touched('phone')">
 
                 <div *ngIf="touched('phone') && controls['phone'].errors" class="invalid-feedback">
                   <div *ngIf="controls['phone'].errors['required']">Phone is required</div>
@@ -253,49 +236,37 @@
             <div class="col-md-6">
               <div class="mb-3">
                 <label for="cleave-phone" class="form-label">Country</label>
-                <ng-select
-                  [items]="countries"
-                  bindLabel="name"
-                  bindValue="code"
-                  placeholder="Select country"
-                  formControlName="countryCode"
-                  (change)="onGetTimezones( $event )"
-                  [class.is-invalid]="controls['countryCode'].errors  &&  touched('countryCode')"
-                >
+                <ng-select [items]="countries" bindLabel="name" bindValue="code" placeholder="Select country"
+                  formControlName="countryCode" (change)="onGetTimezones( $event )"
+                  [class.is-invalid]="controls['countryCode'].errors  &&  touched('countryCode')">
 
 
 
-              </ng-select>
-              <div *ngIf="touched('countryCode') && controls['countryCode'].errors" class="invalid-feedback">
-                <div *ngIf="controls['countryCode'].errors['required']">Country is required</div>
-              </div>
+                </ng-select>
+                <div *ngIf="touched('countryCode') && controls['countryCode'].errors" class="invalid-feedback">
+                  <div *ngIf="controls['countryCode'].errors['required']">Country is required</div>
+                </div>
               </div>
             </div>
 
             <div class="col-md-6">
               <div class="mb-3">
                 <label for="cleave-phone" class="form-label">Time zone</label>
-                <ng-select
-                  [items]="timezones"
-                  bindLabel="zoneName"
-                  bindValue="id"
-                  placeholder="Select Time zone"
-                  formControlName="timzoneId"
-                  [loading]="loadingTimezone"
-                  [class.is-invalid]="controls['timzoneId'].errors  &&  touched('timzoneId')"
-                >
+                <ng-select [items]="timezones" bindLabel="zoneName" bindValue="id" placeholder="Select Time zone"
+                  formControlName="timzoneId" [loading]="loadingTimezone"
+                  [class.is-invalid]="controls['timzoneId'].errors  &&  touched('timzoneId')">
 
-              </ng-select>
-              <div *ngIf="touched('timzoneId') && controls['timzoneId'].errors" class="invalid-feedback">
-                <div *ngIf="controls['timzoneId'].errors['required']">Timezone is required</div>
-              </div>
+                </ng-select>
+                <div *ngIf="touched('timzoneId') && controls['timzoneId'].errors" class="invalid-feedback">
+                  <div *ngIf="controls['timzoneId'].errors['required']">Timezone is required</div>
+                </div>
               </div>
             </div>
 
           </div>
 
           <div class="row">
-            <div class="col-md-7">
+            <div class="col-md-6">
               <div class="mb-3">
                 <label for="cleave-phone" class="form-label">Native Language</label>
                 <ng-select
@@ -309,28 +280,25 @@
                   [class.is-invalid]="controls['nativeLanguageId'].errors  &&  touched('nativeLanguageId')"
                 >
 
-              </ng-select>
-              <div *ngIf="touched('nativeLanguageId') && controls['nativeLanguageId'].errors" class="invalid-feedback">
-                <div *ngIf="controls['nativeLanguageId'].errors['required']">Language is required</div>
-              </div>
+                </ng-select>
+                <div *ngIf="touched('nativeLanguageId') && controls['nativeLanguageId'].errors"
+                  class="invalid-feedback">
+                  <div *ngIf="controls['nativeLanguageId'].errors['required']">Language is required</div>
+                </div>
 
               </div>
             </div>
 
-            <div class="col-md-5">
+            <div class="col-md-6">
               <div class="mb-3">
                 <label for="cleave-phone" class="form-label">Gender</label>
-                <ng-select
-                  [items]="genders"
-                  placeholder="Select gender"
-                  formControlName="gender"
-                  [class.is-invalid]="controls['gender'].errors  &&  touched('gender')"
-                >
+                <ng-select [items]="genders" placeholder="Select gender" formControlName="gender"
+                  [class.is-invalid]="controls['gender'].errors  &&  touched('gender')">
 
-              </ng-select>
-              <div *ngIf="touched('gender') && controls['gender'].errors" class="invalid-feedback">
-                <div *ngIf="controls['gender'].errors['required']">Gender is required</div>
-              </div>
+                </ng-select>
+                <div *ngIf="touched('gender') && controls['gender'].errors" class="invalid-feedback">
+                  <div *ngIf="controls['gender'].errors['required']">Gender is required</div>
+                </div>
 
               </div>
             </div>
@@ -340,20 +308,14 @@
             <div class="col-12">
               <div class="mb-3">
                 <label for="cleave-phone" class="form-label">Target languages</label>
-                <ng-select
-                  [items]="targetIdioms"
-                  bindLabel="name"
-                  bindValue="id"
-                  placeholder="Select target languages"
-                  formControlName="targetLanguages"
-                  [multiple]="true"
-                  [class.is-invalid]="controls['targetLanguages'].errors  &&  touched('targetLanguages')"
-                >
+                <ng-select [items]="targetIdioms" bindLabel="name" bindValue="id" placeholder="Select target languages"
+                  formControlName="targetLanguages" [multiple]="true"
+                  [class.is-invalid]="controls['targetLanguages'].errors  &&  touched('targetLanguages')">
 
-              </ng-select>
-              <div *ngIf="touched('targetLanguages') && controls['targetLanguages'].errors" class="invalid-feedback">
-                <div *ngIf="controls['targetLanguages'].errors['required']">Target languages is required</div>
-              </div>
+                </ng-select>
+                <div *ngIf="touched('targetLanguages') && controls['targetLanguages'].errors" class="invalid-feedback">
+                  <div *ngIf="controls['targetLanguages'].errors['required']">Target languages is required</div>
+                </div>
 
               </div>
             </div>
@@ -364,10 +326,7 @@
           <!-- <button type="button" class="btn btn-light" data-bs-dismiss="modal" id="btnCloseModal">
             Cerrar
           </button> -->
-          <button type="submit"
-            class="btn btn-danger rounded-pill px-5 fw-medium"
-            [disabled]="invalid || saving"
-            >
+          <button type="submit" class="btn btn-danger rounded-pill px-5 fw-medium" [disabled]="invalid || saving">
             <div class="spinner-border text-light" role="status" *ngIf="saving">
               <span class="sr-only">Loading...</span>
             </div>

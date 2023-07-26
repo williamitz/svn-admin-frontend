@@ -45,7 +45,12 @@
 
 
 .c-dropzone-preview {
-  min-height: 65px !important;
-  max-height: 90px !important;
-  font-size: 12.5px;
+  min-height: 40px !important;
+  max-height: 40px !important;
+  font-size: 12px;
+  max-width: 100% !important;
+}
+
+.dropzone_sec{
+  height: 64px;
 }
