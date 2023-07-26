@@ -48,6 +48,7 @@ var date = new Date();
 var d = date.getDate();
 var m = date.getMonth();
 var y = date.getFullYear();
+
 const calendarEvents: EventInput[] = [
     {
         id: createEventId(),
@@ -57,7 +58,7 @@ const calendarEvents: EventInput[] = [
         desription: 'test',
         className: 'bg-soft-primary'
     },
-    {
+    /**{
         id: createEventId(),
         title: 'Visit Online Course',
         date: new Date(y, m, d - 3, 16, 0),
@@ -171,7 +172,7 @@ const calendarEvents: EventInput[] = [
         location: 'test',
         desription: 'test',
         className: 'bg-soft-info',
-    },
+    }, */
 
 ];
 

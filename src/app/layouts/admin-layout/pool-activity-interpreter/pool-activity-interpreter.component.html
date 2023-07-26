@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-12">
     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-      <h4 class="mb-sm-0">ACTIVITY INTERPRETER</h4>
+      <h4 class="mb-sm-0">Activity Interpreter</h4>
     </div>
   </div>
 </div>
@@ -75,7 +75,8 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let item of lista">
+
+                    <!-- <tr *ngFor="let item of lista">
                       <td>20/04/2023</td>
                       <td>{{item.name}}</td>
                       <td>{{item.client}}</td>
@@ -97,9 +98,35 @@
                       <td>{{item.avg}}</td>
                       <td>{{item.duration}}</td>
                       <td>
-                        <div id="basic-rater" dir="ltr"></div>
+                        <ngb-rating
+                          [(rate)]="item.rating"
+                          [readonly]="true"
+                          [max]="5"
+                        >
+
+                          <ng-template let-fill="fill" let-index="index">
+                            <i class="ri-star{{fill === 5 ? '-fill' : '-line'}}"
+                            [class.filled]="fill === 100"
+                            >
+                            </i>
+
+                            <i class="ri-star-line"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-half-line"></i>
+                          </ng-template>
+
+                        </ngb-rating>
+                      </td>
+                    </tr> -->
+
+                    <tr >
+                      <td colspan="11" class="text-center">
+                        <strong>
+                          Sin registros
+                        </strong>
                       </td>
                     </tr>
+
                   </tbody>
                 </table>
               </div>

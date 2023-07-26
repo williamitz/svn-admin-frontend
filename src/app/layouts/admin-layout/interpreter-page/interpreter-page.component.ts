@@ -58,6 +58,7 @@ export class InterpreterPageComponent {
   private _loadData = false;
   private _id = '';
   private _total = 0
+  private _loading = false;
 
   paginate: IPager = {
     currentPage: 0,
@@ -80,6 +81,8 @@ export class InterpreterPageComponent {
 
   get invalid() { return this.frmUser.invalid; }
   get currentPage() { return this.paginate.currentPage; }
+  get counter() { return this.interpreters.length; }
+  get loading() { return this._loading; }
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -90,6 +93,11 @@ export class InterpreterPageComponent {
     this.onGetInterpreters();
     // this.onGetIdioms();
 
+    this.onGetTimezones({
+      code2: 'US',
+      code: 'USA'
+    });
+
   }
 
   onBuildFrm() {
@@ -98,7 +106,7 @@ export class InterpreterPageComponent {
       surname:          [ '', [ Validators.required ] ],
       email:            [ '', [ Validators.required ] ],
       phone:            [ '', [ ] ],
-      countryCode:      [ null, [ Validators.required ] ],
+      countryCode:      [ 'USA', [ Validators.required ] ],
       timzoneId:        [ null, [ Validators.required ] ],
       nativeLanguageId: [ '1a0a2949-adc5-4e15-9947-73447dded377', [ Validators.required ] ],
       gender:           [ 'Male', [ Validators.required ] ],
@@ -123,9 +131,10 @@ export class InterpreterPageComponent {
 
       this.countries = data;
 
-      const finded = data.find( (e) => e.code = 'US' );
+      const finded = data.find( (e) => e.id =='968fada9-66c9-4b0f-83a8-f002d0b1c4fc' );
 
       console.log('finded ::: ', finded);
+
       if( finded ) {
         this.frmUser.get('countryCode')?.setValue( finded.code );
       }
@@ -154,7 +163,7 @@ export class InterpreterPageComponent {
     });
   }
 
-  onGetTimezones( country: ICountry ) {
+  onGetTimezones( country: any ) {
 
     if( !this.values.countryCode ) {
       this.timezones = [];
@@ -206,6 +215,8 @@ export class InterpreterPageComponent {
 
     this._saving = true;
 
+    this._uisvc.onShowLoading();
+
     if( !this._loadData ) {
 
       this._create$ = this._interpretersvc.onCreate( this.values )
@@ -214,6 +225,7 @@ export class InterpreterPageComponent {
 
           this.onReset();
           this._saving = false;
+          this._uisvc.onClose();
           this._uisvc.onShowAlert( 'Intérprete creado exitosamente', EIconAlert.success );
           this.onGetInterpreters( this.currentPage );
           this._create$?.unsubscribe();
@@ -234,6 +246,7 @@ export class InterpreterPageComponent {
 
           this._saving = false;
           this.onReset();
+          this._uisvc.onClose();
           this._uisvc.onShowAlert( 'Intérprete actualizado exitosamente', EIconAlert.success );
           this.onGetInterpreters( this.currentPage );
           this._update$?.unsubscribe();
@@ -251,6 +264,9 @@ export class InterpreterPageComponent {
   }
 
   onGetInterpreters( page = 1 ) {
+
+    this._loading = true;
+
     this._interpreter$ = this._interpretersvc.onFindAll( this.valuesFilter, page )
     .subscribe({
       next: (response) => {
@@ -262,10 +278,12 @@ export class InterpreterPageComponent {
 
         this.paginate = this._pagersvc.getPager( total, page, this.valuesFilter.limit );
 
+        this._loading = false;
         this._interpreter$?.unsubscribe();
       },
       error: (e) => {
 
+        this._loading = false;
         this._interpreter$?.unsubscribe();
       }
     });

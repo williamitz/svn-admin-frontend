@@ -64,7 +64,8 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let item of lista">
+
+                  <!-- <tr *ngFor="let item of lista">
                     <td>
                       {{ item.customer }}
                     </td>
@@ -82,35 +83,33 @@
                     </td>
                     <td>
 
-                      <!-- [starTemplate]="t" -->
-                      <!-- [ariaValueText]="ariaValueText" -->
                       <ngb-rating
                         [(rate)]="item.rating"
                         [readonly]="true"
                         [max]="5"
                       >
 
-                      <ng-template let-fill="fill" let-index="index">
-                        <i class="ri-star{{fill === 5 ? '-fill' : '-line'}}"
-                         [class.filled]="fill === 100"
-                         >
-                        </i>
+                        <ng-template let-fill="fill" let-index="index">
+                          <i class="ri-star{{fill === 5 ? '-fill' : '-line'}}"
+                          [class.filled]="fill === 100"
+                          >
+                          </i>
 
-                        <!-- <i class="ri-star-line"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-half-line"></i> -->
-                      </ng-template>
-
+                          <i class="ri-star-line"></i>
+                          <i class="ri-star-fill"></i>
+                          <i class="ri-star-half-line"></i>
+                        </ng-template>
                       </ngb-rating>
 
-
                     </td>
-                  </tr>
+                  </tr> -->
+
                   <tr>
                     <td colspan="5" class="text-center">
                       Sin registros
                     </td>
                   </tr>
+
                 </tbody>
               </table>
             </div>

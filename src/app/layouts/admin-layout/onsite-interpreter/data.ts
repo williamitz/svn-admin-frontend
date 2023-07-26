@@ -74,7 +74,7 @@ const calendarEvents: EventInput[] = [
         desription: 'test',
         className: 'bg-soft-info',
     },
-    {
+    /*{
         id: createEventId(),
         title: 'Meeting With Designer',
         date: new Date(y, m, d, 10, 30),
@@ -171,7 +171,7 @@ const calendarEvents: EventInput[] = [
         location: 'test',
         desription: 'test',
         className: 'bg-soft-info',
-    },
+    },*/
 
 ];
 

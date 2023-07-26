@@ -14,7 +14,8 @@ export class PoolActivityInterpreterComponent {
       idinterpreter: '12345',
       rate: '0010',
       avg: '10s',
-      duration: '15m'
+      duration: '15m',
+      rating: 5,
     },
     {
       name: 'Alejandra Neal',
@@ -22,7 +23,8 @@ export class PoolActivityInterpreterComponent {
       idinterpreter: '12345',
       rate: '0010',
       avg: '10s',
-      duration: '15m'
+      duration: '15m',
+      rating: 4,
     }
   ]
 

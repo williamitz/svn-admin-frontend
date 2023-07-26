@@ -6,13 +6,15 @@ import { SimplebarAngularModule } from 'simplebar-angular';
 import { ChartBarWidgetComponent } from './chart-bar-widget/chart-bar-widget.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { ChartPieWidgetComponent } from './chart-pie-widget/chart-pie-widget.component';
+import { ChartBarCountriesWidgetComponent } from './chart-bar-countries-widget/chart-bar-countries-widget.component';
 
 
 @NgModule({
   declarations: [
     ListNotifyWidgetComponent,
     ChartBarWidgetComponent,
-    ChartPieWidgetComponent
+    ChartPieWidgetComponent,
+    ChartBarCountriesWidgetComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +26,8 @@ import { ChartPieWidgetComponent } from './chart-pie-widget/chart-pie-widget.com
   exports: [
     ListNotifyWidgetComponent,
     ChartBarWidgetComponent,
-    ChartPieWidgetComponent
+    ChartPieWidgetComponent,
+    ChartBarCountriesWidgetComponent
   ]
 })
 export class WidgetsModule { }

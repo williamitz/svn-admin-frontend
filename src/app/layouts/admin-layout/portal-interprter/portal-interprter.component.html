@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-12">
     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-      <h4 class="mb-sm-0">INTERPRETER PORTAL</h4>
+      <h4 class="mb-sm-0">Interpreter Portal</h4>
     </div>
   </div>
 </div>
@@ -74,10 +74,26 @@
           <div class="col-12">
             <div class="box-flex">
               <h5 class="mb-1">My Rating</h5>
-              <div id="basic-rater" dir="ltr" class="star-rating" data-rating="3"
-                style="width: 110px; height: 22px; background-size: 22px;" title="1/5">
-                <div class="star-value" style="background-size: 22px; width: 60%;"></div>
-              </div>
+
+              <ngb-rating
+                  [(rate)]="profileRating"
+                  [readonly]="true"
+                  [max]="5"
+                >
+
+                <ng-template let-fill="fill" let-index="index">
+                  <i class="ri-star{{fill === 5 ? '-fill' : '-line'}}"
+                    [class.filled]="fill === 100"
+                    >
+                  </i>
+
+                  <!-- <i class="ri-star-line"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-half-line"></i> -->
+                </ng-template>
+
+              </ngb-rating>
+
             </div>
           </div>
         </div>
@@ -96,8 +112,11 @@
       <div class="card-body">
         <div class="row">
           <div class="col-md-6">
-            <img class="w-100"
-              src="https://ezvffrz5r23.exactdn.com/wp-content/uploads/2023/03/diagrama-de-barras-verticales-img01.jpg?strip=all&lossy=1&resize=633%2C378&ssl=1">
+
+            <app-chart-bar-widget></app-chart-bar-widget>
+
+            <!-- <img class="w-100"
+              src="https://ezvffrz5r23.exactdn.com/wp-content/uploads/2023/03/diagrama-de-barras-verticales-img01.jpg?strip=all&lossy=1&resize=633%2C378&ssl=1"> -->
           </div>
           <div class="col-md-6">
             <table class="table table-nowrap">
@@ -109,6 +128,7 @@
                 </tr>
               </thead>
               <tbody>
+
                 <tr>
                   <td rowspan="4" class="border">
                     <div class="d-flex flex-column">
@@ -119,6 +139,7 @@
                     </div>
                   </td>
                 </tr>
+
                 <tr>
                   <td class="text-end">85 Calls</td>
                 </tr>
@@ -224,7 +245,8 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of lista">
+
+              <!-- <tr *ngFor="let item of lista">
                 <td>
                   {{ item.calltype }}
                 </td>
@@ -240,7 +262,8 @@
                 <td class="text-center">
                   <button class="btn btn-success btn-sm ms-2">$500</button>
                 </td>
-              </tr>
+              </tr> -->
+
               <tr>
                 <td colspan="5" class="text-center">
                   Sin registros
@@ -285,7 +308,8 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of listaOpi">
+
+              <!-- <tr *ngFor="let item of listaOpi">
                 <td>
                   {{ item.date }}
                 </td>
@@ -301,7 +325,8 @@
                 <td>
                   <span class="badge rounded-pill badge-soft-success">Confirm Call</span>
                 </td>
-              </tr>
+              </tr> -->
+
               <tr>
                 <td colspan="5" class="text-center">
                   Sin registros
@@ -350,7 +375,8 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of listaOnsite">
+
+              <!-- <tr *ngFor="let item of listaOnsite">
                 <td>
                   {{ item.assignmenttype }}
                 </td>
@@ -381,9 +407,10 @@
                 <td>
                   {{ item.comment }}
                 </td>
-              </tr>
+              </tr> -->
+
               <tr>
-                <td colspan="5" class="text-center">
+                <td colspan="10" class="text-center">
                   Sin registros
                 </td>
               </tr>

@@ -28,3 +28,23 @@
     font-size: 40px;
   }
 }
+
+.page-title-box h4 {
+  text-transform: none !important;
+}
+
+
+i {
+  font-size: 1.5rem;
+  padding-right: 0.1rem;
+  color: #b0c4de;
+}
+.filled {
+  color: #f06548;
+}
+.low {
+  color: #deb0b0;
+}
+.filled.low {
+  color: #ff1e1e;
+}

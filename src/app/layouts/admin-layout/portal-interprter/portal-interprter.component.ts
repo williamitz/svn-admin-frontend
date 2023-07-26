@@ -49,7 +49,7 @@ export class PortalInterprterComponent {
     }
   ]
 
-  
+
   listaOnsite = [
     {
       assignmenttype: 'type',
@@ -85,5 +85,7 @@ export class PortalInterprterComponent {
       comment: 'lorem ipsum '
     }
   ]
+
+  profileRating = 5;
 
 }

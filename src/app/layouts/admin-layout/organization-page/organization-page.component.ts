@@ -198,6 +198,8 @@ export class OrganizationPageComponent {
 
     this._saving = true;
 
+    this._uisvc.onShowLoading();
+
     if( !this.loadData ) {
 
       this._create$ = this._agencysvc.onCreate( this._valueFrm )
@@ -208,6 +210,10 @@ export class OrganizationPageComponent {
 
           this.onGetOrganizations( this._currentPage );
           this._saving = false;
+
+          this._uisvc.onClose();
+
+          this._uisvc.onShowAlert('Agency created!', EIconAlert.success);
           document.getElementById('btnCloseModal')?.click();
 
           this._create$?.unsubscribe();
@@ -228,6 +234,9 @@ export class OrganizationPageComponent {
 
           this.onGetOrganizations( this._currentPage );
           this._saving = false;
+
+          this._uisvc.onClose();
+          this._uisvc.onShowAlert('Agency updated!', EIconAlert.success);
           document.getElementById('btnCloseModal')?.click();
 
           this._update$?.unsubscribe();

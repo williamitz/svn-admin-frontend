@@ -20,19 +20,27 @@
       </div><!-- end card header -->
       <div class="card-body">
         <div class="row">
-          <div class="col-md-4 mb-3 mb-md-0">
+          <div class="col-md-3 mb-3 mb-md-0">
             <div>
               <label for="customer" class="form-label">Customer</label>
               <input type="text" class="form-control rounded-pill" id="customer">
             </div>
           </div>
-          <div class="col-md-4 mb-3 mb-md-0">
+
+          <div class="col-md-3 mb-3 mb-md-0">
+            <div>
+              <label for="customer" class="form-label">Access Code</label>
+              <input type="text" class="form-control rounded-pill" id="customer">
+            </div>
+          </div>
+
+          <div class="col-md-3 mb-3 mb-md-0">
             <div>
               <label for="exampleInputdate" class="form-label">From</label>
               <input type="date" class="form-control rounded-pill" id="exampleInputdate">
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <div>
               <label for="exampleInputdateEnd" class="form-label">To</label>
               <input type="date" class="form-control rounded-pill" id="exampleInputdateEnd">
@@ -100,7 +108,8 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let item of lista">
+
+                  <!-- <tr *ngFor="let item of lista">
                     <td scope="col" style="width:25px">
                       <div class="form-check form-check-danger">
                         <input type="checkbox" id="checkAll" value="option1" class="form-check-input">
@@ -136,12 +145,14 @@
                     <td>
                       {{ item.patientname }}
                     </td>
-                  </tr>
-                  <!-- <tr>
-                    <td colspan="5" class="text-center">
+                  </tr> -->
+
+                  <tr>
+                    <td colspan="11" class="text-center">
                       Sin registros
                     </td>
-                  </tr> -->
+                  </tr>
+
                 </tbody>
               </table>
             </div>
