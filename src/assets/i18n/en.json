@@ -62,6 +62,9 @@
     "BILLINGS": {
       "TEXT": "Billings"
     },
+    "BILLINGSINTERPRETER": {
+      "TEXT": "Interpreter Billings"
+    },
 
     "CONFIGURATION": {
       "TEXT": "Configuration",

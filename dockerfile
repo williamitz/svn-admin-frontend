@@ -25,9 +25,7 @@ COPY --chown=node:node package*.json ./
 COPY --chown=node:node --from=development /app/node_modules ./node_modules
 COPY --chown=node:node . .
 RUN npm run build
-ENV NODE_ENV production
-RUN npm cache clean --force
-
+RUN ls -alt
 
 
 # FROM --platform=$BUILDPLATFORM node:18-alpine As deps_prod
@@ -43,14 +41,15 @@ RUN npm cache clean --force
 # *** PRODUCTION ***
 ######################################
 
-FROM --platform=$BUILDPLATFORM nginx:alpine3.17-slim As prod
-# EXPOSE 3000
-# Copy the bundled code from the build stage to the production image
-# COPY --chown=node:node --from=deps_prod /app/node_modules ./node_modules
+FROM --platform=$BUILDPLATFORM nginx:alpine3.17 As prod
+
+RUN rm /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d
+
 COPY --chown=node:node --from=build /app/dist/snv-admin-frontend /usr/share/nginx/html
 
-# comentar luego debe tomar las variables del servidor
-# COPY --chown=node:node --from=build /app/.env ./
+
+EXPOSE 80
 
 # Start the server using the production build
 # CMD [ "node", "dist/main.js" ]

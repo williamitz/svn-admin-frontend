@@ -19,6 +19,7 @@ import { CallQueuesComponent } from './call-queues/call-queues.component';
 import { ProfileAccountComponent } from './profile-account/profile-account.component';
 import { PortalInterprterComponent } from './portal-interprter/portal-interprter.component';
 import { MyassignmetInterpreterComponent } from './myassignmet-interpreter/myassignmet-interpreter.component';
+import { BillingInterpreterComponent } from './billing-interpreter/billing-interpreter.component';
 
 // TODO: crear rutas
 const routes: Routes = [
@@ -34,6 +35,7 @@ const routes: Routes = [
   { path: 'customers', component: CustomerComponent },
   { path: 'internal-user', component: InternalUserComponent },
   { path: 'billing', component: BillingComponent },
+  { path: 'billing-interpreter', component: BillingInterpreterComponent },
   { path: 'invoice', component: InvoiceComponent },
   { path: 'quickbooks', component: QuickbooksComponent },
   { path: 'call-queues', component: CallQueuesComponent },

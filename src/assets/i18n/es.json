@@ -61,6 +61,10 @@
       "TEXT": "Facturación"
     },
 
+    "BILLINGSINTERPRETER": {
+      "TEXT": "Facturación de intérpretes"
+    },
+
     "CONFIGURATION": {
       "TEXT": "Configuración",
       "LIST": {

@@ -103,6 +103,8 @@ export class MenuComponent {
 
   onGetMenu( page = 1 ) {
 
+    this._uisvc.onShowLoading();
+
     this._list$ = this._menusvc.onFindAll( this.value, page )
     .subscribe({
       next: (response) => {
@@ -116,11 +118,13 @@ export class MenuComponent {
         this._total = total;
         this.paginate = this._pagersvc.getPager( total, page, this.value.limit );
 
+        this._uisvc.onClose();
         this._list$?.unsubscribe();
 
       },
       error: (e) => {
 
+        this._uisvc.onClose();
         this._list$?.unsubscribe();
       }
     });

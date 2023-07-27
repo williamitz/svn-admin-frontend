@@ -42,6 +42,7 @@ import { PortalInterprterComponent } from './portal-interprter/portal-interprter
 import { MyassignmetInterpreterComponent } from './myassignmet-interpreter/myassignmet-interpreter.component';
 import { SharedAdminModule } from './shared-admin/shared-admin.module';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { BillingInterpreterComponent } from './billing-interpreter/billing-interpreter.component';
 
 // FullCalendarModule.registerPlugins([
 //   dayGridPlugin,
@@ -66,6 +67,7 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     CustomerComponent,
     InternalUserComponent,
     BillingComponent,
+    BillingInterpreterComponent,
     InvoiceComponent,
     QuickbooksComponent,
     CallQueuesComponent,
