@@ -10,51 +10,125 @@
   <div class="col-md-6">
     <div class="card">
       <div class="card-header align-items-center d-flex">
-        <h4 class="card-title mb-0 flex-grow-1">Additional Session Information</h4>
+        <h4 class="card-title mb-0 flex-grow-1">
+          Additional Session Information
+        </h4>
+
+
+        <button type="button" class="btn btn-default btn-icon waves-effect waves-light" *ngIf="!enableEdit" (click)="onHandleEnableEdit()" >
+          <i class="ri-edit-line"></i>
+        </button>
+
+        <button type="button" class="btn btn-default btn-icon waves-effect waves-light ms-2" *ngIf="enableEdit" (click)="onHandleEnableEdit()" >
+          <i class="ri-close-fill"></i>
+        </button>
+
+        <button type="button" class="btn btn-primary btn-load ms-2" *ngIf="enableEdit" [disabled]="invalid" >
+
+          <span class="d-flex align-items-center ms-1">
+            <!-- <i class="ri-check-double-line label-icon align-middle fs-16 me-2"></i> -->
+
+              <span class="flex-grow-1 me-2">
+                  Saving...
+              </span>
+
+              <span class="spinner-border flex-shrink-0" role="status">
+                  <span class="visually-hidden">spinner...</span>
+              </span>
+          </span>
+
+      </button>
+
       </div>
+
       <div class="card-body">
-        <div class="row pt-3">
-          <div class="col-12 mb-4">
-            <div class="d-flex align-items-center">
-              <div class="avatar-xs flex-shrink-0">
-                <span class="avatar-title bg-light text-primary rounded-circle fs-3">
-                  <i class="ri-map-pin-line"></i>
-                </span>
+
+        <form [formGroup]="frmAditional" >
+
+          <div class="row pt-3">
+
+            <div class="col-12 mb-4">
+
+              <div class="row">
+                <div class="col-lg-5 col-md-6 col-sm-12">
+                  <div class="d-flex align-items-center">
+
+                    <div class="avatar-xs flex-shrink-0">
+                      <span class="avatar-title bg-light text-primary rounded-circle fs-3">
+                        <i class="ri-map-pin-line"></i>
+                      </span>
+                    </div>
+
+                    <div class="flex-grow-1 ms-3">
+                      <p class="fw-medium fs-12 text-muted mb-1">Location:</p>
+                      <h5 class="mb-0 fs-14 text-primary">Av. Velzon 1245</h5>
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="col-lg-7 col-md-6 col-sm-12" *ngIf="enableEdit" >
+                  <input type="text" class="form-control" placeholder="Enter location ..."  formControlName="location" >
+                </div>
               </div>
-              <div class="flex-grow-1 ms-3">
-                <p class="fw-medium fs-12 text-muted mb-1">Location:</p>
-                <h5 class="mb-0 fs-14 text-primary">Av. Velzon 1245</h5>
+
+            </div>
+
+            <div class="col-12 mb-4">
+
+              <div class="row">
+                <div class="col-lg-5 col-md-6 col-sm-12">
+                  <div class="d-flex align-items-center">
+                    <div class="avatar-xs flex-shrink-0">
+                      <span class="avatar-title bg-light text-primary rounded-circle fs-3">
+                        <i class="ri-qr-code-fill"></i>
+                      </span>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                      <p class="fw-medium fs-12 text-muted mb-1">MRN</p>
+                      <h5 class="mb-0 fs-14 text-primary">200025487</h5>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-7 col-md-6 col-sm-12" *ngIf="enableEdit">
+                  <input type="text" class="form-control" placeholder="Enter MRN ..." formControlName="mrn" >
+                </div>
               </div>
+
+            </div>
+
+            <div class="col-12 mb-4">
+
+              <div class="row">
+                <div class="col-lg-5 col-md-6 col-sm-12">
+                  <div class="d-flex align-items-center">
+                    <div class="avatar-xs flex-shrink-0">
+                      <span class="avatar-title bg-light text-primary rounded-circle fs-3">
+                        <i class="ri-contacts-line"></i>
+                      </span>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                      <p class="fw-medium fs-12 text-muted mb-1">Patient Name / Client</p>
+                      <h5 class="mb-0 fs-14 text-primary">Arenas</h5>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-7 col-md-6 col-sm-12" *ngIf="enableEdit">
+                  <input type="text" class="form-control" placeholder="Enter client ..." formControlName="client" >
+                </div>
+
+              </div>
+
             </div>
           </div>
-          <div class="col-12 mb-4">
-            <div class="d-flex align-items-center">
-              <div class="avatar-xs flex-shrink-0">
-                <span class="avatar-title bg-light text-primary rounded-circle fs-3">
-                  <i class="ri-qr-code-fill"></i>
-                </span>
-              </div>
-              <div class="flex-grow-1 ms-3">
-                <p class="fw-medium fs-12 text-muted mb-1">MRN</p>
-                <h5 class="mb-0 fs-14 text-primary">200025487</h5>
-              </div>
-            </div>
-          </div>
-          <div class="col-12 mb-4">
-            <div class="d-flex align-items-center">
-              <div class="avatar-xs flex-shrink-0">
-                <span class="avatar-title bg-light text-primary rounded-circle fs-3">
-                  <i class="ri-contacts-line"></i>
-                </span>
-              </div>
-              <div class="flex-grow-1 ms-3">
-                <p class="fw-medium fs-12 text-muted mb-1">Patient Name / Client</p>
-                <h5 class="mb-0 fs-14 text-primary">Arenas</h5>
-              </div>
-            </div>
-          </div>
-        </div>
+
+        </form>
+
+
       </div>
+
     </div>
   </div>
 

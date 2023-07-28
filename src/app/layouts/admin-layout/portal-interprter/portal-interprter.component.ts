@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-portal-interprter',
@@ -6,6 +8,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./portal-interprter.component.scss']
 })
 export class PortalInterprterComponent {
+
+  private _update$?: Subscription;
 
   lista=[
     {
@@ -87,5 +91,47 @@ export class PortalInterprterComponent {
   ]
 
   profileRating = 5;
+
+  enableEdit = false;
+
+  private _saving = false;
+
+  frmAditional!: UntypedFormGroup;
+  private _frmBuilder = inject( UntypedFormBuilder );
+
+  get invalid() { return this.frmAditional.invalid; }
+  get saving() { return this._saving; }
+  get controls() { return this.frmAditional.controls; }
+  touched( field: string ) { return this.frmAditional.get( field )?.touched; }
+
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+
+    this.frmAditional = this._frmBuilder.group({
+      location:  [ '', [ Validators.required ] ],
+      mrn:       [ '', [ Validators.required ] ],
+      client:    [ '', [ Validators.required ] ],
+    });
+
+  }
+
+  onHandleEnableEdit() {
+
+    this.enableEdit =  !this.enableEdit;
+
+    if ( this.enableEdit ) {
+
+    } else {
+
+    }
+
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+
+  }
 
 }
