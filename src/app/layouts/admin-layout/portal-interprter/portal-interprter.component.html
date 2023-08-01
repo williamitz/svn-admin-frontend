@@ -23,16 +23,22 @@
           <i class="ri-close-fill"></i>
         </button>
 
-        <button type="button" class="btn btn-primary btn-load ms-2" *ngIf="enableEdit" [disabled]="invalid" >
+        <button type="button" class="btn btn-primary btn-load ms-2" *ngIf="enableEdit" [disabled]="invalid || saving" (click)="onSubmit()" >
 
           <span class="d-flex align-items-center ms-1">
             <!-- <i class="ri-check-double-line label-icon align-middle fs-16 me-2"></i> -->
 
-              <span class="flex-grow-1 me-2">
+              <span class="flex-grow-1 me-2" *ngIf="saving" >
                   Saving...
               </span>
 
-              <span class="spinner-border flex-shrink-0" role="status">
+
+              <span class="flex-grow-1 me-2" *ngIf="!saving" >
+                Save
+              </span>
+
+
+              <span class="spinner-border flex-shrink-0" role="status" *ngIf="saving" >
                   <span class="visually-hidden">spinner...</span>
               </span>
           </span>
@@ -61,7 +67,9 @@
 
                     <div class="flex-grow-1 ms-3">
                       <p class="fw-medium fs-12 text-muted mb-1">Location:</p>
-                      <h5 class="mb-0 fs-14 text-primary">Av. Velzon 1245</h5>
+                      <h5 class="mb-0 fs-14 text-primary">
+                        {{location}}
+                      </h5>
                     </div>
 
                   </div>
@@ -86,7 +94,9 @@
                     </div>
                     <div class="flex-grow-1 ms-3">
                       <p class="fw-medium fs-12 text-muted mb-1">MRN</p>
-                      <h5 class="mb-0 fs-14 text-primary">200025487</h5>
+                      <h5 class="mb-0 fs-14 text-primary">
+                        {{ mrn }}
+                      </h5>
                     </div>
                   </div>
                 </div>
@@ -110,7 +120,9 @@
                     </div>
                     <div class="flex-grow-1 ms-3">
                       <p class="fw-medium fs-12 text-muted mb-1">Patient Name / Client</p>
-                      <h5 class="mb-0 fs-14 text-primary">Arenas</h5>
+                      <h5 class="mb-0 fs-14 text-primary">
+                        {{ client }}
+                      </h5>
                     </div>
                   </div>
                 </div>

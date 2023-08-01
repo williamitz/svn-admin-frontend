@@ -14,6 +14,11 @@ export const onLoadMenuSystem = createAction(
   props<{ allow: Allow[], userData: IUserData }>()
 );
 
+export const onUpdateAdditional = createAction(
+  '[SEGURITY] onUpdateAdditional',
+  props<{ location: string, mrn: string, client: string }>()
+);
+
 
 export const onClear = createAction(
   '[SEGURITY] onClear',

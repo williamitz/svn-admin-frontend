@@ -75,4 +75,9 @@ export class InterpreterService {
     return this._http.put<IRateUpdateResponse>( admin_service + urlUpdate, body );
   }
 
+
+  onUpdateAdditional( body: any ) {
+    return this._http.put<IRateUpdateResponse>( admin_service + '/interpreter/update/additional', body );
+  }
+
 }

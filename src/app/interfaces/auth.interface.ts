@@ -8,14 +8,21 @@ export interface IAuthResponse {
 export interface IUserData {
   fullname: string;
   email:    string;
-  phone:    null;
+  phone:    string;
   google:   boolean;
   isVerify: boolean;
   createAt: string;
   status:   boolean;
   roles:    Role[];
-  country:  Country;
+  country?:  Country;
+
+  location: string;
+  mrn: string;
+  client: string;
+
+  agency?: IAgency;
 }
+
 
 export interface Country {
   id:            string;
@@ -68,15 +75,15 @@ export interface Menu {
   // actions?:      string[];
 }
 
-export interface IUserData {
-  status:       boolean;
-  id:           string;
-  fullname:     string;
-  email:        string;
-  google:       boolean;
-  isVerify:     boolean;
-  agency: IAgency;
-}
+// export interface IUserData {
+//   status:       boolean;
+//   id:           string;
+//   fullname:     string;
+//   email:        string;
+//   google:       boolean;
+//   isVerify:     boolean;
+//   agency: IAgency;
+// }
 
 export interface IAgency {
   status:        boolean;

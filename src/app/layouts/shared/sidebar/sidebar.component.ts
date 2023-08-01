@@ -34,7 +34,7 @@ export class SidebarComponent implements OnInit {
 
   get userRoles() { return this._userData?.roles.map( (r) => r.name ).join(' - ') ?? 'sin rol'; }
   get fullname() { return this._userData?.fullname ?? 'undefined'; }
-  get companyLogo() { return this._userData?.agency.logoUrl ?? '/assets/images/logo-color.png'; }
+  get companyLogo() { return this._userData?.agency?.logoUrl ?? '/assets/images/logo-color.png'; }
 
   constructor(
     private router: Router,
