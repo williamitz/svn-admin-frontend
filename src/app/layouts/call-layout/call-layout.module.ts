@@ -16,6 +16,8 @@ import { RouterModule } from '@angular/router';
 import { CallReportComponent } from './call-report/call-report.component';
 import { OpiCallComponent } from './opi-call/opi-call.component';
 import { CallHistoryComponent } from './call-history/call-history.component';
+import { CallHandlingComponent } from './call-handling/call-handling.component';
+import { CallHandlingCustomerComponent } from './call-handling-customer/call-handling-customer.component';
 
 
 
@@ -26,7 +28,9 @@ import { CallHistoryComponent } from './call-history/call-history.component';
     ConnectNowComponent,
     CallReportComponent,
     OpiCallComponent,
-    CallHistoryComponent
+    CallHistoryComponent,
+    CallHandlingComponent,
+    CallHandlingCustomerComponent
   ],
   imports: [
     CommonModule,

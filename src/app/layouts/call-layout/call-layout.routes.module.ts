@@ -8,6 +8,8 @@ import { ConnectNowComponent } from './connect-now/connect-now.component';
 import { CallReportComponent } from './call-report/call-report.component';
 import { OpiCallComponent } from './opi-call/opi-call.component';
 import { CallHistoryComponent } from './call-history/call-history.component';
+import { CallHandlingComponent } from './call-handling/call-handling.component';
+import { CallHandlingCustomerComponent } from './call-handling-customer/call-handling-customer.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -27,6 +29,12 @@ const routes: Routes = [
   {
     path: 'call-history', component: CallHistoryComponent
   },
+  {
+    path: 'call-handling', component: CallHandlingComponent
+  },
+  {
+    path: 'call-handling-customer', component: CallHandlingCustomerComponent
+  },
   { path: '**', component: NotFoundPageComponent },
 
 ];
@@ -35,4 +43,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class CallLayoutRoutesModule {}
+export class CallLayoutRoutesModule { }
