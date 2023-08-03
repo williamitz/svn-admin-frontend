@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
 import { StorageService } from './services/storage.service';
 import { EThemeMode } from './interfaces/theme.enum';
 import { AuthService } from './services/auth.service';
+import { SocketService } from './services/socket.service';
 
 @Component({
   selector: 'app-root',
@@ -26,6 +27,7 @@ export class AppComponent {
   private _store = inject<Store<IAppState>>( Store<IAppState> );
   private _st = inject( StorageService );
   private _authsvc = inject( AuthService );
+  private _iosvc = inject( SocketService );
 
   private _loadMenu = false;
 
@@ -45,6 +47,10 @@ export class AppComponent {
     this.onListenSegurityRx();
 
     this.onLoadMenu();
+
+    this._iosvc.onStatusSocket();
+
+    this.onListenChat();
   }
 
   onLoadMenu() {
@@ -178,6 +184,14 @@ export class AppComponent {
         document.body.setAttribute('data-layout-mode', "light");
         break;
     }
+  }
+
+  onListenChat() {
+    this._iosvc.onListen('chat')
+    .subscribe( (response) => {
+
+      console.log('response', response);
+    } );
   }
 
   ngOnDestroy(): void {
