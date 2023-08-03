@@ -13,6 +13,9 @@ File: Custom Css File
   --clr-primary: #F4631E;
   --clr-neutral-01: #F3F3F9;
   --clr-neutral-05: #393941;
+
+  -clr-bg-menu: #F1F1F1;
+  -clr-item-menu:#393941
 }
 
 .clr-primary{
@@ -26,9 +29,28 @@ File: Custom Css File
 .modal-header .btn-close{
   filter: invert(1);
 }
-.navbar-brand-box{
-  background-color: white;
+
+// cambios en el menu principal
+[data-layout=vertical][data-sidebar=dark] .navbar-menu{
+  background-color: var(--clr-bg-menu);
+  box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.35);
+  border-color: transparent;
 }
+[data-layout=vertical][data-sidebar=dark] .navbar-nav .nav-link,
+[data-layout=vertical][data-sidebar=dark] .navbar-nav .nav-sm .nav-link{
+  color: var(--clr-item-menu);
+}
+[data-layout=vertical][data-sidebar=dark] .navbar-nav .nav-link:hover,
+[data-layout=vertical][data-sidebar=dark] .navbar-nav .nav-sm .nav-link:hover{
+  color: var(--clr-primary);
+}
+
+// item activo menu principal
+[data-layout=vertical][data-sidebar=dark] .navbar-nav > .nav-item .nav-link.active {
+  color: var(--clr-primary);
+  font-weight: 600;
+}
+
 
 @media screen and (max-width: 600px) {
   
