@@ -7,6 +7,7 @@ import { ChartBarWidgetComponent } from './chart-bar-widget/chart-bar-widget.com
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { ChartPieWidgetComponent } from './chart-pie-widget/chart-pie-widget.component';
 import { ChartBarCountriesWidgetComponent } from './chart-bar-countries-widget/chart-bar-countries-widget.component';
+import { SoftphoneComponent } from './softphone/softphone.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { ChartBarCountriesWidgetComponent } from './chart-bar-countries-widget/c
     ListNotifyWidgetComponent,
     ChartBarWidgetComponent,
     ChartPieWidgetComponent,
-    ChartBarCountriesWidgetComponent
+    ChartBarCountriesWidgetComponent,
+    SoftphoneComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,8 @@ import { ChartBarCountriesWidgetComponent } from './chart-bar-countries-widget/c
     ListNotifyWidgetComponent,
     ChartBarWidgetComponent,
     ChartPieWidgetComponent,
-    ChartBarCountriesWidgetComponent
+    ChartBarCountriesWidgetComponent,
+    SoftphoneComponent
   ]
 })
 export class WidgetsModule { }

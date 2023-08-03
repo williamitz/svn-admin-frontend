@@ -30,6 +30,7 @@
     "@ngx-translate/core": "^15.0.0",
     "@ngx-translate/http-loader": "^8.0.0",
     "@popperjs/core": "^2.11.6",
+    "@twilio/voice-sdk": "^2.6.1",
     "angular-archwizard": "^7.0.0",
     "angular-feather": "^6.5.0",
     "angular-shepherd": "^15.0.0",

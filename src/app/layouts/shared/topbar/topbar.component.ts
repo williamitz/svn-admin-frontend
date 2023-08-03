@@ -180,7 +180,8 @@ export class TopbarComponent implements OnInit {
 
       const { userData } = state;
 
-      if( !this._loadedUser && userData ) {
+      // !this._loadedUser &&
+      if(  userData ) {
 
         this._loadedUser = true;
 

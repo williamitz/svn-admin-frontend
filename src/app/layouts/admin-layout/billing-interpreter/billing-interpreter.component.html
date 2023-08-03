@@ -14,13 +14,22 @@
       </div><!-- end card header -->
       <div class="card-body">
         <div class="row">
-          <div class="col-md-6">
+
+          <div class="col-md-4">
+            <div class="mb-3">
+              <label for="customer" class="form-label">Interpreter ID</label>
+              <input type="text" class="form-control rounded-pill" id="customer">
+            </div>
+          </div>
+
+          <div class="col-md-4">
             <div class="mb-3">
               <label for="customer" class="form-label">Interpreter</label>
               <input type="text" class="form-control rounded-pill" id="customer">
             </div>
           </div>
-          <div class="col-md-6">
+
+          <!-- <div class="col-md-4">
             <div class="mb-3">
               <label class="form-label">Account</label>
               <select class="form-select rounded-pill mb-3" aria-label="Default select example">
@@ -30,14 +39,16 @@
                 <option value="3">Back End Development</option>
               </select>
             </div>
-          </div>
-          <div class="col-md-6">
+          </div> -->
+
+          <!-- <div class="col-md-4">
             <div class="mb-3">
               <label for="accesscode" class="form-label">Access Code</label>
               <input type="text" class="form-control rounded-pill" id="accesscode">
             </div>
-          </div>
-          <div class="col-md-6">
+          </div> -->
+
+          <div class="col-md-4">
             <div class="mb-3">
               <label for="phoneNumber" class="form-label">Phone Number</label>
               <input type="text" class="form-control rounded-pill" id="phoneNumber">
@@ -45,8 +56,9 @@
           </div>
         </div>
         <div class="text-end">
-          <button type="button"
-            class="btn rounded-pill btn-danger px-5 fw-medium waves-effect waves-light">Apply</button>
+          <a routerLink="/admin/invoice" class="btn rounded-pill btn-danger px-5 fw-medium waves-effect waves-light">
+            Create Invoice
+          </a>
         </div>
 
         <div class="mt-5">
