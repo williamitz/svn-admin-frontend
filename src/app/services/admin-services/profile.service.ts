@@ -5,9 +5,9 @@ import {BehaviorSubject, Observable, of, Subject} from 'rxjs';
 
 import {DecimalPipe} from '@angular/common';
 import {debounceTime, delay, switchMap, tap} from 'rxjs/operators';
-import { projectListModel } from '../interfaces/profile.interfaces';
-import { SortColumn, SortDirection } from '../layouts/segurity-layout/profile-page/profile-sortable.directive';
-import { projectList } from '../layouts/segurity-layout/profile-page/data';
+import { projectListModel } from '../../interfaces/profile.interfaces';
+import { SortColumn, SortDirection } from '../../layouts/segurity-layout/profile-page/profile-sortable.directive';
+import { projectList } from '../../layouts/segurity-layout/profile-page/data';
 
 interface SearchResult {
   countries: projectListModel[];

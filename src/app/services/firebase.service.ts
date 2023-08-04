@@ -14,7 +14,7 @@ export class FirebaseService {
 
   async onUploadFirebase( file: File, nameFile: string, module: EUploadModule = EUploadModule.documents ) {
 
-    console.log('app.name =========== ', app.name);
+    // console.log('app.name =========== ', app.name);
 
     const storageRef = ref(storage, `${ module }/${ nameFile }`);
 
@@ -24,7 +24,7 @@ export class FirebaseService {
 
   }
 
-  onDeleteFirebase( nameFile: string, module = 'themes' ) {
+  onDeleteFirebase( nameFile: string, module: EUploadModule = EUploadModule.documents ) {
     // Create a reference to the file to delete
     const desertRef = ref(storage, `${ module }/${ nameFile }` );
 

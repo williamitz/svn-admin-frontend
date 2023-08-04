@@ -6,7 +6,7 @@ import { Subscription, forkJoin } from 'rxjs';
 import { OfficeHourClass } from 'src/app/classes/office-hours.class';
 import { RateClass } from 'src/app/classes/rate.class';
 import { IIdiom } from 'src/app/interfaces/admin-interfaces/idiom.interface';
-import { IProfileInterpreter, OfficeHour } from 'src/app/interfaces/admin-interfaces/profile.interface';
+import { OfficeHour } from 'src/app/interfaces/admin-interfaces/profile.interface';
 import { ITimezone } from 'src/app/interfaces/admin-interfaces/timezone.interface';
 import { EIconAlert } from 'src/app/interfaces/alertIcon.enum';
 import { INomenclature } from 'src/app/interfaces/nomenclature.interface';
@@ -151,7 +151,7 @@ export class ProfileInterpreterComponent {
 
         const { data, total } = response;
 
-        console.log('response ::: ', response);
+        // console.log('response ::: ', response);
 
         this.targetIdioms = [...data];
         this.loadingIdioms = false;
@@ -201,10 +201,7 @@ export class ProfileInterpreterComponent {
 
         } );
 
-
-
-
-        console.log('data.officeHours ::: ', data.officeHours);
+        // console.log('data.officeHours ::: ', data.officeHours);
 
         this.onGetTimeZones( data.countryCode.substring(0, 2) );
 
@@ -215,8 +212,6 @@ export class ProfileInterpreterComponent {
         this.rates = ratesDB.map( (e) => {
           return new RateClass( e.type, +e.rate, e.id )
         } );
-
-
 
         // this.profile = {...data};
 
