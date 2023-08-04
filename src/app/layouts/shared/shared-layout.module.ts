@@ -10,6 +10,7 @@ import { NgbDropdownModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 import { WidgetsModule } from 'src/app/widgets/widgets.module';
 import { PaginationComponent } from './pagination/pagination.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,9 @@ import { PaginationComponent } from './pagination/pagination.component';
     NgbDropdownModule,
     NgbNavModule,
     SimplebarAngularModule,
+
+    FormsModule,
+    ReactiveFormsModule,
 
     TranslateModule,
     RouterModule,

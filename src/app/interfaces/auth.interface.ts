@@ -98,6 +98,7 @@ export interface IAgency {
   costPerMinute: string;
   logoUrl:       string;
   backdropUrl:   string;
+  htmlColor:     string;
   country:       Country;
 }
 

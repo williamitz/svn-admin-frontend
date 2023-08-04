@@ -62,8 +62,13 @@ export class SidebarComponent implements OnInit {
 
         this._loadedMenu = true;
 
+        const { agency } = userData;
         this.menuItems = menuSystem;
         this._userData = userData;
+
+        if( agency ) {
+          document.getElementById('div-brand-box')!.style.backgroundColor = agency?.htmlColor;
+        }
 
         setTimeout(() => {
           const id = this._st.getItem('a-id');

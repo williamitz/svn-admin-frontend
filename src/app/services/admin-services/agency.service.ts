@@ -43,4 +43,8 @@ export class AgencyService {
     return this._http.get<IOrganizationByIdResponse>( `${ admin_service }/${ entity }/${ id }` );
   }
 
+  onUpdateColor( body: any ) {
+    return this._http.put<any>( `${ admin_service }/${ entity }/color/update`, body );
+  }
+
 }
