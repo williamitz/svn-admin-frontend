@@ -62,9 +62,16 @@ export class SidebarComponent implements OnInit {
 
         this._loadedMenu = true;
 
-        const { agency } = userData;
+        const { agency, roles } = userData;
         this.menuItems = menuSystem;
         this._userData = userData;
+
+        if( roles.some( (e) => ['ADMIN', 'WEBMASTER'].includes( e.code ) ) ) {
+          this._st.isAdmin = true;
+        } else {
+
+          this._st.isAdmin = false;
+        }
 
         if( agency ) {
           document.getElementById('div-brand-box')!.style.backgroundColor = agency?.htmlColor;
@@ -74,7 +81,7 @@ export class SidebarComponent implements OnInit {
           const id = this._st.getItem('a-id');
           if( id != '' ) {
 
-            const isCurrentMenuId = document.getElementById(id);
+            const isCurrentMenuId = document.getElementById(id ?? 'xd');
 
 
             let isMenu = isCurrentMenuId?.nextElementSibling as any;

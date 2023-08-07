@@ -8,7 +8,10 @@ import { IPager, IPagerFilter } from 'src/app/interfaces/pager.interface';
 import { AgencyService } from 'src/app/services/admin-services/agency.service';
 import { PagerService } from 'src/app/services/pager.service';
 import { UiService } from 'src/app/services/ui.service';
-import { decimalPatt, fullTextNumberPatt, fullTextPatt } from 'src/app/utils';
+import { decimalPatt, emailPatt, fullTextNumberPatt, fullTextPatt } from 'src/app/utils';
+import { NomenclatureService } from 'src/app/services/nomenclature.service';
+import { INomenclature } from 'src/app/interfaces/nomenclature.interface';
+import { RateClass } from 'src/app/classes/rate.class';
 // import { CountryService } from 'src/app/services/country.service';
 
 @Component({
@@ -24,12 +27,14 @@ export class OrganizationPageComponent {
   private _create$?: Subscription;
   private _update$?: Subscription;
   private _delete$?: Subscription;
+  private _calltype$?: Subscription;
+
 
   // private _countrysvc      = inject( CountryService );
   private _pagersvc        = inject( PagerService );
   private _uisvc           = inject( UiService );
   private _agencysvc = inject( AgencyService );
-
+  private _nomenclaturesvc = inject( NomenclatureService );
   private _frmBuilder      = inject( UntypedFormBuilder );
 
   private _loading = false;
@@ -40,6 +45,8 @@ export class OrganizationPageComponent {
 
   frmOrganization!: UntypedFormGroup;
   frmFilter!: UntypedFormGroup;
+  calltype: INomenclature[] = [];
+  rates: RateClass[] = [];
 
   paginate: IPager = {
     currentPage: 0,
@@ -62,10 +69,12 @@ export class OrganizationPageComponent {
   get value(): IPagerFilter { return this.frmFilter.value; }
   private get _valueFrm() { return this.frmOrganization.value; }
   get invalid() { return this.frmOrganization.invalid ?? false; }
+  get invalidRates() { return this.rates.some( (e) => e.invalid ); }
 
   // get invalidDetail() { return this.campus.length > 0 ? this.campus.some( (e) => e.invalid ) : false ; }
 
   private get _currentPage() { return this.paginate.currentPage; }
+  get counterRates(){ return this.rates.length; }
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -75,17 +84,20 @@ export class OrganizationPageComponent {
 
     this.onGetOrganizations();
 
+    this.onLoadCallType();
+
   }
 
   onBuildFrm() {
 
     this.frmOrganization = this._frmBuilder.group({
       bussinnesName:   [ '', [ Validators.required, Validators.pattern( fullTextPatt ) ] ],
-      document:        [ '', [ Validators.required, Validators.pattern( fullTextNumberPatt ) ] ],
-      address:         [ '', [] ],
-      email:           [ null, [] ],
+      // document:        [ '', [ Validators.required, Validators.pattern( fullTextNumberPatt ) ] ],
+      address:         [ '', [ Validators.required ] ],
+      email:           [ null, [ Validators.required, Validators.pattern( emailPatt ) ] ],
       phone:           [ null, [] ],
-      costPerMinute:   [ null, [ Validators.required, Validators.pattern( decimalPatt ) ] ],
+      // costPerMinute:   [ null, [ Validators.required, Validators.pattern( decimalPatt ) ] ],
+      rates:          [ [], [] ],
     });
 
     this.frmFilter = this._frmBuilder.group({
@@ -95,6 +107,34 @@ export class OrganizationPageComponent {
       order:         [ '', [] ],
     });
 
+  }
+
+  onLoadCallType() {
+    this._calltype$ = this._nomenclaturesvc.onGetCallType()
+    .subscribe({
+      next: (response) => {
+
+        const { data } = response;
+
+        this.calltype = data;
+
+        this._calltype$?.unsubscribe();
+      },
+      error: (e) => {
+
+        this._calltype$?.unsubscribe();
+      }
+    })
+  }
+
+  onAddrate() {
+    this.rates.push(
+      new RateClass( '', 0 )
+    );
+  }
+
+  onRemoveRate( record: RateClass ) {
+    this.rates = this.rates.filter( (c) => c.auxId != record.auxId );
   }
 
   onGetOrganizations( page = 1 ) {
@@ -146,6 +186,17 @@ export class OrganizationPageComponent {
         this.frmOrganization.get('phone')?.setValue(data.phone);
         this.frmOrganization.get('costPerMinute')?.setValue(data.costPerMinute);
 
+        this.rates = [];
+
+        this.rates = data.rates.map( (e) => {
+
+          return new RateClass(
+            e.type,
+            +e.rate,
+            e.id
+          )
+        } );
+
         this._findById$?.unsubscribe();
       },
       error: (e) => {
@@ -194,9 +245,12 @@ export class OrganizationPageComponent {
 
   onSubmit() {
 
-    if( this.invalid || this.saving ) return;
+    if( this.invalid || this.saving || this.invalidRates ) return;
 
     this._saving = true;
+
+    const ratesFinal = this.rates.map( (e) => e.values );
+    this.frmOrganization.get('rates')?.setValue( ratesFinal );
 
     this._uisvc.onShowLoading();
 
@@ -255,6 +309,7 @@ export class OrganizationPageComponent {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
 
+    this._calltype$?.unsubscribe();
     this._country$?.unsubscribe();
     this._create$?.unsubscribe();
     this._update$?.unsubscribe();

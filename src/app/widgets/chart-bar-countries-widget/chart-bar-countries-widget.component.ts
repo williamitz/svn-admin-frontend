@@ -38,7 +38,7 @@ export class ChartBarCountriesWidgetComponent {
       series: [
         {
           name: "Inflation",
-          data: [ 2.3, 10.1, 4.0, 3.6, 3.2 ]
+          data: [ 0, 0, 0, 0, 0 ]
         }
       ],
       chart: {

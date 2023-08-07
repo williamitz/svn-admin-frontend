@@ -24,7 +24,7 @@
       "TEXT": "Calls"
     },
     "CONNECTNOW": {
-      "TEXT": "Connect Now"
+      "TEXT": "Access to Interpreter"
     },
 
     "SCHEDULEINTERPRETER": {
@@ -63,7 +63,7 @@
       "TEXT": "Billings"
     },
     "BILLINGSINTERPRETER": {
-      "TEXT": "Interpreter Billings"
+      "TEXT": "Interpreter Invoice"
     },
 
     "CONFIGURATION": {

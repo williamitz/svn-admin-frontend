@@ -20,18 +20,16 @@ export interface IOrganization {
   email:         null | string;
   phone:         null | string;
   costPerMinute: string;
-  campus:        ICampus[];
+  rates:        Rate[];
 }
 
-export interface ICampus {
-  status:     boolean;
-  userCreate: string;
-  createAt:   string;
-  id:         string;
-  campusName: string;
-  city:       string;
-  address:    null;
+export interface Rate {
+  status: boolean;
+  id:     string;
+  type:   string;
+  rate:   string;
 }
+
 
 
 

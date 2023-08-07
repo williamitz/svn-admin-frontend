@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { AgencyService } from 'src/app/services/admin-services/agency.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-footer',
@@ -16,16 +17,17 @@ export class FooterComponent {
 
   private _frmBuilder = inject( UntypedFormBuilder );
   private _agencysvc = inject( AgencyService );
+  private _st = inject( StorageService );
 
   private _saving = false;
 
   frmColor!: UntypedFormGroup;
 
   get values() { return this.frmColor.value; }
-
   get invalid() { return this.frmColor.invalid; }
-
   get saving() { return this._saving; }
+
+  get showConf() { return this._st.isAdmin; }
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -39,7 +41,7 @@ export class FooterComponent {
 
   onSubmit() {
 
-    if( this.invalid ) return;
+    if( this.invalid || !this.showConf ) return;
 
     this._saving = true;
     this._updated$ = this._agencysvc.onUpdateColor( this.values )

@@ -23,13 +23,13 @@ export class ChartPieWidgetComponent {
 
   @ViewChild("chart") chart!: ChartComponent;
   public chartOptions: Partial<ChartOptions> = {
-    series: [44, 55, 13, 43, 22],
+    series: [0, 0, 0, 0, 0],
     chart: {
       type: "donut",
       width: 490
     },
     labels: ["Cantones", "Mandarin Chinese", "Spanish", "Japanese", "Russian"],
-    
+
     responsive: [
       {
         breakpoint: 480,

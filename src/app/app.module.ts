@@ -23,13 +23,14 @@ import { TokenInterceptor } from './services/token.interceptor.service';
 import { HandleErrorInterceptor } from './services/handleError.interceptor.service';
 import { CallLayoutModule } from './layouts/call-layout/call-layout.module';
 import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
+import { admin_socket } from 'src/globals';
 // import * as mask from 'ngx-mask';
 
 export function createTranslateLoader(http: HttpClient): any {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
 
-const config: SocketIoConfig = { url: 'http://localhost:3000', options: { extraHeaders: {token: ''} } };
+const config: SocketIoConfig = { url: admin_socket, options: { extraHeaders: {token: ''} } };
 
 @NgModule({
   declarations: [
