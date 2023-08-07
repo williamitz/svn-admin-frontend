@@ -20,6 +20,8 @@ export interface IOrganization {
   email:         null | string;
   phone:         null | string;
   costPerMinute: string;
+  logoUrl:       string;
+  logoUrlSecure: string;
   rates:        Rate[];
 }
 
@@ -29,7 +31,5 @@ export interface Rate {
   type:   string;
   rate:   string;
 }
-
-
 
 

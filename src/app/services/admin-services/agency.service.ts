@@ -47,4 +47,8 @@ export class AgencyService {
     return this._http.put<any>( `${ admin_service }/${ entity }/color/update`, body );
   }
 
+  onUpdateLogo( body: any, id: string, ) {
+    return this._http.put<any>( `${ admin_service }/${ entity }/${ id }/logo/update`, body );
+  }
+
 }

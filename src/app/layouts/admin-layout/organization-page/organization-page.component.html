@@ -173,6 +173,26 @@
           <div class="modal-body ">
 
             <form [formGroup]="frmOrganization">
+
+              <div class="row">
+                <div class="col-12">
+                  <input type="file" id="file-agency" style="display: none" (change)="onChangeFile( $event )" />
+
+                  <!-- <label for="file-agency" class="avatar avatar-lg badge-secondary rounded-circle">
+                    <span class="avatar-img">
+                      <img [src]="urlLogo" alt="avatar">
+                    </span>
+                  </label> -->
+
+                  <div class="d-flex mb-4 align-items-center justify-content-center">
+                    <label for="file-agency" class="flex-shrink-0">
+                        <img [src]="urlLogo" alt="" class="avatar-xl rounded-circle">
+                    </label>
+                  </div>
+
+                </div>
+              </div>
+
               <div class="row">
                 <div class=" col-12 pt-2">
                   <label for="txtbusssinessname" class="form-label">Bussines Name</label>

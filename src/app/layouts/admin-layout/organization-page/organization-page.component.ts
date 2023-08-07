@@ -12,6 +12,10 @@ import { decimalPatt, emailPatt, fullTextNumberPatt, fullTextPatt } from 'src/ap
 import { NomenclatureService } from 'src/app/services/nomenclature.service';
 import { INomenclature } from 'src/app/interfaces/nomenclature.interface';
 import { RateClass } from 'src/app/classes/rate.class';
+import { UtilsService } from 'src/app/services/utils.service';
+import { FirebaseService } from 'src/app/services/firebase.service';
+import { v4 as UUID } from 'uuid';
+import { EUploadModule } from 'src/app/interfaces/uploadModule.enum';
 // import { CountryService } from 'src/app/services/country.service';
 
 @Component({
@@ -33,7 +37,9 @@ export class OrganizationPageComponent {
   // private _countrysvc      = inject( CountryService );
   private _pagersvc        = inject( PagerService );
   private _uisvc           = inject( UiService );
+  private _utilsSvc           = inject( UtilsService );
   private _agencysvc = inject( AgencyService );
+  private _firesvc = inject( FirebaseService );
   private _nomenclaturesvc = inject( NomenclatureService );
   private _frmBuilder      = inject( UntypedFormBuilder );
 
@@ -42,6 +48,9 @@ export class OrganizationPageComponent {
   private _loadData = false;
   private _total = 0
   private _organizationId?: string;
+  private _urlLogo = './assets/images/No_Image.jpg';
+
+  private _file?: File;
 
   frmOrganization!: UntypedFormGroup;
   frmFilter!: UntypedFormGroup;
@@ -71,6 +80,8 @@ export class OrganizationPageComponent {
   get invalid() { return this.frmOrganization.invalid ?? false; }
   get invalidRates() { return this.rates.some( (e) => e.invalid ); }
 
+  get urlLogo() { return this._urlLogo; }
+
   // get invalidDetail() { return this.campus.length > 0 ? this.campus.some( (e) => e.invalid ) : false ; }
 
   private get _currentPage() { return this.paginate.currentPage; }
@@ -98,6 +109,10 @@ export class OrganizationPageComponent {
       phone:           [ null, [] ],
       // costPerMinute:   [ null, [ Validators.required, Validators.pattern( decimalPatt ) ] ],
       rates:          [ [], [] ],
+      logoUrl:          [ '', [] ],
+      logoUrlSecure:          [ '', [] ],
+
+
     });
 
     this.frmFilter = this._frmBuilder.group({
@@ -166,6 +181,37 @@ export class OrganizationPageComponent {
 
   }
 
+  onChangeFile( event: any ) {
+
+    const files = event.target.files;
+
+    const nombre = files.item(0)!.name.toUpperCase();
+    const extension = nombre.split('.').pop();
+
+    this._file = files.item(0);
+
+    // themeAward.file = file.item(0);
+    // themeAward.loadImg = true;
+
+    // if ( themeAward.urlImg.includes('https') ) {
+    //   themeAward.originImg = themeAward.storageName;
+    // }
+
+    const size = files.item(0)!.size / 1000000;
+
+    if (!this._utilsSvc.onValidImg(extension!, size)) {
+      this._uisvc.onShowAlert( 'Formato de logo inválido', EIconAlert.warning );
+      return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = (event: any) => {
+      this._urlLogo = event.target.result;
+    };
+    reader.readAsDataURL( files.item(0)! );
+  }
+
   onLoadData( record: IOrganization ) {
 
     const { id } = record;
@@ -185,6 +231,10 @@ export class OrganizationPageComponent {
         this.frmOrganization.get('email')?.setValue(data.email);
         this.frmOrganization.get('phone')?.setValue(data.phone);
         this.frmOrganization.get('costPerMinute')?.setValue(data.costPerMinute);
+        this.frmOrganization.get('logoUrl')?.setValue(data.logoUrl);
+        this.frmOrganization.get('logoUrlSecure')?.setValue(data.logoUrlSecure);
+
+        this._urlLogo = data.logoUrl == '' || !data.logoUrl  ? './assets/images/No_Image.jpg' : data.logoUrl;
 
         this.rates = [];
 
@@ -243,7 +293,7 @@ export class OrganizationPageComponent {
 
   }
 
-  onSubmit() {
+  async onSubmit() {
 
     if( this.invalid || this.saving || this.invalidRates ) return;
 
@@ -253,6 +303,23 @@ export class OrganizationPageComponent {
     this.frmOrganization.get('rates')?.setValue( ratesFinal );
 
     this._uisvc.onShowLoading();
+
+    if( this._file ) {
+
+      const urlOld = this._valueFrm.logoUrlSecure ?? '';
+
+      if( urlOld && urlOld != '' ) {
+        await this._firesvc.onDeleteFirebase( urlOld, EUploadModule.agency );
+      }
+
+      const logoUrlSecure = UUID() + '.png';
+
+      const urlLogo = await this._firesvc.onUploadFirebase( this._file, logoUrlSecure, EUploadModule.agency );
+
+      this.frmOrganization.get('logoUrlSecure')?.setValue( logoUrlSecure );
+      this.frmOrganization.get('logoUrl')?.setValue(urlLogo);
+
+    }
 
     if( !this.loadData ) {
 
@@ -272,7 +339,11 @@ export class OrganizationPageComponent {
 
           this._create$?.unsubscribe();
         },
-        error: (e) => {
+        error: async (e) => {
+
+          if( this._file ) {
+            await this._firesvc.onDeleteFirebase( this._valueFrm.logoUrlSecure, EUploadModule.agency );
+          }
 
           this._create$?.unsubscribe();
         }
@@ -295,7 +366,11 @@ export class OrganizationPageComponent {
 
           this._update$?.unsubscribe();
         },
-        error: (e) => {
+        error: async (e) => {
+
+          if( this._file ) {
+            await this._firesvc.onDeleteFirebase( this._valueFrm.logoUrlSecure, EUploadModule.agency );
+          }
 
           this._update$?.unsubscribe();
         }
