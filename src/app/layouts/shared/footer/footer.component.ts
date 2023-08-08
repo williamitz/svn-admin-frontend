@@ -67,6 +67,10 @@ export class FooterComponent {
 
     document.getElementById('div-brand-box')!.style.backgroundColor = this.values.htmlColor;
 
+    // .nav-item .nav-link.active {
+    //   color: var(--clr-primary);
+    //   font-weight: 600;
+    // }
 
   }
 

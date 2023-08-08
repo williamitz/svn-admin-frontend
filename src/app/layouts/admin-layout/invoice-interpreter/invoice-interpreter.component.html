@@ -1,56 +1,87 @@
 <div class="row">
   <div class="col-12">
     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-      <h4 class="mb-sm-0">
-        Call History
-      </h4>
+      <h4 class="mb-sm-0">Invoice</h4>
+      <div class="page-title-right">
+        <ol class="breadcrumb m-0">
+          <li class="breadcrumb-item"><a routerLink="/admin/billing">Billings</a></li>
+          <li class="breadcrumb-item active">Invoice Interpreter</li>
+        </ol>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- filter -->
 <div class="row">
   <div class="col-xl-12">
     <div class="card">
       <div class="card-header align-items-center d-flex">
         <h4 class="card-title mb-0 flex-grow-1">Filter by</h4>
       </div><!-- end card header -->
-
       <div class="card-body">
         <div class="row">
-          <div class="col-md-3 mb-3">
+          <div class="col-md-3 mb-3 mb-md-0">
             <div>
-              <label class="form-label">Interpreter</label>
-              <select class="form-select rounded-pill" aria-label="Default select example">
-                <option selected="">Select</option>
-                <option value="1">Information Architecture</option>
-                <option value="2">UI/UX Design</option>
-                <option value="3">Back End Development</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-3 mb-3">
-            <div>
-              <label for="customer" class="form-label">ID</label>
+              <label for="customer" class="form-label">Interpreter</label>
               <input type="text" class="form-control rounded-pill" id="customer">
             </div>
           </div>
-          <div class="col-md-3 mb-3">
+
+          <div class="col-md-3 mb-3 mb-md-0">
+            <div>
+              <label for="customer" class="form-label">Interpreter Id</label>
+              <input type="text" class="form-control rounded-pill" id="customer">
+            </div>
+          </div>
+
+          <div class="col-md-3 mb-3 mb-md-0">
             <div>
               <label for="exampleInputdate" class="form-label">From</label>
               <input type="date" class="form-control rounded-pill" id="exampleInputdate">
             </div>
           </div>
-          <div class="col-md-3 mb-3">
+          <div class="col-md-3">
             <div>
               <label for="exampleInputdateEnd" class="form-label">To</label>
               <input type="date" class="form-control rounded-pill" id="exampleInputdateEnd">
             </div>
           </div>
         </div>
-        <div class="text-end">
+        <div class="text-end mt-3">
           <button type="button"
-            class="btn rounded-pill btn-danger px-4 fw-medium waves-effect waves-light">Apply</button>
+            class="btn rounded-pill btn-danger px-5 fw-medium waves-effect waves-light">Apply</button>
+        </div>
+
+        <div>
+          <div class="card-header mt-5 p-0 border-0 bg-soft-light">
+            <h4 _ngcontent-ng-c3467080123="" class="card-title mb-0 flex-grow-1">Total: 22/06/2023 - 30/06/2023</h4>
+          </div><!-- end card header -->
+          <div class="row g-0 text-center">
+            <div class="col-md-4">
+              <div class="p-3 border border-dashed border-start-0">
+                <h5 class="mb-1">196</h5>
+                <p class="text-muted mb-0">Total Calls</p>
+              </div>
+            </div>
+            <!--end col-->
+            <div class="col-md-4">
+              <div class="p-3 border border-dashed border-start-0">
+                <h5 class="mb-1">1629</h5>
+                <p class="text-muted mb-0">Total Minutes</p>
+              </div>
+            </div>
+            <!--end col-->
+            <div class="col-md-4">
+              <div class="p-3 border border-dashed border-start-0 border-end-0">
+                <div class="box-flex">
+                  <h5 class="mb-1">Total Earnings</h5>
+                  <div class="box-mount">$334.00</div>
+                </div>
+                <p class="text-muted mb-0"></p>
+              </div>
+            </div>
+            <!--end col-->
+          </div>
         </div>
 
         <div class="mt-5">
@@ -59,7 +90,12 @@
               <table class="table table-nowrap table-hover table-striped mb-0">
                 <thead class="table-light">
                   <tr>
-                    <th scope="col">Call Start</th>
+                    <th scope="col" style="width:25px">
+                      <div class="form-check form-check-danger">
+                        <input type="checkbox" id="checkAll" value="option1" class="form-check-input">
+                      </div>
+                    </th>
+                    <th scope="col" style="width:30px">Call Start</th>
                     <th scope="col">Call End</th>
                     <th scope="col">Language</th>
                     <th scope="col">Rate x min.</th>
@@ -74,26 +110,31 @@
                 <tbody>
 
                   <!-- <tr *ngFor="let item of lista">
-                    <td>
+                    <td scope="col" style="width:25px">
+                      <div class="form-check form-check-danger">
+                        <input type="checkbox" id="checkAll" value="option1" class="form-check-input">
+                      </div>
+                    </td>
+                    <td scope="col" style="width:30px">
                       {{ item.callstart }}
                     </td>
-                    <td>
+                    <td scope="col" style="width:30px">
                       {{ item.callend }}
                     </td>
                     <td>
                       {{ item.language }}
                     </td>
                     <td>
-                      {{ item.ratexmin }}
+                      ${{ item.ratexmin }}
                     </td>
                     <td>
                       {{ item.duration }}
                     </td>
                     <td>
-                      {{ item.avg }}
+                      {{ item.avg }}s
                     </td>
                     <td>
-                      {{ item.id }}
+                      {{ item.callid }}
                     </td>
                     <td>
                       {{ item.location }}
@@ -102,12 +143,12 @@
                       {{ item.mrn }}
                     </td>
                     <td>
-                      {{ item.client }}
+                      {{ item.patientname }}
                     </td>
                   </tr> -->
 
                   <tr>
-                    <td colspan="10" class="text-center">
+                    <td colspan="11" class="text-center">
                       Without Records
                     </td>
                   </tr>
@@ -116,6 +157,17 @@
               </table>
             </div>
             <div class="row mt-4">
+              <div class="col-md-6">
+                <div>
+                  <span>Export:</span>
+                  <button type="button" class="btn btn-outline-dark waves-effect waves-light ms-2">XLS</button>
+                  <button type="button" class="btn btn-outline-dark waves-effect waves-light ms-2">CSV</button>
+                  <button type="button" class="btn btn-outline-dark waves-effect waves-light ms-2">PDF</button>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div class="row my-2">
               <div class="col-6 ">
                 <div class="d-flex justify-content-start align-items-center gap-4 ms-3">
                   Showing
@@ -138,4 +190,3 @@
     </div>
   </div>
 </div>
-<!-- filter end-->

@@ -87,7 +87,7 @@
                                 </span> -->
               </a>
 
-              <a [routerLink]="item.menu.webUrl" *ngIf="!hasItems(item)" class="side-nav-link-ref nav-link menu-link"
+              <a [routerLink]="item.menu.webUrl" routerLinkActive="active" *ngIf="!hasItems(item)" class="side-nav-link-ref nav-link menu-link"
                 (click)="toggleParentItem($event)">
 
                 <i class="bx {{ item.menu.icon }} icon nav-icon" *ngIf="item.menu.icon" class=""></i>
@@ -104,7 +104,7 @@
 
                   <li *ngFor="let subitem of item.children" class="nav-item">
 
-                    <a [routerLink]="subitem.menu.webUrl" *ngIf="!hasItems(subitem)" class="nav-link"
+                    <a [routerLink]="subitem.menu.webUrl" routerLinkActive="active" *ngIf="!hasItems(subitem)" class="nav-link"
                       [attr.data-parent]="subitem.menu.patherMenuId" (click)="updateActive($event)">
 
                       <!-- {{ subitem.menu.name | translate}} -->
@@ -136,7 +136,7 @@
                       <ul *ngIf="hasItems(subitem)" class="nav nav-sm flex-column" aria-expanded="false">
                         <li *ngFor="let subSubitem of subitem.children" class="nav-item">
 
-                          <a [routerLink]="subSubitem.menu.webUrl" *ngIf="!hasItems(subSubitem)" class="nav-link"
+                          <a [routerLink]="subSubitem.menu.webUrl" routerLinkActive="active" *ngIf="!hasItems(subSubitem)" class="nav-link"
                             [attr.data-parent]="subSubitem.menu.patherMenuId" (click)="updateActive($event)">
                             <!-- {{ subSubitem.menu.name| translate}} -->
 
@@ -167,14 +167,16 @@
                               <li *ngFor="let subSubitem1 of subSubitem.children" class="nav-item">
 
                                 <a [attr.data-parent]="subSubitem1.menu.patherMenuId"
-                                  [routerLink]="subSubitem1.menu.webUrl" class="nav-link"
+                                  [routerLink]="subSubitem1.menu.webUrl" routerLinkActive="active" class="nav-link"
                                   (click)="updateActive($event)">
                                   <!-- {{ subSubitem1.menu.name | translate }} -->
 
-                                  <span class="" *ngIf="subSubitem1.menu.haveTranslate"> {{ subSubitem1.menu.translate |
-                                    translate }}</span>
-                                  <span class="" *ngIf="!subSubitem1.menu.haveTranslate"> {{ subSubitem1.menu.name
-                                    }}</span>
+                                  <span class="" *ngIf="subSubitem1.menu.haveTranslate">
+                                    {{ subSubitem1.menu.translate | translate }}
+                                  </span>
+                                  <span class="" *ngIf="!subSubitem1.menu.haveTranslate">
+                                    {{ subSubitem1.menu.name }}
+                                  </span>
 
                                 </a>
 

@@ -177,6 +177,9 @@ export class OrganizationPageComponent {
     this.frmOrganization.reset();
     this._organizationId = undefined;
     this._loadData = false;
+
+    this._file = undefined;
+    this._urlLogo = './assets/images/No_Image.jpg';
     // this.campus = [];
 
   }

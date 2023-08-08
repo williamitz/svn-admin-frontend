@@ -245,21 +245,21 @@ export class SidebarComponent implements OnInit {
   }
 
   activateParentDropdown(item:any) {
-    item.classList.add("active");
+    item.classList.add("active", "custom-active");
     let parentCollapseDiv = item.closest(".collapse.menu-dropdown");
 
     if (parentCollapseDiv) {
         // to set aria expand true remaining
         parentCollapseDiv.classList.add("show");
-        parentCollapseDiv.parentElement.children[0].classList.add("active");
+        parentCollapseDiv.parentElement.children[0].classList.add("active", "custom-active");
         parentCollapseDiv.parentElement.children[0].setAttribute("aria-expanded", "true");
         if (parentCollapseDiv.parentElement.closest(".collapse.menu-dropdown")) {
             parentCollapseDiv.parentElement.closest(".collapse").classList.add("show");
             if (parentCollapseDiv.parentElement.closest(".collapse").previousElementSibling)
-                parentCollapseDiv.parentElement.closest(".collapse").previousElementSibling.classList.add("active");
+                parentCollapseDiv.parentElement.closest(".collapse").previousElementSibling.classList.add("active", "custom-active");
             if (parentCollapseDiv.parentElement.closest(".collapse").previousElementSibling.closest(".collapse")) {
                 parentCollapseDiv.parentElement.closest(".collapse").previousElementSibling.closest(".collapse").classList.add("show");
-                parentCollapseDiv.parentElement.closest(".collapse").previousElementSibling.closest(".collapse").previousElementSibling.classList.add("active");
+                parentCollapseDiv.parentElement.closest(".collapse").previousElementSibling.closest(".collapse").previousElementSibling.classList.add("active", "custom-active");
             }
         }
         return false;

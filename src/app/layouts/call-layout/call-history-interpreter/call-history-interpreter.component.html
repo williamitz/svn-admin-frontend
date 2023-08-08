@@ -2,7 +2,7 @@
   <div class="col-12">
     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
       <h4 class="mb-sm-0">
-        Call History
+        Interpreter Call History
       </h4>
     </div>
   </div>
@@ -18,35 +18,20 @@
 
       <div class="card-body">
         <div class="row">
-          <div class="col-md-3 mb-3">
-            <div>
-              <label class="form-label">Interpreter</label>
-              <select class="form-select rounded-pill" aria-label="Default select example">
-                <option selected="">Select</option>
-                <option value="1">Information Architecture</option>
-                <option value="2">UI/UX Design</option>
-                <option value="3">Back End Development</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-3 mb-3">
-            <div>
-              <label for="customer" class="form-label">ID</label>
-              <input type="text" class="form-control rounded-pill" id="customer">
-            </div>
-          </div>
-          <div class="col-md-3 mb-3">
+
+          <div class="col-md-4 mb-3">
             <div>
               <label for="exampleInputdate" class="form-label">From</label>
               <input type="date" class="form-control rounded-pill" id="exampleInputdate">
             </div>
           </div>
-          <div class="col-md-3 mb-3">
+          <div class="col-md-4 mb-3">
             <div>
               <label for="exampleInputdateEnd" class="form-label">To</label>
               <input type="date" class="form-control rounded-pill" id="exampleInputdateEnd">
             </div>
           </div>
+          <div class="col-md-4"></div>
         </div>
         <div class="text-end">
           <button type="button"
@@ -72,39 +57,6 @@
                   </tr>
                 </thead>
                 <tbody>
-
-                  <!-- <tr *ngFor="let item of lista">
-                    <td>
-                      {{ item.callstart }}
-                    </td>
-                    <td>
-                      {{ item.callend }}
-                    </td>
-                    <td>
-                      {{ item.language }}
-                    </td>
-                    <td>
-                      {{ item.ratexmin }}
-                    </td>
-                    <td>
-                      {{ item.duration }}
-                    </td>
-                    <td>
-                      {{ item.avg }}
-                    </td>
-                    <td>
-                      {{ item.id }}
-                    </td>
-                    <td>
-                      {{ item.location }}
-                    </td>
-                    <td>
-                      {{ item.mrn }}
-                    </td>
-                    <td>
-                      {{ item.client }}
-                    </td>
-                  </tr> -->
 
                   <tr>
                     <td colspan="10" class="text-center">

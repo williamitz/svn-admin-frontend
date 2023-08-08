@@ -10,6 +10,7 @@ import { OpiCallComponent } from './opi-call/opi-call.component';
 import { CallHistoryComponent } from './call-history/call-history.component';
 import { CallHandlingComponent } from './call-handling/call-handling.component';
 import { CallHandlingCustomerComponent } from './call-handling-customer/call-handling-customer.component';
+import { CallHistoryInterpreterComponent } from './call-history-interpreter/call-history-interpreter.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -28,6 +29,9 @@ const routes: Routes = [
   },
   {
     path: 'call-history', component: CallHistoryComponent
+  },
+  {
+    path: 'call-history-interpreter', component: CallHistoryInterpreterComponent
   },
   {
     path: 'call-handling', component: CallHandlingComponent
