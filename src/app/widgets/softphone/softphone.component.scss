@@ -1,0 +1,48 @@
+.container-softphone{
+  margin: auto;
+  max-width: 260px;
+  width: 100%;
+}
+.box-softphone{
+  background-color: #fff;
+  background-color: #15284b;
+  border-radius: 4px;
+  box-shadow: 0 0 16px 0 #b0b0b0;
+  margin: auto;
+  margin-right: 0;
+  max-width: 320px;
+  padding: 2rem 1rem;
+}
+.grid-softphone{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.softphone-item{
+  background: rgb(255 255 255 / 14%);
+  cursor: pointer;
+  text-align: center;
+  padding: 16px 0;
+  border: solid 1px #405272;
+
+  small{
+    color: #fff;
+  }
+}
+.softphone-icon{
+
+  i{
+    color: #fff;
+    font-size: 24px;
+  }
+}
+.softphone-icon_alt{
+  background: rgb(255 255 255 / 14%);
+  margin: auto;
+  text-align: center;
+
+  i{
+    font-size: 28px;
+  }
+}
