@@ -46,7 +46,7 @@ export class FooterComponent {
     this._saving = true;
     this._updated$ = this._agencysvc.onUpdateColor( this.values )
     .subscribe({
-      next: (response) => {
+      next: (response: any) => {
 
 
         this._saving = false;
