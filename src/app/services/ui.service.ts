@@ -6,12 +6,13 @@ import { EIconAlert } from '../interfaces/alertIcon.enum';
 @Injectable({providedIn: 'root'})
 export class UiService {
 
-  onShowAlert( text: string, icon?: EIconAlert, title?: string  ) {
+  onShowAlert( text: string, icon?: EIconAlert, title?: string, html?: string  ) {
 
     Swal.fire({
       title,
       icon,
       text,
+      html,
       // showCancelButton: true,
       confirmButtonColor: '#364574',
       // cancelButtonColor: 'rgb(243, 78, 78)',

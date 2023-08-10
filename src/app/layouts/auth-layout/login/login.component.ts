@@ -68,6 +68,8 @@ export class LoginComponent {
         this.loading = false;
         this._uisvc.onClose();
 
+        console.log('hola ::: ', data);
+
         if( data.roles.some( (r) => r.code == 'INTERPRETER' ) ) {
 
           this._router.navigateByUrl('/admin/portal-interpreter');

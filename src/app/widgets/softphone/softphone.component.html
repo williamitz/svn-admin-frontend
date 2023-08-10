@@ -1,29 +1,46 @@
 <div class="box-softphone mb-3">
 
-  <div style="display: none;">
+  <div >
+
     <div class="grid-softphone">
+
       <div class="softphone-item">
         <div class="softphone-icon">
           <i class="mdi mdi-volume-high"></i>
         </div>
         <small>Audio Call</small>
       </div>
+
       <div class="softphone-item">
         <div class="softphone-icon">
           <i class="mdi mdi-video"></i>
         </div>
         <small>Video Call</small>
       </div>
-    </div>
 
-    <div class="mt-4">
-      <select class="form-select rounded-pill mb-3" aria-label="Default select example">
-        <option selected="">Selection</option>
-        <option value="1">Information Architecture</option>
-        <option value="2">UI/UX Design</option>
-        <option value="3">Back End Development</option>
-      </select>
     </div>
+    <form [formGroup]="frmPhone" >
+
+      <div class="mt-4">
+        <select class="form-select rounded-pill mb-3" formControlName="ringtone" (change)="onSetDevice($event)" >
+          <option selected="">Selection Ringtone</option>
+          <option [value]="item.id" *ngFor="let item of ringtoneDevices" >
+            {{ item.label }}
+          </option>
+        </select>
+      </div>
+
+      <div class="mt-4">
+        <select class="form-select rounded-pill mb-3" formControlName="speaker" (change)="onSetDevice($event, true)" >
+          <option selected="">Selection Speaker</option>
+          <option [value]="item.id" *ngFor="let item of speakerDevices" >
+            {{ item.label }}
+          </option>
+        </select>
+      </div>
+
+    </form>
+
   </div>
 
   <div class="container-softphone">

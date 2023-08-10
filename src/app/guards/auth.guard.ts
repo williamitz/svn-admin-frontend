@@ -33,6 +33,7 @@ export const AuthGuard: CanActivateFn = (
 
           obs.next( true );
           _token$?.unsubscribe();
+          obs.complete();
         },
         error: (e) => {
 
@@ -43,6 +44,7 @@ export const AuthGuard: CanActivateFn = (
           _router.navigateByUrl('/auth');
           obs.next( false );
           _token$?.unsubscribe();
+          obs.complete();
         }
       });
 

@@ -8,6 +8,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { ChartPieWidgetComponent } from './chart-pie-widget/chart-pie-widget.component';
 import { ChartBarCountriesWidgetComponent } from './chart-bar-countries-widget/chart-bar-countries-widget.component';
 import { SoftphoneComponent } from './softphone/softphone.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -23,7 +24,9 @@ import { SoftphoneComponent } from './softphone/softphone.component';
     NgbDropdownModule,
     NgbNavModule,
     SimplebarAngularModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   exports: [
     ListNotifyWidgetComponent,
