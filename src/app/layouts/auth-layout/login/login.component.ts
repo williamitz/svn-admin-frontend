@@ -71,11 +71,12 @@ export class LoginComponent {
         console.log('hola ::: ', data);
 
         if( data.roles.some( (r) => r.code == 'INTERPRETER' ) ) {
-
           this._router.navigateByUrl('/access-interpreter');
+        } else {
+          this._router.navigateByUrl('/admin');
         }
 
-        this._router.navigateByUrl('/admin');
+
 
         console.log('response ::: ', response);
 
