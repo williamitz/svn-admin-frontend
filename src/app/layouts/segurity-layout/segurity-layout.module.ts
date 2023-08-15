@@ -46,7 +46,6 @@ const maskConfig: Partial<IConfig> = {
   imports: [
     CommonModule,
     SharedLayoutModule,
-    ReactiveFormsModule,
     SwiperModule,
     // TranslateModule,
     SegurityLayoutRoutingModule,

@@ -17,8 +17,8 @@ import { InvoiceComponent } from './invoice/invoice.component';
 import { QuickbooksComponent } from './quickbooks/quickbooks.component';
 import { CallQueuesComponent } from './call-queues/call-queues.component';
 import { ProfileAccountComponent } from './profile-account/profile-account.component';
-import { PortalInterprterComponent } from './portal-interprter/portal-interprter.component';
-import { MyassignmetInterpreterComponent } from './myassignmet-interpreter/myassignmet-interpreter.component';
+// import { PortalInterprterComponent } from '../access-layout/portal-interprter/portal-interprter.component';
+// import { MyassignmetInterpreterComponent } from './myassignmet-interpreter/myassignmet-interpreter.component';
 import { BillingInterpreterComponent } from './billing-interpreter/billing-interpreter.component';
 import { InvoiceInterpreterComponent } from './invoice-interpreter/invoice-interpreter.component';
 
@@ -43,8 +43,8 @@ const routes: Routes = [
   { path: 'call-queues', component: CallQueuesComponent },
   { path: 'profile-account', component: ProfileAccountComponent },
   { path: 'agencies', component: OrganizationPageComponent },
-  { path: 'portal-interpreter', component: PortalInterprterComponent },
-  { path: 'my-assignments', component: MyassignmetInterpreterComponent },
+  // { path: 'portal-interpreter', component: PortalInterprterComponent },
+  // { path: 'my-assignments', component: MyassignmetInterpreterComponent },
   { path: '**', component: NotFoundPageComponent },
 ];
 
