@@ -24,6 +24,7 @@ import { HandleErrorInterceptor } from './services/handleError.interceptor.servi
 import { CallLayoutModule } from './layouts/call-layout/call-layout.module';
 import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
 import { admin_socket } from 'src/globals';
+import { AccessLayoutModule } from './layouts/access-layout/access-layout.module';
 // import * as mask from 'ngx-mask';
 
 export function createTranslateLoader(http: HttpClient): any {
@@ -59,6 +60,7 @@ const config: SocketIoConfig = { url: admin_socket, options: { extraHeaders: {to
     SegurityLayoutModule,
     AdminLayoutModule,
     CallLayoutModule,
+    AccessLayoutModule,
 
     StoreModule.forRoot( AppState ),
     StoreDevtoolsModule.instrument({

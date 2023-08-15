@@ -6,6 +6,7 @@ import { AuthLayoutRoutingModule } from './layouts/auth-layout/auth-layout.routi
 import { SegurityLayoutRoutingModule } from './layouts/segurity-layout/segurity-layout.routing.module';
 import { AdminLayoutRoutingModule } from './layouts/admin-layout/admin-layout.routing.module';
 import { CallLayoutRoutingModule } from './layouts/call-layout/call-layout.routing.module';
+import { AccessLayoutRoutingModule } from './layouts/access-layout/access-layout.routing.module';
 
 const routes: Routes = [
   {
@@ -35,7 +36,8 @@ const routes: Routes = [
     AuthLayoutRoutingModule,
     SegurityLayoutRoutingModule,
     AdminLayoutRoutingModule,
-    CallLayoutRoutingModule
+    CallLayoutRoutingModule,
+    AccessLayoutRoutingModule
   ],
   exports: [RouterModule]
 })

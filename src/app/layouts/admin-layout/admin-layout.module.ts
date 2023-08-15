@@ -17,8 +17,7 @@ import { NewassignmentInterpreterComponent } from './newassignment-interpreter/n
 import { OnsiteInterpreterComponent } from './onsite-interpreter/onsite-interpreter.component';
 
 import { FullCalendarModule } from '@fullcalendar/angular';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import interactionPlugin from '@fullcalendar/interaction';
+
 
 // Flat Picker
 import { FlatpickrModule } from 'angularx-flatpickr';
@@ -38,17 +37,17 @@ import { InvoiceComponent } from './invoice/invoice.component';
 import { QuickbooksComponent } from './quickbooks/quickbooks.component';
 import { CallQueuesComponent } from './call-queues/call-queues.component';
 import { ProfileAccountComponent } from './profile-account/profile-account.component';
-import { PortalInterprterComponent } from './portal-interprter/portal-interprter.component';
-import { MyassignmetInterpreterComponent } from './myassignmet-interpreter/myassignmet-interpreter.component';
 import { SharedAdminModule } from './shared-admin/shared-admin.module';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { BillingInterpreterComponent } from './billing-interpreter/billing-interpreter.component';
 
 // FullCalendarModule.registerPlugins([
-//   dayGridPlugin,
-//   interactionPlugin
-// ]);
+  //   dayGridPlugin,
+  //   interactionPlugin
+  // ]);
 
+  // import { PortalInterprterComponent } from '../access-layout/portal-interprter/portal-interprter.component';
+  // import { MyassignmetInterpreterComponent } from '../access-layout/myassignmet-interpreter/myassignmet-interpreter.component';
 
 
 @NgModule({
@@ -72,8 +71,8 @@ import { BillingInterpreterComponent } from './billing-interpreter/billing-inter
     QuickbooksComponent,
     CallQueuesComponent,
     ProfileAccountComponent,
-    PortalInterprterComponent,
-    MyassignmetInterpreterComponent
+    // PortalInterprterComponent,
+    // MyassignmetInterpreterComponent
   ],
   imports: [
     CommonModule,

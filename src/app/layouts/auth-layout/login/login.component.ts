@@ -72,7 +72,7 @@ export class LoginComponent {
 
         if( data.roles.some( (r) => r.code == 'INTERPRETER' ) ) {
 
-          this._router.navigateByUrl('/admin/portal-interpreter');
+          this._router.navigateByUrl('/access-interpreter');
         }
 
         this._router.navigateByUrl('/admin');
