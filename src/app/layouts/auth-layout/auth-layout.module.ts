@@ -9,13 +9,17 @@ import { AuthLayoutRoutingModule } from './auth-layout.routing.module';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginToInterpreterComponent } from './login-to-interpreter/login-to-interpreter.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { AuthSuccessComponent } from './auth-success/auth-success.component';
 
 @NgModule({
   declarations: [
     AuthLayoutComponent,
     LoginComponent,
     LoginToInterpreterComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
+    AuthSuccessComponent
   ],
   imports: [
     CommonModule,

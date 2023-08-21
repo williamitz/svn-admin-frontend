@@ -43,100 +43,221 @@
 
             <form [formGroup]="frmInterpreter">
 
-              <div class="row gy-4">
+              <div class="row mt-4">
 
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                  <label for="firstname" class="form-label">First Name</label>
-                  <input type="text" class="form-control rounded-pill" id="firstname" placeholder="Enter your name"
-                    formControlName="name">
+                <div class="col-lg-3 col-md-3 col-sm-12 text-center">
+                  <img src="assets/images/users/avatar-8.jpg" alt="" class="rounded-circle avatar-xl">
                 </div>
 
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                  <div>
-                    <label for="lastname" class="form-label">Last Name</label>
-                    <input type="text" class="form-control rounded-pill" id="lastname" placeholder="Enter your name"
-                      formControlName="surname">
+                <div class="col-lg-9 col-md-9 col-sm-12">
+
+                  <div class="row">
+
+                    <div class="col-lg-4 col-md-4 col-sm-6">
+                      <label for="firstname" class="form-label">First Name</label>
+                      <input type="text"
+                        class="form-control rounded-pill"
+                        id="firstname"
+                        placeholder="Enter your name"
+                        formControlName="name"
+                      >
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-6">
+                      <label for="lastname" class="form-label">Last Name</label>
+                      <input type="text"
+                        class="form-control rounded-pill"
+                        id="lastname"
+                        placeholder="Enter your name"
+                        formControlName="surname"
+                      >
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                      <label for="iconInput" class="form-label">E-mail</label>
+                      <input type="email"
+                        class="form-control rounded-pill"
+                        id="iconInput"
+                        placeholder="example@gmail.com"
+                        readonly
+                        [disabled]="true"
+                        formControlName="email"
+                      >
+                    </div>
+
                   </div>
-                </div>
 
-                <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="row pt-3">
 
-                  <label for="cleave-phone" class="form-label">Target languages</label>
-                  <ng-select class="" [items]="targetIdioms" bindLabel="name" bindValue="id"
-                    placeholder="Select target languages" formControlName="targetLanguages" [multiple]="true"
-                    [loading]="loadingIdioms"
-                    [class.is-invalid]="controls['targetLanguages'].errors  &&  touched('targetLanguages')">
-                  </ng-select>
-                </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6">
+                      <label for="exampleInputtime" class="form-label">Time Zone</label>
+                      <ng-select [items]="timezones" bindLabel="zoneName" bindValue="id" placeholder="Select Time zone"
+                        formControlName="timzoneId" [loading]="loadingTimezone"
+                        [class.is-invalid]="controls['timzoneId'].errors  &&  touched('timzoneId')">
 
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                  <div>
-                    <label for="lastname" class="form-label">Telephone Number</label>
-                    <input type="number" class="form-control rounded-pill" id="lastname" placeholder="Enter your name"
-                      formControlName="phone">
+                      </ng-select>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-6">
+
+                      <label for="lastname" class="form-label">Gender</label>
+                      <select class="form-select rounded-pill" aria-label="Default select example" formControlName="gender">
+                        <option selected="">Select</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                      </select>
+
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+
+                      <label for="lastname" class="form-label">Specialized Types</label>
+                      <select class="form-select rounded-pill" aria-label="Default select example">
+                        <option selected="">Select</option>
+                        <option value="1">Specialized 1</option>
+                        <option value="2">Specialized 2</option>
+                        <option value="3">Specialized 3</option>
+                      </select>
+
+                    </div>
+
                   </div>
+
+                  <div class="row pt-3">
+
+                    <div class="col-lg-4 col-md-4 col-sm-6">
+                      <label for="lastname" class="form-label">Years of Experience</label>
+                      <input type="text" class="form-control rounded-pill" id="lastname" placeholder="Enter your name">
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-6">
+                      <label for="lastname" class="form-label">Telephone Number</label>
+                      <input type="number"
+                        class="form-control rounded-pill"
+                        id="lastname"
+                        placeholder="Enter your name"
+                        formControlName="phone"
+                      >
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                      <label for="cleave-phone" class="form-label">Target languages</label>
+                      <ng-select class="" [items]="targetIdioms" bindLabel="language" bindValue="id"
+                        placeholder="Select target languages" formControlName="targetLanguages" [multiple]="true"
+                        [loading]="loadingIdioms"
+                        [class.is-invalid]="controls['targetLanguages'].errors  &&  touched('targetLanguages')">
+                      </ng-select>
+                    </div>
+
+                  </div>
+
                 </div>
 
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                  <label for="exampleInputtime" class="form-label">Time Zone</label>
-                  <ng-select [items]="timezones" bindLabel="zoneName" bindValue="id" placeholder="Select Time zone"
-                    formControlName="timzoneId" [loading]="loadingTimezone"
-                    [class.is-invalid]="controls['timzoneId'].errors  &&  touched('timzoneId')">
-
-                  </ng-select>
-                </div>
-
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                  <label for="lastname" class="form-label">Gender</label>
-                  <select class="form-select rounded-pill" aria-label="Default select example" formControlName="gender">
-                    <option selected="">Select</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Other">Other</option>
-                  </select>
-                </div>
-
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                  <label for="lastname" class="form-label">Specialized Types</label>
-                  <select class="form-select rounded-pill" aria-label="Default select example">
-                    <option selected="">Select</option>
-                    <option value="1">Specialized 1</option>
-                    <option value="2">Specialized 2</option>
-                    <option value="3">Specialized 3</option>
-                  </select>
-                </div>
-
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                  <label for="lastname" class="form-label">Years of Experience</label>
-                  <input type="text" class="form-control rounded-pill" id="lastname" placeholder="Enter your name">
-                </div>
-
-                <div class="col-md-6 col-sm-12 col-xs-12">
-                  <label for="iconInput" class="form-label">E-mail</label>
-                  <input type="email" class="form-control rounded-pill" id="iconInput" placeholder="example@gmail.com"
-                    formControlName="email">
-                </div>
-                <div class="col-md-6 col-sm-12 col-xs-12">
-                  <label for="formFile" class="form-label">File Input</label>
-                  <ngx-dropzone class="dropzone_sec" (change)="onSelect($event)"
-                    accept="image/jpeg,image/jpg,application/pdf">
-                    <ngx-dropzone-label>Drop or selec files</ngx-dropzone-label>
-
-                    <ngx-dropzone-preview class="c-dropzone-preview" *ngFor="let f of files" [removable]="true"
-                      (removed)="onRemove(f)">
-                      <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-                    </ngx-dropzone-preview>
-                  </ngx-dropzone>
-                </div>
               </div>
 
+
             </form>
+
+            <hr>
+
+            <div class="row pt-3">
+
+              <div class="col-lg-6 col-md-6 col-sm-12">
+
+                <div class="row mt-md-0 mt-3 pb-2">
+                  <div class="col-6">
+                    <h5 class="m-0 lh-base">Contact</h5>
+                  </div>
+                  <div class="col-6 d-flex justify-content-end">
+                    <button type="button" class="btn btn-sm btn-danger " (click)="onAddContact()">
+                      <i class="ri-add-line align-bottom me-1"></i>
+                      Add
+                    </button>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-12">
+
+                    <table class="table table-responsive  table-nowrap mb-0">
+                      <thead class="table-light">
+                        <tr>
+                          <th scope="col">Type</th>
+                          <th scope="col">Rate</th>
+                          <th scope="col">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                        <tr *ngFor="let itemContact of contacts">
+                          <td>
+
+                            <select class="form-select rounded-pill" aria-label="Default select example"
+                              [formControl]="itemContact.contactType" [class.is-invalid]="itemContact.invalidType ">
+                              <option selected="" disabled>Select</option>
+                              <option [value]="item.value" *ngFor="let item of contacttype">
+                                {{ item.value }}
+                              </option>
+                            </select>
+
+                          </td>
+                          <td>
+                            <input type="text" class="form-control rounded-pill" placeholder="Access Code"
+                              [formControl]="itemContact.contact" [class.is-invalid]="itemContact.invalidContact ">
+                          </td>
+
+                          <td>
+                            <div class="mt-2 text-center">
+                              <a href="javascript:void(0);" class="link-danger " (click)="onRemoveContact( itemContact )">
+                                <i class="ri-delete-bin-line align-bottom "></i>
+                              </a>
+                            </div>
+                          </td>
+                        </tr>
+
+                        <tr *ngIf="counterContacts == 0" >
+                          <td colspan="3" class="text-muted text-center">
+                            Add to contact to interpreter
+                          </td>
+                        </tr>
+
+                      </tbody>
+                    </table>
+
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <label for="formFile" class="form-label">Resume File</label>
+
+                <ngx-dropzone [multiple]="false" class="dropzone_sec" (change)="onSelect($event)"
+                  accept="image/jpeg,image/jpg,application/pdf">
+                  <ngx-dropzone-label>Drop or selec file</ngx-dropzone-label>
+
+                  <ngx-dropzone-preview class="c-dropzone-preview" *ngIf="file" [removable]="true"
+                    (removed)="onRemove(file)" [file]="file" >
+                    <ngx-dropzone-label>{{ file.name }} ({{ file.type }})</ngx-dropzone-label>
+                  </ngx-dropzone-preview>
+
+                </ngx-dropzone>
+
+                <div *ngIf="resumeName !== ''" class="pt-4 text-center" >
+                  <label for="formFile" class="form-label">
+                    {{ resumeName }}
+                  </label>
+                </div>
+
+              </div>
+
+            </div>
 
             <div class="row pt-3">
 
               <div class="col-md-6">
-                <label for="disabledInput" class="form-label">Rate</label>
-                <input type="text" class="form-control" id="disabledInput" value="Disabled input">
+                <!-- <label for="disabledInput" class="form-label">Rate</label>
+                <input type="text" class="form-control" id="disabledInput" value="Disabled input"> -->
               </div>
 
               <div class="col-md-6">
@@ -146,7 +267,7 @@
                     <h5 class="m-0 lh-base">Rate</h5>
                   </div>
                   <div class="col-6 d-flex justify-content-end">
-                    <button type="button" class="btn btn-sm btn-dark " (click)="onAddrate()">
+                    <button type="button" class="btn btn-sm btn-danger " (click)="onAddrate()">
                       <i class="ri-add-line align-bottom me-1"></i>
                       Add
                     </button>
@@ -189,6 +310,12 @@
                                 <i class="ri-delete-bin-line align-bottom "></i>
                               </a>
                             </div>
+                          </td>
+                        </tr>
+
+                        <tr *ngIf="counterRates == 0" >
+                          <td colspan="3" class="text-muted text-center">
+                            Add to contact to interpreter
                           </td>
                         </tr>
 

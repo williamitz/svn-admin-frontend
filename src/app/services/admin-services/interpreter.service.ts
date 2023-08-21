@@ -4,7 +4,7 @@ import { admin_service } from 'src/globals';
 import { IPagerFilter } from '../../interfaces/pager.interface';
 import { IUserByIdResponse, IUserListResponse } from '../../interfaces/segurity-interfaces/user.interface';
 import { IInterpreterByIdResponse, IInterpreterListResponse } from 'src/app/interfaces/admin-interfaces/interpreter.interface';
-import { IInterpreterProfileResponse, IRateUpdateResponse } from 'src/app/interfaces/admin-interfaces/profile.interface';
+import { IInterpreterProfileResponse, IRateUpdateResponse, IUpdateContactResponse } from 'src/app/interfaces/admin-interfaces/profile.interface';
 import { map } from 'rxjs';
 
 @Injectable({providedIn: 'root'})
@@ -64,6 +64,15 @@ export class InterpreterService {
               : `/interpreter/${ id }/rate`;
 
     return this._http.put<IRateUpdateResponse>( admin_service + urlUpdate, body );
+  }
+
+  onUpdateContact( id: string, body: any ) {
+
+    const urlUpdate = id == ''
+              ? '/interpreter/update/contact-profile'
+              : `/interpreter/${ id }/contact`;
+
+    return this._http.put<IUpdateContactResponse>( admin_service + urlUpdate, body );
   }
 
   onUpdateOfficeHours( id: string, body: any ) {

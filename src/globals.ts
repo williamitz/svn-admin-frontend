@@ -1,8 +1,8 @@
-// export const admin_service = 'http://localhost:3000/api/v1';
-export const admin_service = 'https://snv-admin-backend-op3m9.ondigitalocean.app/api/v1';
+export const admin_service = 'http://localhost:3000/api/v1';
+// export const admin_service = 'https://snv-admin-backend-op3m9.ondigitalocean.app/api/v1';
 
-// export const admin_socket = 'http://localhost:3000';
-export const admin_socket = 'https://snv-admin-backend-op3m9.ondigitalocean.app';
+export const admin_socket = 'http://localhost:3000';
+// export const admin_socket = 'https://snv-admin-backend-op3m9.ondigitalocean.app';
 
 
 // Import the functions you need from the SDKs you need

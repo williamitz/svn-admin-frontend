@@ -17,6 +17,14 @@ export class AuthService {
     return this._http.get<IAuthResponse>( admin_service + '/auth/token' );
   }
 
+  onForgotPassword( body: any ) {
+    return this._http.post<any>( admin_service + '/auth/forgot-password', body );
+  }
+
+  onResetPassword( body: any, token: string ) {
+    return this._http.post<any>( admin_service + `/auth/reset-password?token=${ token }`, body );
+  }
+
   onFindMenu() {
     return this._http.get<IMenuUserResponse>( admin_service + '/auth/menu-by-role' )
     .pipe(

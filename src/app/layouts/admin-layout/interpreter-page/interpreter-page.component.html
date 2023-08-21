@@ -91,10 +91,9 @@
                     </span>
                   </td>
                   <td>
-                    <!-- <button type="button" class="btn btn-sm btn-success" *ngIf="item.status" data-bs-toggle="modal"
-                      data-bs-target="#organizationModal" (click)="onLoadData( item )">
+                    <a [routerLink]="['/admin/profile-interpreter/', item.id]" class="btn btn-sm btn-primary" *ngIf="item.status"  >
                       <i class="ri-pencil-fill align-bottom"></i>
-                    </button> -->
+                    </a>
 
                     <button type="button" class="btn btn-sm btn-danger ms-2" [class.btn-success]="!item.status"
                       [class.btn-danger]="item.status" (click)="onConfirm(item)">
