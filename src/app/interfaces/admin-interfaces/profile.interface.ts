@@ -43,6 +43,7 @@ export interface NativeLanguage {
 export interface Rate {
   status: boolean;
   id:     string;
+  idiom:   any;
   type:   string;
   rate:   string;
 }

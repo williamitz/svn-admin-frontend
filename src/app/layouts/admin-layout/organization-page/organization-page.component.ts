@@ -144,7 +144,7 @@ export class OrganizationPageComponent {
 
   onAddrate() {
     this.rates.push(
-      new RateClass( '', 0 )
+      new RateClass( null, '', 0 )
     );
   }
 
@@ -244,6 +244,7 @@ export class OrganizationPageComponent {
         this.rates = data.rates.map( (e) => {
 
           return new RateClass(
+            null,
             e.type,
             +e.rate,
             e.id

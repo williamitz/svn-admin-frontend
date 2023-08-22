@@ -143,9 +143,15 @@
 
                     <div class="col-lg-4 col-md-4 col-sm-12">
                       <label for="cleave-phone" class="form-label">Target languages</label>
-                      <ng-select class="" [items]="targetIdioms" bindLabel="language" bindValue="id"
-                        placeholder="Select target languages" formControlName="targetLanguages" [multiple]="true"
+                      <ng-select class=""
+                        [items]="targetIdioms"
+                        bindLabel="language"
+                        bindValue="id"
+                        placeholder="Select target languages"
+                        formControlName="targetLanguages"
+                        [multiple]="true"
                         [loading]="loadingIdioms"
+                        (change)="onSelectTargetLanguages($event)"
                         [class.is-invalid]="controls['targetLanguages'].errors  &&  touched('targetLanguages')">
                       </ng-select>
                     </div>
@@ -255,16 +261,16 @@
 
             <div class="row pt-3">
 
-              <div class="col-md-6">
-                <!-- <label for="disabledInput" class="form-label">Rate</label>
-                <input type="text" class="form-control" id="disabledInput" value="Disabled input"> -->
-              </div>
+              <!-- <div class="col-md-6">
+                <label for="disabledInput" class="form-label">Rate</label>
+                <input type="text" class="form-control" id="disabledInput" value="Disabled input">
+              </div> -->
 
-              <div class="col-md-6">
+              <div class="col-12">
 
                 <div class="row mt-md-0 mt-3 pb-2">
                   <div class="col-6">
-                    <h5 class="m-0 lh-base">Rate</h5>
+                    <h5 class="m-0 lh-base">Rate For language</h5>
                   </div>
                   <div class="col-6 d-flex justify-content-end">
                     <button type="button" class="btn btn-sm btn-danger " (click)="onAddrate()">
@@ -280,6 +286,7 @@
                     <table class="table table-responsive  table-nowrap mb-0">
                       <thead class="table-light">
                         <tr>
+                          <th scope="col">Language</th>
                           <th scope="col">Type</th>
                           <th scope="col">Rate</th>
                           <th scope="col">Actions</th>
@@ -288,6 +295,20 @@
                       <tbody>
 
                         <tr *ngFor="let dpt of rates">
+
+                          <!-- idiom -->
+                          <td>
+                            <ng-select class=""
+                              [items]="rateTargetIdioms"
+                              bindLabel="language"
+                              bindValue="id"
+                              placeholder="Select language"
+                              [formControl]="dpt.idiom"
+                              [class.is-invalid]="dpt.invalidIdiom">
+                            </ng-select>
+
+                          </td>
+
                           <td>
 
                             <select class="form-select rounded-pill" aria-label="Default select example"
@@ -314,7 +335,7 @@
                         </tr>
 
                         <tr *ngIf="counterRates == 0" >
-                          <td colspan="3" class="text-muted text-center">
+                          <td colspan="4" class="text-muted text-center">
                             Add to contact to interpreter
                           </td>
                         </tr>

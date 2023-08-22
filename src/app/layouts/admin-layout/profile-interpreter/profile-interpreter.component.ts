@@ -82,6 +82,8 @@ export class ProfileInterpreterComponent {
   private _id = '';
 
   targetIdioms: IIdiom[] = [];
+  rateTargetIdioms: IIdiom[] = [];
+
   timezones: ITimezone[] = [];
   calltype: INomenclature[] = [];
   contacttype: INomenclature[] = [];
@@ -211,6 +213,8 @@ export class ProfileInterpreterComponent {
           data.targetLanguages.map( (e) => e.id )
         );
 
+        this.rateTargetIdioms = data.targetLanguages as any;
+
         this._officeHour = data.officeHours;
 
         this.officeHours = [];
@@ -236,7 +240,7 @@ export class ProfileInterpreterComponent {
         this.rates = [];
 
         this.rates = ratesDB.map( (e) => {
-          return new RateClass( e.type, +e.rate, e.id )
+          return new RateClass( e.idiom.id ?? null, e.type, +e.rate, e.id )
         } );
 
         const contactsDB = [...data.contacts];
@@ -272,7 +276,7 @@ export class ProfileInterpreterComponent {
 
   onAddrate() {
     this.rates.push(
-      new RateClass( '', 0 )
+      new RateClass( null, '', 0 )
     );
   }
 
@@ -342,7 +346,7 @@ export class ProfileInterpreterComponent {
 
         this.rates = [];
         this.rates = newRates?.map( (e) => {
-          return new RateClass( e.type, +e.rate, e.id )
+          return new RateClass( e.idiom.id, e.type, +e.rate, e.id )
         } ) ?? [];
 
         this.contacts = [];
@@ -402,6 +406,12 @@ export class ProfileInterpreterComponent {
         this._contacttype$?.unsubscribe();
       }
     })
+  }
+
+  onSelectTargetLanguages( values: IIdiom[] ) {
+
+    this.rateTargetIdioms = [...values];
+
   }
 
   ngOnDestroy(): void {
