@@ -19,6 +19,7 @@ import { ICustomer, IDepartment } from 'src/app/interfaces/admin-interfaces/cust
 import { RateClass } from 'src/app/classes/rate.class';
 import { INomenclature } from 'src/app/interfaces/nomenclature.interface';
 import { NomenclatureService } from 'src/app/services/nomenclature.service';
+import { ActiveNumbverClass } from 'src/app/classes/active-number.class';
 
 @Component({
   selector: 'app-customer',
@@ -64,6 +65,8 @@ export class CustomerComponent {
   private _total = 0
 
   rates: RateClass[] = [];
+  activeNumbers: ActiveNumbverClass[] = [];
+
   calltype: INomenclature[] = [];
 
   paginate: IPager = {
@@ -88,6 +91,7 @@ export class CustomerComponent {
 
   get invalidDepartments() { return this.department.some( (e) => e.invalid ); }
   get invalidRates() { return this.rates.some( (e) => e.invalid ); }
+  get invalidActiveNumbers() { return this.activeNumbers.some( (e) => e.invalid ); }
 
   get counterRates(){ return this.rates.length; }
   get counterDepartments(){ return this.department.length; }
@@ -135,6 +139,7 @@ export class CustomerComponent {
       customertypeId: [ null, [ Validators.required ] ],
       departments:    [ [], [] ],
       rates:          [ [], [] ],
+      activeNumbers:  [ [], [] ]
     });
 
     this.frmFilter = this._frmBuilder.group({
@@ -179,6 +184,20 @@ export class CustomerComponent {
   onRemoveDepartment( campu: DepartmentClass ) {
 
     this.department = this.department.filter( (c) => c.auxId != campu.auxId );
+
+  }
+
+  onAddActiveNumber() {
+
+    this.activeNumbers.push(
+      new ActiveNumbverClass( '', '', 0 )
+    );
+
+  }
+
+  onRemoveActiveNumber( record: ActiveNumbverClass ) {
+
+    this.activeNumbers = this.activeNumbers.filter( (c) => c.auxId != record.auxId );
 
   }
 
@@ -229,16 +248,17 @@ export class CustomerComponent {
   }
 
   onSubmit() {
-    if( this.invalid || this.saving ) return;
+    if( this.invalid || this.saving || this.invalidDepartments || this.invalidRates || this.invalidActiveNumbers ) return;
 
     this._saving = true;
 
     const departmentFinal = this.department.map( (e) => e.values );
     const ratesFinal = this.rates.map( (e) => e.values );
-
+    const activeNumbersFinal = this.activeNumbers.map( (e) => e.values );
 
     this.frmCustomer.get('departments')?.setValue( departmentFinal );
     this.frmCustomer.get('rates')?.setValue( ratesFinal );
+    this.frmCustomer.get('activeNumbers')?.setValue( activeNumbersFinal );
 
     this._uisvc.onShowLoading();
 
@@ -358,6 +378,18 @@ export class CustomerComponent {
           return new RateClass(
             null,
             e.type,
+            +e.rate,
+            e.id
+          )
+        } );
+
+        this.activeNumbers = [];
+
+        this.activeNumbers = data.activeNumbers.map( (e) => {
+
+          return new ActiveNumbverClass(
+            e.name,
+            e.number,
             +e.rate,
             e.id
           )

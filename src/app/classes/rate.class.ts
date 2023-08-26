@@ -14,7 +14,8 @@ export class RateClass {
   constructor( idiom: string | null, type: string, rate: number, id: string | null = null, ) {
 
     this._id = id ;
-    this.idiom = new FormControl( idiom, [ Validators.required ] );
+    // Validators.required
+    this.idiom = new FormControl( idiom, [  ] );
     this.type = new FormControl( type, [ Validators.required ] );
     this.rate = new FormControl( rate, [ Validators.required, Validators.min(0.5) ] );
 

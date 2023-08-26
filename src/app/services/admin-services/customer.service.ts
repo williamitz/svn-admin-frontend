@@ -35,6 +35,8 @@ export class CustomerService {
         const newResponse = {...response};
 
         newResponse.data.departments = newResponse.data.departments.filter( (e) => e.status );
+        newResponse.data.rates = newResponse.data.rates.filter( (e) => e.status );
+        newResponse.data.activeNumbers = newResponse.data.activeNumbers.filter( (e) => e.status );
 
         return newResponse;
       } )
