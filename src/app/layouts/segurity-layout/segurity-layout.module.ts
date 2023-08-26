@@ -29,6 +29,9 @@ import { provideEnvironmentNgxMask } from 'ngx-mask';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { PipesModule } from 'src/app/pipes/pipes.module';
 import { MenuComponent } from './menu/menu.component';
+import { ChangePasswordComponent } from './user/change-password/change-password.component';
+import { EditPersonalDetailsComponent } from './profile-page/edit-personal-details/edit-personal-details.component';
+import { EditPasswordComponent } from './profile-page/edit-password/edit-password.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: true,
@@ -41,7 +44,10 @@ const maskConfig: Partial<IConfig> = {
     RoleComponent,
     RoleFrmComponent,
     ProfilePageComponent,
-    MenuComponent
+    MenuComponent,
+    ChangePasswordComponent,
+    EditPersonalDetailsComponent,
+    EditPasswordComponent,
   ],
   imports: [
     CommonModule,

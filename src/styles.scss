@@ -10,3 +10,11 @@
 .page-title-box h4 {
   text-transform: none !important;
 }
+
+.required{
+  color: red;
+}
+
+.multi-select-label-disabled .ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value{
+  color: #333 !important;
+}

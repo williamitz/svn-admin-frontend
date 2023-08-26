@@ -1,0 +1,135 @@
+<form [formGroup]="frmUser" (submit)="onSubmit()" >
+
+    <div class="modal-body ">
+
+      <div>
+        <div class="row">
+          <div class="col-sm-6">
+
+            <label for="placeholderInput" class="form-label">Names <span class="required">*</span></label>
+
+            <input type="text"
+              class="form-control"
+              id="placeholderInput"
+              placeholder="Names"
+              formControlName="name"
+              [class.is-invalid]="controls['name'].errors  &&  touched('name')"
+            >
+
+            <div *ngIf="touched('name') && controls['name'].errors" class="invalid-feedback">
+              <div *ngIf="controls['name'].errors['required']">Name is required</div>
+              <div *ngIf="controls['name'].errors['pattern']">Name is invalid</div>
+            </div>
+
+          </div>
+          <div class="col-sm-6">
+
+            <label for="placeholderInput" class="form-label">Surnames <span class="required">*</span></label>
+
+            <input type="text"
+              class="form-control"
+              placeholder="Surnames"
+              formControlName="surname"
+              [class.is-invalid]="controls['surname'].errors  &&  touched('surname')"
+            >
+
+            <div *ngIf="touched('surname') && controls['surname'].errors" class="invalid-feedback">
+              <div *ngIf="controls['surname'].errors['required']">Surname is required</div>
+              <div *ngIf="controls['surname'].errors['pattern']">Surname is invalid</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <div class="row pt-2">
+        <div class="col-sm-6">
+
+            <label for="iconInput" class="form-label">Email <span class="required">*</span></label>
+                <div class="form-icon">
+                    <input type="email"
+                        class="form-control form-control-icon"
+                        id="iconInput"
+                        placeholder="example@gmail.com"
+                        formControlName="email"
+                        [class.is-invalid]="controls['email'].errors  &&  touched('email')"
+                    >
+        
+                <i class="ri-user-line"></i>
+                </div>
+                <div *ngIf="touched('email') && controls['email'].errors" class="invalid-feedback">
+                <div *ngIf="controls['email'].errors['required']">Email is required</div>
+                <div *ngIf="controls['email'].errors['pattern']">Email is invalid</div>
+                </div>
+
+        </div>
+
+        <div class="col-sm-6">
+
+            <label for="txtphone" class="form-label">Teléfono <span class="required">*</span></label>
+            <input type="text"
+              class="form-control"
+              id="txtphone"
+              placeholder="xxx-xxx-xxx"
+              mask="000-000-000"
+              formControlName="phone"
+            >
+
+        </div>
+    </div>
+
+    <div class="row pt-2">
+        
+        <div class="col-sm-6 multi-select-label-disabled">
+
+            <label for="cleave-phone" class="form-label">Roles <span class="required">*</span></label>
+            <ng-select
+                [items]="roles"
+                [multiple]="true"
+                [closeOnSelect]="false"
+                [searchable]="false"
+                bindLabel="name"
+                bindValue="id"
+                placeholder="Seleccione roles"
+                formControlName="roles"
+                [class.is-invalid]="controls['roles'].errors  &&  touched('roles')"
+                >
+            </ng-select>
+            </div>
+
+            <div class="col-sm-6">
+
+            <label for="cleave-phone" class="form-label">Agency <span class="required">*</span></label>
+            <ng-select
+                [items]="agencies"
+                bindLabel="bussinnesName"
+                bindValue="id"
+                placeholder="Select agency"
+                formControlName="agencyId"
+                [class.is-invalid]="controls['agencyId'].errors  &&  touched('agencyId')"
+                >
+            </ng-select>
+
+            </div>
+            
+        </div>
+
+    </div>
+
+    <div class="modal-footer flex justify-content-center mt-3">
+        <button type="submit" class="btn btn-primary" [disabled]="invalid || saving" >
+
+          <div class="spinner-border text-light" role="status" *ngIf="saving">
+            <span class="sr-only">Loading...</span>
+          </div>
+
+          <span *ngIf="!saving && !loadData"> Update </span>
+          <span *ngIf="!saving && loadData"> Update </span>
+          <span *ngIf="saving"> Saving... </span>
+
+        </button>
+
+        <button type="button" class="btn btn-light ms-2">Cancel</button>
+
+    </div>
+
+  </form>

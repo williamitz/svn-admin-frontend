@@ -10,7 +10,7 @@ import { RoleService } from 'src/app/services/segurity-services/role.service';
 import { UserService } from 'src/app/services/segurity-services/user.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { UiService } from 'src/app/services/ui.service';
-import { emailPatt, fullTextPatt } from 'src/app/utils';
+import { emailPatt, fullTextPatt, passwordPatt } from 'src/app/utils';
 
 @Component({
   selector: 'app-user',
@@ -41,6 +41,8 @@ export class UserComponent {
   agencies: any[] = [];
   users:    IUser[] = [];
   roles: IRole[] = [];
+
+  selectedUser: IUser | null = null;
 
   private _frmBuilder = inject( UntypedFormBuilder );
   frmUser!: UntypedFormGroup;
@@ -179,6 +181,10 @@ export class UserComponent {
     document.getElementById('btnCloseModal')?.click();
   }
 
+  onChangePassword( record: IUser ){
+    this.selectedUser = record;
+  }
+
   onConfirm( record: IUser) {
     const { id, fullname, status } = record;
 
@@ -213,7 +219,6 @@ export class UserComponent {
     })
 
   }
-
 
   onSubmit() {
 

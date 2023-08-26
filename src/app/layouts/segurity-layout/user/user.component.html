@@ -91,6 +91,11 @@
                               <i class="ri-pencil-fill align-bottom"></i>
                             </button> -->
 
+                            <button type="button" class="btn btn-sm btn-warning ms-2" (click)="onChangePassword(user)"
+                              data-bs-toggle="modal" data-bs-target="#changePassword">
+                              <i class="ri-key-2-line align-bottom" *ngIf="user.status"></i>
+                            </button>
+
                             <button type="button" class="btn btn-sm btn-danger ms-2" [class.btn-success]="!user.status"
                               [class.btn-danger]="user.status" (click)="onConfirm(user)">
                               <i class="ri-delete-bin-7-line align-bottom" *ngIf="user.status"></i>
@@ -308,3 +313,5 @@
       </div>
   </div>
 </div>
+
+<app-change-password [user]="selectedUser"></app-change-password>
