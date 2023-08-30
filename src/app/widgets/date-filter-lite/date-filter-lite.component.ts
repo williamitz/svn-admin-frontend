@@ -11,6 +11,11 @@ export class DateFilterLiteComponent {
   @Input() defaultFrom = new Date().toISOString().substring(0, 10);
   @Input() defaultTo = new Date().toISOString().substring(0, 10);
 
+  previousValues = {
+    from: this.defaultFrom,
+    to: this.defaultTo
+  }
+
   @Output() applyFilter = new EventEmitter<any>();
 
   private _frmBuilder = inject( UntypedFormBuilder );
@@ -22,6 +27,20 @@ export class DateFilterLiteComponent {
       from:  [ this.defaultFrom, [ ] ],
       to:    [ this.defaultTo, [ ] ],
     });
+
+    this.frmDateFilter.valueChanges.subscribe((changes) => {
+      
+      if(new Date(changes.from) > new Date(changes.to)){
+        if(changes.from !== this.previousValues.from) {
+          this.frmDateFilter.get('from')?.setValue(this.previousValues.from);
+        }
+        if(changes.to !== this.previousValues.to) {
+          this.frmDateFilter.get('to')?.setValue(this.previousValues.to);
+        }
+      } else {
+        this.previousValues = changes;
+      }
+    })
 
   }
 
