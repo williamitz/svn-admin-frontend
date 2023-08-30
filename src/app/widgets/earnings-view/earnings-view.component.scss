@@ -1,0 +1,35 @@
+.box-flex{
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    gap: 12px;
+  }
+  .box-mount{
+    background-color: #0AB39C;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 8px 16px;
+  }
+  
+  .page-title-box h4 {
+    text-transform: none !important;
+  }
+  
+  
+  i {
+    font-size: 1.5rem;
+    padding-right: 0.1rem;
+    color: #b0c4de;
+  }
+  .filled {
+    color: #f06548;
+  }
+  .low {
+    color: #deb0b0;
+  }
+  .filled.low {
+    color: #ff1e1e;
+  }
+  

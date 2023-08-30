@@ -1,0 +1,40 @@
+<div class="card">
+    <div class="card-header align-items-center d-flex">
+      <h4 class="card-title mb-0 flex-grow-1">Data</h4>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-12">
+          <div class="box-flex mb-5">
+            <h5 class="mb-1">Today’s Total Earnings</h5>
+            <div class="box-mount">{{ earnings | currency }}</div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="box-flex">
+            <h5 class="mb-1">My Rating</h5>
+
+            <ngb-rating
+                [(rate)]="profileRating"
+                [readonly]="true"
+                [max]="5"
+              >
+
+              <ng-template let-fill="fill" let-index="index">
+                <i class="ri-star{{fill === 5 ? '-fill' : '-line'}}"
+                  [class.filled]="fill === 100"
+                  >
+                </i>
+
+                <!-- <i class="ri-star-line"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-half-line"></i> -->
+              </ng-template>
+
+            </ngb-rating>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
