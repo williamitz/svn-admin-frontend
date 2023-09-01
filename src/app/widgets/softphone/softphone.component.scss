@@ -1,27 +1,32 @@
-.container-softphone{
-  margin: auto;
-  max-width: 260px;
-  width: 100%;
-}
+// .container-softphone{
+//   margin: auto;
+//   max-width: 260px;
+//   width: 100%;
+// }
 .box-softphone{
-  background-color: #fff;
-  background-color: #15284b;
-  border-radius: 4px;
+  // background-color: rgb(201, 201, 201);
+  background-color: rgb(20 38 56 / 80%);
+  border-radius: 24px;
+  bottom: 2rem;
   box-shadow: 0 0 16px 0 #b0b0b0;
+  height: 100%;
   margin: auto;
   margin-right: 0;
   max-width: 320px;
-  bottom: 3rem;
-  right: 2rem;
-  padding: 2rem 1rem;
+  max-height: 560px;
+  padding: 8px;
   position: fixed;
-  z-index: 12;
+  right: 2rem;
+  width: 100%;
+  z-index: 9999;
 }
 .grid-softphone{
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   border-radius: 2px;
   overflow: hidden;
+  margin: auto;
+  max-width: 260px;
 }
 .softphone-item{
   background: rgb(255 255 255 / 14%);
@@ -30,15 +35,15 @@
   padding: 16px 0;
   border: solid 1px #405272;
 
-  small{
-    color: #fff;
-  }
+  // small{
+  //   color: #fff;
+  // }
 }
 .softphone-icon{
 
   i{
-    color: #fff;
-    font-size: 24px;
+    // color: #fff;
+    font-size: 32px;
   }
 }
 .softphone-icon_alt{
@@ -52,5 +57,183 @@
 }
 
 .softphone-item_alt {
+  background-color: red;
+  color: #fff;
   cursor: pointer;
+}
+
+.softphone-container{
+  background: #fff;
+  border-radius: 16px;
+  height: 100%;
+  // padding: 8px;
+  overflow: hidden;
+}
+.softphone-header{
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  background: #ececff;
+  padding: 4px 8px;
+  border-radius: 12px 12px 0 0;
+}
+
+.softphone-tab{
+  background-color: var(--clr-neutral-00);
+}
+.await-idiom{
+  background: #212529;
+  border-radius: 12px;
+  color: #fff;
+  margin: auto;
+  max-width: fit-content;
+  padding: 2px 20px;
+  text-align: center;
+}
+.await-ico{
+  margin: 3rem 0 1rem;
+  text-align: center;
+
+  i{
+    font-size: 80px;
+    border: solid 1px;
+    padding: 16px;
+    border-radius: 50%;
+  }
+}
+.await-text{
+  font-size: 20px;
+  text-align: center;
+}
+
+.btn-softphone{
+  padding: 4px;
+
+  i{
+    font-size: 16px;
+  }
+}
+.btn-status{
+  background-color: #0ab39c;
+  border-radius: 12px;
+  color: #fff;
+  padding: 0px 8px;
+
+  &::after{
+    display: none;
+  }
+}
+.nav-pills_softphone{
+  background: #ececff;
+  // border-bottom: solid 1px rgb(184, 184, 184);
+  padding: 12px 0 ;
+
+  .nav-link{
+    text-align: center;
+  }
+  .nav-item{
+    background: rgb(240 101 72 / 50%);
+    color: #fff;
+    width: 50%;
+  }
+}
+
+.tab-content-sfotphone{
+  padding: 0 12px;
+}
+
+
+.softphone-header_incoming-call{
+  background: #f3f3f9;
+  padding: 8px 16px;
+
+  p{
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+  }
+}
+.softphone-body_incoming-call{
+  background-color: #e6e6f3;
+  height: 100%;
+  padding: 20px 0;
+  text-align: center;
+
+  h2{
+    color: #404087;
+    font-size: 20px;
+    margin: 32px;
+  }
+}
+.phone-ico{
+  color: #404087;
+  font-size: 60px;
+}
+
+.btn-incoming_call{
+  border-radius: 50%;
+
+  i{
+    color: #fff;
+    font-size: 24px;
+  }
+}
+.btn-incoming_respond{
+  background-color: var(--vz-green);
+}
+.btn-incoming_hang{
+  background-color: var(--fc-now-indicator-color);
+}
+
+.box-answer-call{
+  padding: 24px 20px;
+}
+.data-answer-call{
+  padding: 20px 0;
+  text-align: center;
+
+  h1{
+    font-size: 24px;
+    margin-bottom: 4px;
+  }
+  p{
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+  }
+}
+
+.grid-keypad{
+  display: grid;
+  gap: 4px;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+
+  div{
+    align-items: center;
+    background-color:#f3f3f9;
+    display: flex;
+    border-radius: 50%;
+    border: solid 1px #405272;
+    height: 54px;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 16px 0;
+    text-align: center;
+    width: 54px;
+  }
+}
+
+.softphone-setting{
+  padding: 20px;
+}
+.softphone-bell{
+  background-color: #ececff;
+  padding: 8px 0;
+  text-align: center;
+
+  i{
+    font-size: 24px;
+  }
 }

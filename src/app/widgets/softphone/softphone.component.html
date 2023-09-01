@@ -1,91 +1,294 @@
-
 <!-- animate__infinite headShake -->
 <div id="sofphone" #sofphone class="box-softphone mb-3 animate ">
 
-  <div >
+  <div class="softphone-container">
 
-    <div class="grid-softphone">
-
-      <div class="softphone-item">
-        <div class="softphone-icon">
-          <i class="mdi mdi-volume-high"></i>
+    <!-- view awaiting -->
+    <div class="">
+      <div class="">
+        <div class="softphone-header">
+          <div>
+            <div class="dropdown">
+              <button class="btn btn-status dropdown-toggle" type="button" id="dropdownMenuButton1"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Available
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </div>
+          </div>
+          <div>
+            <button class="btn btn-softphone">
+              <i class="ri-settings-line"></i>
+            </button>
+            <button class="btn btn-softphone">
+              <i class="ri-arrow-down-s-line"></i>
+            </button>
+            <button class="btn btn-softphone">
+              <i class="ri-close-line"></i>
+            </button>
+          </div>
         </div>
-        <small>Audio Call</small>
-      </div>
-
-      <div class="softphone-item">
-        <div class="softphone-icon">
-          <i class="mdi mdi-video"></i>
+        <div class="softphone-bell">
+          <i class="bx bx-bell"></i>
         </div>
-        <small>Video Call</small>
+        <div class="softphone-tab">
+          <ul class="nav nav-pills nav-pills_softphone nav-danger mb-3" role="tablist">
+            <li class="nav-item waves-effect waves-light" role="presentation">
+              <a class="nav-link active" data-bs-toggle="tab" href="#home-1" role="tab"
+                aria-selected="true">On-Demand</a>
+            </li>
+            <li class="nav-item waves-effect waves-light" role="presentation">
+              <a class="nav-link" data-bs-toggle="tab" href="#profile-1" role="tab" aria-selected="false"
+                tabindex="-1">Scheduled</a>
+            </li>
+          </ul>
+          <div class="tab-content text-muted tab-content-sfotphone">
+            <div class="tab-pane active show" id="home-1" role="tabpanel">
+              <div class="">
+                <div class="await-idiom">English <> Spanish</div>
+                <div>
+                  <div class="await-ico">
+                    <i class="ri-shut-down-line"></i>
+                  </div>
+                  <h1 class="await-text">Awaiting Calls...</h1>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane" id="profile-1" role="tabpanel">
+              <div>
+                <div class="d-flex align-items-center">
+                  <div class="flex-grow-1">
+                    <div class="flex-shrink-0">
+                      <div class="text-muted">Today @ 4:00 PM for 1h 0min</div>
+                      <div class="text-muted">Video - Lorem ipsum </div>
+                      <div class="text-muted">New York</div>
+                      <h6 class="fs-14 mb-0">Interpreter</h6>
+                    </div>
+                  </div>
+                  <div class="flex-shrink-0">
+                    <div class="avatar-title bg-soft-primary text-primary rounded px-2">
+                      <i class="mdi mdi-video-outline fs-3"></i>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+              </div>
+              <div>
+                <div class="d-flex align-items-center">
+                  <div class="flex-grow-1">
+                    <div class="flex-shrink-0">
+                      <div class="text-muted">Today @ 4:00 PM for 1h 0min</div>
+                      <div class="text-muted">Video - Lorem ipsum </div>
+                      <div class="text-muted">New York</div>
+                      <h6 class="fs-14 mb-0">Interpreter</h6>
+                    </div>
+                  </div>
+                  <div class="flex-shrink-0">
+                    <div class="avatar-title bg-soft-primary text-primary rounded px-2">
+                      <i class="mdi mdi-video-outline fs-3"></i>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-
+      <div class="d-none softphone-setting">
+        <h4 class="text-center mb-3">Settings</h4>
+        <div class="row">
+          <div class="col-12">
+            <label for="choices-single-default" class="form-label text-muted">Camera</label>
+            <select class="form-select rounded-pill mb-3" aria-label="Default select example">
+              <option selected="">Select</option>
+              <option value="1">camera 01</option>
+              <option value="2">camera 02</option>
+              <option value="3">camera 03</option>
+            </select>
+          </div>
+          <div class="col-12">
+            <label for="choices-single-default" class="form-label text-muted">Audio Input</label>
+            <select class="form-select rounded-pill mb-3" aria-label="Default select example">
+              <option selected="">Select</option>
+              <option value="1">audio 01</option>
+              <option value="2">audio 02</option>
+              <option value="3">audio 03</option>
+            </select>
+          </div>
+          <div class="col-12 mb-4">
+            <h5 class="fs-14">Ringtone</h5>
+            <div class="d-flex gap-3 align-items-center">
+              <i class="ri-volume-mute-line"></i>
+              <div data-rangeslider="" class="noUi-target noUi-ltr noUi-horizontal noUi-txt-dir-ltr w-100">
+                <div class="noUi-base">
+                  <div class="noUi-connects">
+                    <div class="noUi-connect" style="transform: translate(0%, 0px) scale(0.325021, 1);"></div>
+                  </div>
+                  <div class="noUi-origin" style="transform: translate(-67.4979%, 0px); z-index: 4;">
+                    <div class="noUi-handle noUi-handle-lower" data-handle="0" tabindex="0" role="slider"
+                      aria-orientation="horizontal" aria-valuemin="0.0" aria-valuemax="255.0" aria-valuenow="82.9"
+                      aria-valuetext="82.88">
+                      <div class="noUi-touch-area"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <i class="ri-volume-up-line"></i>
+            </div>
+          </div>
+          <div class="col-12">
+            <h5 class="fs-14">Call volume</h5>
+            <div class="d-flex gap-3 align-items-center">
+              <i class="ri-volume-mute-line"></i>
+              <div data-rangeslider="" class="noUi-target noUi-ltr noUi-horizontal noUi-txt-dir-ltr w-100">
+                <div class="noUi-base">
+                  <div class="noUi-connects">
+                    <div class="noUi-connect" style="transform: translate(0%, 0px) scale(0.325021, 1);"></div>
+                  </div>
+                  <div class="noUi-origin" style="transform: translate(-67.4979%, 0px); z-index: 4;">
+                    <div class="noUi-handle noUi-handle-lower" data-handle="0" tabindex="0" role="slider"
+                      aria-orientation="horizontal" aria-valuemin="0.0" aria-valuemax="255.0" aria-valuenow="82.9"
+                      aria-valuetext="82.88">
+                      <div class="noUi-touch-area"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <i class="ri-volume-up-line"></i>
+            </div>
+          </div>
+        </div>
+        <div class="mt-5 text-center">
+          <button class="btn btn-danger">Close settings</button>
+        </div>
+      </div>
     </div>
+    <!-- view awaiting -->
 
-    <form [formGroup]="frmPhone" >
+    <!-- view llamada o video entrante -->
+    <div class="d-none vh-100">
+      <div class="h-100">
+        <div class="softphone-header_incoming-call">
+          <p>Incoming Call</p>
+        </div>
+        <div class="softphone-body_incoming-call">
+          <h2>Proveedor 01</h2>
+          <i class="mdi mdi-phone-in-talk phone-ico"></i>
+          <div class="my-4">
+            <div class="await-idiom">English >> Spanish</div>
+          </div>
+          <div class="d-flex gap-4 justify-content-center mt-4">
+            <button class="btn btn-incoming_call btn-incoming_respond">
+              <i class="ri-phone-fill"></i>
+            </button>
+            <button class="btn btn-incoming_call btn-incoming_hang">
+              <i class="mdi mdi-phone-hangup"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- view llamada o video entrante -->
 
+    <!-- view cuando contesta -->
+    <div class="d-none box-answer-call">
+      <div class="container-softphone">
+        <div class="grid-softphone">
+          <div class="softphone-item">
+            <div class="softphone-icon">
+              <i class="mdi mdi-volume-high"></i>
+            </div>
+            <small>Audio Call</small>
+          </div>
+          <div class="softphone-item">
+            <div class="softphone-icon">
+              <i class="mdi mdi-video"></i>
+            </div>
+            <small>Video Call</small>
+          </div>
+        </div>
+      </div>
+      <div class="data-answer-call">
+        <h1>English <> Spanish</h1>
+        <p>00:05</p>
+      </div>
+      <div class="container-softphone">
+        <div>
+          <div class="">
+            <div class="grid-softphone">
+              <div class="softphone-item">
+                <div class="softphone-icon">
+                  <i class="ri-mic-off-line"></i>
+                </div>
+                <small>Mute</small>
+              </div>
+              <div class="softphone-item">
+                <div class="softphone-icon">
+                  <i class="ri-grid-fill"></i>
+                </div>
+                <small>Keypad</small>
+              </div>
+              <div class="softphone-item">
+                <div class="softphone-icon">
+                  <i class="ri-volume-up-line"></i>
+                </div>
+                <small>Speaker</small>
+              </div>
+              <div class="softphone-item">
+                <div class="softphone-icon">
+                  <i class="ri-add-line"></i>
+                </div>
+                <small>Add call</small>
+              </div>
+            </div>
+          </div>
+          <div class="d-none">
+            <div class="grid-keypad">
+              <div>1</div>
+              <div>2</div>
+              <div>3</div>
+              <div>4</div>
+              <div>5</div>
+              <div>6</div>
+              <div>7</div>
+              <div>8</div>
+              <div>9</div>
+              <div>*</div>
+              <div>0</div>
+              <div>#</div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-3">
+          <div class="softphone-item_alt">
+            <div class="softphone-icon softphone-icon_alt">
+              <i class="mdi mdi-phone-hangup"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- view cuando contesta -->
+
+  </div>
+
+
+  <!-- <form>
       <div class="mt-4">
-        <select class="form-select rounded-pill mb-3" formControlName="ringtone" (change)="onSetDevice($event)" >
+        <select class="form-select rounded-pill mb-3" formControlName="ringtone">
           <option selected="">Selection Ringtone</option>
-          <option [value]="item.id" *ngFor="let item of ringtoneDevices" >
-            {{ item.label }}
-          </option>
+          <option>label</option>
         </select>
       </div>
-
       <div class="mt-4">
-        <select class="form-select rounded-pill mb-3" formControlName="speaker" (change)="onSetDevice($event, true)" >
+        <select class="form-select rounded-pill mb-3" formControlName="speaker" (change)="onSetDevice($event, true)">
           <option selected="">Selection Speaker</option>
-          <option [value]="item.id" *ngFor="let item of speakerDevices" >
-            {{ item.label }}
-          </option>
+          <option>label</option>
         </select>
       </div>
-
-    </form>
-
-  </div>
-
-  <div class="container-softphone">
-    <div class="grid-softphone">
-      <div class="softphone-item">
-        <div class="softphone-icon">
-          <i class="ri-mic-off-line"></i>
-        </div>
-        <small>Mute</small>
-      </div>
-      <div class="softphone-item">
-        <div class="softphone-icon">
-          <i class="ri-grid-fill"></i>
-        </div>
-        <small>Keypad</small>
-      </div>
-      <div class="softphone-item">
-        <div class="softphone-icon">
-          <i class="ri-volume-up-line"></i>
-        </div>
-        <small>Speaker</small>
-      </div>
-      <div class="softphone-item">
-        <div class="softphone-icon">
-          <i class="ri-add-line"></i>
-        </div>
-        <small>Add call</small>
-      </div>
-    </div>
-
-    <div class="mt-3">
-      <div class="softphone-item_alt ">
-        <div class="softphone-icon softphone-icon_alt">
-          <i class="mdi mdi-phone-hangup"></i>
-        </div>
-        <small>End Call</small>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-
-<!-- ri-grid-fill
-ri-add-line -->
+    </form> -->
