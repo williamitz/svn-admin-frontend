@@ -18,6 +18,7 @@ import { TimezoneService } from 'src/app/services/admin-services/timezone.servic
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { NomenclatureService } from 'src/app/services/nomenclature.service';
 import { UiService } from 'src/app/services/ui.service';
+import { UtilsService } from 'src/app/services/utils.service';
 import { v4 as UUID } from 'uuid';
 
 @Component({
@@ -33,6 +34,7 @@ export class ProfileInterpreterComponent {
   private _calltype$?: Subscription;
   private _contacttype$?: Subscription;
   private _update$?: Subscription;
+  private _service$?: Subscription;
 
   private _acivatedRoute = inject( ActivatedRoute );
   private _idiomsvc = inject( IdiomService );
@@ -42,6 +44,7 @@ export class ProfileInterpreterComponent {
   private _nomenclaturesvc = inject( NomenclatureService );
   private _firesvc = inject( FirebaseService );
   private _uisvc = inject( UiService );
+  private _utilssvc = inject( UtilsService );
 
   private _officeHour: OfficeHour[] = [];
 
@@ -67,6 +70,9 @@ export class ProfileInterpreterComponent {
 
 
   file?: File;
+  fileProfile?: File;
+
+  fileUrl = "assets/images/users/avatar-8.jpg";
 
   onSelect(event: any) {
     console.log(event);
@@ -87,8 +93,10 @@ export class ProfileInterpreterComponent {
   timezones: ITimezone[] = [];
   calltype: INomenclature[] = [];
   contacttype: INomenclature[] = [];
+  servicesType: INomenclature[] = [];
   rates: RateClass[] = [];
   contacts: ContactClass[] = [];
+  servicesProfile: string[] = [];
 
   loadingIdioms = false;
   loadingTimezone = false;
@@ -143,6 +151,8 @@ export class ProfileInterpreterComponent {
 
     this.onLoadContactType();
 
+    this.onGetServicesType();
+
   }
 
   onBuildFrm() {
@@ -155,12 +165,19 @@ export class ProfileInterpreterComponent {
       timzoneId:        [ null, [ Validators.required ] ],
       nativeLanguageId: [ null, [  ] ],
       gender:           [ 'Male', [ Validators.required ] ],
+      specializedType:  [ null, [ Validators.required ] ],
+
+      experienceYears:  [ null, [ Validators.required, Validators.min(1), Validators.max(20) ] ],
+
       targetLanguages:  [ [],   [ Validators.required, Validators.min(1) ] ],
 
       resumeUrl:        [ '',   [ ] ],
-      resumeName:        [ '',   [ ] ],
+      resumeName:       [ '',   [ ] ],
       resumeFirebase:   [ '',   [ ] ],
       resumeType:       [ '',   [ ] ],
+
+      img:              [ '',   [ ] ],
+      imgFirebase:      [ '',   [ ] ],
 
     });
 
@@ -189,6 +206,50 @@ export class ProfileInterpreterComponent {
     });
   }
 
+  onChangeFile( event?: any ) {
+    const nombre = event.files.item(0).name.toUpperCase();
+    const extension = nombre.split('.').pop();
+    this.fileProfile = event.files.item(0);
+    // themeAward.file = event.files.item(0);
+    // themeAward.loadImg = true;
+
+    // if ( themeAward.urlImg.includes('https') ) {
+    //   themeAward.originImg = themeAward.storageName;
+    // }
+
+    const size = event.files.item(0).size / 1000000;
+
+    if (!this._utilssvc.onValidImg(extension, size)) {
+
+      event.target.value = '';
+      this.fileProfile = undefined;
+      return
+    } ;
+
+    const reader = new FileReader();
+    reader.onload = (event: any) => {
+      // themeAward.urlImg = event.target.result;
+      this.fileUrl = event.target.result;
+    };
+    reader.readAsDataURL( event.files.item(0) );
+  }
+
+  onGetServicesType() {
+
+    this._service$ = this._nomenclaturesvc.onGetServicesType()
+    .subscribe({
+      next: (response) => {
+
+        this.servicesType = response.data;
+
+      },
+      error: (e) => {
+
+      }
+    });
+
+  }
+
   onLoadProfile() {
     this._findById$ = this._interpretersvc.onFindById( this._id )
     .subscribe({
@@ -208,6 +269,12 @@ export class ProfileInterpreterComponent {
         this.frmInterpreter.get('resumeName')?.setValue(data.resumeName);
         this.frmInterpreter.get('resumeFirebase')?.setValue(data.resumeFirebase);
         this.frmInterpreter.get('resumeType')?.setValue(data.resumeType);
+        this.frmInterpreter.get('experienceYears')?.setValue(data.experienceYears);
+        this.frmInterpreter.get('specializedType')?.setValue(data.specializedType);
+        this.frmInterpreter.get('imgFirebase')?.setValue(data.imgFirebase);
+
+
+        this.servicesProfile = data.services;
 
         this.frmInterpreter.get('targetLanguages')?.setValue(
           data.targetLanguages.map( (e) => e.id )
@@ -232,6 +299,8 @@ export class ProfileInterpreterComponent {
         } );
 
         // console.log('data.officeHours ::: ', data.officeHours);
+
+        this.fileUrl = data.img;
 
         this.onGetTimeZones( data.countryCode.substring(0, 2) );
 
@@ -311,6 +380,25 @@ export class ProfileInterpreterComponent {
     const rates = this.rates.map( (e) => e.values );
     const contacts = this.contacts.map( (e) => e.values );
 
+    if( this.fileProfile ) {
+
+      const imgOld = this.frmInterpreter.get('imgFirebase')?.value;
+
+      if( imgOld && imgOld != '' ) {
+        try {
+          await this._firesvc.onDeleteFirebase( imgOld, EUploadModule.avatar );
+        } catch (error) {
+          console.log( 'error to firebase ::: ', error );
+        }
+      }
+
+      const imgName = UUID();
+      const url = await this._firesvc.onUploadFirebase( this.fileProfile, imgName, EUploadModule.avatar );
+
+      this.frmInterpreter.get('img')?.setValue( url );
+      this.frmInterpreter.get('imgFirebase')?.setValue( imgName );
+    }
+
     if( this.file ) {
 
       const resumeOld = this.frmInterpreter.get('resumeFirebase')?.value;
@@ -328,8 +416,8 @@ export class ProfileInterpreterComponent {
       this.frmInterpreter.get('resumeName')?.setValue( this.file.name );
       this.frmInterpreter.get('resumeType')?.setValue( this.file.type );
       this.frmInterpreter.get('resumeFirebase')?.setValue( nameFileFinal );
-    }
 
+    }
 
     this._update$ = forkJoin({
       updateResponse: this._interpretersvc.onUpdate( this.values, this._id ),
@@ -355,7 +443,7 @@ export class ProfileInterpreterComponent {
         } ) ?? [];
 
         // console.log('update ::: ', updateResponse);
-        console.log('contactResponse ::: ', contactResponse);
+        // console.log('contactResponse ::: ', contactResponse);
 
         this.saving = false;
         this._uisvc.onClose();

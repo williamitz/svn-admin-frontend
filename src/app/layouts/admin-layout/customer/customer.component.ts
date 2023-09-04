@@ -93,6 +93,7 @@ export class CustomerComponent {
   get invalidRates() { return this.rates.some( (e) => e.invalid ); }
   get invalidActiveNumbers() { return this.activeNumbers.some( (e) => e.invalid ); }
 
+  get counterNumbers(){ return this.activeNumbers.length; }
   get counterRates(){ return this.rates.length; }
   get counterDepartments(){ return this.department.length; }
 
@@ -244,6 +245,7 @@ export class CustomerComponent {
     this._id = '';
     this.department = [];
     this.rates = [];
+    this.activeNumbers = [];
     document.getElementById('btnCloseModal')?.click();
   }
 
@@ -251,6 +253,14 @@ export class CustomerComponent {
     if( this.invalid || this.saving || this.invalidDepartments || this.invalidRates || this.invalidActiveNumbers ) return;
 
     this._saving = true;
+
+    if( this.rates.length <= 0 ) {
+      return this._uisvc.onShowAlert( 'Please enter at least one rate', EIconAlert.warning );
+    }
+
+    if( this.activeNumbers.length <= 0 ) {
+      return this._uisvc.onShowAlert( 'Please enter at least one active number', EIconAlert.warning );
+    }
 
     const departmentFinal = this.department.map( (e) => e.values );
     const ratesFinal = this.rates.map( (e) => e.values );
@@ -271,7 +281,7 @@ export class CustomerComponent {
           this.onReset();
           this._saving = false;
           this._uisvc.onClose();
-          this._uisvc.onShowAlert( 'Cliente creado exitosamente', EIconAlert.success );
+          this._uisvc.onShowAlert( 'Client successfully created!', EIconAlert.success );
           this.onGetClients( this.currentPage > 0 ? this.currentPage : 1 );
 
 
@@ -295,7 +305,7 @@ export class CustomerComponent {
           this._saving = false;
           this.onReset();
           this._uisvc.onClose();
-          this._uisvc.onShowAlert( 'Cliente actualizado exitosamente', EIconAlert.success );
+          this._uisvc.onShowAlert( 'Client successfully updated!', EIconAlert.success );
           this.onGetClients( this.currentPage );
           this._update$?.unsubscribe();
         },
@@ -419,7 +429,7 @@ export class CustomerComponent {
   onConfirm( record: ICustomer ) {
     const { id, customerName, status } = record;
 
-    this._uisvc.onShowConfirm(`¿Está seguro de ${ status ? 'eliminar' : 'restaurar' } a: "${ customerName }" ?`)
+    this._uisvc.onShowConfirm(`Are you sure to ${ status ? 'delete' : 'restore' }, client: "${ customerName }" ?`)
     .then( (result) => {
 
       if( result.isConfirmed ) {
@@ -440,7 +450,7 @@ export class CustomerComponent {
         this.onGetClients( this.currentPage );
 
         this._uisvc.onClose();
-        this._uisvc.onShowAlert(`Cliente ${ status ? 'eliminada' : 'restaurada' } exitosamente`, EIconAlert.success);
+        this._uisvc.onShowAlert(`Client successfully ${ status ? 'deleted' : 'restored' }`, EIconAlert.success);
 
         this._delete$?.unsubscribe();
       },

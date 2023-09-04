@@ -12,13 +12,13 @@ export const admin_socket = 'https://snv-admin-backend-op3m9.ondigitalocean.app'
 
 // Your web app's Firebase configuration
 export const firebaseConfig = {
-  apiKey: "AIzaSyDXf5xgaNeNuuMB4hMXH73xKCmpxyVUORA",
-  authDomain: "speak-now-video.firebaseapp.com",
-  projectId: "speak-now-video",
-  storageBucket: "speak-now-video.appspot.com",
-  messagingSenderId: "301692377679",
-  appId: "1:301692377679:web:dee9283364fed95526683a"
-};
+  apiKey: "AIzaSyAzjgZXNq_81YtcXBWQHKjU25NEpQCIxfY",
+  authDomain: "snv-dashboard.firebaseapp.com",
+  projectId: "snv-dashboard",
+  storageBucket: "snv-dashboard.appspot.com",
+  messagingSenderId: "733062450201",
+  appId: "1:733062450201:web:b8be89d657a33352caae88"
+};;
 
 // Initialize Firebase
 // const app = initializeApp(firebaseConfig);

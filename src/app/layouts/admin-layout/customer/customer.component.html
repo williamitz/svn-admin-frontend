@@ -347,7 +347,6 @@
 
         <div class="pt-2">
 
-
           <div class="row pb-2 pt-2">
             <div class="col-6">
               <h4>
@@ -379,35 +378,48 @@
                   <tr *ngFor="let anumber of activeNumbers">
                     <td>
 
-                      <input type="text" class="form-control " placeholder="Name"
-                        [formControl]="anumber.name" [class.is-invalid]="anumber.invalidName ">
+                      <input type="text"
+                        class="form-control "
+                        placeholder="Name"
+                        [formControl]="anumber.name"
+                        [class.is-invalid]="anumber.invalidName ">
 
                     </td>
 
                     <td>
 
-                      <input type="text" class="form-control " placeholder="Number"
-                        [formControl]="anumber.number" [class.is-invalid]="anumber.invalidNumber ">
+                      <input type="text"
+                        class="form-control "
+                        placeholder="Number"
+                        [formControl]="anumber.number"
+                        [class.is-invalid]="anumber.invalidNumber ">
 
                     </td>
 
                     <td>
-                      <input type="text" class="form-control " placeholder="Access Code"
-                        [formControl]="anumber.rate" [class.is-invalid]="anumber.invalidRate ">
+
+                      <input type="text"
+                        class="form-control "
+                        placeholder="Access Code"
+                        [formControl]="anumber.rate"
+                        [class.is-invalid]="anumber.invalidRate ">
+
                     </td>
 
                     <td>
+
                       <div class="mt-2 text-center">
                         <a href="javascript:void(0);" class="link-danger " (click)="onRemoveActiveNumber( anumber )">
                           <i class="ri-delete-bin-line align-bottom "></i>
                         </a>
                       </div>
+
                     </td>
                   </tr>
 
-                  <tr *ngIf="counterRates == 0">
-                    <td colspan="3" class="text-center">
-                      Add Rates
+                  <tr *ngIf="counterNumbers == 0">
+                    <td colspan="4" class="text-center">
+                      Add Active Numbers
                     </td>
                   </tr>
 
@@ -457,17 +469,25 @@
                       </select>
 
                     </td>
+
                     <td>
-                      <input type="text" class="form-control " placeholder="Access Code"
-                        [formControl]="dpt.rate" [class.is-invalid]="dpt.invalidRate ">
+
+                      <input type="text"
+                        class="form-control "
+                        placeholder="Access Code"
+                        [formControl]="dpt.rate"
+                        [class.is-invalid]="dpt.invalidRate ">
+
                     </td>
 
                     <td>
+
                       <div class="mt-2 text-center">
                         <a href="javascript:void(0);" class="link-danger " (click)="onRemoveRate( dpt )">
                           <i class="ri-delete-bin-line align-bottom "></i>
                         </a>
                       </div>
+
                     </td>
                   </tr>
 

@@ -178,6 +178,8 @@ export class OrganizationPageComponent {
     this._organizationId = undefined;
     this._loadData = false;
 
+    this.rates = [];
+
     this._file = undefined;
     this._urlLogo = './assets/images/No_Image.jpg';
     // this.campus = [];
@@ -213,6 +215,13 @@ export class OrganizationPageComponent {
       this._urlLogo = event.target.result;
     };
     reader.readAsDataURL( files.item(0)! );
+  }
+
+  onKeyPress( evn: KeyboardEvent  ) {
+
+    if( evn.key == 'Enter' ) {
+      this.onGetOrganizations();
+    }
   }
 
   onLoadData( record: IOrganization ) {
@@ -264,7 +273,7 @@ export class OrganizationPageComponent {
   onConfirm( record: IOrganization ) {
     const { id, bussinnesName, status } = record;
 
-    this._uisvc.onShowConfirm(`¿Está seguro de ${ status ? 'eliminar' : 'restaurar' } la agencia "${ bussinnesName }" ?`)
+    this._uisvc.onShowConfirm(`Are you sure to ${ status ? 'delete' : 'restore' }, agency "${ bussinnesName }" ?`)
     .then( (result) => {
 
       if( result.isConfirmed ) {
@@ -286,7 +295,7 @@ export class OrganizationPageComponent {
         this.onGetOrganizations( this._currentPage );
 
         this._uisvc.onClose();
-        this._uisvc.onShowAlert(`Agencia ${ status ? 'eliminada' : 'restaurada' } exitosamente`, EIconAlert.success);
+        this._uisvc.onShowAlert(`Agency successfully ${ status ? 'deleted' : 'restored' }`, EIconAlert.success);
 
         this._delete$?.unsubscribe();
       },
@@ -313,7 +322,12 @@ export class OrganizationPageComponent {
       const urlOld = this._valueFrm.logoUrlSecure ?? '';
 
       if( urlOld && urlOld != '' ) {
-        await this._firesvc.onDeleteFirebase( urlOld, EUploadModule.agency );
+        try {
+
+          await this._firesvc.onDeleteFirebase( urlOld, EUploadModule.agency );
+        } catch (error) {
+          console.log('error to firebase ::: ', error);
+        }
       }
 
       const logoUrlSecure = UUID() + '.png';
@@ -338,12 +352,14 @@ export class OrganizationPageComponent {
 
           this._uisvc.onClose();
 
-          this._uisvc.onShowAlert('Agency created!', EIconAlert.success);
-          document.getElementById('btnCloseModal')?.click();
+          this._uisvc.onShowAlert( 'Agency created!', EIconAlert.success );
+          document.getElementById( 'btnCloseModal' )?.click();
 
           this._create$?.unsubscribe();
         },
         error: async (e) => {
+
+          this._saving = false;
 
           if( this._file ) {
             await this._firesvc.onDeleteFirebase( this._valueFrm.logoUrlSecure, EUploadModule.agency );

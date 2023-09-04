@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { admin_service } from 'src/globals';
 import { INomenclatureResponse } from '../interfaces/nomenclature.interface';
+import { map } from 'rxjs/operators';
 
 const entity = '/nomenclature';
 
@@ -27,6 +28,24 @@ export class NomenclatureService {
     return this._http.get<INomenclatureResponse>( admin_service + `${ entity }/contact-type` );
   }
 
+  onGetServicesType() {
+    return this._http.get<INomenclatureResponse>( admin_service + `${ entity }/service-type` )
+    .pipe(
+      map( (response) => {
 
+        const { data } = response;
+
+        response.data = data.map( (e) => {
+
+          e.select = false;
+
+          return e;
+        } );
+
+        return response;
+
+      } )
+    );
+  }
 
 }

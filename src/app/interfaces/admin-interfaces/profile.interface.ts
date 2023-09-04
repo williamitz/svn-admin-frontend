@@ -21,10 +21,15 @@ export interface IProfileInterpreter {
   rates:           Rate[];
   officeHours:     OfficeHour[];
   contacts:        Contact[];
+  services:        string[];
   resumeUrl:       string;
   resumeName:      string;
   resumeFirebase:  string;
   resumeType:      string;
+  experienceYears: number;
+  specializedType: string;
+  img:             string;
+  imgFirebase:     string;
 }
 
 export interface OfficeHour {

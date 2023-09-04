@@ -133,7 +133,7 @@ export class InterpreterPageComponent {
 
       const finded = data.find( (e) => e.id =='968fada9-66c9-4b0f-83a8-f002d0b1c4fc' );
 
-      console.log('finded ::: ', finded);
+      // console.log('finded ::: ', finded);
 
       if( finded ) {
         this.frmUser.get('countryCode')?.setValue( finded.code );
@@ -150,7 +150,7 @@ export class InterpreterPageComponent {
 
         const { data, total } = response;
 
-        console.log('response ::: ', response);
+        // console.log('response ::: ', response);
 
         this.targetIdioms = [...data];
 
@@ -226,7 +226,7 @@ export class InterpreterPageComponent {
           this.onReset();
           this._saving = false;
           this._uisvc.onClose();
-          this._uisvc.onShowAlert( 'Intérprete creado exitosamente', EIconAlert.success );
+          this._uisvc.onShowAlert( 'Intepreter successfully created!', EIconAlert.success );
           this.onGetInterpreters( this.currentPage );
           this._create$?.unsubscribe();
         },
@@ -247,7 +247,7 @@ export class InterpreterPageComponent {
           this._saving = false;
           this.onReset();
           this._uisvc.onClose();
-          this._uisvc.onShowAlert( 'Intérprete actualizado exitosamente', EIconAlert.success );
+          this._uisvc.onShowAlert( 'Intepreter successfully updated!', EIconAlert.success );
           this.onGetInterpreters( this.currentPage );
           this._update$?.unsubscribe();
         },
@@ -332,7 +332,7 @@ export class InterpreterPageComponent {
   onConfirm( record: IInterpreter ) {
     const { id, fullname, status } = record;
 
-    this._uisvc.onShowConfirm(`¿Está seguro de ${ status ? 'eliminar' : 'restaurar' } a: "${ fullname }" ?`)
+    this._uisvc.onShowConfirm(`Are you sure to ${ status ? 'delete' : 'restore' }, intepreter "${ fullname }" ?`)
     .then( (result) => {
 
       if( result.isConfirmed ) {
@@ -353,7 +353,7 @@ export class InterpreterPageComponent {
         this.onGetInterpreters( this.currentPage );
 
         this._uisvc.onClose();
-        this._uisvc.onShowAlert(`Intérprete ${ status ? 'eliminada' : 'restaurada' } exitosamente`, EIconAlert.success);
+        this._uisvc.onShowAlert(`intepreter successfully ${ status ? 'deleted' : 'restored' }!`, EIconAlert.success);
 
         this._delete$?.unsubscribe();
       },

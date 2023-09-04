@@ -40,7 +40,7 @@ export class SidebarComponent implements OnInit {
     private router: Router,
     public translate: TranslateService
   ) {
-    translate.setDefaultLang('es');
+    translate.setDefaultLang('en');
   }
 
   ngOnInit(): void {

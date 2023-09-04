@@ -27,24 +27,31 @@ export class LoginComponent {
 
   frmLogin = new UntypedFormGroup({});
   submitted = false;
-  fieldTextType = true;
+  fieldTextType = false;
   loading = false;
+
+  showError = false;
+  msgError = '';
 
   private _formBuilder = inject( UntypedFormBuilder );
 
   ngOnInit(): void {
+
+    const username = this._st.getItem('username');
+
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     this.frmLogin = this._formBuilder.group({
-      username    : [ '', [ Validators.required ] ],
-      password : [ '', [ Validators.required ] ],
+      username     : [ username, [ Validators.required ] ],
+      password     : [ '', [ Validators.required ] ],
+      remenberme   : [ false, [] ]
     });
   }
 
   get f() { return this.frmLogin.controls }
   touched( field: string ) { return this.frmLogin.get(field)?.touched ?? false }
 
-  get values(): { username: string; password: string; } {
+  get values(): { username: string; password: string; remenberme: boolean; } {
     return this.frmLogin.value;
   }
 
@@ -53,6 +60,18 @@ export class LoginComponent {
   onSubmit() {
 
     if( this.invalid || this.loading ) return;
+
+    const remenberMe = this.values.remenberme;
+
+    if( remenberMe ) {
+
+      this._st.setItem( 'username', this.values.username );
+
+    } else {
+      this._st.removeItem( 'username' );
+    }
+
+    this.showError = false;
 
     this.loading = true;
     this._uisvc.onShowLoading();
@@ -68,7 +87,7 @@ export class LoginComponent {
         this.loading = false;
         this._uisvc.onClose();
 
-        console.log('hola ::: ', data);
+        // console.log('hola ::: ', data);
 
         if( data.roles.some( (r) => r.code == 'INTERPRETER' ) ) {
           this._router.navigateByUrl('/access-interpreter');
@@ -76,13 +95,15 @@ export class LoginComponent {
           this._router.navigateByUrl('/admin');
         }
 
-
-
-        console.log('response ::: ', response);
+        // console.log('response ::: ', response);
 
         this.singin$?.unsubscribe();
       },
       error: (e) => {
+
+        this.showError = true;
+        this.msgError = e;
+        // console.log('error ::: ', e);
 
         this.loading = false;
         this.singin$?.unsubscribe();

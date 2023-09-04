@@ -6,6 +6,7 @@ export interface IAuthResponse {
 }
 
 export interface IUserData {
+  img: string;
   fullname: string;
   email:    string;
   phone:    string;

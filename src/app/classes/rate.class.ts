@@ -1,5 +1,6 @@
 import { FormControl, Validators } from "@angular/forms";
 import { v4 as UUID } from 'uuid';
+import { numberPatt } from "../utils";
 
 export class RateClass {
 
@@ -17,7 +18,7 @@ export class RateClass {
     // Validators.required
     this.idiom = new FormControl( idiom, [  ] );
     this.type = new FormControl( type, [ Validators.required ] );
-    this.rate = new FormControl( rate, [ Validators.required, Validators.min(0.5) ] );
+    this.rate = new FormControl( rate, [ Validators.required, Validators.min(0.5), Validators.pattern( numberPatt ) ] );
 
   }
 

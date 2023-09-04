@@ -46,7 +46,13 @@
               <div class="row mt-4">
 
                 <div class="col-lg-3 col-md-3 col-sm-12 text-center">
-                  <img src="assets/images/users/avatar-8.jpg" alt="" class="rounded-circle avatar-xl">
+
+                  <label for="avatar-interpreter" >
+                    <img [src]="fileUrl" alt="" class="rounded-circle avatar-xl c-pointer">
+                  </label>
+
+                  <input type="file" id="avatar-interpreter" class="d-none" (change)="onChangeFile( $event.target )" />
+
                 </div>
 
                 <div class="col-lg-9 col-md-9 col-sm-12">
@@ -113,11 +119,15 @@
                     <div class="col-lg-4 col-md-4 col-sm-12">
 
                       <label for="lastname" class="form-label">Specialized Types</label>
-                      <select class="form-select rounded-pill" aria-label="Default select example">
-                        <option selected="">Select</option>
-                        <option value="1">Specialized 1</option>
-                        <option value="2">Specialized 2</option>
-                        <option value="3">Specialized 3</option>
+                      <select class="form-select rounded-pill"
+                        aria-label="Default select example"
+                        formControlName="specializedType"
+                        [class.is-invalid]="controls['specializedType'].errors  &&  touched('specializedType')"
+                       >
+                        <option selected="" [value]="null" >Select</option>
+                        <option [value]="item.id" *ngFor="let item of servicesType" >
+                          {{ item.label }}
+                        </option>
                       </select>
 
                     </div>
@@ -128,7 +138,14 @@
 
                     <div class="col-lg-4 col-md-4 col-sm-6">
                       <label for="lastname" class="form-label">Years of Experience</label>
-                      <input type="text" class="form-control rounded-pill" id="lastname" placeholder="Enter your name">
+                      <input type="number"
+                        class="form-control rounded-pill"
+                        id="lastname"
+                        formControlName="experienceYears"
+                        placeholder="Enter years of Experience"
+                        [class.is-invalid]="controls['experienceYears'].errors  &&  touched('experienceYears')"
+                      >
+
                     </div>
 
                     <div class="col-lg-4 col-md-4 col-sm-6">
@@ -367,7 +384,7 @@
 
           <div class="tab-pane" id="profile-1" role="tabpanel">
 
-            <app-interpreter-services [id]="id" [officeHours]="officeHours"></app-interpreter-services>
+            <app-interpreter-services [id]="id" [officeHours]="officeHours" [services]="servicesProfile" ></app-interpreter-services>
 
           </div>
 

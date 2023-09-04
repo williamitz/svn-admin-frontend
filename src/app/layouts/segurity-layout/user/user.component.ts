@@ -144,6 +144,13 @@ export class UserComponent {
     })
   }
 
+  onKeyPress( evn: KeyboardEvent  ) {
+
+    if( evn.key == 'Enter' ) {
+      this.onGetUsers();
+    }
+  }
+
   onGetUsers( page = 1 ) {
 
     this._loading = true;

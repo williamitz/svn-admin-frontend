@@ -1,5 +1,6 @@
 import { FormControl, Validators } from "@angular/forms";
 import { v4 as UUID } from 'uuid';
+import { numberPatt } from "../utils";
 
 export class ActiveNumbverClass {
 
@@ -16,7 +17,7 @@ export class ActiveNumbverClass {
     this._id = id ;
     this.name = new FormControl( name, [ ] );
     this.number = new FormControl( number, [ Validators.required ] );
-    this.rate = new FormControl( rate, [ Validators.required, Validators.min(0.5) ] );
+    this.rate = new FormControl( rate, [ Validators.required, Validators.min( 0.5 ), Validators.pattern( numberPatt ) ] );
 
   }
 
