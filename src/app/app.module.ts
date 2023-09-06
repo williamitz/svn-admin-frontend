@@ -1,7 +1,11 @@
 import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http'
+import {
+  HttpClientModule,
+  HttpClient,
+  HTTP_INTERCEPTORS,
+} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
@@ -23,7 +27,7 @@ import { TokenInterceptor } from './services/token.interceptor.service';
 import { HandleErrorInterceptor } from './services/handleError.interceptor.service';
 import { CallLayoutModule } from './layouts/call-layout/call-layout.module';
 import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
-import { admin_socket } from 'src/globals';
+import { admin_socket } from 'src/environments/environment';
 import { AccessLayoutModule } from './layouts/access-layout/access-layout.module';
 // import * as mask from 'ngx-mask';
 
@@ -31,23 +35,21 @@ export function createTranslateLoader(http: HttpClient): any {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
 
-const config: SocketIoConfig = { url: admin_socket, options: { extraHeaders: {token: ''} } };
+const config: SocketIoConfig = {
+  url: admin_socket,
+  options: { extraHeaders: { token: '' } },
+};
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NotFoundPageComponent,
-    ErrorPageComponent,
-  ],
+  declarations: [AppComponent, NotFoundPageComponent, ErrorPageComponent],
   imports: [
-
     TranslateModule.forRoot({
       defaultLanguage: 'en',
       loader: {
         provide: TranslateLoader,
-        useFactory: (createTranslateLoader),
-        deps: [HttpClient]
-      }
+        useFactory: createTranslateLoader,
+        deps: [HttpClient],
+      },
     }),
 
     BrowserModule,
@@ -62,7 +64,7 @@ const config: SocketIoConfig = { url: admin_socket, options: { extraHeaders: {to
     CallLayoutModule,
     AccessLayoutModule,
 
-    StoreModule.forRoot( AppState ),
+    StoreModule.forRoot(AppState),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: !isDevMode(), // Restrict extension to log-only mode
@@ -72,20 +74,19 @@ const config: SocketIoConfig = { url: admin_socket, options: { extraHeaders: {to
     }),
 
     SocketIoModule.forRoot(config),
-
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
-      multi: true
+      multi: true,
     },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HandleErrorInterceptor,
-      multi: true
-    }
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
