@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { Component, OnInit, inject } from '@angular/core';
+import { Validators, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
+import { emailPatt } from 'src/app/utils';
 
 @Component({
   selector: 'app-forgot-password',
@@ -8,26 +11,61 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class ForgotPasswordComponent implements OnInit {
 
-  passresetForm!: FormGroup;
+  private _forgot$?: Subscription;
+
+  passresetForm!: UntypedFormGroup;
   submitted = false;
 
-  constructor(
-    private _formBuilder: FormBuilder
-  ) {
+  private _loading = false;
 
+  private _formBuilder = inject( UntypedFormBuilder );
+  private _authsvc = inject( AuthService );
+
+  ngOnInit(): void {
     this.passresetForm = this._formBuilder.group({
-      email: ['', []],
+      email: [ '', [ Validators.required, Validators.pattern( emailPatt ) ] ]
+    });
+  }
+
+  get f() { return this.passresetForm.controls; }
+  get values(): { email: string; } { return this.passresetForm.value; }
+  get invalid(){ return this.passresetForm.invalid; }
+  get loading() { return this._loading; }
+  touched( field: string ) {
+    return this.passresetForm.get(field)?.touched ?? false;
+  }
+
+  onSubmit() {
+
+    if( this.invalid || this._loading ) return;
+
+    this._loading = true;
+
+    this._forgot$ = this._authsvc.onForgotPassword( this.values )
+    .subscribe({
+      next: (response) => {
+
+        this.submitted = true;
+
+        console.log('response ::: ', response);
+
+        this._loading = false;
+        this._forgot$?.unsubscribe();
+      },
+      error: ( e ) => {
+
+        this._loading = false;
+        this._forgot$?.unsubscribe();
+      }
     });
 
   }
 
-  ngOnInit(): void {
-  }
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
 
-  get f() { return this.passresetForm.controls; }
-
-  onSubmit() {
-
+    this._forgot$?.unsubscribe();
   }
 
 }

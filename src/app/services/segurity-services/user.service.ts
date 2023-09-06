@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { admin_service } from 'src/globals';
-import { IUserListResponse } from 'src/app/interfaces/segurity-interfaces/user.interface';
+import { IUserByIdResponse, IUserListResponse } from 'src/app/interfaces/segurity-interfaces/user.interface';
 import { IPagerFilter } from 'src/app/interfaces/pager.interface';
 
 @Injectable({providedIn: 'root'})
@@ -18,6 +18,10 @@ export class UserService {
     params += `&order=${query.order}`;
 
     return this._http.get<IUserListResponse>( admin_service + `/user?${ params }` );
+  }
+
+  onFindById( id: string ) {
+    return this._http.get<IUserByIdResponse>( admin_service + `/user/${ id }` );
   }
 
   onCreate( body: any ) {

@@ -77,6 +77,7 @@ export class TopbarComponent implements OnInit {
 
   get userRoles() { return this._userData?.roles.map( (r) => r.name ).join(' - ') ?? 'sin rol'; }
   get fullname() { return this._userData?.fullname ?? 'undefined'; }
+  get urlImg() { return this._userData?.img ?? 'assets/images/No_Image.jpg'; }
 
   /***
    * Language Value Set

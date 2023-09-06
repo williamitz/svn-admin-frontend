@@ -6,6 +6,9 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { NotFoundPageComponent } from '../../pages/not-found-page/not-found-page.component';
 import { AuthLayoutComponent } from './auth-layout.component';
 import { LoginToInterpreterComponent } from './login-to-interpreter/login-to-interpreter.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ErrorPageComponent } from 'src/app/pages/error-page/error-page.component';
+import { AuthSuccessComponent } from './auth-success/auth-success.component';
 
 const _authRoutes: Routes = [
   {
@@ -26,15 +29,22 @@ const _authRoutes: Routes = [
     component: ForgotPasswordComponent
   },
   {
+    path: 'success',
+    component: AuthSuccessComponent
+  },
+  {
+    path: 'reset-password/:token',
+    component: ResetPasswordComponent
+  },
+  {
     path: '**',
     component: NotFoundPageComponent
   },
+  {
+    path: 'error',
+    component: ErrorPageComponent
+  },
 
-  //{ path: 'path/:routeParam', component: MyComponent },
-  //{ path: 'staticPath', component: ... },
-  //{ path: '**', component: ... },
-  //{ path: 'oldPath', redirectTo: '/staticPath' },
-  //{ path: ..., component: ..., data: { message: 'Custom' }
 ];
 
 const routes: Routes = [

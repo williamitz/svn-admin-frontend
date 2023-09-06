@@ -43,10 +43,9 @@ export class HandleErrorInterceptor implements HttpInterceptor {
 
         this._uisvc.onClose();
 
-        this._uisvc.onShowAlert( message, icon );
-
-        if( httpErr.status == 401 )
-          this._uisvc.onClose();
+        if( httpErr.status != 401 )
+          this._uisvc.onShowAlert( message, icon );
+        // this._uisvc.onClose();
 
         throw new Error(httpErr.error.message);
 

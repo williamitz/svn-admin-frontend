@@ -9,13 +9,14 @@ File: Custom Css File
 // $clr-menu: green;
 
 :root{
-  --sidebar-menu: #1D1F28;
+  // --sidebar-menu: #1D1F28;
+  // -clr-bg-menu: #F1F1F1;
   --clr-primary: #F4631E;
   --clr-neutral-01: #F3F3F9;
   --clr-neutral-05: #393941;
-
-  -clr-bg-menu: #F1F1F1;
-  -clr-item-menu:#393941
+  
+  --sidebar-menu: #f3f3f9;
+  -clr-item-menu:#393941;
 }
 
 .clr-primary{
@@ -32,7 +33,7 @@ File: Custom Css File
 
 // cambios en el menu principal
 [data-layout=vertical][data-sidebar=dark] .navbar-menu{
-  background-color: var(--clr-bg-menu);
+  background-color: var(--sidebar-menu);
   box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.35);
   border-color: transparent;
 }

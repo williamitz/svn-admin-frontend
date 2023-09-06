@@ -19,6 +19,7 @@ import { ICustomer, IDepartment } from 'src/app/interfaces/admin-interfaces/cust
 import { RateClass } from 'src/app/classes/rate.class';
 import { INomenclature } from 'src/app/interfaces/nomenclature.interface';
 import { NomenclatureService } from 'src/app/services/nomenclature.service';
+import { ActiveNumbverClass } from 'src/app/classes/active-number.class';
 
 @Component({
   selector: 'app-customer',
@@ -64,6 +65,8 @@ export class CustomerComponent {
   private _total = 0
 
   rates: RateClass[] = [];
+  activeNumbers: ActiveNumbverClass[] = [];
+
   calltype: INomenclature[] = [];
 
   paginate: IPager = {
@@ -88,7 +91,9 @@ export class CustomerComponent {
 
   get invalidDepartments() { return this.department.some( (e) => e.invalid ); }
   get invalidRates() { return this.rates.some( (e) => e.invalid ); }
+  get invalidActiveNumbers() { return this.activeNumbers.some( (e) => e.invalid ); }
 
+  get counterNumbers(){ return this.activeNumbers.length; }
   get counterRates(){ return this.rates.length; }
   get counterDepartments(){ return this.department.length; }
 
@@ -135,6 +140,7 @@ export class CustomerComponent {
       customertypeId: [ null, [ Validators.required ] ],
       departments:    [ [], [] ],
       rates:          [ [], [] ],
+      activeNumbers:  [ [], [] ]
     });
 
     this.frmFilter = this._frmBuilder.group({
@@ -160,7 +166,7 @@ export class CustomerComponent {
 
   onAddrate() {
     this.rates.push(
-      new RateClass( '', 0 )
+      new RateClass( null, '', 0 )
     );
   }
 
@@ -179,6 +185,20 @@ export class CustomerComponent {
   onRemoveDepartment( campu: DepartmentClass ) {
 
     this.department = this.department.filter( (c) => c.auxId != campu.auxId );
+
+  }
+
+  onAddActiveNumber() {
+
+    this.activeNumbers.push(
+      new ActiveNumbverClass( '', '', 0 )
+    );
+
+  }
+
+  onRemoveActiveNumber( record: ActiveNumbverClass ) {
+
+    this.activeNumbers = this.activeNumbers.filter( (c) => c.auxId != record.auxId );
 
   }
 
@@ -225,20 +245,30 @@ export class CustomerComponent {
     this._id = '';
     this.department = [];
     this.rates = [];
+    this.activeNumbers = [];
     document.getElementById('btnCloseModal')?.click();
   }
 
   onSubmit() {
-    if( this.invalid || this.saving ) return;
+    if( this.invalid || this.saving || this.invalidDepartments || this.invalidRates || this.invalidActiveNumbers ) return;
 
     this._saving = true;
 
+    if( this.rates.length <= 0 ) {
+      return this._uisvc.onShowAlert( 'Please enter at least one rate', EIconAlert.warning );
+    }
+
+    if( this.activeNumbers.length <= 0 ) {
+      return this._uisvc.onShowAlert( 'Please enter at least one active number', EIconAlert.warning );
+    }
+
     const departmentFinal = this.department.map( (e) => e.values );
     const ratesFinal = this.rates.map( (e) => e.values );
-
+    const activeNumbersFinal = this.activeNumbers.map( (e) => e.values );
 
     this.frmCustomer.get('departments')?.setValue( departmentFinal );
     this.frmCustomer.get('rates')?.setValue( ratesFinal );
+    this.frmCustomer.get('activeNumbers')?.setValue( activeNumbersFinal );
 
     this._uisvc.onShowLoading();
 
@@ -251,7 +281,7 @@ export class CustomerComponent {
           this.onReset();
           this._saving = false;
           this._uisvc.onClose();
-          this._uisvc.onShowAlert( 'Cliente creado exitosamente', EIconAlert.success );
+          this._uisvc.onShowAlert( 'Client successfully created!', EIconAlert.success );
           this.onGetClients( this.currentPage > 0 ? this.currentPage : 1 );
 
 
@@ -275,7 +305,7 @@ export class CustomerComponent {
           this._saving = false;
           this.onReset();
           this._uisvc.onClose();
-          this._uisvc.onShowAlert( 'Cliente actualizado exitosamente', EIconAlert.success );
+          this._uisvc.onShowAlert( 'Client successfully updated!', EIconAlert.success );
           this.onGetClients( this.currentPage );
           this._update$?.unsubscribe();
         },
@@ -318,6 +348,8 @@ export class CustomerComponent {
   onLoadData( record: ICustomer ) {
     const { id } = record;
 
+    this._uisvc.onShowLoading();
+
     this._clientById$ = this._customersvc.onFindById( id )
     .subscribe({
       next: (response) => {
@@ -356,7 +388,20 @@ export class CustomerComponent {
         this.rates = data.rates.map( (e) => {
 
           return new RateClass(
+            null,
             e.type,
+            +e.rate,
+            e.id
+          )
+        } );
+
+        this.activeNumbers = [];
+
+        this.activeNumbers = data.activeNumbers.map( (e) => {
+
+          return new ActiveNumbverClass(
+            e.name,
+            e.number,
             +e.rate,
             e.id
           )
@@ -373,6 +418,8 @@ export class CustomerComponent {
 
         document.getElementById('btnShowModal')?.click();
 
+        this._uisvc.onClose();
+
         this._clientById$?.unsubscribe();
       },
       error: (e) => {
@@ -386,7 +433,7 @@ export class CustomerComponent {
   onConfirm( record: ICustomer ) {
     const { id, customerName, status } = record;
 
-    this._uisvc.onShowConfirm(`¿Está seguro de ${ status ? 'eliminar' : 'restaurar' } a: "${ customerName }" ?`)
+    this._uisvc.onShowConfirm(`Are you sure to ${ status ? 'delete' : 'restore' }, client: "${ customerName }" ?`)
     .then( (result) => {
 
       if( result.isConfirmed ) {
@@ -407,7 +454,7 @@ export class CustomerComponent {
         this.onGetClients( this.currentPage );
 
         this._uisvc.onClose();
-        this._uisvc.onShowAlert(`Cliente ${ status ? 'eliminada' : 'restaurada' } exitosamente`, EIconAlert.success);
+        this._uisvc.onShowAlert(`Client successfully ${ status ? 'deleted' : 'restored' }`, EIconAlert.success);
 
         this._delete$?.unsubscribe();
       },

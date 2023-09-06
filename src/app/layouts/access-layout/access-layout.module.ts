@@ -10,12 +10,14 @@ import { AccessLayoutRoutingModule } from './access-layout.routing.module';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { WidgetsModule } from 'src/app/widgets/widgets.module';
+import { TabOnDemandServicesComponent } from './portal-interprter/tab-on-demand-services/tab-on-demand-services.component';
 
 @NgModule({
   declarations: [
     AccessLayoutComponent,
     PortalInterprterComponent,
     MyassignmetInterpreterComponent,
+    TabOnDemandServicesComponent,
     // ProfileInterpreterComponent
   ],
   imports: [

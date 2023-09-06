@@ -16,6 +16,7 @@ const initialState: ISegurityState = {
   loadMenu:    false,
   menuSystem:  [],
   userData: {
+    img: '',
     phone: '',
     client: '',
     createAt: '',
@@ -51,6 +52,7 @@ export const SegurityReducer = createReducer(
         loadMenu: false,
         menuSystem: [],
         userData: {
+          img: '',
           phone: '',
           client: '',
           createAt: '',

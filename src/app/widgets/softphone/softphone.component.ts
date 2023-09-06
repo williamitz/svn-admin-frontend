@@ -266,9 +266,7 @@ export class SoftphoneComponent {
 
         this._device?.connect({
           params: {
-            CallSid,
-            To,
-            From
+            CallSid
           }
         }).then( (responseCall) => {
 

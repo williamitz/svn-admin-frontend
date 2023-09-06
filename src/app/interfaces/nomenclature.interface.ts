@@ -12,5 +12,7 @@ export interface INomenclature {
   id:         string;
   label:      string;
   value:      string;
+
+  select?: boolean;
   // module:     string;
 }

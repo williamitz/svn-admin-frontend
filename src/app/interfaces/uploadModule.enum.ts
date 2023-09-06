@@ -1,5 +1,7 @@
 export enum EUploadModule {
   documents = 'DOCUMENTS',
   profile = 'PROFILE',
-  agency = 'AGENCY'
+  agency = 'AGENCY',
+  resume = 'RESUME',
+  avatar = 'AVATAR',
 }

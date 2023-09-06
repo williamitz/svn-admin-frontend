@@ -3,7 +3,9 @@ import { Subscription } from 'rxjs';
 import { OfficeHourClass } from 'src/app/classes/office-hours.class';
 import { OfficeHour } from 'src/app/interfaces/admin-interfaces/profile.interface';
 import { EIconAlert } from 'src/app/interfaces/alertIcon.enum';
+import { INomenclature } from 'src/app/interfaces/nomenclature.interface';
 import { InterpreterService } from 'src/app/services/admin-services/interpreter.service';
+import { NomenclatureService } from 'src/app/services/nomenclature.service';
 import { UiService } from 'src/app/services/ui.service';
 
 @Component({
@@ -14,11 +16,19 @@ import { UiService } from 'src/app/services/ui.service';
 export class InterpreterServicesComponent {
 
   private _update$?: Subscription;
+  private _service$?: Subscription;
 
   @Input() id?: string;
   @Input() officeHours: OfficeHourClass[] = [];
 
+  @Input() services: string[] = [];
+
   private _uisvc = inject( UiService );
+  private _nomenclaturesvc = inject( NomenclatureService );
+
+  servicesType: INomenclature[] = [];
+
+  // service-type
 
   saving = false;
 
@@ -34,6 +44,36 @@ export class InterpreterServicesComponent {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
 
+    this.onGetServicesType();
+
+  }
+
+  onGetServicesType() {
+
+    this._service$ = this._nomenclaturesvc.onGetServicesType()
+    .subscribe({
+      next: (response) => {
+
+        this.servicesType = response.data;
+
+        setTimeout(() => {
+
+          this.servicesType.forEach( (e) => {
+
+            if( this.services.includes( e.value ) ) {
+              e.select = true;
+            }
+
+          } );
+
+        }, 1000);
+
+      },
+      error: (e) => {
+
+      }
+    });
+
   }
 
   onSumit() {
@@ -45,7 +85,12 @@ export class InterpreterServicesComponent {
     .filter( (i) => i.checked.value )
     .map( (e) => e.values );
 
-    this._update$ = this._interpretersvc.onUpdateOfficeHours( this.id ?? 'xd', {officeHours} )
+    const services = this.servicesType
+    .filter( (e) => e.select )
+    .map( (e) => e.value );
+
+
+    this._update$ = this._interpretersvc.onUpdateOfficeHours( this.id ?? 'xd', {officeHours, services} )
     .subscribe({
       next: (response) => {
 

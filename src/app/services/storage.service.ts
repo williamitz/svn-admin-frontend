@@ -35,6 +35,10 @@ export class StorageService {
     // return this._cookiesvc.get( key);
   }
 
+  removeItem( key: string ) {
+    localStorage.removeItem( key );
+  }
+
   onClearStorage() {
     // this._cookiesvc.delete('token');
     // this._cookiesvc.delete('token');
@@ -42,7 +46,7 @@ export class StorageService {
     // this._cookiesvc.deleteAll();
 
     localStorage.removeItem('token');
-    localStorage.clear();
+    // localStorage.clear();
   }
 
 }
