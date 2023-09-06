@@ -348,6 +348,8 @@ export class CustomerComponent {
   onLoadData( record: ICustomer ) {
     const { id } = record;
 
+    this._uisvc.onShowLoading();
+
     this._clientById$ = this._customersvc.onFindById( id )
     .subscribe({
       next: (response) => {
@@ -415,6 +417,8 @@ export class CustomerComponent {
         }
 
         document.getElementById('btnShowModal')?.click();
+
+        this._uisvc.onClose();
 
         this._clientById$?.unsubscribe();
       },
