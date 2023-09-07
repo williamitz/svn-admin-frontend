@@ -53,7 +53,7 @@ const maskConfig: Partial<IConfig> = {
     CommonModule,
     SharedLayoutModule,
     SwiperModule,
-    // TranslateModule,
+    TranslateModule,
     SegurityLayoutRoutingModule,
     FormsModule,
     ReactiveFormsModule,

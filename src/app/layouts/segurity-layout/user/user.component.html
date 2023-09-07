@@ -219,14 +219,21 @@
                       id="iconInput"
                       placeholder="example@gmail.com"
                       formControlName="email"
-                      [class.is-invalid]="controls['email'].errors  &&  touched('email')"
+                      [class.is-invalid]="emailInvalid"
                     >
 
-                    <i class="ri-user-line"></i>
-                  </div>
-                  <div *ngIf="touched('email') && controls['email'].errors" class="invalid-feedback">
-                    <div *ngIf="controls['email'].errors['required']">Email is required</div>
-                    <div *ngIf="controls['email'].errors['pattern']">Email is invalid</div>
+                    <div *ngIf="touched('email') && controls['email'].errors" class="invalid-feedback">
+                      <div *ngIf="controls['email'].errors['required']">Email is required</div>
+                      <div *ngIf="controls['email'].errors['pattern']">Email is invalid</div>
+                    </div>
+
+                    <div *ngIf="controls['email'].errors" class="invalid-feedback">
+                      <div *ngIf="controls['email'].errors['alreadyExits']">Email already exits</div>
+                    </div>
+
+                    <i [style.left]="'initial'" [style.right]="'18px'" *ngIf="controls['email'].pending" class="rotate ri-loader-4-fill"></i>
+
+                    <i [style.bottom]="emailInvalid ? '18px' : '0px'" class="ri-user-line"></i>
                   </div>
               </div>
 

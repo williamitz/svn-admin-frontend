@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { UniquenessValidator } from 'src/app/classes/unique-validator.class';
 import { EIconAlert } from 'src/app/interfaces/alertIcon.enum';
 import { IPager, IPagerFilter } from 'src/app/interfaces/pager.interface';
 import { IRole, IUser } from 'src/app/interfaces/segurity-interfaces/user.interface';
@@ -52,6 +53,7 @@ export class UserComponent {
   private _saving = false
   private _loadData = false
   private _loading = false
+  private _loadedUser: IUser | null = null
 
   paginate: IPager = {
     currentPage: 0,
@@ -67,8 +69,11 @@ export class UserComponent {
   get values() { return this.frmUser.value; }
   get valuesFilter():IPagerFilter { return this.frmFilter.value; }
   get currentPage() { return this.paginate.currentPage; }
-  get invalid() { return this.frmUser.invalid; }
+  get invalid() { return this.frmUser.invalid || this.frmUser.pending; }
   get loading() { return this._loading; }
+  get emailInvalid() {
+    return (this.frmUser.controls['email'].errors && this.frmUser.get('email')?.touched) || (this.frmUser.controls['email'].errors && this.frmUser.controls['email'].errors['alreadyExits'])
+  }
 
   get controls() { return this.frmUser.controls; }
   touched( field: string ) { return this.frmUser.get( field )?.touched; }
@@ -91,7 +96,7 @@ export class UserComponent {
     this.frmUser = this._frmBuilder.group({
       name:     [ '', [ Validators.required, Validators.pattern( fullTextPatt ) ] ],
       surname:  [ '', [ Validators.required, Validators.pattern( fullTextPatt ) ] ],
-      email:    [ '', [ Validators.required, Validators.pattern( emailPatt ) ] ],
+      email:    [ '', [ Validators.required, Validators.pattern( emailPatt ) ], [UniquenessValidator.createValidator(this._usersvc, this._loadedUser?.email)] ],
       phone:    [ '', [  ] ],
       roles:    [ null, [ Validators.required, Validators.minLength(1) ] ],
       agencyId: [ null, [ Validators.required ] ],
@@ -192,9 +197,13 @@ export class UserComponent {
 
         const { data } = response;
 
+        this._loadedUser = data;
+
         this.frmUser.get('name')?.setValue( data.name );
         this.frmUser.get('surname')?.setValue( data.surname );
+        this.frmUser.get('email')?.clearAsyncValidators();
         this.frmUser.get('email')?.setValue( data.email );
+        this.frmUser.get('email')?.addAsyncValidators(UniquenessValidator.createValidator(this._usersvc, this._loadedUser?.email));
         this.frmUser.get('phone')?.setValue( data.phone );
 
 
@@ -217,6 +226,7 @@ export class UserComponent {
   onReset() {
     this._id = '';
     this._loadData = false;
+    this._loadedUser = null;
     this.frmUser.reset();
     document.getElementById('btnCloseModal')?.click();
   }

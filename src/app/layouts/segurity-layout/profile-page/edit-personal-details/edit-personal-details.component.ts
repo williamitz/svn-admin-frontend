@@ -1,8 +1,13 @@
 import { Component, inject, Input } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { UniquenessValidator } from 'src/app/classes/unique-validator.class';
+import { EIconAlert } from 'src/app/interfaces/alertIcon.enum';
 import { AgencyService } from 'src/app/services/admin-services/agency.service';
 import { RoleService } from 'src/app/services/segurity-services/role.service';
+import { UserService } from 'src/app/services/segurity-services/user.service';
+import { UiService } from 'src/app/services/ui.service';
 import { emailPatt, fullTextPatt } from 'src/app/utils';
 import { IRole } from '../../../../interfaces/segurity-interfaces/role.interface';
 import { IUser } from '../../../../interfaces/segurity-interfaces/user.interface';
@@ -22,6 +27,9 @@ export class EditPersonalDetailsComponent {
 
   private _agencysvc = inject( AgencyService );
   private _rolesvc   = inject( RoleService );
+  private _usersvc   = inject( UserService );
+  private _uisvc = inject( UiService );
+  private _translatesvc = inject( TranslateService );
 
   agencies: any[] = [];
   roles: IRole[] = [];
@@ -36,8 +44,11 @@ export class EditPersonalDetailsComponent {
   get saving() { return this._saving; }
   get loadData() { return this._loadData; }
   get values() { return this.frmUser.value; }
-  get invalid() { return this.frmUser.invalid; }
+  get invalid() { return this.frmUser.invalid || this.frmUser.pending; }
   get loading() { return this._loading; }
+  get emailInvalid() {
+    return (this.frmUser.controls['email'].errors && this.frmUser.get('email')?.touched) || (this.frmUser.controls['email'].errors && this.frmUser.controls['email'].errors['alreadyExits'])
+  }
 
   get controls() { return this.frmUser.controls; }
   touched( field: string ) { return this.frmUser.get( field )?.touched; }
@@ -65,7 +76,7 @@ export class EditPersonalDetailsComponent {
     this.frmUser = this._frmBuilder.group({
       name:     [ '', [ Validators.required, Validators.pattern( fullTextPatt ) ] ],
       surname:  [ '', [ Validators.required, Validators.pattern( fullTextPatt ) ] ],
-      email:    [ '', [ Validators.required, Validators.pattern( emailPatt ) ] ],
+      email:    [ '', [ Validators.required, Validators.pattern( emailPatt ) ], [UniquenessValidator.createValidator(this._usersvc, this.user?.email)] ],
       phone:    [ '', [  ] ],
       roles:    [ null, [ Validators.required, Validators.minLength(1) ] ],
       agencyId: [ null, [ Validators.required ] ],
@@ -116,42 +127,26 @@ export class EditPersonalDetailsComponent {
 
   onSubmit() {
 
-    if( !this._loadData ) {
+    if( !this._loadData && this.user?.id ) {
 
-      /*this._create$ = this._usersvc.onCreate( this.values )
-      .subscribe({
-        next: (response) => {
+      const body = Object.assign({...this.user}, {...this.values});
+      body.agencyId = body.agency.id;
+      body.roles = body.roles.map((rol: any) => rol.id);
 
+      this._update$ = this._usersvc.onUpdate( body, this.user.id )
+        .subscribe({
+         next: (response) => {
+          this._uisvc.onClose();
+          this._uisvc.onShowAlert( this._translatesvc.instant('TOAST.PERSONAL_DETAILS_SUCCESS'), EIconAlert.success );
+           this._update$?.unsubscribe();
+         },
+         error: (e) => {
+           console.error(e);
+           this._update$?.unsubscribe();
+         }
+       });
 
-          console.log('response ::: ', response);
-
-          this.onGetUsers( this.currentPage );
-
-          this.onReset();
-          this._create$?.unsubscribe();
-        },
-        error: (e) => {
-
-          this._create$?.unsubscribe();
-        }
-      });*/
-
-    }
-    // else {
-
-    //   this._update$ = this._usersvc.update( this.values, this._id )
-    //   .subscribe({
-    //     next: (response) => {
-
-    //       this._update$?.unsubscribe();
-    //     },
-    //     error: (e) => {
-
-    //       this._update$?.unsubscribe();
-    //     }
-    //   });
-
-    // }
+      }
 
   }
 
