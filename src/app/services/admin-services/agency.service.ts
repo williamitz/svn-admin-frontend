@@ -1,54 +1,62 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { admin_service } from 'src/globals';
+import { admin_service } from 'src/environments/environment';
 import { IPagerFilter } from '../../interfaces/pager.interface';
-import { IOrganizationByIdResponse, IOrganizationListResponse } from '../../interfaces/admin-interfaces/organization.interface';
+import {
+  IOrganizationByIdResponse,
+  IOrganizationListResponse,
+} from '../../interfaces/admin-interfaces/organization.interface';
 
-const entity = 'agency'
+const entity = 'agency';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class AgencyService {
+  private _http = inject(HttpClient);
 
-  private _http = inject( HttpClient );
-
-  onCreate( body: any ) {
-    return this._http.post( `${ admin_service }/${ entity }`, body );
+  onCreate(body: any) {
+    return this._http.post(`${admin_service}/${entity}`, body);
   }
 
-  onUpdate( body: any, id: string ) {
-    return this._http.put( `${ admin_service }/${ entity }/${ id }`, body );
+  onUpdate(body: any, id: string) {
+    return this._http.put(`${admin_service}/${entity}/${id}`, body);
   }
 
-  onDelete( id: string ) {
-    return this._http.delete( `${ admin_service }/${ entity }/${ id }` );
+  onDelete(id: string) {
+    return this._http.delete(`${admin_service}/${entity}/${id}`);
   }
 
-  onFindAll( filter: IPagerFilter, page: number ) {
+  onFindAll(filter: IPagerFilter, page: number) {
+    let params = `page=${page}`;
+    params += `&filter=${filter.filter}`;
+    params += `&active=${!filter.active}`;
+    params += `&limit=${filter.limit}`;
+    params += `&order=${filter.order}`;
 
-    let params = `page=${ page }`;
-    params += `&filter=${ filter.filter }`;
-    params += `&active=${ !filter.active }`;
-    params += `&limit=${ filter.limit }`;
-    params += `&order=${ filter.order }`;
-
-    return this._http.get<IOrganizationListResponse>( `${ admin_service }/${ entity }?${ params }` );
+    return this._http.get<IOrganizationListResponse>(
+      `${admin_service}/${entity}?${params}`
+    );
   }
 
   onFindAllByUser() {
-    return this._http.get<IOrganizationListResponse>( `${ admin_service }/${ entity }/all/to-user` );
+    return this._http.get<IOrganizationListResponse>(
+      `${admin_service}/${entity}/all/to-user`
+    );
   }
 
-
-  onFindById( id: string ) {
-    return this._http.get<IOrganizationByIdResponse>( `${ admin_service }/${ entity }/${ id }` );
+  onFindById(id: string) {
+    return this._http.get<IOrganizationByIdResponse>(
+      `${admin_service}/${entity}/${id}`
+    );
   }
 
-  onUpdateColor( body: any ) {
-    return this._http.put<any>( `${ admin_service }/${ entity }/color/update`, body );
+  onUpdateColor(body: any) {
+    return this._http.put<any>(`${admin_service}/${entity}/color/update`, body);
   }
 
-  onUpdateLogo( body: any, id: string, ) {
-    return this._http.put<any>( `${ admin_service }/${ entity }/${ id }/logo/update`, body );
+  onUpdateLogo(body: any, id: string) {
+    return this._http.put<any>(
+      `${admin_service}/${entity}/${id}/logo/update`,
+      body
+    );
   }
-
 }
