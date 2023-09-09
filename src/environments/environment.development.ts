@@ -1,7 +1,5 @@
-export const admin_service =
-  'https://snv-admin-backend-op3m9.ondigitalocean.app/api/v1';
-export const admin_socket =
-  'https://snv-admin-backend-op3m9.ondigitalocean.app';
+export const admin_service ='https://backend.jirka.co:10070/sasha-gateway/ms-svn-plataforma/api/v1';
+export const admin_socket ='https://backend.jirka.co:3000';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyAzjgZXNq_81YtcXBWQHKjU25NEpQCIxfY',
