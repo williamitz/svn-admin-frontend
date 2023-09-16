@@ -19,6 +19,11 @@ export const onUpdateAdditional = createAction(
   props<{ location: string, mrn: string, client: string }>()
 );
 
+export const onUpdateUserData = createAction(
+  '[SEGURITY] onLoadMenuSystem',
+  props<{ userData: IUserData }>()
+)
+
 
 export const onClear = createAction(
   '[SEGURITY] onClear',

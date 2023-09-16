@@ -92,6 +92,13 @@ export const SegurityReducer = createReducer(
     },
   ),
 
+  on(
+    actions.onUpdateUserData,
+    (state, { userData }) => {
+      return {...state, userData: {...userData}};
+    },
+  )
+
 
 );
 

@@ -1,7 +1,9 @@
 import { Component, inject, Input } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { IAppState } from 'src/app/app.state';
 import { UniquenessValidator } from 'src/app/classes/unique-validator.class';
 import { EIconAlert } from 'src/app/interfaces/alertIcon.enum';
 import { AgencyService } from 'src/app/services/admin-services/agency.service';
@@ -11,6 +13,7 @@ import { UiService } from 'src/app/services/ui.service';
 import { emailPatt, fullTextPatt } from 'src/app/utils';
 import { IRole } from '../../../../interfaces/segurity-interfaces/role.interface';
 import { IUser } from '../../../../interfaces/segurity-interfaces/user.interface';
+import * as segurityActions from 'src/app/redux/actions/segurity.actions';
 
 @Component({
   selector: 'app-edit-personal-details',
@@ -24,12 +27,15 @@ export class EditPersonalDetailsComponent {
   private _agency$?: Subscription;
   private _role$?: Subscription;
   private _update$?: Subscription;
+  private _segurity$?: Subscription;
 
   private _agencysvc = inject( AgencyService );
   private _rolesvc   = inject( RoleService );
   private _usersvc   = inject( UserService );
   private _uisvc = inject( UiService );
   private _translatesvc = inject( TranslateService );
+
+  private _store: Store<IAppState> = inject( Store<IAppState> );
 
   agencies: any[] = [];
   roles: IRole[] = [];
@@ -133,12 +139,13 @@ export class EditPersonalDetailsComponent {
       body.agencyId = body.agency.id;
       body.roles = body.roles.map((rol: any) => rol.id);
 
-      this._update$ = this._usersvc.onUpdate( body, this.user.id )
+      this._update$ = this._usersvc.onUpdateWithPatch( body, this.user.id )
         .subscribe({
-         next: (response) => {
+         next: (response: any) => {
           this._uisvc.onClose();
           this._uisvc.onShowAlert( this._translatesvc.instant('TOAST.PERSONAL_DETAILS_SUCCESS'), EIconAlert.success );
-           this._update$?.unsubscribe();
+          this._store.dispatch(segurityActions.onUpdateUserData({userData: response?.data}));
+          this._update$?.unsubscribe();
          },
          error: (e) => {
            console.error(e);
@@ -161,6 +168,15 @@ export class EditPersonalDetailsComponent {
 
     this.frmUser.get('roles')?.disable();
     this.frmUser.get('agencyId')?.disable();
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this._role$?.unsubscribe();
+    this._agency$?.unsubscribe();
+    this._update$?.unsubscribe();
+    this._segurity$?.unsubscribe();
   }
 
 }

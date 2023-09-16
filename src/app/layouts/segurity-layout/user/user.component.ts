@@ -211,7 +211,7 @@ export class UserComponent {
 
 
 
-        this.frmUser.get('roles')?.setValue( data.roles.map( (e) => e.id ) );
+        this.frmUser.get('roles')?.setValue( data.roles?.map( (e) => e.id ) );
         this._uisvc.onClose();
 
         this._userFind$?.unsubscribe();

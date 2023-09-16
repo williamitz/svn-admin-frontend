@@ -19,6 +19,7 @@ import { IRole } from '../../../interfaces/segurity-interfaces/role.interface';
 import { emailPatt, fullTextPatt } from '../../../utils';
 import { Store } from '@ngrx/store';
 import { IAppState } from 'src/app/app.state';
+import { UserService } from 'src/app/services/segurity-services/user.service';
 
 @Component({
   selector: 'app-profile-page',
@@ -31,7 +32,10 @@ export class ProfilePageComponent implements OnInit {
   document!: documentModel[];
   userData:any;
 
+  private _usersvc   = inject( UserService );
+
   private _segurity$?: Subscription;
+  private _userFind$?: Subscription;
 
   /**
    * Swiper setting
@@ -100,6 +104,22 @@ export class ProfilePageComponent implements OnInit {
     .subscribe( (state) => {
       const { userData } = state;
       if( userData ) this.userData = userData;
+      /*
+      if(userData.id){
+        this._userFind$ = this._usersvc.onFindById( userData.id )
+        .subscribe({
+          next: (response) => {
+            const { data } = response;
+            this.userData = data;
+            this._userFind$?.unsubscribe();
+          },
+          error: (e) => {
+            console.error(e);
+            this._userFind$?.unsubscribe();
+          }
+        });
+      }*/
+
     });
 
     this.fetchData();
@@ -139,7 +159,7 @@ export class ProfilePageComponent implements OnInit {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
     this._segurity$?.unsubscribe();
-
+    this._userFind$?.unsubscribe();
   }
 
 }
