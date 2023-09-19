@@ -6,9 +6,9 @@
     "local": "ng serve --configuration=development",
     "stage": "ng serve --configuration=stage",
     "production": "ng serve --prod",
-    "build": "ng build --prod",
-    "build:local": "ng build --development",
-    "build:stage": "ng build --stage",
+    "build": "ng build --configuration production",
+    "build:local": "ng build --configuration development",
+    "build:stage": "ng build --configuration stage",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
