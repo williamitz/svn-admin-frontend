@@ -29,6 +29,7 @@ import { provideEnvironmentNgxMask } from 'ngx-mask';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { PipesModule } from 'src/app/pipes/pipes.module';
 import { MenuComponent } from './menu/menu.component';
+import { EspecializedTypesComponent } from './especialized-types/especialized-types.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: true,
@@ -41,7 +42,8 @@ const maskConfig: Partial<IConfig> = {
     RoleComponent,
     RoleFrmComponent,
     ProfilePageComponent,
-    MenuComponent
+    MenuComponent,
+    EspecializedTypesComponent
   ],
   imports: [
     CommonModule,
