@@ -6,6 +6,7 @@ import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { NotFoundPageComponent } from '../../pages/not-found-page/not-found-page.component';
 import { RoleFrmComponent } from './role-frm/role-frm.component';
 import { MenuComponent } from './menu/menu.component';
+import { EspecializedTypesComponent } from './especialized-types/especialized-types.component';
 
 const routes: Routes = [
   {
@@ -43,6 +44,11 @@ const routes: Routes = [
     path: 'menu',
     component: MenuComponent,
     // title: 'Menús del sistema',
+  },
+  {
+    path: 'especialized-types',
+    component: EspecializedTypesComponent,
+    // title: 'Especialidades
   },
   {
     path: '**',

@@ -32,6 +32,7 @@ import { MenuComponent } from './menu/menu.component';
 import { ChangePasswordComponent } from './user/change-password/change-password.component';
 import { EditPersonalDetailsComponent } from './profile-page/edit-personal-details/edit-personal-details.component';
 import { EditPasswordComponent } from './profile-page/edit-password/edit-password.component';
+import { EspecializedTypesComponent } from './especialized-types/especialized-types.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: true,
@@ -48,6 +49,7 @@ const maskConfig: Partial<IConfig> = {
     ChangePasswordComponent,
     EditPersonalDetailsComponent,
     EditPasswordComponent,
+    EspecializedTypesComponent
   ],
   imports: [
     CommonModule,
