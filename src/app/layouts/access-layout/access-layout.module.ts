@@ -11,6 +11,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { WidgetsModule } from 'src/app/widgets/widgets.module';
 import { TabOnDemandServicesComponent } from './portal-interprter/tab-on-demand-services/tab-on-demand-services.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { TabOnDemandServicesComponent } from './portal-interprter/tab-on-demand-
     AccessLayoutRoutingModule,
     FullCalendarModule,
     FlatpickrModule.forRoot(),
+    TranslateModule,
     NgbRatingModule,
     WidgetsModule,
   ],

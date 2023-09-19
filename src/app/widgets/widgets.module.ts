@@ -13,6 +13,7 @@ import { DateFilterLiteComponent } from './date-filter-lite/date-filter-lite.com
 import { AdditionalSessionInformationComponent } from './additional-session-information/additional-session-information.component';
 import { EarningsViewComponent } from './earnings-view/earnings-view.component';
 import { OnDemandServicesComponent } from './on-demand-services/on-demand-services.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { OnDemandServicesComponent } from './on-demand-services/on-demand-servic
     ReactiveFormsModule,
     FormsModule,
     NgbRatingModule,
+    TranslateModule,
   ],
   exports: [
     ListNotifyWidgetComponent,
