@@ -1,18 +1,18 @@
 <div class="card earnings-view-card">
     <div class="card-header align-items-center d-flex">
-      <h4 class="card-title mb-0 flex-grow-1">Data</h4>
+      <h4 class="card-title mb-0 flex-grow-1">{{'GLOSSARY.DATA' | translate}}</h4>
     </div>
     <div class="card-body">
       <div class="row">
         <div class="col-12">
           <div class="box-flex mb-5">
-            <h5 class="mb-1">Today’s Total Earnings</h5>
+            <h5 class="mb-1">{{'GLOSSARY.TOTALEARNINGS' | translate}}</h5>
             <div class="box-mount">{{ earnings | currency }}</div>
           </div>
         </div>
         <div class="col-12">
           <div class="box-flex">
-            <h5 class="mb-1">My Rating</h5>
+            <h5 class="mb-1">{{'GLOSSARY.MYRATING' | translate}}</h5>
 
             <ngb-rating
                 [(rate)]="profileRating"
