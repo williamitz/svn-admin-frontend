@@ -8,6 +8,7 @@ import { ProfileInterpreterComponent } from '../admin-layout/profile-interpreter
 
 const routes: Routes = [
   { path: '', component: PortalInterprterComponent },
+  { path: 'portal-interpreter', component: PortalInterprterComponent },
   { path: 'my-assignments', component: MyassignmetInterpreterComponent },
   { path: 'call-history', component: CallHistoryInterpreterComponent },
   { path: 'profile', component: ProfileInterpreterComponent },

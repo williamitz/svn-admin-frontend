@@ -1,15 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { ICampusListResponse } from 'src/app/interfaces/admin-interfaces/campus.interface';
-import { admin_service } from 'src/globals';
+import { admin_service } from 'src/environments/environment';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class CampusService {
-
-  private _http = inject( HttpClient );
+  private _http = inject(HttpClient);
 
   onFindAll() {
-    return this._http.get<ICampusListResponse>( admin_service + '/campus' );
+    return this._http.get<ICampusListResponse>(admin_service + '/campus');
   }
-
 }

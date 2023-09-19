@@ -1,0 +1,36 @@
+<app-date-filter-lite></app-date-filter-lite>
+
+<div class="row">
+    <div class="col-md-6">
+        <app-additional-session-information></app-additional-session-information>
+    </div>
+  
+    <div class="col-md-6">
+      <app-earnings-view [profileRating]="profileRating"></app-earnings-view>
+    </div>
+</div>
+  
+  
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="card">
+        <div class="card-header align-items-center d-flex">
+          <h4 class="card-title mb-0 flex-grow-1">{{'GLOSSARY.MINUTESVOLUME' | translate}}</h4>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+  
+              <app-chart-bar-widget></app-chart-bar-widget>
+
+            </div>
+            <div class="col-md-6">
+
+              <app-on-demand-services></app-on-demand-services>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

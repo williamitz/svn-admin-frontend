@@ -67,7 +67,11 @@
                             </div>
 
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="auth-remember-check">
+                                <input class="form-check-input"
+                                  type="checkbox"
+                                  formControlName="remenberme"
+                                  id="auth-remember-check"
+                                >
                                 <label class="form-check-label" for="auth-remember-check">Remember me</label>
                             </div>
 
@@ -76,6 +80,11 @@
                                     Log in
                                 </button>
                             </div>
+
+                            <div class="mt-4 text-danger">
+                              {{ msgError }}
+                            </div>
+
                         </form>
                     </div>
                 </div>

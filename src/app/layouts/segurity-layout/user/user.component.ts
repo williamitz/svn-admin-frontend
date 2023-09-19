@@ -21,6 +21,7 @@ export class UserComponent {
 
   private _agency$?: Subscription;
   private _user$?: Subscription;
+  private _userFind$?: Subscription;
   private _role$?: Subscription;
   private _create$?: Subscription;
   private _update$?: Subscription;
@@ -28,7 +29,6 @@ export class UserComponent {
   private _countrie$?: Subscription;
 
   selectedPeople: any;
-
 
 
   private _agencysvc = inject( AgencyService );
@@ -50,8 +50,6 @@ export class UserComponent {
   private _saving = false
   private _loadData = false
   private _loading = false
-
-
 
   paginate: IPager = {
     currentPage: 0,
@@ -144,6 +142,13 @@ export class UserComponent {
     })
   }
 
+  onKeyPress( evn: KeyboardEvent  ) {
+
+    if( evn.key == 'Enter' ) {
+      this.onGetUsers();
+    }
+  }
+
   onGetUsers( page = 1 ) {
 
     this._loading = true;
@@ -172,9 +177,44 @@ export class UserComponent {
 
   onLoadData( user: IUser ) {
 
+    const { id } = user;
+
+    this._id = id;
+    this._loadData = true;
+
+    this._uisvc.onShowLoading();
+
+    this._userFind$ = this._usersvc.onFindById( id )
+    .subscribe({
+      next: (response) => {
+
+        const { data } = response;
+
+        this.frmUser.get('name')?.setValue( data.name );
+        this.frmUser.get('surname')?.setValue( data.surname );
+        this.frmUser.get('email')?.setValue( data.email );
+        this.frmUser.get('phone')?.setValue( data.phone );
+
+
+        this.frmUser.get('agencyId')?.setValue( data.agency?.id );
+
+
+
+        this.frmUser.get('roles')?.setValue( data.roles.map( (e) => e.id ) );
+        this._uisvc.onClose();
+
+        this._userFind$?.unsubscribe();
+      },
+      error: (e) => {
+
+        this._userFind$?.unsubscribe();
+      }
+    })
   }
 
   onReset() {
+    this._id = '';
+    this._loadData = false;
     this.frmUser.reset();
     document.getElementById('btnCloseModal')?.click();
   }
@@ -217,42 +257,56 @@ export class UserComponent {
 
   onSubmit() {
 
+    this._uisvc.onShowLoading();
+    this._saving = true;
+
     if( !this._loadData ) {
 
       this._create$ = this._usersvc.onCreate( this.values )
       .subscribe({
         next: (response) => {
 
-
-          console.log('response ::: ', response);
+          // console.log('response ::: ', response);
 
           this.onGetUsers( this.currentPage );
 
           this.onReset();
+          this._uisvc.onClose();
+          this._saving = false;
+
           this._create$?.unsubscribe();
         },
         error: (e) => {
 
+          this._uisvc.onClose();
+          this._saving = false;
           this._create$?.unsubscribe();
         }
       });
 
+    } else {
+
+      this._update$ = this._usersvc.onUpdate( this.values, this._id )
+      .subscribe({
+        next: (response) => {
+
+          this.onGetUsers( this.currentPage );
+
+          this.onReset();
+
+          this._saving = false;
+          this._uisvc.onClose();
+          this._update$?.unsubscribe();
+        },
+        error: (e) => {
+
+          this._saving = false;
+          this._uisvc.onClose();
+          this._update$?.unsubscribe();
+        }
+      });
+
     }
-    // else {
-
-    //   this._update$ = this._usersvc.update( this.values, this._id )
-    //   .subscribe({
-    //     next: (response) => {
-
-    //       this._update$?.unsubscribe();
-    //     },
-    //     error: (e) => {
-
-    //       this._update$?.unsubscribe();
-    //     }
-    //   });
-
-    // }
 
   }
 

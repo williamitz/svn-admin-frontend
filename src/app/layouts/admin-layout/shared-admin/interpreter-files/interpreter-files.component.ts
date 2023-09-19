@@ -128,7 +128,6 @@ export class InterpreterFilesComponent {
     this.frmFile.get('type')?.setValue( file.type );
     this.frmFile.get('nameFirebase')?.setValue( nameFileFinal );
 
-
     this._update$ = this._fileSvc.uploadInterpreter( this.values, this.id )
     .subscribe({
       next: (response) => {

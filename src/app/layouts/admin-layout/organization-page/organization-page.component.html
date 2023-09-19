@@ -27,7 +27,7 @@
 
                   <div class="d-flex justify-content-star align-items-center gap-2">
                     <div class="">
-                      <input type="text" class="form-control" id="placeholderInput" placeholder="Search..." formControlName="filter" >
+                      <input type="text" class="form-control" id="placeholderInput" placeholder="Search..." formControlName="filter" (keypress)="onKeyPress($event)" >
                     </div>
                   </div>
 

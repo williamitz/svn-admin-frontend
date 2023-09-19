@@ -1,0 +1,51 @@
+<table class="table table-nowrap">
+    <thead>
+      <tr class="table-dark">
+        <th colspan="2">
+          <h5 class="text-center mb-0 text-white">{{'GLOSSARY.ONDAMANDSERVICES' | translate}}</h5>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr>
+        <td rowspan="4" class="border">
+          <div class="d-flex flex-column">
+            <div class="box-icon mx-auto mb-2">
+              <i class="mdi mdi-phone"></i>
+            </div>
+            <span class="text-center">{{'GLOSSARY.PHONECALLS' | translate}}</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="text-end">{{data.phone.calls}} {{'GLOSSARY.CALLS' | translate}}</td>
+      </tr>
+      <tr>
+        <td class="text-end">{{data.phone.minutes}} {{'GLOSSARY.TOTALMINUTES' | translate}}</td>
+      </tr>
+      <tr>
+        <td class="text-end">{{data.phone.duration}} {{'GLOSSARY.AVERAGEDURATION' | translate}}</td>
+      </tr>
+      <tr>
+        <td rowspan="4" class="border">
+          <div class="d-flex flex-column">
+            <div class="box-icon mx-auto mb-2">
+              <i class="mdi mdi-video"></i>
+            </div>
+            <span class="text-center">{{'GLOSSARY.VIDEOCALLS' | translate}}</span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="text-end">{{data.video.calls}} {{'GLOSSARY.CALLS' | translate}}</td>
+      </tr>
+      <tr>
+        <td class="text-end">{{data.video.minutes}} {{'GLOSSARY.TOTALMINUTES' | translate}}</td>
+      </tr>
+      <tr>
+        <td class="text-end">{{data.video.duration}} {{'GLOSSARY.AVERAGEDURATION' | translate}}</td>
+      </tr>
+    </tbody>
+</table>

@@ -23,7 +23,7 @@ export class UiService {
   onShowLoading() {
     Swal.fire({
       title: '',
-      html: 'Espere...',
+      html: 'Waiting...',
       allowEscapeKey: false,
       allowOutsideClick: false,
       // customClass: {

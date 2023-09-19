@@ -29,7 +29,19 @@ export interface ICustomer {
 
   customerType: ICustomerType;
   rates:        Rate[];
+  activeNumbers: IActiveNumber[];
 }
+
+export interface IActiveNumber {
+  status:     boolean;
+  userCreate: string;
+  createAt:   string;
+  id:         string;
+  name:       string;
+  number:     string;
+  rate:       string;
+}
+
 
 export interface Rate {
   status:     boolean;
@@ -69,4 +81,5 @@ export interface Timezone {
   gmtOffset:    number;
   dst:          string;
 }
+
 
