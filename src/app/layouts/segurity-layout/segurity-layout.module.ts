@@ -29,6 +29,9 @@ import { provideEnvironmentNgxMask } from 'ngx-mask';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { PipesModule } from 'src/app/pipes/pipes.module';
 import { MenuComponent } from './menu/menu.component';
+import { ChangePasswordComponent } from './user/change-password/change-password.component';
+import { EditPersonalDetailsComponent } from './profile-page/edit-personal-details/edit-personal-details.component';
+import { EditPasswordComponent } from './profile-page/edit-password/edit-password.component';
 import { EspecializedTypesComponent } from './especialized-types/especialized-types.component';
 
 const maskConfig: Partial<IConfig> = {
@@ -43,13 +46,16 @@ const maskConfig: Partial<IConfig> = {
     RoleFrmComponent,
     ProfilePageComponent,
     MenuComponent,
+    ChangePasswordComponent,
+    EditPersonalDetailsComponent,
+    EditPasswordComponent,
     EspecializedTypesComponent
   ],
   imports: [
     CommonModule,
     SharedLayoutModule,
     SwiperModule,
-    // TranslateModule,
+    TranslateModule,
     SegurityLayoutRoutingModule,
     FormsModule,
     ReactiveFormsModule,

@@ -1,5 +1,5 @@
-import { Component, OnInit, QueryList, ViewChildren, ViewChild } from '@angular/core';
-import { UntypedFormBuilder } from '@angular/forms';
+import { Component, OnInit, QueryList, ViewChildren, ViewChild, inject } from '@angular/core';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { projectListModel, documentModel } from '../../../interfaces/profile.interfaces';
 
@@ -12,6 +12,14 @@ import { SwiperComponent } from "swiper/angular";
 // Swiper Slider
 // import { SwiperComponent, SwiperDirective } from 'swiper';
 import { StorageService } from '../../../services/storage.service';
+import { Subscription } from 'rxjs';
+import { AgencyService } from 'src/app/services/admin-services/agency.service';
+import { RoleService } from 'src/app/services/segurity-services/role.service';
+import { IRole } from '../../../interfaces/segurity-interfaces/role.interface';
+import { emailPatt, fullTextPatt } from '../../../utils';
+import { Store } from '@ngrx/store';
+import { IAppState } from 'src/app/app.state';
+import { UserService } from 'src/app/services/segurity-services/user.service';
 
 @Component({
   selector: 'app-profile-page',
@@ -23,6 +31,11 @@ export class ProfilePageComponent implements OnInit {
   projectList!: projectListModel[];
   document!: documentModel[];
   userData:any;
+
+  private _usersvc   = inject( UserService );
+
+  private _segurity$?: Subscription;
+  private _userFind$?: Subscription;
 
   /**
    * Swiper setting
@@ -66,6 +79,14 @@ export class ProfilePageComponent implements OnInit {
 
   @ViewChildren(NgbdProfileSortableHeader) headers!: QueryList<NgbdProfileSortableHeader>;
 
+  get userRoles() { return this.userData?.roles?.map( (r: any) => r.name )?.join(' - ') ?? 'sin rol'; }
+  get fullname() { return this.userData?.fullname ?? 'undefined'; }
+  get user() {
+    return this.userData
+  }
+
+  private _store = inject( Store<IAppState> );
+
   constructor(
     private formBuilder: UntypedFormBuilder,
     private modalService: NgbModal,
@@ -79,8 +100,30 @@ export class ProfilePageComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.userData =  this._st.getUser();
+    this._segurity$ = this._store.select('segurity')
+    .subscribe( (state) => {
+      const { userData } = state;
+      if( userData ) this.userData = userData;
+      /*
+      if(userData.id){
+        this._userFind$ = this._usersvc.onFindById( userData.id )
+        .subscribe({
+          next: (response) => {
+            const { data } = response;
+            this.userData = data;
+            this._userFind$?.unsubscribe();
+          },
+          error: (e) => {
+            console.error(e);
+            this._userFind$?.unsubscribe();
+          }
+        });
+      }*/
+
+    });
+
     this.fetchData();
+
   }
 
   /**
@@ -110,6 +153,13 @@ export class ProfilePageComponent implements OnInit {
   // Delete Data
   deleteData(id:any) {
     // document.getElementById('')
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this._segurity$?.unsubscribe();
+    this._userFind$?.unsubscribe();
   }
 
 }

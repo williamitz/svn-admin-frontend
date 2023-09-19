@@ -1,0 +1,142 @@
+<form [formGroup]="frmUser" (submit)="onSubmit()" >
+
+    <div class="modal-body ">
+
+      <div>
+        <div class="row">
+          <div class="col-sm-6">
+
+            <label for="placeholderInput" class="form-label">{{'GLOSSARY.NAMES' | translate}} <span class="required">*</span></label>
+
+            <input type="text"
+              class="form-control"
+              id="placeholderInput"
+              [placeholder]="'GLOSSARY.NAMES_PLACEHOLDER' | translate"
+              formControlName="name"
+              [class.is-invalid]="controls['name'].errors  &&  touched('name')"
+            >
+
+            <div *ngIf="touched('name') && controls['name'].errors" class="invalid-feedback">
+              <div *ngIf="controls['name'].errors['required']">{{'GLOSSARY.NAMES_REQUIRED' | translate}}</div>
+              <div *ngIf="controls['name'].errors['pattern']">{{'GLOSSARY.NAMES_INVALID' | translate}}</div>
+            </div>
+
+          </div>
+          <div class="col-sm-6">
+
+            <label for="placeholderInput" class="form-label">{{'GLOSSARY.SURNAMES' | translate}} <span class="required">*</span></label>
+
+            <input type="text"
+              class="form-control"
+              [placeholder]="'GLOSSARY.SURNAMES' | translate"
+              formControlName="surname"
+              [class.is-invalid]="controls['surname'].errors  &&  touched('surname')"
+            >
+
+            <div *ngIf="touched('surname') && controls['surname'].errors" class="invalid-feedback">
+              <div *ngIf="controls['surname'].errors['required']">{{'GLOSSARY.SURNAMES_REQUIRED' | translate}}</div>
+              <div *ngIf="controls['surname'].errors['pattern']">{{'GLOSSARY.SURNAMES_INVALID' | translate}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <div class="row pt-2">
+        <div class="col-sm-6">
+
+            <label for="iconInput" class="form-label">{{'GLOSSARY.EMAIL' | translate}} <span class="required">*</span></label>
+                <div class="form-icon">
+                  <input type="email"
+                      class="form-control form-control-icon"
+                      id="iconInput"
+                      [placeholder]="'GLOSSARY.EMAIL_PLACEHOLDER' | translate"
+                      formControlName="email"
+                      [class.is-invalid]="emailInvalid"
+                  >
+
+                  <div *ngIf="touched('email') && controls['email'].errors" class="invalid-feedback">
+                    <div *ngIf="controls['email'].errors['required']">Email is required</div>
+                    <div *ngIf="controls['email'].errors['pattern']">Email is invalid</div>
+                  </div>
+
+                  <div *ngIf="controls['email'].errors" class="invalid-feedback">
+                    <div *ngIf="controls['email'].errors['alreadyExits']">Email already exits</div>
+                  </div>
+          
+                  <i [style.left]="'initial'" [style.right]="'18px'" *ngIf="controls['email'].pending" class="rotate ri-loader-4-fill"></i>
+
+                  <i [style.bottom]="emailInvalid ? '18px' : '0px'" class="ri-user-line"></i>
+              </div>
+
+        </div>
+
+        <div class="col-sm-6">
+
+            <label for="txtphone" class="form-label">{{'GLOSSARY.PHONE' | translate}} <span class="required">*</span></label>
+            <input type="text"
+              class="form-control"
+              id="txtphone"
+              [placeholder]="'GLOSSARY.PHONE_PLACEHOLDER' | translate"
+              mask="000-000-000"
+              formControlName="phone"
+            >
+
+        </div>
+    </div>
+
+    <div class="row pt-2">
+        
+        <div class="col-sm-6 multi-select-label-disabled">
+
+            <label for="cleave-phone" class="form-label">{{'GLOSSARY.ROLES' | translate}} <span class="required">*</span></label>
+            <ng-select
+                [items]="roles"
+                [multiple]="true"
+                [closeOnSelect]="false"
+                [searchable]="false"
+                bindLabel="name"
+                bindValue="id"
+                [placeholder]="'GLOSSARY.ROLES_PLACEHOLDER' | translate"
+                formControlName="roles"
+                [class.is-invalid]="controls['roles'].errors  &&  touched('roles')"
+                >
+            </ng-select>
+            </div>
+
+            <div class="col-sm-6">
+
+            <label for="cleave-phone" class="form-label">{{'GLOSSARY.AGENCY' | translate}} <span class="required">*</span></label>
+            <ng-select
+                [items]="agencies"
+                bindLabel="bussinnesName"
+                bindValue="id"
+                [placeholder]="'GLOSSARY.AGENCY_PLACEHOLDER' | translate"
+                formControlName="agencyId"
+                [class.is-invalid]="controls['agencyId'].errors  &&  touched('agencyId')"
+                >
+            </ng-select>
+
+            </div>
+            
+        </div>
+
+    </div>
+
+    <div class="modal-footer flex justify-content-center mt-3">
+        <button type="submit" class="btn btn-primary" [disabled]="invalid || saving" >
+
+          <div class="spinner-border text-light" role="status" *ngIf="saving">
+            <span class="sr-only">{{'GLOSSARY.LOADING' | translate}}...</span>
+          </div>
+
+          <span *ngIf="!saving && !loadData"> {{'GLOSSARY.UPDATE' | translate}} </span>
+          <span *ngIf="!saving && loadData"> {{'GLOSSARY.UPDATE' | translate}} </span>
+          <span *ngIf="saving"> {{'GLOSSARY.SAVING' | translate}}... </span>
+
+        </button>
+
+        <button type="button" class="btn btn-light ms-2">{{'GLOSSARY.CANCEL' | translate}}</button>
+
+    </div>
+
+  </form>

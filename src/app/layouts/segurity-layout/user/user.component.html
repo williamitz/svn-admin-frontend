@@ -97,6 +97,11 @@
                               <i class="ri-pencil-fill align-bottom"></i>
                             </button>
 
+                            <button type="button" class="btn btn-sm btn-warning ms-2" (click)="onChangePassword(user)"
+                              data-bs-toggle="modal" data-bs-target="#changePassword">
+                              <i class="ri-key-2-line align-bottom" *ngIf="user.status"></i>
+                            </button>
+
                             <button type="button" class="btn btn-sm btn-danger ms-2" [class.btn-success]="!user.status"
                               [class.btn-danger]="user.status" (click)="onConfirm(user)">
                               <i class="ri-delete-bin-7-line align-bottom" *ngIf="user.status"></i>
@@ -214,14 +219,21 @@
                       id="iconInput"
                       placeholder="example@gmail.com"
                       formControlName="email"
-                      [class.is-invalid]="controls['email'].errors  &&  touched('email')"
+                      [class.is-invalid]="emailInvalid"
                     >
 
-                    <i class="ri-user-line"></i>
-                  </div>
-                  <div *ngIf="touched('email') && controls['email'].errors" class="invalid-feedback">
-                    <div *ngIf="controls['email'].errors['required']">Email is required</div>
-                    <div *ngIf="controls['email'].errors['pattern']">Email is invalid</div>
+                    <div *ngIf="touched('email') && controls['email'].errors" class="invalid-feedback">
+                      <div *ngIf="controls['email'].errors['required']">Email is required</div>
+                      <div *ngIf="controls['email'].errors['pattern']">Email is invalid</div>
+                    </div>
+
+                    <div *ngIf="controls['email'].errors" class="invalid-feedback">
+                      <div *ngIf="controls['email'].errors['alreadyExits']">Email already exits</div>
+                    </div>
+
+                    <i [style.left]="'initial'" [style.right]="'18px'" *ngIf="controls['email'].pending" class="rotate ri-loader-4-fill"></i>
+
+                    <i [style.bottom]="emailInvalid ? '18px' : '0px'" class="ri-user-line"></i>
                   </div>
               </div>
 
@@ -314,3 +326,5 @@
       </div>
   </div>
 </div>
+
+<app-change-password [user]="selectedUser"></app-change-password>
